@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PRINTEMPS DES MARAIS</title>
 
-  <!-- Police Google Fonts -->
+  <!-- Google Fonts : Aliens and Cows (titres) + Roboto (fallback chiffres) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --title-font: 'Aliens and Cows', system-ui, sans-serif;
+    :root{
+      /* Empilement : Aliens and Cows pour les lettres, Roboto pour les chiffres */
+      --title-font: 'Aliens and Cows', 'Roboto', system-ui, sans-serif;
     }
 
     /* Base */
@@ -29,6 +30,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
+    /* Image-titre responsive */
     .site-title {
       display: block;
       max-width: 900px;
@@ -37,6 +39,7 @@
       margin: 0 auto 0.75rem;
     }
 
+    /* Accessibilité : garder le H1 pour le SEO */
     .sr-only {
       position: absolute !important;
       width: 1px; height: 1px;
@@ -44,10 +47,8 @@
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
-    /* Titres avec la police */
-    h1, h2, h3 {
-      font-family: var(--title-font);
-    }
+    /* Titres et éléments “boutons/menus” avec la pile de polices */
+    h1, h2, h3 { font-family: var(--title-font); }
 
     nav { margin-top: .25rem; }
     nav a {
@@ -69,6 +70,7 @@
       margin-top: 0;
     }
 
+    /* Grille projets */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -82,9 +84,12 @@
       transition: transform .2s ease, background .3s ease;
     }
     .project:hover { transform: translateY(-4px); background: #515951; }
-    .project h3 { margin: 0 0 .5rem; color: #fff; }
+    .project h3 {
+      margin: 0 0 .5rem; color: #fff;
+      font-family: var(--title-font);
+    }
 
-    /* Boutons "Voir plus" → ciblés même sans classe */
+    /* Boutons "Voir plus" — même si ce sont de simples <a> */
     .project a {
       display: inline-block;
       margin-top: .5rem;
@@ -110,6 +115,7 @@
       background: #2e332e;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
       header { padding: 1.25rem 1rem .75rem; }
       nav a { margin: 0 .5rem; font-size: .9rem; }
@@ -117,6 +123,7 @@
     }
   </style>
 </head>
+
 
 <body>
   <header>
