@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PRINTEMPS DES MARAIS</title>
 
-  <!-- Police titre/boutons -->
+  <!-- Police Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --title-font: 'Aliens and Cows', system-ui, sans-serif;
+    }
+
     /* Base */
     body {
       background: #3A403A;
@@ -22,7 +28,7 @@
       background: #2e332e;
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
-    /* Image-titre responsive */
+
     .site-title {
       display: block;
       max-width: 900px;
@@ -30,7 +36,7 @@
       height: auto;
       margin: 0 auto 0.75rem;
     }
-    /* Garde le H1 pour SEO mais cache-le visuellement */
+
     .sr-only {
       position: absolute !important;
       width: 1px; height: 1px;
@@ -38,9 +44,9 @@
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
-    /* Typo titres + nav + boutons */
-    h1, h2, .nav a, .project h3, .btn {
-      font-family: 'Aliens and Cows', sans-serif;
+    /* Titres avec la police */
+    h1, h2, h3 {
+      font-family: var(--title-font);
     }
 
     nav { margin-top: .25rem; }
@@ -48,6 +54,7 @@
       margin: 0 1rem;
       text-decoration: none;
       color: #dcdcdc;
+      font-family: var(--title-font);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -62,7 +69,6 @@
       margin-top: 0;
     }
 
-    /* Cartes projets */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -78,8 +84,8 @@
     .project:hover { transform: translateY(-4px); background: #515951; }
     .project h3 { margin: 0 0 .5rem; color: #fff; }
 
-    /* Bouton "Voir plus" */
-    .btn {
+    /* Boutons "Voir plus" → ciblés même sans classe */
+    .project a {
       display: inline-block;
       margin-top: .5rem;
       padding: .45rem .9rem;
@@ -87,12 +93,13 @@
       color: #f0f0f0;
       text-decoration: none;
       border-radius: .4rem;
+      font-family: var(--title-font);
       text-transform: uppercase;
       font-size: .85rem;
       letter-spacing: 1px;
       transition: background .3s, color .3s;
     }
-    .btn:hover { background: #1f231f; color: #fff; }
+    .project a:hover { background: #1f231f; color: #fff; }
 
     footer {
       text-align: center;
@@ -103,7 +110,6 @@
       background: #2e332e;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       header { padding: 1.25rem 1rem .75rem; }
       nav a { margin: 0 .5rem; font-size: .9rem; }
@@ -111,6 +117,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1 class="sr-only">PRINTEMPS DES MARAIS</h1>
