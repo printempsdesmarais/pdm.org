@@ -3,20 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mon premier site</title>
+  <title>Mon Portfolio</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; }
-    main { max-width: 720px; margin: 0 auto; }
-    h1 { font-size: 2rem; margin-bottom: .5rem; }
-    p { line-height: 1.6; }
-    a.button { display:inline-block; padding:.6rem 1rem; border-radius:.6rem; text-decoration:none; border:1px solid #ccc }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0; padding: 0;
+      background: #fafafa; color: #222;
+    }
+    header {
+      padding: 2rem; text-align: center;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    nav a {
+      margin: 0 1rem; text-decoration: none; color: #555;
+    }
+    main { max-width: 800px; margin: auto; padding: 2rem; }
+    section { margin-bottom: 3rem; }
+    h2 { border-bottom: 2px solid #ddd; padding-bottom: .5rem; }
+    .project {
+      border: 1px solid #eee; border-radius: .5rem;
+      padding: 1rem; margin: 1rem 0; background: #fff;
+    }
+    footer {
+      text-align: center; font-size: .9rem; color: #777;
+      padding: 2rem; border-top: 1px solid #eee;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Ton Nom</h1>
+    <p>Développeur / Créatif / Photographe</p>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
   <main>
-    <h1>Bonjour 👋</h1>
-    <p>Ceci est mon premier site publié avec <strong>GitHub Pages</strong> !</p>
-    <a class="button" href="https://github.com" target="_blank" rel="noreferrer">Voir GitHub</a>
+    <section id="about">
+      <h2>À propos</h2>
+      <p>
+        Quelques phrases sur toi, ton parcours, tes passions.
+        Ce portfolio sert à montrer ton univers de manière simple et élégante.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projets</h2>
+      <div class="project">
+        <h3>Projet 1</h3>
+        <p>Description rapide de ton projet. 
+        <a href="#">Voir plus</a></p>
+      </div>
+      <div class="project">
+        <h3>Projet 2</h3>
+        <p>Description rapide de ton projet. 
+        <a href="#">Voir plus</a></p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>📧 ton.email@example.com</p>
+      <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 
+         🐙 <a href="https://github.com">GitHub</a></p>
+    </section>
   </main>
+
+  <footer>
+    © 2025 Ton Nom – Portfolio minimal avec GitHub Pages
+  </footer>
 </body>
 </html>
