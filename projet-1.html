@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projet 1 — PRINTEMPS DES MARAIS</title>
+
+  <!-- Google Fonts : Aliens and Cows + Roboto (fallback chiffres) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{ --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif; }
+
+    /* Thème cohérent avec l'accueil */
+    body{ margin:0; background:#3A403A; color:#f0f0f0; font-family:system-ui,sans-serif; }
+    header, footer{ background:#2e332e; border-bottom:1px solid rgba(255,255,255,.12); }
+    header{ padding:1rem 1.25rem; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:1.5rem; }
+    h1,h2{ font-family:var(--title-font); color:#fff; margin:0 0 .75rem; }
+    p{ line-height:1.7; }
+
+    /* Lien retour */
+    .back {
+      display:inline-block; margin:.25rem 0 1rem; text-decoration:none; color:#dcdcdc;
+      font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px;
+      border:1px solid rgba(255,255,255,.25); border-radius:.5rem; padding:.4rem .7rem;
+    }
+    .back:hover{ color:#fff; background:#1f231f; }
+
+    /* Intro projet */
+    .intro{
+      background:#444c44; border-radius:.6rem; padding:1rem 1.25rem; box-shadow:0 2px 6px rgba(0,0,0,.3);
+      margin-bottom:1.5rem;
+    }
+
+    /* Grille storyboard */
+    .storyboard{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1rem;
+    }
+    figure{
+      margin:0; background:#444c44; border-radius:.6rem; overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .25s ease, background .25s ease;
+    }
+    figure:hover{ transform:translateY(-3px); background:#515951; }
+    .shot{
+      display:block; width:100%; height:220px; object-fit:cover; object-position:center; 
+      background:#2e332e;
+    }
+    figcaption{
+      padding:.6rem .8rem; font-size:.95rem; color:#e7e7e7;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+
+    /* Pleine largeur optionnelle pour une image “clé” */
+    .storyboard .wide{ grid-column:1/-1; }
+    .wide .shot{ height:360px; }
+
+    /* Responsive */
+    @media (max-width:600px){
+      .wrap{ padding:1rem; }
+      .shot{ height:200px; }
+      .wide .shot{ height:260px; }
+    }
+
+    footer{
+      margin-top:2rem; padding:1.25rem; text-align:center; color:#ccc;
+      border-top:1px solid rgba(255,255,255,.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="back" href="index.html">⟵ Retour</a>
+      <h1>Projet 1 — Storyboard</h1>
+      <p>Une narration visuelle des étapes du projet (sélection d’images clés, de l’idéation au terrain).</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h2>Contexte</h2>
+      <p>
+        Dans le but de créer une réserve de biodiversité sur un terrain agricole en zone humide (Talais, Gironde),
+        ce storyboard documente les étapes du projet : repérages, aménagements, installation de l’élevage patrimonial,
+        interventions scientifiques, artistiques et pédagogiques.
+      </p>
+    </section>
+
+    <!-- Grille d’images : remplace les src par tes fichiers -->
+    <section aria-label="Storyboard du projet">
+      <h2>Storyboard</h2>
+
+      <div class="storyboard">
+        <!-- Image “clé” en pleine largeur (optionnelle) -->
+        <figure class="wide">
+          <img class="shot" src="images/storyboard/story0.jpg" alt="Vue générale du site — Estuaire / zone humide" loading="lazy">
+          <figcaption>Vue générale du site — premières prises de vues et repérages.</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story1.jpg" alt="Repérage des zones d’intérêt écologique" loading="lazy">
+          <figcaption>Repérage des zones d’intérêt écologique.</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story2.jpg" alt="Cartographie et plan de gestion initial" loading="lazy">
+          <figcaption>Cartographie et plan de gestion initial.</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story3.jpg" alt="Aménagements légers et balisage du site" loading="lazy">
+          <figcaption>Aménagements légers et balisage du site.</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story4.jpg" alt="Installation de l’élevage — race patrimoniale" loading="lazy">
+          <figcaption>Installation de l’élevage (race patrimoniale, menacée et endémique).</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story5.jpg" alt="Interventions scientifiques et pédagogiques" loading="lazy">
+          <figcaption>Interventions scientifiques et pédagogogiques avec le public.</figcaption>
+        </figure>
+
+        <figure>
+          <img class="shot" src="images/storyboard/story6.jpg" alt="Résultats préliminaires — biodiversité observée" loading="lazy">
+          <figcaption>Résultats préliminaires : biodiversité observée.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Printemps des Marais — Projet 1
+  </footer>
+</body>
+</html>
