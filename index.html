@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mon Portfolio</title>
   <style>
+    /* Styles de base */
     body {
       font-family: system-ui, sans-serif;
       margin: 0; padding: 0;
@@ -12,21 +13,43 @@
     }
     header {
       padding: 2rem; text-align: center;
+      background: #fff; border-bottom: 1px solid #eee;
     }
-    h1 { margin-bottom: 0.5rem; }
+    h1 { margin-bottom: 0.3rem; }
+    nav { margin-top: 1rem; }
     nav a {
       margin: 0 1rem; text-decoration: none; color: #555;
     }
-    main { max-width: 800px; margin: auto; padding: 2rem; }
+    main { max-width: 1000px; margin: auto; padding: 2rem; }
     section { margin-bottom: 3rem; }
     h2 { border-bottom: 2px solid #ddd; padding-bottom: .5rem; }
+
+    /* Cartes projets */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
     .project {
       border: 1px solid #eee; border-radius: .5rem;
-      padding: 1rem; margin: 1rem 0; background: #fff;
+      padding: 1rem; background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+      transition: transform .2s ease;
     }
+    .project:hover { transform: translateY(-4px); }
+    .project h3 { margin-top: 0; }
+
     footer {
       text-align: center; font-size: .9rem; color: #777;
       padding: 2rem; border-top: 1px solid #eee;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 600px) {
+      header { padding: 1.5rem; }
+      h1 { font-size: 1.6rem; }
+      nav a { margin: 0 0.5rem; font-size: 0.9rem; }
+      main { padding: 1rem; }
     }
   </style>
 </head>
@@ -45,22 +68,29 @@
     <section id="about">
       <h2>À propos</h2>
       <p>
-        Quelques phrases sur toi, ton parcours, tes passions.
-        Ce portfolio sert à montrer ton univers de manière simple et élégante.
+        Quelques phrases sur toi, ton parcours, tes passions.  
+        Ce portfolio est conçu pour être sobre, élégant et responsive 📱.
       </p>
     </section>
 
     <section id="projects">
       <h2>Projets</h2>
-      <div class="project">
-        <h3>Projet 1</h3>
-        <p>Description rapide de ton projet. 
-        <a href="#">Voir plus</a></p>
-      </div>
-      <div class="project">
-        <h3>Projet 2</h3>
-        <p>Description rapide de ton projet. 
-        <a href="#">Voir plus</a></p>
+      <div class="projects">
+        <div class="project">
+          <h3>Projet 1</h3>
+          <p>Description rapide de ton projet. 
+          <a href="#">Voir plus</a></p>
+        </div>
+        <div class="project">
+          <h3>Projet 2</h3>
+          <p>Description rapide de ton projet. 
+          <a href="#">Voir plus</a></p>
+        </div>
+        <div class="project">
+          <h3>Projet 3</h3>
+          <p>Description rapide de ton projet. 
+          <a href="#">Voir plus</a></p>
+        </div>
       </div>
     </section>
 
@@ -73,7 +103,7 @@
   </main>
 
   <footer>
-    © 2025 Ton Nom – Portfolio minimal avec GitHub Pages
+    © 2025 Ton Nom – Portfolio responsive avec GitHub Pages
   </footer>
 </body>
 </html>
