@@ -3,28 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mon Portfolio</title>
+  <title>PRINTEMPS DES MARAIS</title>
+
+  <!-- Police titre/boutons -->
+  <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&display=swap" rel="stylesheet">
+
   <style>
-    /* Styles de base */
+    /* Base */
     body {
+      background: #3A403A;
+      color: #f0f0f0;
       font-family: system-ui, sans-serif;
-      margin: 0; padding: 0;
-      background: #3A403A;  /* fond personnalisé */
-      color: #f0f0f0;       /* texte clair */
+      margin: 0;
     }
     header {
-      padding: 2rem; text-align: center;
-      background: #2e332e; border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5rem 2rem 1rem;
+      text-align: center;
+      background: #2e332e;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
-    h1 { margin-bottom: 0.3rem; color: #fff; }
-    nav { margin-top: 1rem; }
+    /* Image-titre responsive */
+    .site-title {
+      display: block;
+      max-width: 900px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 0.75rem;
+    }
+    /* Garde le H1 pour SEO mais cache-le visuellement */
+    .sr-only {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Typo titres + nav + boutons */
+    h1, h2, .nav a, .project h3, .btn {
+      font-family: 'Aliens and Cows', sans-serif;
+    }
+
+    nav { margin-top: .25rem; }
     nav a {
-      margin: 0 1rem; text-decoration: none; color: #dcdcdc;
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #dcdcdc;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     nav a:hover { color: #fff; }
+
     main { max-width: 1000px; margin: auto; padding: 2rem; }
     section { margin-bottom: 3rem; }
-    h2 { border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: .5rem; color: #fff; }
+    h2 {
+      color: #fff;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: .5rem;
+      margin-top: 0;
+    }
 
     /* Cartes projets */
     .projects {
@@ -33,47 +69,65 @@
       gap: 1.5rem;
     }
     .project {
+      background: #444c44;
       border-radius: .5rem;
-      padding: 1rem; background: #444c44;
+      padding: 1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,.3);
       transition: transform .2s ease, background .3s ease;
     }
     .project:hover { transform: translateY(-4px); background: #515951; }
-    .project h3 { margin-top: 0; color: #fff; }
+    .project h3 { margin: 0 0 .5rem; color: #fff; }
+
+    /* Bouton "Voir plus" */
+    .btn {
+      display: inline-block;
+      margin-top: .5rem;
+      padding: .45rem .9rem;
+      background: #2e332e;
+      color: #f0f0f0;
+      text-decoration: none;
+      border-radius: .4rem;
+      text-transform: uppercase;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      transition: background .3s, color .3s;
+    }
+    .btn:hover { background: #1f231f; color: #fff; }
 
     footer {
-      text-align: center; font-size: .9rem; color: #ccc;
-      padding: 2rem; border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      font-size: .9rem;
+      color: #ccc;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
       background: #2e332e;
     }
 
-    /* Responsive mobile */
+    /* Responsive */
     @media (max-width: 600px) {
-      header { padding: 1.5rem; }
-      h1 { font-size: 1.6rem; }
-      nav a { margin: 0 0.5rem; font-size: 0.9rem; }
+      header { padding: 1.25rem 1rem .75rem; }
+      nav a { margin: 0 .5rem; font-size: .9rem; }
       main { padding: 1rem; }
     }
   </style>
 </head>
 <body>
   <header>
-  <h1 style="display:none;">PRINTEMPS DES MARAIS</h1>
-  <img src="images/TitreWebsite3couleurs.png" 
-       alt="PRINTEMPS DES MARAIS" 
-       style="max-width: 100%; height: auto;">
-  <p>Association / Environnement / Culture</p>
-  <nav>
-    <a href="#about">À propos</a>
-    <a href="#projects">Projets</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <h1 class="sr-only">PRINTEMPS DES MARAIS</h1>
+    <img class="site-title" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
+    <p>Association / Environnement / Culture</p>
+    <nav class="nav">
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
   <main>
     <section id="about">
       <h2>À propos</h2>
       <p>
-        L'association a pour but la création et la conservation d'une réserve de biodiversité sur un terrain agricole dans une démarche pluridisciplinaire, expérimentale, écologique, patrimoniale et culturelle. Le projet, initialement envisagé pour une durée de cinq ans renouvelable, mobilise des acteurs du patrimoine naturel et culturel, pour une prise de conscience des enjeux environnementaux en zone humide sur les rives de l'Estuaire de la Gironde en Nouvelle-Aquitaine📱.
+        L'association a pour but la création et la conservation d'une réserve de biodiversité sur un terrain agricole dans une démarche pluridisciplinaire, expérimentale, écologique, patrimoniale et culturelle. Le projet, initialement envisagé pour une durée de cinq ans renouvelable, mobilise des acteurs du patrimoine naturel et culturel, pour une prise de conscience des enjeux environnementaux en zone humide sur les rives de l'Estuaire de la Gironde en Nouvelle-Aquitaine.
       </p>
     </section>
 
@@ -82,18 +136,18 @@
       <div class="projects">
         <div class="project">
           <h3>Projet 1</h3>
-          <p>Description du projet. Dans le but de créer une réserve de biodiversité, il est convenu avec les propriétaires d'un terrain agricole de 8 ha, non exploité, en zone humide (Commune de 33590 Talais, 308 passe Castillonnaise), qu'une agricultrice-éleveuse puisse l'exploiter afin d'y démarrer l'élevage d'une race de poneys, patrimoniale, menacée et endémique de la région. L'élaboration du projet prévoit différentes interventions humaines, scientifiques, artistiques, pédagogiques et logistiques. 
-          <a href="#">Voir plus</a></p>
+          <p>Description du projet…</p>
+          <a class="btn" href="#">Voir plus</a>
         </div>
         <div class="project">
           <h3>Projet 2</h3>
-          <p>Description rapide de ton projet. 
-          <a href="#">Voir plus</a></p>
+          <p>Description rapide de ton projet.</p>
+          <a class="btn" href="#">Voir plus</a>
         </div>
         <div class="project">
           <h3>Projet 3</h3>
-          <p>Description rapide de ton projet. 
-          <a href="#">Voir plus</a></p>
+          <p>Description rapide de ton projet.</p>
+          <a class="btn" href="#">Voir plus</a>
         </div>
       </div>
     </section>
@@ -101,8 +155,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>📧 printempsdesmarais@gmail.com</p>
-      <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 
-         🐙 <a href="https://github.com">GitHub</a></p>
+      <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 🐙 <a href="https://github.com">GitHub</a></p>
     </section>
   </main>
 
