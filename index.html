@@ -9,20 +9,22 @@
     body {
       font-family: system-ui, sans-serif;
       margin: 0; padding: 0;
-      background: #fafafa; color: #222;
+      background: #3A403A;  /* fond personnalisé */
+      color: #f0f0f0;       /* texte clair */
     }
     header {
       padding: 2rem; text-align: center;
-      background: #fff; border-bottom: 1px solid #eee;
+      background: #2e332e; border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    h1 { margin-bottom: 0.3rem; }
+    h1 { margin-bottom: 0.3rem; color: #fff; }
     nav { margin-top: 1rem; }
     nav a {
-      margin: 0 1rem; text-decoration: none; color: #555;
+      margin: 0 1rem; text-decoration: none; color: #dcdcdc;
     }
+    nav a:hover { color: #fff; }
     main { max-width: 1000px; margin: auto; padding: 2rem; }
     section { margin-bottom: 3rem; }
-    h2 { border-bottom: 2px solid #ddd; padding-bottom: .5rem; }
+    h2 { border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: .5rem; color: #fff; }
 
     /* Cartes projets */
     .projects {
@@ -31,17 +33,18 @@
       gap: 1.5rem;
     }
     .project {
-      border: 1px solid #eee; border-radius: .5rem;
-      padding: 1rem; background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.05);
-      transition: transform .2s ease;
+      border-radius: .5rem;
+      padding: 1rem; background: #444c44;
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      transition: transform .2s ease, background .3s ease;
     }
-    .project:hover { transform: translateY(-4px); }
-    .project h3 { margin-top: 0; }
+    .project:hover { transform: translateY(-4px); background: #515951; }
+    .project h3 { margin-top: 0; color: #fff; }
 
     footer {
-      text-align: center; font-size: .9rem; color: #777;
-      padding: 2rem; border-top: 1px solid #eee;
+      text-align: center; font-size: .9rem; color: #ccc;
+      padding: 2rem; border-top: 1px solid rgba(255,255,255,0.2);
+      background: #2e332e;
     }
 
     /* Responsive mobile */
