@@ -5,134 +5,86 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PRINTEMPS DES MARAIS</title>
 
-  <!-- Google Fonts : Aliens and Cows (titres) + Roboto (fallback chiffres) -->
+  <!-- Google Fonts : Aliens and Cows + Roboto (fallback chiffres) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      /* Empilement : Aliens and Cows pour les lettres, Roboto pour les chiffres */
-      --title-font: 'Aliens and Cows', 'Roboto', system-ui, sans-serif;
-    }
+    :root { --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif; }
 
     /* Base */
     body {
-      background: #3A403A;
-      color: #f0f0f0;
-      font-family: system-ui, sans-serif;
-      margin: 0;
+      background:#3A403A; color:#f0f0f0;
+      font-family:system-ui, sans-serif; margin:0;
     }
     header {
-      padding: 1.5rem 2rem 1rem;
-      text-align: center;
-      background: #2e332e;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding:1.5rem 2rem 1rem; text-align:center;
+      background:#2e332e; border-bottom:1px solid rgba(255,255,255,.12);
     }
-
-    /* Image-titre responsive */
     .site-title {
-      display: block;
-      max-width: 900px;
-      width: 100%;
-      height: auto;
-      margin: 0 auto 0.75rem;
+      display:block; max-width:900px; width:100%; height:auto; margin:0 auto .75rem;
     }
-
-    /* Accessibilité : garder le H1 pour le SEO */
     .sr-only {
-      position: absolute !important;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      position:absolute!important; width:1px;height:1px; padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
-
-    /* Titres et éléments “boutons/menus” avec la pile de polices */
-    h1, h2, h3 { font-family: var(--title-font); }
-
-    nav { margin-top: .25rem; }
+    nav { margin-top:.25rem; }
     nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #dcdcdc;
-      font-family: var(--title-font);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      margin:0 1rem; text-decoration:none; color:#dcdcdc;
+      font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px;
     }
-    nav a:hover { color: #fff; }
+    nav a:hover { color:#fff; }
 
-    main { max-width: 1000px; margin: auto; padding: 2rem; }
-    section { margin-bottom: 3rem; }
+    main { max-width:1000px; margin:auto; padding:2rem; }
+    section { margin-bottom:3rem; }
     h2 {
-      color: #fff;
-      border-bottom: 2px solid rgba(255,255,255,0.3);
-      padding-bottom: .5rem;
-      margin-top: 0;
+      font-family:var(--title-font); color:#fff;
+      border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:.5rem; margin-top:0;
     }
+    p { line-height:1.7; }
 
-    /* Grille projets */
+    /* Carte projet unique */
     .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem;
     }
     .project {
-      background: #444c44;
-      border-radius: .5rem;
-      padding: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,.3);
-      transition: transform .2s ease, background .3s ease;
+      background:#444c44; border-radius:.5rem; padding:1rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .2s, background .3s;
     }
-    .project:hover { transform: translateY(-4px); background: #515951; }
-    .project h3 {
-      margin: 0 0 .5rem; color: #fff;
-      font-family: var(--title-font);
+    .project:hover { transform:translateY(-4px); background:#515951; }
+    .project h3 { margin:.25rem 0 .5rem; color:#fff; font-family:var(--title-font); }
+    .btn {
+      display:inline-block; margin-top:.5rem; padding:.45rem .9rem;
+      background:#2e332e; color:#f0f0f0; text-decoration:none; border-radius:.4rem;
+      font-family:var(--title-font); text-transform:uppercase; font-size:.85rem; letter-spacing:1px;
+      transition:background .3s,color .3s;
     }
+    .btn:hover { background:#1f231f; color:#fff; }
 
-    /* Boutons "Voir plus" — même si ce sont de simples <a> */
-    .project a {
-      display: inline-block;
-      margin-top: .5rem;
-      padding: .45rem .9rem;
-      background: #2e332e;
-      color: #f0f0f0;
-      text-decoration: none;
-      border-radius: .4rem;
-      font-family: var(--title-font);
-      text-transform: uppercase;
-      font-size: .85rem;
-      letter-spacing: 1px;
-      transition: background .3s, color .3s;
-    }
-    .project a:hover { background: #1f231f; color: #fff; }
+    /* Map */
+    #map iframe { width:100%; height:350px; border:0; }
 
     footer {
-      text-align: center;
-      font-size: .9rem;
-      color: #ccc;
-      padding: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      background: #2e332e;
+      text-align:center; font-size:.9rem; color:#ccc;
+      padding:2rem; border-top:1px solid rgba(255,255,255,.2); background:#2e332e;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      header { padding: 1.25rem 1rem .75rem; }
-      nav a { margin: 0 .5rem; font-size: .9rem; }
-      main { padding: 1rem; }
+    @media (max-width:600px){
+      header{ padding:1.25rem 1rem .75rem; }
+      nav a{ margin:0 .5rem; font-size:.9rem; }
+      main{ padding:1rem; }
     }
   </style>
 </head>
-
-
 <body>
   <header>
     <h1 class="sr-only">PRINTEMPS DES MARAIS</h1>
     <img class="site-title" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
     <p>Association / Environnement / Culture</p>
-    <nav class="nav">
+    <nav>
       <a href="#about">À propos</a>
-      <a href="#projects">Projets</a>
+      <a href="#projects">Projet</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -141,53 +93,41 @@
     <section id="about">
       <h2>À propos</h2>
       <p>
-        L'association "Printemps des Marais" a pour but la création et la conservation d'une réserve de biodiversité sur un terrain agricole dans une démarche pluridisciplinaire, expérimentale, écologique, patrimoniale et culturelle. Le projet, initialement envisagé pour une durée de cinq ans renouvelable, mobilise des acteurs du patrimoine naturel et culturel, pour une prise de conscience des enjeux environnementaux en zone humide sur les rives de l'Estuaire de la Gironde en Nouvelle-Aquitaine.
+        L'association vise la création et la conservation d'une réserve de biodiversité sur un terrain agricole
+        en zone humide (Talais, Gironde). Le projet mobilise des acteurs du patrimoine naturel et culturel afin
+        de sensibiliser aux enjeux environnementaux des marais de l’estuaire de la Gironde.
       </p>
     </section>
 
     <section id="projects">
-      <h2>Projets</h2>
+      <h2>Projet</h2>
       <div class="projects">
         <div class="project">
-          <h3>Projet 1</h3>
-          <p>Description du projet…</p>
-        <a class="btn" href="projet-1.html">Voir plus</a>
-        </div>
-        <div class="project">
-          <h3>Projet 2</h3>
-          <p>Description rapide de ton projet.</p>
-          <a class="btn" href="#">Voir plus</a>
-        </div>
-        <div class="project">
-          <h3>Projet 3</h3>
-          <p>Description rapide de ton projet.</p>
-          <a class="btn" href="#">Voir plus</a>
+          <h3>Projet 1 — Storyboard</h3>
+          <p>Découvrez l’histoire du projet en images : repérages, aménagements, élevage patrimonial, médiation et résultats.</p>
+          <a class="btn" href="projet-1.html">Voir le storyboard</a>
         </div>
       </div>
     </section>
 
-    <!-- Section Contact (existant) -->
-<section id="contact">
-  <h2>Contact</h2>
-  <p>📧 printempsdesmarais@gmail.com</p>
-  <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 🐙 <a href="https://github.com">GitHub</a></p>
-</section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>📧 printempsdesmarais@gmail.com</p>
+      <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 🐙 <a href="https://github.com">GitHub</a></p>
+    </section>
 
-<!-- Nouvelle section : Carte Google Maps -->
-<section id="map">
-  <h2>Nous trouver</h2>
-  <iframe
-    src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed"
-    width="80%" height="300" style="border:0;"
-    allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</section>
+    <!-- Carte Google Maps centrée sur l’adresse demandée -->
+    <section id="map" aria-label="Nous trouver">
+      <h2>Nous trouver</h2>
+      <iframe
+        src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </section>
+  </main>
 
-<!-- Footer -->
-<footer>
-  © 2025 Printemps des Marais – Portfolio responsive avec GitHub Pages
-</footer>
-
+  <footer>
+    © 2025 Printemps des Marais – Portfolio
+  </footer>
 </body>
 </html>
