@@ -11,181 +11,231 @@
   <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    :root { --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif; }
+    :root{
+      --title-font: 'Aliens and Cows','Roboto',system-ui,sans-serif;
+      --bg: #3A403A;
+      --panel: rgba(46,51,46,.7);
+      --panel-strong: rgba(46,51,46,.85);
+      --text: #f0f0f0;
+      --muted: #dcdcdc;
+      --line: rgba(255,255,255,.18);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+    }
 
-    /* Conteneur avec effet parallaxe */
+    html { scroll-behavior: smooth; }
     body {
-      margin:0;
-      font-family:system-ui,sans-serif;
-      color:#f0f0f0;
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    .parallax {
-      position:fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      z-index:-1;
-      background: 
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("images/story0.jpg") center center / cover no-repeat;
-      background-attachment: fixed; /* effet parallaxe */
+      margin:0; color:var(--text); font-family:system-ui, sans-serif; background: var(--bg);
     }
 
-    header {
-      padding:1.5rem 2rem 1rem; text-align:center;
-      background:rgba(46,51,46,0.8);
-      border-bottom:1px solid rgba(255,255,255,.12);
+    /* Header sticky translucide */
+    .site-header{
+      position: sticky; top:0; z-index:100;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--panel) 80%, transparent);
+      border-bottom: 1px solid var(--line);
     }
-    .site-title {
-      display:block; max-width:900px; width:100%; height:auto; margin:0 auto .75rem;
+    .nav{
+      max-width:1100px; margin:0 auto; padding:.75rem 1rem;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:.75rem;
     }
-    .sr-only {
-      position:absolute!important; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0);
+    .brand{
+      display:flex; align-items:center; gap:.75rem; text-decoration:none; color:var(--text);
+      font-family: var(--title-font);
+      letter-spacing:.5px;
     }
-    nav { margin-top:.25rem; }
-    nav a {
-      margin:0 1rem; text-decoration:none; color:#dcdcdc;
-      font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px;
+    .brand img{ height:34px; width:auto; display:block; }
+    .nav a{
+      color:var(--muted); text-decoration:none; margin-left:1rem;
+      font-family: var(--title-font); text-transform: uppercase; letter-spacing:1px; font-size:.9rem;
     }
-    nav a:hover { color:#fff; }
+    .nav a:hover{ color:#fff; }
 
-    main {
-      max-width:1000px; margin:auto; padding:2rem;
-      background:rgba(58,64,58,0.75); border-radius:.6rem;
+    /* Hero plein écran */
+    .hero{
+      position: relative; min-height: 70svh; display:grid; place-items:center; text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url("images/hero.jpg") center/cover no-repeat fixed;
+      border-bottom: 1px solid var(--line);
     }
-    section { margin-bottom:3rem; }
-    h2 {
-      font-family:var(--title-font); color:#fff;
-      border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:.5rem;
+    .hero-inner{ padding: 3rem 1rem; }
+    .hero-logo{
+      max-width: 900px; width:min(90vw, 820px); height:auto; margin:0 auto 1rem; display:block;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.45));
     }
-    p { line-height:1.7; }
-
-    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; }
-    .project {
-      background:rgba(68,76,68,0.85); border-radius:.5rem; padding:1rem;
-      box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .2s, background .3s;
+    .hero p{ max-width: 820px; margin: .5rem auto 1.25rem; line-height:1.7; color:var(--muted); }
+    .cta{
+      display:inline-block; padding:.65rem 1.1rem; border-radius:.55rem;
+      background: var(--panel-strong); color:var(--text); text-decoration:none;
+      font-family: var(--title-font); text-transform: uppercase; letter-spacing:1px;
+      border:1px solid var(--line); box-shadow: var(--shadow);
+      transition: transform .2s ease, background .2s ease;
     }
-    .project:hover { transform:translateY(-4px); background:rgba(81,89,81,0.9); }
-    .project h3 { margin:.25rem 0 .5rem; font-family:var(--title-font); }
+    .cta:hover{ transform: translateY(-2px); background:#1f231f; }
 
-    .btn {
-      display:inline-block; margin-top:.5rem; padding:.45rem .9rem;
-      background:#2e332e; color:#f0f0f0; text-decoration:none; border-radius:.4rem;
-      font-family:var(--title-font); text-transform:uppercase; font-size:.85rem; letter-spacing:1px;
-      transition:background .3s,color .3s;
+    /* Contenu principal */
+    main{ max-width:1100px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* À propos en 2 colonnes */
+    .about{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap: 1.25rem; align-items:start;
     }
-    .btn:hover { background:#1f231f; color:#fff; }
+    .panel{
+      background: var(--panel); border:1px solid var(--line); border-radius: var(--radius);
+      padding:1.2rem 1.25rem; box-shadow: var(--shadow);
+    }
+    .about h2, .projects h2, .contact h2, .map h2{
+      font-family: var(--title-font); margin:0 0 .75rem; padding-bottom:.4rem;
+      border-bottom: 2px solid rgba(255,255,255,.28);
+    }
+    .about .quick{
+      display:grid; gap:.8rem;
+    }
+    .badge{
+      background: rgba(255,255,255,.08); border:1px solid var(--line);
+      border-radius: .6rem; padding:.6rem .75rem; line-height:1.5;
+    }
+    .muted{ color: var(--muted); }
 
-    #map iframe { width:100%; height:350px; border:0; }
-
-    footer {
-      text-align:center; font-size:.9rem; color:#ccc;
-      padding:2rem; border-top:1px solid rgba(255,255,255,.2);
-      background:rgba(46,51,46,0.8);
+    /* Carte projet large */
+    .project-card{
+      display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; align-items: center;
+      margin-top: 2rem;
+    }
+    .project-card .thumb{
+      aspect-ratio: 16/10; width:100%; object-fit: cover; border-radius: var(--radius);
+      box-shadow: var(--shadow); border:1px solid var(--line);
     }
 
-    @media (max-width:600px){
-      header{ padding:1.25rem 1rem .75rem; }
-      nav a{ margin:0 .5rem; font-size:.9rem; }
-      main{ padding:1rem; }
+    /* Section contact */
+    .contact-grid{
+      display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;
+    }
+
+    /* Map pleine largeur */
+    .map-outer{
+      margin-block: 2.25rem 0; border-top:1px solid var(--line);
+      background: color-mix(in oklab, var(--panel) 70%, transparent);
+    }
+    .map-inner{ max-width:1100px; margin:0 auto; padding:1.25rem 1rem; }
+    .map iframe{ width:100%; height: 360px; border:0; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    /* Footer */
+    footer{
+      margin-top: 2rem; padding:1.4rem 1rem; text-align:center;
+      backdrop-filter: blur(8px); background: color-mix(in oklab, var(--panel) 85%, transparent);
+      border-top:1px solid var(--line); color:#ccc;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .about{ grid-template-columns: 1fr; }
+      .project-card{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .cta{ transition: none; }
     }
   </style>
 </head>
 <body>
-  <!-- Fond parallaxe -->
-  <div class="parallax"></div>
-
-  <header>
-    <h1 class="sr-only">PRINTEMPS DES MARAIS</h1>
-    <img class="site-title" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
-    <p>Association / Environnement / Culture</p>
-    <nav>
-      <a href="#about">À propos</a>
-      <a href="#projects">Projet</a>
-      <a href="#contact">Contact</a>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="#top">
+        <img src="images/TitreWebsite3couleurs.png" alt="" />
+        <span>Printemps des Marais</span>
+      </a>
+      <div>
+        <a href="#about">À propos</a>
+        <a href="#projects">Projet</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
   </header>
 
+  <!-- Hero -->
+  <section class="hero" id="top" aria-label="Introduction">
+    <div class="hero-inner">
+      <img class="hero-logo" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
+      <p>
+        Expérimentation in situ au cœur des marais du Médoc : bâtir une réserve de biodiversité,
+        documenter sa transformation, et partager un récit écologique, culturel et sensible.
+      </p>
+      <a class="cta" href="projet-1.html">Voir le storyboard</a>
+    </div>
+  </section>
+
   <main>
-  <section id="about">
-  <h2>À propos</h2>
+    <!-- À propos -->
+    <section id="about" class="about" aria-label="À propos">
+      <article class="panel">
+        <h2>À propos</h2>
+        <p>Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité ? L’association <em>Printemps des Marais</em> a été fondée par une agricultrice, une artiste et un réalisateur de documentaires.</p>
+        <p>Nous rassemblons acteurs et moyens locaux pour une expérience grandeur nature : documenter la transformation d’un terrain de 8 hectares, en zone humide inondable classée Natura 2000, sur l’estuaire de la Gironde.</p>
+        <p>Alors que la biodiversité décline, nous explorons une hypothèse : le <strong>poney landais</strong>, petit cheval rustique adapté aux cycles d’inondation et aux plantes des marais, pourrait jouer un rôle d’« espèce clé » dans l’équilibre de ces milieux.</p>
+        <p>Notre démarche croise savoirs ancestraux, sciences naturelles et création artistique — pour sensibiliser, impliquer, et transmettre.</p>
+      </article>
 
-  <p>
-    Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité ?
-    L’association « Printemps des Marais » a été fondée par une agricultrice, une artiste
-    et un réalisateur de films documentaires.
-  </p>
+      <aside class="panel quick" aria-label="En bref">
+        <h2>En bref</h2>
+        <div class="badge">🌿 <strong>8 ha</strong> en zone humide (Natura 2000)</div>
+        <div class="badge">🐴 Réintroduction du <strong>poney landais</strong></div>
+        <div class="badge">🔬 Suivi naturaliste &amp; inventaires</div>
+        <div class="badge">🎨 Médiation culturelle &amp; résidences</div>
+        <p class="muted">Un sanctuaire, une espèce retrouvée, un lieu d’arts… un printemps des marais.</p>
+      </aside>
+    </section>
 
-  <p>
-    Notre but est de rassembler les fonds et les compétences d’acteurs locaux afin de mener
-    une expérience grandeur nature : documenter la transformation d’un terrain de 8 hectares,
-    situé dans une zone humide inondable, classée Natura 2000, au cœur du Médoc, en bordure
-    de l’estuaire de la Gironde. Quels sont les secrets d’une réserve de biodiversité ?
-    Existe-t-il des espèces clés de voûte qui soutiennent la vie sauvage à tous les étages ?
-    Quelles sont les meilleures stratégies à adopter pour que cela fonctionne ?
-  </p>
-
-  <p>
-    Alors que la biodiversité autrefois foisonnante de l’estuaire de la Gironde décline
-    d’année en année, il semble qu’une espèce de cheval endémique du Sud-Ouest, le
-    <strong>poney landais</strong>, ait manqué à l’équilibre des forces naturelles. Adapté aux
-    cycles des saisons et des inondations, à une végétation spécifique des zones humides,
-    il frôle la disparition. Heureusement, quelques éleveurs courageux reconstituent peu à peu
-    le cheptel de la race.
-  </p>
-
-  <p>
-    À ce jour, aucune étude scientifique ne permet d’affirmer si ce petit cheval rustique
-    manque à l’équilibre écologique des marais du nord-Médoc. Pourtant, tous les signes
-    et de nombreux récits locaux portent à croire que le poney landais y joue un rôle central.
-  </p>
-
-  <p>
-    Le projet <em>Printemps des Marais</em> est une expérience grandeur nature, où
-    connaissances ancestrales, sciences naturelles et grands enjeux climatiques se croisent.
-  </p>
-
-  <p>
-    Acquérir un terrain, reconstituer un élevage de poneys landais, observer et étudier
-    l’évolution des espèces sauvages tracent les grandes lignes de notre projet. Nous souhaitons
-    y ajouter une dimension esthétique, car rien n’est plus satisfaisant que l’intégration
-    réussie des aspects humains (bâtiments agricoles, aménagements, mobilier). La raison :
-    toucher le public, sensible aux réalisations qui s’inscrivent en harmonie avec le
-    patrimoine naturel. Un sanctuaire, une espèce retrouvée, un lieu de culture et d’arts…
-    <strong>Un printemps des marais.</strong>
-  </p>
-</section>
-
-
-    <section id="projects">
-      <h2>Projet</h2>
-      <div class="projects">
-        <div class="project">
-          <h3>Projet 1 — Storyboard</h3>
-          <p>Découvrez l’histoire du projet en images : repérages, aménagements, élevage patrimonial, médiation et résultats.</p>
-          <a class="btn" href="projet-1.html">Voir le storyboard</a>
+    <!-- Projet -->
+    <section id="projects" class="projects" aria-label="Projet">
+      <div class="panel">
+        <h2>Le projet</h2>
+        <div class="project-card">
+          <img class="thumb" src="images/story0.jpg" alt="Aperçu du storyboard – marais de l’estuaire">
+          <div>
+            <h3 style="font-family:var(--title-font); margin:.25rem 0 .6rem;">Storyboard du terrain</h3>
+            <p>Repérages, aménagements légers, réintroduction, médiation, suivis scientifiques… Parcours visuel des étapes clefs.</p>
+            <a class="cta" href="projet-1.html">Explorer le storyboard</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>📧 printempsdesmarais@gmail.com</p>
-      <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 🐙 <a href="https://github.com">GitHub</a></p>
-    </section>
-
-    <section id="map" aria-label="Nous trouver">
-      <h2>Nous trouver</h2>
-      <iframe
-        src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+    <!-- Contact -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <div class="contact-grid">
+        <div class="panel">
+          <h2>Contact</h2>
+          <p>📧 <a href="mailto:printempsdesmarais@gmail.com" class="muted" style="text-decoration:none;">printempsdesmarais@gmail.com</a></p>
+          <p>💼 <a class="muted" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> · 🐙 <a class="muted" href="https://github.com" target="_blank" rel="noopener">GitHub</a></p>
+          <p class="muted">Presse, partenariats, résidences, bénévolat : écrivez-nous.</p>
+        </div>
+        <div class="panel">
+          <h2>Adresse</h2>
+          <p>308 G Passe Castillonnaise<br>33590 Talais — France</p>
+          <p class="muted">Estuaire de la Gironde, nord Médoc</p>
+        </div>
+      </div>
     </section>
   </main>
 
+  <!-- Map full-width -->
+  <section class="map-outer">
+    <div class="map-inner map" aria-label="Nous trouver">
+      <h2>Nous trouver</h2>
+      <iframe
+        src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Google Maps">
+      </iframe>
+    </div>
+  </section>
+
   <footer>
-    © 2025 Printemps des Marais – Portfolio
+    © 2025 Printemps des Marais — Portfolio
   </footer>
 </body>
 </html>
