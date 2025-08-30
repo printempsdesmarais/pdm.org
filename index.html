@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PRINTEMPS DES MARAIS</title>
 
-  <!-- Google Fonts : Aliens and Cows + Roboto (fallback chiffres) -->
+  <!-- Google Fonts : Aliens and Cows + Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -13,21 +13,35 @@
   <style>
     :root { --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif; }
 
-    /* Base */
+    /* Conteneur avec effet parallaxe */
     body {
-      background:#3A403A; color:#f0f0f0;
-      font-family:system-ui, sans-serif; margin:0;
+      margin:0;
+      font-family:system-ui,sans-serif;
+      color:#f0f0f0;
+      min-height:100vh;
+      overflow-x:hidden;
     }
+    .parallax {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      z-index:-1;
+      background: 
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("images/fond.jpg") center center / cover no-repeat;
+      background-attachment: fixed; /* effet parallaxe */
+    }
+
     header {
       padding:1.5rem 2rem 1rem; text-align:center;
-      background:#2e332e; border-bottom:1px solid rgba(255,255,255,.12);
+      background:rgba(46,51,46,0.8);
+      border-bottom:1px solid rgba(255,255,255,.12);
     }
     .site-title {
       display:block; max-width:900px; width:100%; height:auto; margin:0 auto .75rem;
     }
     .sr-only {
-      position:absolute!important; width:1px;height:1px; padding:0;margin:-1px;overflow:hidden;
-      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+      position:absolute!important; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0);
     }
     nav { margin-top:.25rem; }
     nav a {
@@ -36,24 +50,25 @@
     }
     nav a:hover { color:#fff; }
 
-    main { max-width:1000px; margin:auto; padding:2rem; }
+    main {
+      max-width:1000px; margin:auto; padding:2rem;
+      background:rgba(58,64,58,0.75); border-radius:.6rem;
+    }
     section { margin-bottom:3rem; }
     h2 {
       font-family:var(--title-font); color:#fff;
-      border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:.5rem; margin-top:0;
+      border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:.5rem;
     }
     p { line-height:1.7; }
 
-    /* Carte projet unique */
-    .projects {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem;
-    }
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; }
     .project {
-      background:#444c44; border-radius:.5rem; padding:1rem;
+      background:rgba(68,76,68,0.85); border-radius:.5rem; padding:1rem;
       box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .2s, background .3s;
     }
-    .project:hover { transform:translateY(-4px); background:#515951; }
-    .project h3 { margin:.25rem 0 .5rem; color:#fff; font-family:var(--title-font); }
+    .project:hover { transform:translateY(-4px); background:rgba(81,89,81,0.9); }
+    .project h3 { margin:.25rem 0 .5rem; font-family:var(--title-font); }
+
     .btn {
       display:inline-block; margin-top:.5rem; padding:.45rem .9rem;
       background:#2e332e; color:#f0f0f0; text-decoration:none; border-radius:.4rem;
@@ -62,12 +77,12 @@
     }
     .btn:hover { background:#1f231f; color:#fff; }
 
-    /* Map */
     #map iframe { width:100%; height:350px; border:0; }
 
     footer {
       text-align:center; font-size:.9rem; color:#ccc;
-      padding:2rem; border-top:1px solid rgba(255,255,255,.2); background:#2e332e;
+      padding:2rem; border-top:1px solid rgba(255,255,255,.2);
+      background:rgba(46,51,46,0.8);
     }
 
     @media (max-width:600px){
@@ -78,6 +93,9 @@
   </style>
 </head>
 <body>
+  <!-- Fond parallaxe -->
+  <div class="parallax"></div>
+
   <header>
     <h1 class="sr-only">PRINTEMPS DES MARAIS</h1>
     <img class="site-title" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
@@ -116,7 +134,6 @@
       <p>💼 <a href="https://linkedin.com">LinkedIn</a> · 🐙 <a href="https://github.com">GitHub</a></p>
     </section>
 
-    <!-- Carte Google Maps centrée sur l’adresse demandée -->
     <section id="map" aria-label="Nous trouver">
       <h2>Nous trouver</h2>
       <iframe
