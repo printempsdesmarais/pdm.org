@@ -3,116 +3,236 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Printemps des Marais : expérimentation écologique et artistique en zone humide du Médoc, réintroduction du poney landais et suivi de la biodiversité.">
   <title>PRINTEMPS DES MARAIS</title>
-
   <!-- Google Fonts : Aliens and Cows + Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Aliens+and+Cows&display=swap" rel="stylesheet">
-
+  <link rel="preload" href="images/fondterrain.jpg" as="image">
   <style>
-    :root{
-      --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
-      --panel: rgba(46,51,46,.75);
-      --line: rgba(255,255,255,.18);
-      --text:#f0f0f0; --muted:#dcdcdc;
-      --radius:14px;
+    :root {
+      --title-font: 'Aliens and Cows', 'Roboto', system-ui, sans-serif;
+      --panel: rgba(46, 51, 46, .75);
+      --line: rgba(255, 255, 255, .18);
+      --text: #f0f0f0;
+      --muted: #e0e0e0;
+      --radius: 14px;
     }
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Roboto",system-ui,sans-serif;
-      color:var(--text);
-      background:#3A403A;
+    html {
+      -webkit-scroll-behavior: smooth;
+              scroll-behavior: smooth;
     }
-.etapes{
-  font-family: var(--title-font);
-  line-height: 1.6;
-  padding-left: 1.5rem;
-}
-.etapes li{
-  margin-bottom: .5rem;
-}
-
+    body {
+      margin: 0;
+      font-family: "Roboto", system-ui, sans-serif;
+      color: var(--text);
+      background: #3A403A;
+    }
+    .etapes {
+      font-family: var(--title-font);
+      line-height: 1.6;
+      padding-left: 1.5rem;
+    }
+    .etapes ul {
+      margin: 0 0 1rem;
+      padding-left: 1.5rem;
+    }
+    .etapes li {
+      margin-bottom: 0.3rem;
+    }
     /* header sticky translucide */
-    header{position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
-      background:rgba(46,51,46,.65); border-bottom:1px solid var(--line)}
-    .nav{max-width:1100px; margin:0 auto; padding:.75rem 1rem; display:flex; justify-content:space-between; align-items:center}
-    .brand{display:flex; align-items:center; gap:.75rem; color:var(--text); text-decoration:none; font-family:var(--title-font)}
-    .brand img{height:34px}
-    .nav a{color:var(--muted); text-decoration:none; margin-left:1rem; font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; font-size:.9rem}
-    .nav a:hover{color:#fff}
-
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(46, 51, 46, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: .75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--title-font);
+    }
+    .brand img {
+      height: 34px;
+    }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1rem;
+      font-family: var(--title-font);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .9rem;
+    }
+    .nav a:hover {
+      color: #fff;
+    }
     /* hero avec fondterrain.jpg */
-    .hero{
-      min-height:70svh;
-      display:grid;
-      place-items:center;
-      text-align:center;
+    .hero {
+      min-height: 70svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
       background:
-        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
         url("images/fondterrain.jpg") center/cover no-repeat;
       background-attachment: fixed;
-      border-bottom:1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
     /* fix mobile : pas de background fixed */
-    @media (max-width: 768px){
-      .hero{ background-attachment: scroll; background-position:center top; }
+    @media (max-width: 768px) {
+      .hero {
+        background-attachment: scroll;
+        background-position: center top;
+      }
     }
-
-    .hero-inner{padding:3rem 1rem}
-    .hero-logo{max-width:900px; width:min(90vw,820px); margin:0 auto 1rem; display:block; filter: drop-shadow(0 8px 24px rgba(0,0,0,.45))}
-    .hero p{max-width:820px; margin:.5rem auto 1.25rem; color:var(--muted); line-height:1.7; font-family:"Roboto",system-ui,sans-serif;}
-    .cta{display:inline-block; padding:.65rem 1.1rem; border-radius:.55rem; background:rgba(46,51,46,.85);
-      color:var(--text); text-decoration:none; font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px;
-      border:1px solid var(--line)}
-    .cta:hover{background:#1f231f}
-
-    main{max-width:1100px; margin:0 auto; padding:2rem 1rem}
-
+    .hero-inner {
+      padding: 3rem 1rem;
+    }
+    .hero-logo {
+      max-width: 900px;
+      width: min(90vw, 820px);
+      margin: 0 auto 1rem;
+      display: block;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, .45));
+    }
+    .hero p {
+      max-width: 820px;
+      margin: .5rem auto 1.25rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-family: "Roboto", system-ui, sans-serif;
+    }
+    .cta {
+      display: inline-block;
+      padding: .65rem 1.1rem;
+      border-radius: .55rem;
+      background: rgba(46, 51, 46, .85);
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--title-font);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid var(--line);
+    }
+    .cta:hover {
+      background: #1f231f;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
     /* panneaux */
-    .panel{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem 1.25rem}
-    h2{font-family:var(--title-font); margin:0 0 .75rem; padding-bottom:.4rem; border-bottom:2px solid rgba(255,255,255,.28)}
-
-    /* À propos en 2 colonnes */
-    .about{display:grid; grid-template-columns:1.2fr .8fr; gap:1.25rem}
-    .quick{display:grid; gap:.8rem}
-    .badge{background:rgba(255,255,255,.08); border:1px solid var(--line); border-radius:.6rem; padding:.6rem .75rem}
-    .muted{color:var(--muted)}
-
-    /* carte projet */
-    .project-card{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:center; margin-top:2rem}
-    .thumb{aspect-ratio:16/10; width:100%; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line)}
-
-    /* contact + map */
-    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem}
-    .map-wrap{margin-top:2rem}
-    .map iframe{width:100%; height:360px; border:0; border-radius:var(--radius)}
-
-    footer{margin-top:2rem; padding:1.4rem 1rem; text-align:center; background:rgba(46,51,46,.8); border-top:1px solid var(--line); color:#ccc}
-
-    @media (max-width:900px){
-      .about,.project-card,.grid2{grid-template-columns:1fr}
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.25rem;
     }
-    #etapes h3{
-  font-family: var(--title-font);
-  font-size: 1.3rem;
-  color: #97bb2b;
-  margin-top: 1.2rem;
-  margin-bottom: .4rem;
-}
-
-#etapes p{
-  font-family: "Roboto", system-ui, sans-serif;
-  line-height: 1.6;
-  margin: 0 0 1rem;
-}
+    h2 {
+      font-family: var(--title-font);
+      margin: 0 0 .75rem;
+      padding-bottom: .4rem;
+      border-bottom: 2px solid rgba(255, 255, 255, .28);
+    }
+    /* À propos en 2 colonnes */
+    .about {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1.25rem;
+    }
+    .quick {
+      display: grid;
+      gap: .8rem;
+    }
+    .badge {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      padding: .6rem .75rem;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    /* carte projet */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .thumb {
+      aspect-ratio: 16/10;
+      width: 100%;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+    /* contact + map */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .map-wrap {
+      margin-top: 2rem;
+    }
+    .map iframe {
+      width: 100%;
+      height: 360px;
+      border: 0;
+      border-radius: var(--radius);
+    }
+    footer {
+      margin-top: 2rem;
+      padding: 1.4rem 1rem;
+      text-align: center;
+      background: rgba(46, 51, 46, .8);
+      border-top: 1px solid var(--line);
+      color: #ccc;
+    }
+    @media (max-width: 900px) {
+      .about, .project-card, .grid2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    #etapes h3 {
+      font-family: var(--title-font);
+      font-size: 1.3rem;
+      color: #97bb2b;
+      margin-top: 1.2rem;
+      margin-bottom: .4rem;
+    }
+    #etapes p {
+      font-family: "Roboto", system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
   </style>
 </head>
 <body>
   <header>
     <nav class="nav" aria-label="Navigation">
-      <a class="brand" href="#top"><img src="images/TitreWebsite3couleurs.png" alt=""><span>Printemps des Marais</span></a>
+      <a class="brand" href="#top">
+        <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" width="820" height="auto">
+        <span>Printemps des Marais</span>
+      </a>
       <div>
         <a href="#about">À propos</a>
         <a href="#projects">Projet</a>
@@ -120,10 +240,9 @@
       </div>
     </nav>
   </header>
-
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
-      <img class="hero-logo" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS">
+      <img class="hero-logo" src="images/TitreWebsite3couleurs.png" alt="PRINTEMPS DES MARAIS" width="820" height="auto">
       <p>
         Expérimentation in situ au cœur des marais du Médoc : bâtir une réserve de biodiversité,
         documenter sa transformation, et partager un récit écologique, culturel et sensible.
@@ -131,12 +250,11 @@
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
-
   <main>
     <section id="about" class="about" aria-label="À propos">
       <article class="panel">
         <h2>À propos</h2>
-        <p>Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité? L’association <em>Printemps des Marais</em> a été fondée par une agricultrice, une artiste et un réalisateur de documentaires.</p>
+        <p>Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité ? L’association <em>Printemps des Marais</em> a été fondée par une agricultrice, une artiste et un réalisateur de documentaires.</p>
         <p>Nous rassemblons acteurs et moyens locaux pour une expérience grandeur nature : documenter la transformation d’un terrain de 8 hectares, en zone humide inondable classée Natura 2000, sur l’estuaire de la Gironde.</p>
         <p>Alors que la biodiversité décline, nous explorons une hypothèse : le <strong>poney landais</strong>, petit cheval rustique adapté aux cycles d’inondation et aux plantes des marais, pourrait jouer un rôle d’« espèce clé de voûte» dans l’équilibre de ces milieux.</p>
         <p>Notre démarche croise savoirs ancestraux, sciences naturelles et création artistique — pour sensibiliser, impliquer et transmettre.</p>
@@ -150,78 +268,83 @@
         <p class="muted">Un sanctuaire, une espèce retrouvée, un lieu d’arts… un printemps des marais.</p>
       </aside>
     </section>
-
     <section id="projects" class="panel" aria-label="Le projet">
       <h2>Le projet</h2>
       <div class="project-card">
-        <img class="thumb" src="images/vuegenerale.jpg" alt="Aperçu du storyboard – marais de l’estuaire">
+        <img class="thumb" src="images/vuegenerale.jpg" alt="Aperçu du storyboard – marais de l’estuaire" width="600" height="auto">
         <div>
-          <h3 style="font-family:var(--title-font); margin:.25rem 0 .6rem;">Storyboard du terrain</h3>
+          <h3>Storyboard du terrain</h3>
           <p>Narration visuelle des étapes du projet</p>
           <a class="cta" href="projet-1.html">Explorer le storyboard</a>
         </div>
       </div>
     </section>
-<section id="etapes" class="panel">
-  <h2>Étapes du projet</h2>
-  <div class="etapes">
-    <h3>1 - <strong>PRÉ-PROJET</strong></h3>
-    <p>Cartographie et plan de gestion initial</p>
-
-    <h3>2 - <strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
-    <p>Repérage des zones d’intérêt écologique<br>
-    Interventions scientifiques et inventaire initial des espèces<br>
-    Résultats préliminaires : biodiversité observée</p>
-
-    <h3>3 - <strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
-    <p>Aménagements légers et balisage du site<br>
-    Aménagements pour l’accueil des chevaux<br>
-    Installation de l’élevage (race patrimoniale, menacée et endémique)<br>
-    Élaboration du projet artistique</p>
-
-    <h3>4 - <strong>ACTIONS ARTISTIQUES</strong></h3>
-    <p>Conception du projet artistique<br>
-    Recherche de financements et de prestataires<br>
-    Installation des œuvres artistiques<br>
-    Rencontres avec les partenaires locaux</p>
-
-    <h3>5 - <strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
-    <p>Suivi de la faune et de la flore : premières tendances<br>
-    Coordination scientifique interdisciplinaire<br>
-    Travaux légers d’aménagement écologique<br>
-    Mise en place de panneaux d’information</p>
-
-    <h3>6 - <strong>COMMUNICATION</strong></h3>
-    <p>Documentation photographique et vidéo<br>
-    Valorisation patrimoniale : archives et récits<br>
-    Communiqués de presse</p>
-
-    <h3>7 - <strong>ÉTAPES</strong></h3>
-    <p>Relevés saisonniers : suivi des variations de la biodiversité<br>
-    Introduction de nouveaux individus (poneys landais)<br>
-    Suivi des naissances et des poulains<br>
-    Synthèse d’étape et ajustements du plan<br>
-    Installation d’équipements complémentaires</p>
-
-    <h3>8 - <strong>BILAN SCIENTIFIQUE</strong></h3>
-    <p>Inventaire définitif de la faune et de la flore<br>
-    Comparatifs avec les zones humides voisines</p>
-
-    <h3>9 - <strong>MÉDIATION</strong></h3>
-    <p>Exposition/rencontre<br>
-    Échanges avec les acteurs culturels<br>
-    Mise en réseau avec les structures régionales<br>
-    Restitution intermédiaire au public en milieu naturel<br>
-    Restitution du film documentaire</p>
-  </div>
-</section>
-
-
+    <section id="etapes" class="panel">
+      <h2>Étapes du projet</h2>
+      <div class="etapes">
+        <h3>1 - <strong>PRÉ-PROJET</strong></h3>
+        <p>Cartographie et plan de gestion initial</p>
+        <h3>2 - <strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
+        <ul>
+          <li>Repérage des zones d’intérêt écologique</li>
+          <li>Interventions scientifiques et inventaire initial des espèces</li>
+          <li>Résultats préliminaires : biodiversité observée</li>
+        </ul>
+        <h3>3 - <strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
+        <ul>
+          <li>Aménagements légers et balisage du site</li>
+          <li>Aménagements pour l’accueil des chevaux</li>
+          <li>Installation de l’élevage (race patrimoniale, menacée et endémique)</li>
+          <li>Élaboration du projet artistique</li>
+        </ul>
+        <h3>4 - <strong>ACTIONS ARTISTIQUES</strong></h3>
+        <ul>
+          <li>Conception du projet artistique</li>
+          <li>Recherche de financements et de prestataires</li>
+          <li>Installation des œuvres artistiques</li>
+          <li>Rencontres avec les partenaires locaux</li>
+        </ul>
+        <h3>5 - <strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
+        <ul>
+          <li>Suivi de la faune et de la flore : premières tendances</li>
+          <li>Coordination scientifique interdisciplinaire</li>
+          <li>Travaux légers d’aménagement écologique</li>
+          <li>Mise en place de panneaux d’information</li>
+        </ul>
+        <h3>6 - <strong>COMMUNICATION</strong></h3>
+        <ul>
+          <li>Documentation photographique et vidéo</li>
+          <li>Valorisation patrimoniale : archives et récits</li>
+          <li>Communiqués de presse</li>
+        </ul>
+        <h3>7 - <strong>ÉTAPES</strong></h3>
+        <ul>
+          <li>Relevés saisonniers : suivi des variations de la biodiversité</li>
+          <li>Introduction de nouveaux individus (poneys landais)</li>
+          <li>Suivi des naissances et des poulains</li>
+          <li>Synthèse d’étape et ajustements du plan</li>
+          <li>Installation d’équipements complémentaires</li>
+        </ul>
+        <h3>8 - <strong>BILAN SCIENTIFIQUE</strong></h3>
+        <ul>
+          <li>Inventaire définitif de la faune et de la flore</li>
+          <li>Comparatifs avec les zones humides voisines</li>
+        </ul>
+        <h3>9 - <strong>MÉDIATION</strong></h3>
+        <ul>
+          <li>Exposition/rencontre</li>
+          <li>Échanges avec les acteurs culturels</li>
+          <li>Mise en réseau avec les structures régionales</li>
+          <li>Restitution intermédiaire au public en milieu naturel</li>
+          <li>Restitution du film documentaire</li>
+        </ul>
+      </div>
+    </section>
     <section id="contact" class="grid2" aria-label="Contact & adresse">
       <div class="panel">
         <h2>Contact</h2>
-        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" class="muted" style="text-decoration:none;">printempsdesmarais@gmail.com</a></p>
-        <p>💼 <a class="muted" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> · 🐙 <a class="muted" href="https://github.com" target="_blank" rel="noopener">GitHub</a></p>
+        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" class="muted" style="text-decoration: none;">printempsdesmarais@gmail.com</a></p>
+        <p>💼 <a class="muted" href="https://linkedin.com" target="_blank" rel="noopener nofollow" aria-label="Notre page LinkedIn (nouvelle fenêtre)">LinkedIn</a> · 🐙 <a class="muted" href="https://github.com" target="_blank" rel="noopener nofollow" aria-label="Notre page GitHub (nouvelle fenêtre)">GitHub</a></p>
       </div>
       <div class="panel">
         <h2>Adresse</h2>
@@ -229,15 +352,13 @@
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
-
-    <section id="map" class="map-wrap">
+    <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
       <div class="map">
         <iframe src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Google Maps"></iframe>
       </div>
     </section>
   </main>
-
   <footer>
     © 2025 Printemps des Marais — index
   </footer>
