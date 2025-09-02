@@ -4,12 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projet — PRINTEMPS DES MARAIS</title>
-
   <!-- Google Fonts : Aliens and Cows + Roboto (fallback chiffres) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aliens+and+Cows&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
@@ -18,102 +16,339 @@
       --shadow:0 10px 30px rgba(0,0,0,.35);
     }
 
+    /* Fond avec effet de flou dynamique */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .bg-image {
+      width: 100%;
+      height: 100%;
+      background: url("images/fondterrain.jpg") center/cover no-repeat fixed;
+      transition: filter 0.4s ease;
+      will-change: filter;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
     /* Thème */
-    body{ margin:0; background:#3A403A; color:#f0f0f0; font-family:system-ui,sans-serif; }
-    header, footer{ background:#2e332e; border-bottom:1px solid rgba(255,255,255,.12); }
-    header{ padding:1rem 1.25rem; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:1.5rem; }
-    h1,h2{ font-family:var(--title-font); color:#fff; margin:0 0 .75rem; }
-    p{ line-height:1.7; }
+    body {
+      margin: 0;
+      background: #3A403A;
+      color: #f0f0f0;
+      font-family: system-ui, sans-serif;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-    .topbar{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; margin-bottom:.75rem; }
-    .back{ display:inline-block; text-decoration:none; color:#dcdcdc; font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; border:1px solid rgba(255,255,255,.25); border-radius:.5rem; padding:.35rem .65rem; }
-    .back:hover{ color:#fff; background:#1f231f; }
-    nav.breadcrumb{ font-size:.95rem; }
-    nav.breadcrumb a{ color:#dcdcdc; text-decoration:none; }
-    nav.breadcrumb a:hover{ color:#fff; text-decoration:underline; }
-    nav.breadcrumb .sep{ opacity:.6; margin:0 .35rem; }
+    header, footer {
+      background: #2e332e;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      position: relative;
+      z-index: 1;
+    }
 
-    .intro{ background:#444c44; border-radius:.6rem; padding:1rem 1.25rem; box-shadow:var(--shadow); margin-bottom:1.5rem; }
+    header {
+      padding: 1rem 1.25rem;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      font-family: var(--title-font);
+      color: #fff;
+      margin: 0 0 .75rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-bottom: .75rem;
+    }
+
+    .back {
+      display: inline-block;
+      text-decoration: none;
+      color: #dcdcdc;
+      font-family: var(--title-font);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: .5rem;
+      padding: .35rem .65rem;
+    }
+
+    .back:hover {
+      color: #fff;
+      background: #1f231f;
+    }
+
+    nav.breadcrumb {
+      font-size: .95rem;
+    }
+
+    nav.breadcrumb a {
+      color: #dcdcdc;
+      text-decoration: none;
+    }
+
+    nav.breadcrumb a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    nav.breadcrumb .sep {
+      opacity: .6;
+      margin: 0 .35rem;
+    }
+
+    .intro {
+      background: #444c44;
+      border-radius: .6rem;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
 
     /* Grille storyboard */
-    .storyboard{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
-    figure{ margin:0; background:#444c44; border-radius:.6rem; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .25s ease, background .25s ease; cursor:zoom-in; }
-    figure:hover{ transform:translateY(-3px); background:#515951; }
-    .shot{ display:block; width:100%; height:220px; object-fit:cover; object-position:center; background:#2e332e; }
-    figcaption{ padding:.6rem .8rem; font-size:.95rem; color:#e7e7e7; border-top:1px solid rgba(255,255,255,.12); }
-    .storyboard .wide{ grid-column:1/-1; }
-    .wide .shot{ height:360px; }
+    .storyboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    figure {
+      margin: 0;
+      background: #444c44;
+      border-radius: .6rem;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      transition: transform .25s ease, background .25s ease;
+      cursor: zoom-in;
+      position: relative;
+      z-index: 1;
+    }
+
+    figure:hover {
+      transform: translateY(-3px);
+      background: #515951;
+    }
+
+    .shot {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      background: #2e332e;
+    }
+
+    figcaption {
+      padding: .6rem .8rem;
+      font-size: .95rem;
+      color: #e7e7e7;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .storyboard .wide {
+      grid-column: 1/-1;
+    }
+
+    .wide .shot {
+      height: 360px;
+    }
 
     /* Lightbox */
-    .lightbox{ position:fixed; inset:0; z-index:999; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.55); backdrop-filter: blur(6px) brightness(.9); }
-    .lightbox.open{ display:flex; }
-    .lb-inner{ position:relative; max-width:min(92vw, 1200px); max-height:88vh; display:flex; flex-direction:column; gap:.6rem; padding:0 1rem; }
-    .lb-img{ display:block; max-width:100%; max-height:80vh; border-radius:.6rem; box-shadow:0 10px 30px rgba(0,0,0,.5); user-select:none; cursor:zoom-in; }
-    .lb-img:focus{ outline:3px solid rgba(255,255,255,.6); outline-offset:4px; }
-    .lb-caption{ text-align:center; font-size:1rem; color:#eee; text-wrap:balance; }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px) brightness(.9);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-inner {
+      position: relative;
+      max-width: min(92vw, 1200px);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      padding: 0 1rem;
+      z-index: 1000;
+    }
+
+    .lb-img {
+      display: block;
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: .6rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      user-select: none;
+      cursor: zoom-in;
+    }
+
+    .lb-img:focus {
+      outline: 3px solid rgba(255,255,255,.6);
+      outline-offset: 4px;
+    }
+
+    .lb-caption {
+      text-align: center;
+      font-size: 1rem;
+      color: #eee;
+      text-wrap: balance;
+    }
 
     /* Commandes lightbox */
-    .lb-controls{
-      position:absolute; inset:auto 0 -52px 0; /* sous l'image */
-      display:flex; justify-content:center; gap:.5rem; pointer-events:none;
+    .lb-controls {
+      position: absolute;
+      inset: auto 0 -52px 0;
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      pointer-events: none;
     }
-    .lb-controls .ui{
-  pointer-events:auto;
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  background: var(--panel);
-  border:1px solid var(--line);
-  border-radius:.6rem;
-  padding:.35rem .55rem;
-  box-shadow:var(--shadow);
-  /* avant : font-family: var(--title-font); */
-  font-family: "Roboto", system-ui, sans-serif;
-  font-size:.85rem;
-  color:#f0f0f0;
-}
 
+    .lb-controls .ui {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      padding: .35rem .55rem;
+      box-shadow: var(--shadow);
+      font-family: "Roboto", system-ui, sans-serif;
+      font-size: .85rem;
+      color: #f0f0f0;
     }
+
     .lb-controls button,
-.lb-controls select{
-  appearance:none;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.06);
-  color:#f0f0f0;
-  border-radius:.45rem;
-  padding:.3rem .55rem;
-  font-family:"Roboto", system-ui, sans-serif;
-  font-size:.85rem;
-  cursor:pointer;
-}
-
+    .lb-controls select {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: #f0f0f0;
+      border-radius: .45rem;
+      padding: .3rem .55rem;
+      font-family: "Roboto", system-ui, sans-serif;
+      font-size: .85rem;
+      cursor: pointer;
     }
-    .lb-controls button:hover{ background:rgba(255,255,255,.1); }
-    .lb-controls .state{ opacity:.8; font-size:.8rem; }
 
-    footer{ margin-top:2rem; padding:1.25rem; text-align:center; color:#ccc; border-top:1px solid rgba(255,255,255,.2); }
+    .lb-controls button:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .lb-controls .state {
+      opacity: .8;
+      font-size: .8rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      text-align: center;
+      color: #ccc;
+      border-top: 1px solid rgba(255,255,255,.2);
+      position: relative;
+      z-index: 1;
+    }
 
     /* Responsive */
-    @media (max-width:600px){
-      .wrap{ padding:1rem; }
-      .shot{ height:200px; }
-      .wide .shot{ height:260px; }
-      nav.breadcrumb{ font-size:.9rem; }
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 1rem;
+      }
+
+      .shot {
+        height: 200px;
+      }
+
+      .wide .shot {
+        height: 260px;
+      }
+
+      nav.breadcrumb {
+        font-size: .9rem;
+      }
     }
+
     /* Fallback si pas de backdrop-filter */
-    @supports not ((backdrop-filter: blur(4px))){
-      .lightbox{ background: rgba(0,0,0,.8); }
+    @supports not ((backdrop-filter: blur(4px))) {
+      .lightbox {
+        background: rgba(0,0,0,.8);
+      }
     }
-    .sr-only{ position:absolute!important; width:1px;height:1px; padding:0;margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    .sr-only {
+      position: absolute!important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
+  <!-- Fond avec effet de flou -->
+  <div class="bg-container">
+    <div class="bg-image" id="bgImage"></div>
+  </div>
+  <div class="bg-overlay" id="bgOverlay"></div>
+
   <header>
     <div class="wrap">
       <div class="topbar">
-        <a class="back" href="index.html">⟵ Retour à l’accueil</a>
-        <nav class="breadcrumb" aria-label="Fil d’Ariane">
+        <a class="back" href="index.html">⟵ Retour à l'accueil</a>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
           <a href="index.html">Accueil</a>
           <span class="sep">›</span>
           <span aria-current="page">Projet</span>
@@ -130,46 +365,38 @@
       <p>Le site du projet est idéalement situé entre des prairies d'élevage bovin, l'ancien estran de l'estuaire, les routes migratoires, un chemin touristique communal. L'eau de la mare incluse a un taux de salinité inférieur à 1g/l. Plus d'un kilomètre de haies de tamaris clôture la parcelle. L'altitude est comprise entre 2,5m-3m.</p>
     </section>
 
-    <!-- Grille d’images -->
+    <!-- Grille d'images -->
     <section aria-label="Storyboard du projet">
       <h2>Storyboard</h2>
-
       <div class="storyboard" id="storyboard">
         <figure class="wide" data-src="images/parcelle37.jpg" data-caption="Vue générale du site — Découpage cadastral - parcelle N°37.">
           <img class="shot" src="images/parcelle37.jpg" alt="Vue générale du site — Estuaire / zone humide" loading="lazy">
           <figcaption>Vue générale du site — Découpage cadastral - parcelle N°37</figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story1.jpg" data-caption="Il fût un temps...">
           <img class="shot" src="images/storyboard/story1.jpg" alt="Il fût un temps..." loading="lazy">
           <figcaption><strong>Il fût un temps...</strong></figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story2.jpg" data-caption="où des poneys sauvages">
           <img class="shot" src="images/storyboard/story2.jpg" alt="où des poneys sauvages" loading="lazy">
           <figcaption>où des poneys sauvages</figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story3.jpg" data-caption="peuplaient les plages">
           <img class="shot" src="images/storyboard/story3.jpg" alt="peuplaient les plages" loading="lazy">
           <figcaption>peuplaient les plages</figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story4.jpg" data-caption="les forêts et les marais d'Aquitaine.">
           <img class="shot" src="images/storyboard/story4.jpg" alt="les forêts et les marais d'Aquitaine." loading="lazy">
           <figcaption>les forêts et les marais d'Aquitaine.</figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story5.jpg" data-caption="Ils étaient...">
           <img class="shot" src="images/storyboard/story5.jpg" alt="Ils étaient..." loading="lazy">
           <figcaption>Ils étaient...</figcaption>
         </figure>
-
         <figure data-src="images/storyboard/story6.jpg" data-caption="Les Seigneurs des Marais">
           <img class="shot" src="images/storyboard/story6.jpg" alt="Les Seigneurs des Marais" loading="lazy">
           <figcaption><strong>Les Seigneurs des Marais</strong></figcaption>
         </figure>
-
         <!-- story7 → story34 -->
         <figure data-src="images/storyboard/story7.jpg" data-caption="Les poneys landais favorisent-ils la biodiversité?"><img class="shot" src="images/storyboard/story7.jpg" alt="Storyboard 7" loading="lazy"><figcaption>Les poneys landais favorisent-ils la biodiversité?</figcaption></figure>
         <figure data-src="images/storyboard/story8.jpg" data-caption="Ils peuvent façonner les marécages"><img class="shot" src="images/storyboard/story8.jpg" alt="Storyboard 8" loading="lazy"><figcaption>Ils peuvent façonner les marécages</figcaption></figure>
@@ -181,14 +408,14 @@
         <figure data-src="images/storyboard/story14.jpg" data-caption="Domestication..."><img class="shot" src="images/storyboard/story14.jpg" alt="Storyboard 14" loading="lazy"><figcaption>Mais en deux siècles, les poneys landais frôlent l'extinction</figcaption></figure>
         <figure data-src="images/storyboard/story15.jpg" data-caption="Appauvrissement du milieu..."><img class="shot" src="images/storyboard/story15.jpg" alt="Storyboard 15" loading="lazy"><figcaption>Appauvrissement du milieu...</figcaption></figure>
         <figure data-src="images/storyboard/story16.jpg" data-caption="Réduction des surfaces naturelles."><img class="shot" src="images/storyboard/story16.jpg" alt="Storyboard 16" loading="lazy"><figcaption>Réduction des surfaces naturelles.</figcaption></figure>
-        
+
         <figure data-src="images/storyboard/story17.jpg" data-caption="Dans le même temps, la biodiversité décline."><img class="shot" src="images/storyboard/story17.jpg" alt="Storyboard 17" loading="lazy"><figcaption>Dans le même temps, la biodiversité décline.</figcaption></figure>
         <figure data-src="images/storyboard/story18.jpg" data-caption="Mais il reste un espoir"><img class="shot" src="images/storyboard/story18.jpg" alt="Storyboard 18" loading="lazy"><figcaption>Mais il reste un espoir</figcaption></figure>
         <figure data-src="images/storyboard/story19.jpg" data-caption="À l'extrême nord du Médoc,"><img class="shot" src="images/storyboard/story19.jpg" alt="Storyboard 19" loading="lazy"><figcaption>À l'extrême nord du Médoc,</figcaption></figure>
-      
+
         <figure data-src="images/storyboard/story20.jpg" data-caption="sur les rives du plus grand estuaire d'Europe,"><img class="shot" src="images/storyboard/story20.jpg" alt="Storyboard 20" loading="lazy"><figcaption>sur les rives du plus grand estuaire d'Europe,</figcaption></figure>
         <figure data-src="images/storyboard/story21.jpg" data-caption="un élevage prometteur va démarrer."><img class="shot" src="images/storyboard/story21.jpg" alt="Storyboard 21" loading="lazy"><figcaption>un élevage prometteur va démarrer.</figcaption></figure>
-        
+
         <figure data-src="images/storyboard/story22.jpg" data-caption="Sur ce terrain de 8 hectares,"><img class="shot" src="images/storyboard/story22.jpg" alt="Storyboard 22" loading="lazy"><figcaption>Sur ce terrain de 8 hectares,</figcaption></figure>
         <figure data-src="images/storyboard/story23.jpg" data-caption="nous suivrons la vie des poneys,"><img class="shot" src="images/storyboard/story23.jpg" alt="Storyboard 23" loading="lazy"><figcaption>nous suivrons la vie des poneys,</figcaption></figure>
         <figure data-src="images/storyboard/story24.jpg" data-caption="les transformations du terrain,"><img class="shot" src="images/storyboard/story24.jpg" alt="Storyboard 24" loading="lazy"><figcaption>les transformations du terrain,</figcaption></figure>
@@ -208,7 +435,6 @@
     <div class="lb-inner" role="dialog" aria-label="Image du storyboard (clic pour image suivante)">
       <img class="lb-img" id="lb-img" src="" alt="">
       <div class="lb-caption" id="lb-caption"></div>
-
       <!-- Commandes : Play/Pause + vitesse -->
       <div class="lb-controls">
         <div class="ui" role="group" aria-label="Contrôles de lecture">
@@ -223,8 +449,7 @@
           <span class="state" id="lb-state">Pause</span>
         </div>
       </div>
-
-      <span class="sr-only" id="lb-instructions">Clic dans l’image = suivante. Clic en dehors = fermer. Échap = fermer. Flèches ←/→ pour naviguer.</span>
+      <span class="sr-only" id="lb-instructions">Clic dans l'image = suivante. Clic en dehors = fermer. Échap = fermer. Flèches ←/→ pour naviguer.</span>
     </div>
   </div>
 
@@ -233,101 +458,120 @@
   </footer>
 
   <script>
-  (function(){
-    const grid = document.getElementById('storyboard');
-    const items = Array.from(grid.querySelectorAll('figure'));
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const lbCaption = document.getElementById('lb-caption');
+    // Effet de flou progressif sur le fond uniquement
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgImage = document.getElementById('bgImage');
+      const bgOverlay = document.getElementById('bgOverlay');
 
-    // Contrôles
-    const toggleBtn = document.getElementById('lb-toggle');
-    const speedSel  = document.getElementById('lb-speed');
-    const stateEl   = document.getElementById('lb-state');
+      window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const blurIntensity = Math.min(scrollPosition / 150, 10); // Ajuste la vitesse du flou
+        const overlayOpacity = Math.min(scrollPosition / 300, 0.7); // Ajuste la vitesse de l'opacité
 
-    let index = 0;
-    let timer = null;
-    let interval = parseInt(speedSel.value, 10);
-
-    function openAt(i){
-      index = ((i % items.length) + items.length) % items.length;
-      const f = items[index];
-      const src = f.dataset.src || f.querySelector('img').src;
-      const cap = f.dataset.caption || (f.querySelector('figcaption')?.textContent || '');
-      lbImg.src = src;
-      lbImg.alt = f.querySelector('img')?.alt || 'Image du storyboard';
-      lbCaption.textContent = cap;
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-      lbImg.setAttribute('tabindex','0');
-      lbImg.focus({preventScroll:true});
-    }
-
-    function closeLB(){
-      pause(); // stop auto
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-      lbImg.removeAttribute('tabindex');
-      // lbImg.src = ''; // option : libérer mémoire sur mobile
-    }
-
-    function next(){ openAt(index + 1); }
-    function prev(){ openAt(index - 1); }
-
-    // Auto-play
-    function play(){
-      if(timer) return;
-      timer = setInterval(next, interval);
-      toggleBtn.textContent = '⏸︎ Pause';
-      stateEl.textContent = 'Lecture';
-    }
-    function pause(){
-      if(timer){ clearInterval(timer); timer = null; }
-      toggleBtn.textContent = '▶︎ Play';
-      stateEl.textContent = 'Pause';
-    }
-    toggleBtn.addEventListener('click', ()=> timer ? pause() : play());
-    speedSel.addEventListener('change', ()=>{
-      interval = parseInt(speedSel.value, 10);
-      if(timer){ pause(); play(); } // redémarre avec la nouvelle vitesse
+        if (scrollPosition > 5) {
+          bgImage.style.filter = `blur(${blurIntensity}px)`;
+          bgOverlay.style.opacity = overlayOpacity;
+        } else {
+          bgImage.style.filter = 'none';
+          bgOverlay.style.opacity = '0';
+        }
+      });
     });
 
-    // Ouvrir depuis les vignettes
-    items.forEach((fig, i)=> fig.addEventListener('click', ()=> openAt(i)));
+    // Script pour la lightbox
+    (function(){
+      const grid = document.getElementById('storyboard');
+      const items = Array.from(grid.querySelectorAll('figure'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCaption = document.getElementById('lb-caption');
+      // Contrôles
+      const toggleBtn = document.getElementById('lb-toggle');
+      const speedSel  = document.getElementById('lb-speed');
+      const stateEl   = document.getElementById('lb-state');
+      let index = 0;
+      let timer = null;
+      let interval = parseInt(speedSel.value, 10);
 
-    // Fermer en cliquant l’overlay
-    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+      function openAt(i){
+        index = ((i % items.length) + items.length) % items.length;
+        const f = items[index];
+        const src = f.dataset.src || f.querySelector('img').src;
+        const cap = f.dataset.caption || (f.querySelector('figcaption')?.textContent || '');
+        lbImg.src = src;
+        lbImg.alt = f.querySelector('img')?.alt || 'Image du storyboard';
+        lbCaption.textContent = cap;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        lbImg.setAttribute('tabindex','0');
+        lbImg.focus({preventScroll:true});
+      }
 
-    // Clic sur l'image -> suivante
-    lbImg.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+      function closeLB(){
+        pause(); // stop auto
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        lbImg.removeAttribute('tabindex');
+      }
 
-    // Clavier
-    document.addEventListener('keydown', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape'){ closeLB(); }
-      else if(e.key === 'ArrowRight'){ next(); }
-      else if(e.key === 'ArrowLeft'){ prev(); }
-    });
+      function next(){ openAt(index + 1); }
+      function prev(){ openAt(index - 1); }
 
-    // Préchargement léger de l’image suivante
-    lbImg.addEventListener('load', ()=>{
-      const nextIndex = (index + 1) % items.length;
-      const f = items[nextIndex];
-      const src = f.dataset.src || f.querySelector('img').src;
-      new Image().src = src;
-    });
+      // Auto-play
+      function play(){
+        if(timer) return;
+        timer = setInterval(next, interval);
+        toggleBtn.textContent = '⏸︎ Pause';
+        stateEl.textContent = 'Lecture';
+      }
 
-    // Ouvrir sur une image précise via #index (ex: #12)
-    function syncFromHash(){
-      const n = parseInt(location.hash.replace('#',''), 10);
-      if(!isNaN(n) && n >= 0 && n < items.length){ openAt(n); }
-    }
-    window.addEventListener('hashchange', syncFromHash);
-    syncFromHash();
+      function pause(){
+        if(timer){ clearInterval(timer); timer = null; }
+        toggleBtn.textContent = '▶︎ Play';
+        stateEl.textContent = 'Pause';
+      }
 
-  })();
+      toggleBtn.addEventListener('click', ()=> timer ? pause() : play());
+      speedSel.addEventListener('change', ()=>{
+        interval = parseInt(speedSel.value, 10);
+        if(timer){ pause(); play(); } // redémarre avec la nouvelle vitesse
+      });
+
+      // Ouvrir depuis les vignettes
+      items.forEach((fig, i)=> fig.addEventListener('click', ()=> openAt(i)));
+
+      // Fermer en cliquant l'overlay
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+
+      // Clic sur l'image -> suivante
+      lbImg.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+
+      // Clavier
+      document.addEventListener('keydown', (e)=>{
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape'){ closeLB(); }
+        else if(e.key === 'ArrowRight'){ next(); }
+        else if(e.key === 'ArrowLeft'){ prev(); }
+      });
+
+      // Préchargement léger de l'image suivante
+      lbImg.addEventListener('load', ()=>{
+        const nextIndex = (index + 1) % items.length;
+        const f = items[nextIndex];
+        const src = f.dataset.src || f.querySelector('img').src;
+        new Image().src = src;
+      });
+
+      // Ouvrir sur une image précise via #index (ex: #12)
+      function syncFromHash(){
+        const n = parseInt(location.hash.replace('#',''), 10);
+        if(!isNaN(n) && n >= 0 && n < items.length){ openAt(n); }
+      }
+      window.addEventListener('hashchange', syncFromHash);
+      syncFromHash();
+    })();
   </script>
 </body>
 </html>
