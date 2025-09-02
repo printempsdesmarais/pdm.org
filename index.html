@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ASSOCIATION LOI 1901</title>
+  <title>PRINTEMPS DES MARAIS</title>
+
   <!-- Google Fonts : Aliens and Cows + Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Aliens+and+Cows&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
@@ -20,42 +22,9 @@
       margin:0;
       font-family:"Roboto",system-ui,sans-serif;
       color:var(--text);
-      position: relative;
-      overflow-x: hidden;
+      background:#3A403A;
     }
-    /* Fond avec flou dynamique */
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("images/fondterrain.jpg") center/cover no-repeat;
-      z-index: -2;
-      transition: filter 0.3s ease;
-    }
-    .bg-image.blurred {
-      filter: blur(8px);
-    }
-    /* Calque sombre pour améliorer la lisibilité */
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .bg-overlay.visible {
-      opacity: 1;
-    }
-    /* Masquer le texte alternatif en cas d'erreur de chargement */
-    .brand-logo {
-      font-size: 0;
-    }
+
     /* header sticky translucide */
     header{
       position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
@@ -66,8 +35,7 @@
       display:flex; justify-content:space-between; align-items:center
     }
     .brand{
-      display:flex; align-items:center; gap:.75rem;
-      color:var(--text); text-decoration:none; font-family:var(--title-font)
+      display:flex; align-items:center;
     }
     .brand img,
     .brand-logo{
@@ -79,15 +47,20 @@
       font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; font-size:.9rem
     }
     .nav a:hover{color:#fff}
-    /* hero avec fond net */
+
+    /* hero avec fondterrain.jpg */
     .hero{
       min-height:70svh; display:grid; place-items:center; text-align:center;
-      background: rgba(0, 0, 0, 0.4);
+      background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url("images/fondterrain.jpg") center/cover no-repeat;
+      background-attachment: fixed;
       border-bottom:1px solid var(--line);
     }
     @media (max-width: 768px){
       .hero{ background-attachment: scroll; background-position:center top; }
     }
+
     .hero-inner{padding:3rem 1rem}
     .hero-logo{
       max-width:900px; width:min(90vw,820px); margin:0 auto 1rem; display:block;
@@ -104,13 +77,12 @@
       text-transform:uppercase; letter-spacing:1px; border:1px solid var(--line)
     }
     .cta:hover{background:#1f231f}
-    main{
-      max-width:1100px; margin:0 auto; padding:2rem 1rem;
-      position: relative; z-index: 1;
-    }
-    /* panneaux avec effet verre transparent */
+
+    main{max-width:1100px; margin:0 auto; padding:2rem 1rem}
+
+    /* panneaux avec effet verre */
     .panel{
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(46,51,46,0.35);
       border: 1px solid rgba(255,255,255,0.25);
       border-radius: var(--radius);
       padding: 1.2rem 1.25rem;
@@ -119,14 +91,17 @@
     }
     h2{font-family:var(--title-font); margin:0 0 .75rem;
        padding-bottom:.4rem; border-bottom:2px solid rgba(255,255,255,.28)}
+
     /* À propos en 2 colonnes */
     .about{display:grid; grid-template-columns:1.2fr .8fr; gap:1.25rem}
     .quick{display:grid; gap:.8rem}
     .badge{background:rgba(255,255,255,.08); border:1px solid var(--line); border-radius:.6rem; padding:.6rem .75rem}
     .muted{color:var(--muted)}
+
     /* carte projet */
     .project-card{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:center; margin-top:2rem}
     .thumb{aspect-ratio:16/10; width:100%; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line)}
+
     /* Étapes */
     #etapes h3{
       font-family: var(--title-font);
@@ -141,18 +116,19 @@
       line-height: 1.6;
       margin: 0 0 1rem;
     }
+
     /* contact + map */
     .grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem}
     .map-wrap{margin-top:2rem}
     .map iframe{width:100%; height:360px; border:0; border-radius:var(--radius)}
-    footer{
-      margin-top:2rem; padding:1.4rem 1rem; text-align:center;
-      background:rgba(46,51,46,.8); border-top:1px solid var(--line); color:#ccc;
-      position: relative; z-index: 1;
-    }
+
+    footer{margin-top:2rem; padding:1.4rem 1rem; text-align:center;
+      background:rgba(46,51,46,.8); border-top:1px solid var(--line); color:#ccc}
+
     @media (max-width:900px){
       .about,.project-card,.grid2{grid-template-columns:1fr}
     }
+
     .digits{
       font-family: "Roboto", system-ui, sans-serif !important;
       font-variant-numeric: lining-nums tabular-nums;
@@ -160,15 +136,10 @@
   </style>
 </head>
 <body>
-  <!-- Fond d'image -->
-  <div class="bg-image" id="bgImage"></div>
-  <div class="bg-overlay" id="bgOverlay"></div>
-
   <header>
     <nav class="nav" aria-label="Navigation">
       <a class="brand" href="#top">
-        <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="">
-        <span>ASSOCIATION LOI 1901</span>
+        <img class="brand-logo" src="/pdm.org/images/logo_pdm.png?v=1" alt="Printemps des Marais">
       </a>
       <div>
         <a href="#about">À propos</a>
@@ -177,9 +148,10 @@
       </div>
     </nav>
   </header>
+
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
-      <img class="hero-logo" src="images/logo_pdm.png?v=2" alt="PRINTEMPS DES MARAIS">
+      <img class="hero-logo" src="/pdm.org/images/logo_pdm.png?v=1" alt="PRINTEMPS DES MARAIS">
       <p>
         Expérimentation in situ au cœur des marais du Médoc : bâtir une réserve de biodiversité,
         documenter sa transformation, et partager un récit écologique, culturel et sensible.
@@ -187,23 +159,15 @@
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
+
   <main>
     <section id="about" class="about panel" aria-label="À propos">
       <article>
         <h2>À propos</h2>
-        <p>
-          Et si chaque citoyen pouvait devenir acteur de la biodiversité ?
-          C’est le pari de l’association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.
-          Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>, y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.
-        </p>
-        <p>
-          Face à l’effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique, adapté aux marées et aux plantes des marais — était la clé pour restaurer l’équilibre de ces milieux fragiles ?
-          Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.
-        </p>
-        <p>
-          Notre approche ? <strong>Allier savoirs traditionnels, recherches scientifiques et créations artistiques</strong> pour protéger le littoral girondin, ses espèces uniques et ses paysages.
-          Ici, la sauvegarde de la nature se vit comme un récit partagé : nous documentons, expérimentons et restituons au public une vision à la fois scientifique, sensible et esthétique de la résilience des écosystèmes.
-        </p>
+        <p>Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité ? L’association <em>Printemps des Marais</em> a été fondée par une agricultrice, une artiste et un réalisateur de documentaires.</p>
+        <p>Nous rassemblons acteurs et moyens locaux pour une expérience grandeur nature : documenter la transformation d’un terrain de 8 hectares, en zone humide inondable classée Natura 2000, sur l’estuaire de la Gironde.</p>
+        <p>Alors que la biodiversité décline, nous explorons une hypothèse : le <strong>poney landais</strong>, petit cheval rustique adapté aux cycles d’inondation et aux plantes des marais, pourrait jouer un rôle d’« espèce clé de voûte » dans l’équilibre de ces milieux.</p>
+        <p>Notre démarche croise savoirs ancestraux, sciences naturelles et création artistique — pour sensibiliser, impliquer et transmettre.</p>
       </article>
       <aside class="quick">
         <h2>En bref</h2>
@@ -214,6 +178,7 @@
         <p class="muted">Un sanctuaire, une espèce retrouvée, un lieu d’arts… un printemps des marais.</p>
       </aside>
     </section>
+
     <section id="projects" class="panel" aria-label="Le projet">
       <h2>Le projet</h2>
       <div class="project-card">
@@ -223,6 +188,7 @@
         </div>
       </div>
     </section>
+
     <section id="etapes" class="panel">
       <h2>Étapes du projet</h2>
       <h3><strong>PRÉ-PROJET</strong></h3>
@@ -266,6 +232,7 @@
       Restitution intermédiaire au public en milieu naturel<br>
       Restitution du film documentaire</p>
     </section>
+
     <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
       <div>
         <h2>Contact</h2>
@@ -278,6 +245,7 @@
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
+
     <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
       <div class="map">
@@ -285,36 +253,294 @@
       </div>
     </section>
   </main>
+
   <footer>
     © 2025 Printemps des Marais — index
   </footer>
+
   <script>
-    // Effet de flou progressif sur le fond uniquement
-    window.addEventListener('scroll', function() {
-      const scrollPosition = window.scrollY;
-      const blurIntensity = Math.min(scrollPosition / 200, 8);
-      const bgImage = document.getElementById('bgImage');
-      const bgOverlay = document.getElementById('bgOverlay');
-
-      if (scrollPosition > 10) {
-        bgImage.style.filter = `blur(${blurIntensity}px)`;
-        bgOverlay.classList.add('visible');
-      } else {
-        bgImage.style.filter = 'none';
-        bgOverlay.classList.remove('visible');
-      }
+  (function(){
+    const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
+    const nodes = document.querySelectorAll(SEL);
+    nodes.forEach(el => {
+      if (el.dataset.digitsDone) return;
+      el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
+      el.dataset.digitsDone = '1';
     });
+  })();
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PRINTEMPS DES MARAIS</title>
 
-    // Script pour les chiffres stylisés
-    (function(){
-      const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
-      const nodes = document.querySelectorAll(SEL);
-      nodes.forEach(el => {
-        if (el.dataset.digitsDone) return;
-        el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
-        el.dataset.digitsDone = '1';
-      });
-    })();
+  <!-- Google Fonts : Aliens and Cows + Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Aliens+and+Cows&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
+      --line: rgba(255,255,255,.18);
+      --text:#f0f0f0; --muted:#dcdcdc;
+      --radius:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Roboto",system-ui,sans-serif;
+      color:var(--text);
+      background:#3A403A;
+    }
+
+    /* header sticky translucide */
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
+      background:rgba(46,51,46,.65); border-bottom:1px solid var(--line)
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:.75rem 1rem;
+      display:flex; justify-content:space-between; align-items:center
+    }
+    .brand{
+      display:flex; align-items:center;
+    }
+    .brand img,
+    .brand-logo{
+      height:34px; width:auto; object-fit:contain; display:block;
+      max-width:none;
+    }
+    .nav a{
+      color:var(--muted); text-decoration:none; margin-left:1rem;
+      font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; font-size:.9rem
+    }
+    .nav a:hover{color:#fff}
+
+    /* hero avec fondterrain.jpg */
+    .hero{
+      min-height:70svh; display:grid; place-items:center; text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url("images/fondterrain.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      border-bottom:1px solid var(--line);
+    }
+    @media (max-width: 768px){
+      .hero{ background-attachment: scroll; background-position:center top; }
+    }
+
+    .hero-inner{padding:3rem 1rem}
+    .hero-logo{
+      max-width:900px; width:min(90vw,820px); margin:0 auto 1rem; display:block;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.45))
+    }
+    .hero p{
+      max-width:820px; margin:.5rem auto 1.25rem; color:var(--muted);
+      line-height:1.7; font-family:"Roboto",system-ui,sans-serif;
+    }
+    .cta{
+      display:inline-block; padding:.65rem 1.1rem; border-radius:.55rem;
+      background:rgba(46,51,46,.85);
+      color:var(--text); text-decoration:none; font-family:var(--title-font);
+      text-transform:uppercase; letter-spacing:1px; border:1px solid var(--line)
+    }
+    .cta:hover{background:#1f231f}
+
+    main{max-width:1100px; margin:0 auto; padding:2rem 1rem}
+
+    /* panneaux avec effet verre */
+    .panel{
+      background: rgba(46,51,46,0.35);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.25rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    h2{font-family:var(--title-font); margin:0 0 .75rem;
+       padding-bottom:.4rem; border-bottom:2px solid rgba(255,255,255,.28)}
+
+    /* À propos en 2 colonnes */
+    .about{display:grid; grid-template-columns:1.2fr .8fr; gap:1.25rem}
+    .quick{display:grid; gap:.8rem}
+    .badge{background:rgba(255,255,255,.08); border:1px solid var(--line); border-radius:.6rem; padding:.6rem .75rem}
+    .muted{color:var(--muted)}
+
+    /* carte projet */
+    .project-card{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:center; margin-top:2rem}
+    .thumb{aspect-ratio:16/10; width:100%; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line)}
+
+    /* Étapes */
+    #etapes h3{
+      font-family: var(--title-font);
+      font-size: 1.5rem;
+      color: #97bb2b;
+      letter-spacing: .5px;
+      margin-top: 1.2rem;
+      margin-bottom: .4rem;
+    }
+    #etapes p{
+      font-family: "Roboto", system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+
+    /* contact + map */
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem}
+    .map-wrap{margin-top:2rem}
+    .map iframe{width:100%; height:360px; border:0; border-radius:var(--radius)}
+
+    footer{margin-top:2rem; padding:1.4rem 1rem; text-align:center;
+      background:rgba(46,51,46,.8); border-top:1px solid var(--line); color:#ccc}
+
+    @media (max-width:900px){
+      .about,.project-card,.grid2{grid-template-columns:1fr}
+    }
+
+    .digits{
+      font-family: "Roboto", system-ui, sans-serif !important;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Navigation">
+      <a class="brand" href="#top">
+        <img class="brand-logo" src="/pdm.org/images/logo_pdm.png?v=1" alt="Printemps des Marais">
+      </a>
+      <div>
+        <a href="#about">À propos</a>
+        <a href="#projects">Projet</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" aria-label="Introduction">
+    <div class="hero-inner">
+      <img class="hero-logo" src="/pdm.org/images/logo_pdm.png?v=1" alt="PRINTEMPS DES MARAIS">
+      <p>
+        Expérimentation in situ au cœur des marais du Médoc : bâtir une réserve de biodiversité,
+        documenter sa transformation, et partager un récit écologique, culturel et sensible.
+      </p>
+      <a class="cta" href="projet-1.html">Voir le storyboard</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="about panel" aria-label="À propos">
+      <article>
+        <h2>À propos</h2>
+        <p>Peut-on, comme simples citoyens, jouer un rôle dans la sauvegarde de la biodiversité ? L’association <em>Printemps des Marais</em> a été fondée par une agricultrice, une artiste et un réalisateur de documentaires.</p>
+        <p>Nous rassemblons acteurs et moyens locaux pour une expérience grandeur nature : documenter la transformation d’un terrain de 8 hectares, en zone humide inondable classée Natura 2000, sur l’estuaire de la Gironde.</p>
+        <p>Alors que la biodiversité décline, nous explorons une hypothèse : le <strong>poney landais</strong>, petit cheval rustique adapté aux cycles d’inondation et aux plantes des marais, pourrait jouer un rôle d’« espèce clé de voûte » dans l’équilibre de ces milieux.</p>
+        <p>Notre démarche croise savoirs ancestraux, sciences naturelles et création artistique — pour sensibiliser, impliquer et transmettre.</p>
+      </article>
+      <aside class="quick">
+        <h2>En bref</h2>
+        <div class="badge">🌿 <strong>8 ha</strong> en zone humide (Natura 2000)</div>
+        <div class="badge">🐴 Réintroduction du <strong>poney landais</strong></div>
+        <div class="badge">🔬 Suivi naturaliste & inventaires</div>
+        <div class="badge">🎨 Médiation culturelle & résidences</div>
+        <p class="muted">Un sanctuaire, une espèce retrouvée, un lieu d’arts… un printemps des marais.</p>
+      </aside>
+    </section>
+
+    <section id="projects" class="panel" aria-label="Le projet">
+      <h2>Le projet</h2>
+      <div class="project-card">
+        <img class="thumb" src="images/vuegenerale.jpg" alt="Aperçu du storyboard – Printemps des marais">
+        <div>
+          <a class="cta" href="projet-1.html">PRÉSENTATION VISUELLE</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="etapes" class="panel">
+      <h2>Étapes du projet</h2>
+      <h3><strong>PRÉ-PROJET</strong></h3>
+      <p>Cartographie et plan de gestion initial</p>
+      <h3><strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
+      <p>Repérage des zones d’intérêt écologique<br>
+      Interventions scientifiques et inventaire initial des espèces<br>
+      Résultats préliminaires : biodiversité observée</p>
+      <h3><strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
+      <p>Aménagements légers et balisage du site<br>
+      Aménagements pour l’accueil des chevaux<br>
+      Installation de l’élevage (race patrimoniale, menacée et endémique)<br>
+      Élaboration du projet artistique</p>
+      <h3><strong>ACTIONS ARTISTIQUES</strong></h3>
+      <p>Conception du projet artistique<br>
+      Recherche de financements et de prestataires<br>
+      Installation des œuvres artistiques<br>
+      Rencontres avec les partenaires locaux</p>
+      <h3><strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
+      <p>Suivi de la faune et de la flore : premières tendances<br>
+      Coordination scientifique interdisciplinaire<br>
+      Travaux légers d’aménagement écologique<br>
+      Mise en place de panneaux d’information</p>
+      <h3><strong>COMMUNICATION</strong></h3>
+      <p>Documentation photographique et vidéo<br>
+      Valorisation patrimoniale : archives et récits<br>
+      Communiqués de presse</p>
+      <h3><strong>ÉTAPES</strong></h3>
+      <p>Relevés saisonniers : suivi des variations de la biodiversité<br>
+      Introduction de nouveaux individus (poneys landais)<br>
+      Suivi des naissances et des poulains<br>
+      Synthèse d’étape et ajustements du plan<br>
+      Installation d’équipements complémentaires</p>
+      <h3><strong>BILAN SCIENTIFIQUE</strong></h3>
+      <p>Inventaire définitif de la faune et de la flore<br>
+      Comparatifs avec les zones humides voisines</p>
+      <h3><strong>MÉDIATION</strong></h3>
+      <p>Exposition/rencontre<br>
+      Échanges avec les acteurs culturels<br>
+      Mise en réseau avec les structures régionales<br>
+      Restitution intermédiaire au public en milieu naturel<br>
+      Restitution du film documentaire</p>
+    </section>
+
+    <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
+      <div>
+        <h2>Contact</h2>
+        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" class="muted" style="text-decoration:none;">printempsdesmarais@gmail.com</a></p>
+        <p>💼 <a class="muted" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> · 🐙 <a class="muted" href="https://github.com" target="_blank" rel="noopener">GitHub</a></p>
+      </div>
+      <div>
+        <h2>Adresse</h2>
+        <p>308 G Passe Castillonnaise<br>33590 Talais — France</p>
+        <p class="muted">Estuaire de la Gironde, nord Médoc</p>
+      </div>
+    </section>
+
+    <section id="map" class="map-wrap panel">
+      <h2>Nous trouver</h2>
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Google Maps"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Printemps des Marais — index
+  </footer>
+
+  <script>
+  (function(){
+    const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
+    const nodes = document.querySelectorAll(SEL);
+    nodes.forEach(el => {
+      if (el.dataset.digitsDone) return;
+      el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
+      el.dataset.digitsDone = '1';
+    });
+  })();
   </script>
 </body>
 </html>
