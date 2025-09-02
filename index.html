@@ -21,18 +21,23 @@
       font-family:"Roboto",system-ui,sans-serif;
       color:var(--text);
       background: url("images/fondterrain.jpg") center/cover fixed no-repeat;
+      transition: filter 0.3s ease;
     }
-    /* Flou appliqué après le hero */
+    /* Flou progressif au scroll */
     body::before {
       content: "";
       position: fixed;
-      top: 70svh; /* Commence après la hauteur du hero */
+      top: 0;
       left: 0;
       width: 100%;
-      height: calc(100% - 70svh);
+      height: 100%;
       background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
       z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    body.blurred::before {
+      opacity: 1;
     }
     /* header sticky translucide */
     header{
@@ -135,7 +140,7 @@
   <header>
     <nav class="nav" aria-label="Navigation">
       <a class="brand" href="#top">
-       <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Printemps des Marais">
+       <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="">
         <span>ASSOCIATION LOI 1901</span>
       </a>
       <div>
@@ -147,7 +152,7 @@
   </header>
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
-      <img class="hero-logo" src="/pdm.org/images/logo_pdm.png?v=2" alt="PRINTEMPS DES MARAIS">
+      <img class="hero-logo" src="images/logo_pdm.png?v=2" alt="PRINTEMPS DES MARAIS">
       <p>
         Expérimentation in situ au cœur des marais du Médoc : bâtir une réserve de biodiversité,
         documenter sa transformation, et partager un récit écologique, culturel et sensible.
@@ -159,19 +164,19 @@
     <section id="about" class="about panel" aria-label="À propos">
       <article>
         <h2>À propos</h2>
-        <p>Et si chaque citoyen pouvait devenir acteur de la biodiversité ?
-  C’est le pari de l’association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.
-  Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>, y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.
-</p>
-<p>
-  Face à l’effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique, adapté aux marées et aux plantes des marais — était la clé pour restaurer l’équilibre de ces milieux fragiles ?
-  Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.
-</p>
-<p>
-  Notre approche ? <strong>Allier savoirs traditionnels, recherches scientifiques et créations artistiques</strong> pour protéger le littoral girondin, ses espèces uniques et ses paysages.
-  Ici, la sauvegarde de la nature se vit comme un récit partagé : nous documentons, expérimentons et restituons au public une vision à la fois scientifique, sensible et esthétique de la résilience des écosystèmes.
-</p>
-
+        <p>
+          Et si chaque citoyen pouvait devenir acteur de la biodiversité ?
+          C’est le pari de l’association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.
+          Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>, y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.
+        </p>
+        <p>
+          Face à l’effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique, adapté aux marées et aux plantes des marais — était la clé pour restaurer l’équilibre de ces milieux fragiles ?
+          Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.
+        </p>
+        <p>
+          Notre approche ? <strong>Allier savoirs traditionnels, recherches scientifiques et créations artistiques</strong> pour protéger le littoral girondin, ses espèces uniques et ses paysages.
+          Ici, la sauvegarde de la nature se vit comme un récit partagé : nous documentons, expérimentons et restituons au public une vision à la fois scientifique, sensible et esthétique de la résilience des écosystèmes.
+        </p>
       </article>
       <aside class="quick">
         <h2>En bref</h2>
@@ -257,15 +262,31 @@
     © 2025 Printemps des Marais — index
   </footer>
   <script>
-  (function(){
-    const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
-    const nodes = document.querySelectorAll(SEL);
-    nodes.forEach(el => {
-      if (el.dataset.digitsDone) return;
-      el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
-      el.dataset.digitsDone = '1';
+    // Effet de flou progressif au scroll
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      const blurIntensity = Math.min(scrollPosition / 200, 8); // Ajuste la vitesse du flou
+      const opacity = Math.min(scrollPosition / 300, 0.7); // Ajuste la vitesse de l'opacité
+
+      if (scrollPosition > 10) {
+        document.body.style.filter = `blur(${blurIntensity}px)`;
+        document.body.classList.add('blurred');
+      } else {
+        document.body.style.filter = 'none';
+        document.body.classList.remove('blurred');
+      }
     });
-  })();
+
+    // Script pour les chiffres stylisés
+    (function(){
+      const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
+      const nodes = document.querySelectorAll(SEL);
+      nodes.forEach(el => {
+        if (el.dataset.digitsDone) return;
+        el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
+        el.dataset.digitsDone = '1';
+      });
+    })();
   </script>
 </body>
 </html>
