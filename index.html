@@ -4,12 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ASSOCIATION LOI 1901</title>
-
   <!-- Google Fonts : Aliens and Cows + Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Aliens+and+Cows&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
@@ -22,9 +20,19 @@
       margin:0;
       font-family:"Roboto",system-ui,sans-serif;
       color:var(--text);
-      background:#3A403A;
+      background: url("images/fondterrain.jpg") center/cover fixed no-repeat;
     }
-
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      z-index: -1;
+    }
     /* header sticky translucide */
     header{
       position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
@@ -48,20 +56,15 @@
       font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; font-size:.9rem
     }
     .nav a:hover{color:#fff}
-
     /* hero avec fondterrain.jpg */
     .hero{
       min-height:70svh; display:grid; place-items:center; text-align:center;
-      background:
-        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-        url("images/fondterrain.jpg") center/cover no-repeat;
-      background-attachment: fixed;
+      background: rgba(0, 0, 0, 0.4);
       border-bottom:1px solid var(--line);
     }
     @media (max-width: 768px){
       .hero{ background-attachment: scroll; background-position:center top; }
     }
-
     .hero-inner{padding:3rem 1rem}
     .hero-logo{
       max-width:900px; width:min(90vw,820px); margin:0 auto 1rem; display:block;
@@ -78,12 +81,10 @@
       text-transform:uppercase; letter-spacing:1px; border:1px solid var(--line)
     }
     .cta:hover{background:#1f231f}
-
     main{max-width:1100px; margin:0 auto; padding:2rem 1rem}
-
-    /* panneaux avec effet verre */
+    /* panneaux avec effet verre transparent */
     .panel{
-      background: rgba(46,51,46,0.35);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255,255,255,0.25);
       border-radius: var(--radius);
       padding: 1.2rem 1.25rem;
@@ -92,17 +93,14 @@
     }
     h2{font-family:var(--title-font); margin:0 0 .75rem;
        padding-bottom:.4rem; border-bottom:2px solid rgba(255,255,255,.28)}
-
     /* À propos en 2 colonnes */
     .about{display:grid; grid-template-columns:1.2fr .8fr; gap:1.25rem}
     .quick{display:grid; gap:.8rem}
     .badge{background:rgba(255,255,255,.08); border:1px solid var(--line); border-radius:.6rem; padding:.6rem .75rem}
     .muted{color:var(--muted)}
-
     /* carte projet */
     .project-card{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:center; margin-top:2rem}
     .thumb{aspect-ratio:16/10; width:100%; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line)}
-
     /* Étapes */
     #etapes h3{
       font-family: var(--title-font);
@@ -117,19 +115,15 @@
       line-height: 1.6;
       margin: 0 0 1rem;
     }
-
     /* contact + map */
     .grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.25rem}
     .map-wrap{margin-top:2rem}
     .map iframe{width:100%; height:360px; border:0; border-radius:var(--radius)}
-
     footer{margin-top:2rem; padding:1.4rem 1rem; text-align:center;
       background:rgba(46,51,46,.8); border-top:1px solid var(--line); color:#ccc}
-
     @media (max-width:900px){
       .about,.project-card,.grid2{grid-template-columns:1fr}
     }
-
     .digits{
       font-family: "Roboto", system-ui, sans-serif !important;
       font-variant-numeric: lining-nums tabular-nums;
@@ -150,7 +144,6 @@
       </div>
     </nav>
   </header>
-
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
       <img class="hero-logo" src="/pdm.org/images/logo_pdm.png?v=2" alt="PRINTEMPS DES MARAIS">
@@ -161,7 +154,6 @@
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
-
   <main>
     <section id="about" class="about panel" aria-label="À propos">
       <article>
@@ -180,7 +172,6 @@
         <p class="muted">Un sanctuaire, une espèce retrouvée, un lieu d’arts… un printemps des marais.</p>
       </aside>
     </section>
-
     <section id="projects" class="panel" aria-label="Le projet">
       <h2>Le projet</h2>
       <div class="project-card">
@@ -190,7 +181,6 @@
         </div>
       </div>
     </section>
-
     <section id="etapes" class="panel">
       <h2>Étapes du projet</h2>
       <h3><strong>PRÉ-PROJET</strong></h3>
@@ -234,7 +224,6 @@
       Restitution intermédiaire au public en milieu naturel<br>
       Restitution du film documentaire</p>
     </section>
-
     <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
       <div>
         <h2>Contact</h2>
@@ -247,7 +236,6 @@
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
-
     <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
       <div class="map">
@@ -255,11 +243,9 @@
       </div>
     </section>
   </main>
-
   <footer>
     © 2025 Printemps des Marais — index
   </footer>
-
   <script>
   (function(){
     const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
