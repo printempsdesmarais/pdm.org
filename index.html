@@ -22,13 +22,14 @@
       color:var(--text);
       background: url("images/fondterrain.jpg") center/cover fixed no-repeat;
     }
+    /* Flou appliqué après le hero */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
+      top: 70svh; /* Commence après la hauteur du hero */
       left: 0;
       width: 100%;
-      height: 100%;
+      height: calc(100% - 70svh);
       background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       z-index: -1;
@@ -56,7 +57,7 @@
       font-family:var(--title-font); text-transform:uppercase; letter-spacing:1px; font-size:.9rem
     }
     .nav a:hover{color:#fff}
-    /* hero avec fondterrain.jpg */
+    /* hero avec fondterrain.jpg net */
     .hero{
       min-height:70svh; display:grid; place-items:center; text-align:center;
       background: rgba(0, 0, 0, 0.4);
