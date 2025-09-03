@@ -168,13 +168,29 @@
       color: var(--muted);
       margin: 0 0 1rem;
     }
-    /* Grille storyboard */
-    .storyboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+    /* Conteneur du storyboard en pleine largeur */
+    .storyboard-container {
       position: relative;
-      z-index: 1;
+      width: 100vw;
+      height: 70vh;
+      margin: 2rem auto;
+      overflow: hidden;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+    }
+    /* Grille storyboard horizontale */
+    .storyboard {
+      display: flex;
+      width: fit-content;
+      height: 100%;
+      gap: 1rem;
+      padding: 1rem 0;
+      position: relative;
+      will-change: transform;
     }
     figure {
       margin: 0;
@@ -183,34 +199,41 @@
       overflow: hidden;
       box-shadow: none;
       transition: transform 0.25s ease;
-      cursor: zoom-in;
+      cursor: pointer;
       position: relative;
       z-index: 1;
       border: none;
+      flex-shrink: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     figure:hover {
-      transform: translateY(-3px);
+      transform: scale(1.02);
     }
     .shot {
       display: block;
-      width: 100%;
+      width: 300px;
       height: 220px;
       object-fit: cover;
       object-position: center;
       border-radius: var(--radius);
+      flex-shrink: 0;
     }
     figcaption {
       padding: 0.6rem 0.8rem;
       font-family: var(--title-font);
       font-size: 0.9rem;
       color: var(--muted);
+      text-align: center;
       border-top: none;
       background: transparent;
     }
     .storyboard .wide {
-      grid-column: 1/-1;
+      width: 600px;
     }
     .wide .shot {
+      width: 600px;
       height: 360px;
     }
     /* Lightbox */
@@ -311,15 +334,17 @@
       font-family: var(--title-font);
     }
     /* Responsive */
-    @media (max-width: 600px) {
-      .wrap {
-        padding: 1rem;
+    @media (max-width: 768px) {
+      .storyboard-container {
+        height: 60vh;
       }
       .shot {
-        height: 200px;
+        width: 250px;
+        height: 180px;
       }
       .wide .shot {
-        height: 260px;
+        width: 100vw;
+        height: 300px;
       }
       .nav-links {
         gap: 0.5rem;
@@ -354,7 +379,7 @@
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header - Identique à index.html -->
+  <!-- Header -->
   <header>
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="index.html">
@@ -377,8 +402,8 @@
       <p>Le site du projet est idéalement situé entre des prairies d'élevage bovin, l'ancien estran de l'estuaire, les routes migratoires, un chemin touristique communal. L'eau de la mare incluse a un taux de salinité inférieur à 1g/l. Plus d'un kilomètre de haies de tamaris clôture la parcelle. L'altitude est comprise entre 2,5m-3m.</p>
     </section>
 
-    <!-- Grille d'images -->
-    <section aria-label="Narration visuelle">
+    <!-- Conteneur du storyboard -->
+    <div class="storyboard-container">
       <div class="storyboard" id="storyboard">
         <figure class="wide" data-src="images/parcelle37.jpg" data-caption="Vue générale du site — Découpage cadastral - parcelle N°37.">
           <img class="shot" src="images/parcelle37.jpg" alt="Vue générale du site — Estuaire / zone humide" loading="lazy">
@@ -435,7 +460,7 @@
         <figure data-src="images/storyboard/story30.jpg" data-caption="Un nouveau souffle pour les marais et la vie sauvage du Médoc"><img class="shot" src="images/storyboard/story30.jpg" alt="Storyboard 30" loading="lazy"><figcaption>Un nouveau souffle pour les marais et la vie sauvage du Médoc</figcaption></figure>
         <figure data-src="images/storyboard/story31.jpg" data-caption="Rejoignez notre projet en souscrivant à l'association"><img class="shot" src="images/storyboard/story31.jpg" alt="Storyboard 31" loading="lazy"><figcaption>Rejoignez notre projet en souscrivant à l'association</figcaption></figure>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- Lightbox -->
@@ -484,6 +509,35 @@
           bgOverlay.style.opacity = '0';
         }
       });
+    });
+
+    // Script pour le défilement horizontal synchronisé avec le scroll vertical
+    document.addEventListener('DOMContentLoaded', function() {
+      const storyboardContainer = document.querySelector('.storyboard-container');
+      const storyboard = document.querySelector('.storyboard');
+
+      // Désactive le scroll horizontal natif du body
+      document.body.style.overflowX = 'hidden';
+
+      // Synchronise le scroll vertical avec le défilement horizontal
+      window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        storyboard.style.transform = `translateX(-${scrollY}px)`;
+      });
+
+      // Ajuste la largeur totale du storyboard pour permettre le défilement
+      function adjustStoryboardWidth() {
+        const figures = document.querySelectorAll('.storyboard figure');
+        let totalWidth = 0;
+        figures.forEach(figure => {
+          totalWidth += figure.offsetWidth + 20; // 20px pour les gaps
+        });
+        storyboard.style.width = `${totalWidth}px`;
+      }
+
+      // Appelle la fonction au chargement et au redimensionnement
+      adjustStoryboardWidth();
+      window.addEventListener('resize', adjustStoryboardWidth);
     });
 
     // Script pour la lightbox
