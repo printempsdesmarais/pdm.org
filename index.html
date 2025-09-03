@@ -4,17 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ASSOCIATION LOI 1901</title>
-  <!-- Google Fonts : Aliens and Cows + Roboto -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Aliens+and+Cows&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --title-font:'Aliens and Cows','Roboto',system-ui,sans-serif;
-      --line: rgba(255,255,255,.18);
-      --text:#f0f0f0;
-      --muted:#dcdcdc;
-      --radius:14px;
+    @font-face {
+      font-family: 'GC Volkgen';
+      src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'GC Volkgen';
+      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2');
+      font-style: italic;
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: 'GC Volkgen';
+      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+      font-weight: bold;
+      font-style: normal;
+    }
+    :root {
+      --title-font: 'GC Volkgen', sans-serif;
+      --line: rgba(255, 255, 255, 0.18);
+      --text: #f0f0f0;
+      --muted: #dcdcdc;
+      --radius: 14px;
     }
     html {
       scroll-behavior: smooth;
@@ -22,11 +38,12 @@
     }
     body {
       margin: 0;
-      font-family: "Roboto", system-ui, sans-serif;
+      font-family: "GC Volkgen", sans-serif;
       color: var(--text);
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
+      line-height: 1.5;
     }
     /* Fond avec effet de flou dynamique */
     .bg-container {
@@ -64,14 +81,14 @@
       transition: opacity 0.5s ease;
       pointer-events: none;
     }
-    /* Header 80px */
+    /* Header */
     header {
       position: sticky;
       top: 0;
       z-index: 10;
       backdrop-filter: blur(10px);
       background: rgba(46, 51, 46, 0.85);
-      border-bottom: 1px solid var(--line);
+      border-bottom: none;
       height: 80px;
       display: flex;
       align-items: center;
@@ -93,32 +110,33 @@
       color: var(--text);
       text-decoration: none;
       font-family: var(--title-font);
-      font-size: 0.85rem;
+      font-size: 1.2rem;
+      font-weight: bold;
     }
-    /* Logo agrandi */
     .brand-logo {
-      height: 80px;
+      height: 70px;
       width: auto;
       object-fit: contain;
       display: block;
-      font-size: 0;
       margin-left: 1rem;
     }
     .nav-links {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       margin-right: 1rem;
     }
     .nav a {
       color: var(--muted);
       text-decoration: none;
       font-family: var(--title-font);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 1rem; /* Typo agrandie */
+      font-size: 1.1rem;
+      font-weight: 500;
       transition: color 0.2s ease;
     }
-    .nav a:hover { color: #fff; }
+    .nav a:hover {
+      color: #fff;
+      font-style: italic;
+    }
     /* Hero section */
     .hero {
       min-height: 70svh;
@@ -127,40 +145,47 @@
       text-align: center;
       position: relative;
       z-index: 1;
-      padding-top: 2rem;
+      padding: 2rem 1rem;
     }
-    @media (max-width: 768px) {
-      .hero { background-attachment: scroll; background-position: center top; }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .hero-inner { padding: 2rem 1rem; }
     .hero-logo {
-      max-width: 600px;
-      width: min(85vw, 600px);
-      margin: 0 auto 1rem;
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto 1.5rem;
       display: block;
       filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
     }
-    .hero p {
-      max-width: 820px;
-      margin: 0.5rem auto 1.25rem;
+    .hero h3 {
+      font-family: var(--title-font);
+      font-size: 1.8rem;
+      font-weight: bold;
+      line-height: 1.3;
+      margin: 0;
       color: var(--muted);
-      line-height: 1.3; /* Espacement réduit */
-      font-family: "Roboto", system-ui, sans-serif;
     }
     .cta {
       display: inline-block;
-      padding: 0.65rem 1.1rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 0.55rem;
       background: rgba(46, 51, 46, 0.85);
       color: var(--text);
       text-decoration: none;
       font-family: var(--title-font);
+      font-size: 1.1rem;
+      font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border: 1px solid var(--line);
       transition: background 0.3s ease;
+      border: none;
     }
-    .cta:hover { background: #1f231f; }
+    .cta:hover {
+      background: rgba(46, 51, 46, 0.95);
+      color: #fff;
+    }
     /* Main content */
     main {
       max-width: 1100px;
@@ -169,100 +194,137 @@
       position: relative;
       z-index: 1;
     }
-    /* Panels with glass effect */
+    /* Panels sans bordure */
     .panel {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.03);
+      border: none;
       border-radius: var(--radius);
-      padding: 1.2rem 1.25rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      margin-bottom: 2rem;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin-bottom: 3rem;
+    }
+    h1, h2 {
+      font-family: var(--title-font);
+      font-weight: bold;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text);
+    }
+    h1 {
+      font-size: 2.2rem;
     }
     h2 {
+      font-size: 1.8rem;
+    }
+    h3 {
       font-family: var(--title-font);
-      margin: 0 0 0.75rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.28);
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #97bb2b;
+      margin: 1.5rem 0 0.75rem;
+    }
+    p {
+      font-family: var(--title-font);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+      color: var(--muted);
+    }
+    em {
+      font-style: italic;
+      font-weight: normal;
+    }
+    strong {
+      font-weight: bold;
+      color: var(--text);
     }
     /* About section */
     .about {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 1.25rem;
+      gap: 2rem;
     }
-    .quick { display: grid; gap: 0.8rem; }
+    .quick {
+      display: grid;
+      gap: 1rem;
+    }
     .badge {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--line);
-      border-radius: 0.6rem;
-      padding: 0.6rem 0.75rem;
+      background: transparent;
+      border: none;
+      padding: 0.75rem 0;
       font-family: var(--title-font);
-      font-size: 0.9rem;
+      font-size: 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .muted { color: var(--muted); }
+    .badge strong {
+      color: var(--text);
+      font-weight: bold;
+    }
     /* Project card */
     .project-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 2rem;
       align-items: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
     .thumb {
       aspect-ratio: 16/10;
       width: 100%;
       object-fit: cover;
       border-radius: var(--radius);
-      border: 1px solid var(--line);
+      border: none;
     }
     /* Steps section */
-    #etapes h3{
-      font-family: var(--title-font);
-      font-size: 1.5rem;
-      color: #97bb2b;
-      letter-spacing: 0.5px;
-      margin-top: 1.2rem;
-      margin-bottom: 0.4rem;
-    }
-    #etapes p{
-      font-family: "Roboto", system-ui, sans-serif;
-      line-height: 1.6;
-      margin: 0 0 1rem;
+    #etapes p {
+      margin: 0.5rem 0 1rem;
     }
     /* Contact and map */
     .grid2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 2rem;
     }
-    .map-wrap { margin-top: 2rem; }
+    .map-wrap {
+      margin: 2rem 0;
+    }
     .map iframe {
       width: 100%;
       height: 360px;
-      border: 0;
+      border: none;
       border-radius: var(--radius);
     }
     /* Footer */
     footer {
-      margin-top: 2rem;
-      padding: 1.4rem 1rem;
+      margin: 2rem 0 0;
+      padding: 1.5rem 1rem;
       text-align: center;
-      background: rgba(46, 51, 46, 0.8);
-      border-top: 1px solid var(--line);
-      color: #ccc;
-      position: relative;
-      z-index: 1;
+      background: transparent;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      font-family: var(--title-font);
+      font-size: 0.9rem;
     }
     /* Responsive */
     @media (max-width: 900px) {
-      .about, .project-card, .grid2 { grid-template-columns: 1fr; }
-      .nav-links { gap: 0.5rem; }
-      .nav a { font-size: 0.9rem; } /* Typo légèrement réduite en mobile */
-    }
-    .digits{
-      font-family: "Roboto", system-ui, sans-serif !important;
-      font-variant-numeric: lining-nums tabular-nums;
+      .about, .project-card, .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+      .nav a {
+        font-size: 0.95rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -272,11 +334,12 @@
     <div class="bg-image" id="bgImage"></div>
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
-  <!-- Header 80px -->
+
+  <!-- Header -->
   <header>
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="">
+        <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Logo Printemps des Marais">
         <span>ASSOCIATION LOI 1901</span>
       </a>
       <div class="nav-links">
@@ -286,35 +349,25 @@
       </div>
     </nav>
   </header>
+
+  <!-- Hero Section -->
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
       <img class="hero-logo" src="images/logo_pdm.png?v=2" alt="Association loi 1901">
-      <p>
-        <h3>Au cœur des marais du Médoc, vivez la création d'une réserve de vie sauvage, la réintroduction du poney landais sur ses terres ancestrales. Une expérience scientifique, artistique et humaine racontée par un film documentaire.</h3>
-      </p>
+      <h3>Au cœur des marais du Médoc, vivez la création d'une réserve de vie sauvage, la réintroduction du poney landais sur ses terres ancestrales. <em>Une expérience scientifique, artistique et humaine racontée par un film documentaire.</em></h3>
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
+
+  <!-- Main Content -->
   <main>
+    <!-- À propos -->
     <section id="about" class="about panel" aria-label="À propos">
       <article>
-        <h2>À propos</h2>
-        <p>
-          Et si chaque citoyen pouvait devenir acteur de la biodiversité ?
-          C'est le pari de l'association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.
-          Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>,
-          y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.
-        </p>
-        <p>
-          Face à l'effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique,
-          adapté aux marées et aux plantes des marais — était la clé pour restaurer l'équilibre de ces milieux fragiles ?
-          Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.
-        </p>
-        <p>
-          Notre approche ? <strong>Allier savoirs traditionnels, recherches scientifiques et créations artistiques</strong> pour protéger le littoral girondin,
-          ses espèces uniques et ses paysages. Ici, la sauvegarde de la nature se vit comme un récit partagé : nous documentons, expérimentons et
-          restituons au public une vision à la fois scientifique, sensible et esthétique de la résilience des écosystèmes.
-        </p>
+        <h1>À propos</h1>
+        <p>Et si chaque citoyen pouvait devenir <strong>acteur de la biodiversité</strong> ? C'est le pari de l'association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.</p>
+        <p>Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>, y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.</p>
+        <p>Face à l'effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique, adapté aux marées et aux plantes des marais — était la clé pour restaurer l'équilibre de ces milieux fragiles ? <em>Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.</em></p>
       </article>
       <aside class="quick">
         <h2>En bref</h2>
@@ -324,70 +377,51 @@
         <div class="badge">• Interventions artistiques</div>
       </aside>
     </section>
+
+    <!-- Le projet -->
     <section id="projects" class="panel" aria-label="Le projet">
-      <h2>Le projet</h2>
+      <h1>Le projet</h1>
       <div class="project-card">
         <img class="thumb" src="images/vuegenerale.jpg" alt="Aperçu du storyboard – Printemps des marais">
         <div>
+          <p>Découvrez notre <strong>storyboard visuel</strong> et plongez dans l'univers du projet.</p>
           <a class="cta" href="projet-1.html">PRÉSENTATION VISUELLE</a>
         </div>
       </div>
     </section>
+
+    <!-- Étapes du projet -->
     <section id="etapes" class="panel">
-      <h2>Étapes du projet</h2>
+      <h1>Étapes du projet</h1>
       <h3><strong>PRÉ-PROJET</strong></h3>
-      <p>Cartographie et plan de gestion initial</p>
+      <p>Cartographie et plan de gestion initial.</p>
       <h3><strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
-      <p>Repérage des zones d'intérêt écologique<br>
-      Interventions scientifiques et inventaire initial des espèces<br>
-      Résultats préliminaires : biodiversité observée</p>
+      <p>Repérage des zones d'intérêt écologique. Interventions scientifiques et inventaire initial des espèces.</p>
       <h3><strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
-      <p>Aménagements légers et balisage du site<br>
-      Aménagements pour l'accueil des chevaux<br>
-      Installation de l'élevage (race patrimoniale, menacée et endémique)<br>
-      Élaboration du projet artistique</p>
+      <p>Aménagements légers et balisage du site. Installation de l'élevage (race patrimoniale, menacée et endémique).</p>
       <h3><strong>ACTIONS ARTISTIQUES</strong></h3>
-      <p>Conception du projet artistique<br>
-      Recherche de financements et de prestataires<br>
-      Installation des œuvres artistiques<br>
-      Rencontres avec les partenaires locaux</p>
+      <p>Conception du projet artistique. Installation des œuvres artistiques.</p>
       <h3><strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
-      <p>Suivi de la faune et de la flore : premières tendances<br>
-      Coordination scientifique interdisciplinaire<br>
-      Travaux légers d'aménagement écologique<br>
-      Mise en place de panneaux d'information</p>
+      <p>Suivi de la faune et de la flore. Coordination scientifique interdisciplinaire.</p>
       <h3><strong>COMMUNICATION</strong></h3>
-      <p>Documentation photographique et vidéo<br>
-      Valorisation patrimoniale : archives et récits<br>
-      Communiqués de presse</p>
-      <h3><strong>ÉTAPES</strong></h3>
-      <p>Relevés saisonniers : suivi des variations de la biodiversité<br>
-      Introduction de nouveaux individus (poneys landais)<br>
-      Suivi des naissances et des poulains<br>
-      Synthèse d'étape et ajustements du plan<br>
-      Installation d'équipements complémentaires</p>
-      <h3><strong>BILAN SCIENTIFIQUE</strong></h3>
-      <p>Inventaire définitif de la faune et de la flore<br>
-      Comparatifs avec les zones humides voisines</p>
-      <h3><strong>MÉDIATION</strong></h3>
-      <p>Exposition/rencontre<br>
-      Échanges avec les acteurs culturels<br>
-      Mise en réseau avec les structures régionales<br>
-      Restitution intermédiaire au public en milieu naturel<br>
-      Restitution du film documentaire</p>
+      <p>Documentation photographique et vidéo. Valorisation patrimoniale.</p>
     </section>
+
+    <!-- Contact -->
     <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
       <div>
         <h2>Contact</h2>
-        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" class="muted" style="text-decoration:none;">printempsdesmarais@gmail.com</a></p>
-        <p>💼 <a class="muted" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> · 🐙 <a class="muted" href="https://github.com" target="_blank" rel="noopener">GitHub</a></p>
+        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" style="color: var(--muted); text-decoration: none;">printempsdesmarais@gmail.com</a></p>
+        <p>💼 <a href="https://linkedin.com" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none;">LinkedIn</a></p>
       </div>
       <div>
         <h2>Adresse</h2>
-        <p>308 G Passe Castillonnaise<br>33590 Talais — France</p>
+        <p>308 G Passe Castillonnaise<br>33590 Talais — <em>France</em></p>
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
+
+    <!-- Carte -->
     <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
       <div class="map">
@@ -395,11 +429,14 @@
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
   <footer>
-    © 2025 Printemps des Marais — index
+    © 2025 Printemps des Marais
   </footer>
+
   <script>
-    // Effet de flou progressif sur le fond uniquement
+    // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
@@ -416,16 +453,6 @@
         }
       });
     });
-    // Script pour les chiffres stylisés
-    (function() {
-      const SEL = 'h1, h2, .nav a, #etapes h3, .cta, .badge, p, li, span';
-      const nodes = document.querySelectorAll(SEL);
-      nodes.forEach(el => {
-        if (el.dataset.digitsDone) return;
-        el.innerHTML = el.innerHTML.replace(/(\d)/g, '<span class="digits">$1</span>');
-        el.dataset.digitsDone = '1';
-      });
-    })();
   </script>
 </body>
 </html>
