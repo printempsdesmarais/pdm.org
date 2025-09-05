@@ -283,18 +283,28 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--text);
     }
-    h1 {
-      font-size: 2.2rem;
-    }
-    h2 {
-      font-size: 1.8rem;
-    }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+
+    /* >>> Couleurs demandées <<< */
+    /* Étapes du projet (titre principal en vert) */
+    #etapes h1 { color: #97bb2b; }
+    /* Sous-titres des étapes en orange */
+    #etapes h3 { color: #ff942a; }
+
+    /* Titres "À propos" "En bref" "Le projet" "Contact" "Adresse" "Nous trouver" en vert */
+    #about h1,
+    #about h2,
+    #projects h1,
+    #contact h2,
+    #map h2 { color: #97bb2b; }
+
     h3 {
       font-family: var(--title-font);
       font-size: 1.4rem;
       font-weight: bold;
-      color: #97bb2b;
       margin: 1.5rem 0 0.75rem;
+      /* pas de couleur ici pour laisser #etapes h3 gérer l'orange */
     }
     p {
       font-family: var(--title-font);
@@ -303,24 +313,16 @@
       margin: 0 0 1rem;
       color: var(--muted);
     }
-    em {
-      font-style: italic;
-      font-weight: normal;
-    }
-    strong {
-      font-weight: bold;
-      color: var(--text);
-    }
+    em { font-style: italic; font-weight: normal; }
+    strong { font-weight: bold; color: var(--text); }
+
     /* About section */
     .about {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 2rem;
     }
-    .quick {
-      display: grid;
-      gap: 1rem;
-    }
+    .quick { display: grid; gap: 1rem; }
     .badge {
       background: transparent;
       border: none;
@@ -330,10 +332,8 @@
       color: var(--muted);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .badge strong {
-      color: var(--text);
-      font-weight: bold;
-    }
+    .badge strong { color: var(--text); font-weight: bold; }
+
     /* Project card */
     .project-card {
       display: grid;
@@ -349,25 +349,24 @@
       border-radius: var(--radius);
       border: none;
     }
+
     /* Steps section */
-    #etapes p {
-      margin: 0.5rem 0 1rem;
-    }
+    #etapes p { margin: 0.5rem 0 1rem; }
+
     /* Contact and map */
     .grid2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
-    .map-wrap {
-      margin: 2rem 0;
-    }
+    .map-wrap { margin: 2rem 0; }
     .map iframe {
       width: 100%;
       height: 360px;
       border: none;
       border-radius: var(--radius);
     }
+
     /* Footer */
     footer {
       margin: 2rem 0 0;
@@ -379,21 +378,13 @@
       font-family: var(--title-font);
       font-size: 0.9rem;
     }
+
     /* Responsive */
     @media (max-width: 900px) {
-      .about, .project-card, .grid2 {
-        grid-template-columns: 1fr;
-      }
-      .nav a {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
+      .about, .project-card, .grid2 { grid-template-columns: 1fr; }
+      .nav a { font-size: 1rem; padding: 0.5rem; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -403,6 +394,7 @@
     <div class="bg-image" id="bgImage"></div>
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
+
   <!-- Header -->
   <header>
     <nav class="nav" aria-label="Navigation principale">
@@ -417,9 +409,7 @@
       </div>
       <!-- Bouton hamburger (mobile) -->
       <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </div>
       <!-- Menu déroulant (mobile) -->
       <div class="mobile-menu" id="mobileMenu">
@@ -429,6 +419,7 @@
       </div>
     </nav>
   </header>
+
   <!-- Hero Section -->
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
@@ -437,6 +428,7 @@
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
+
   <!-- Main Content -->
   <main>
     <!-- À propos -->
@@ -455,6 +447,7 @@
         <div class="badge">• Interventions artistiques</div>
       </aside>
     </section>
+
     <!-- Le projet -->
     <section id="projects" class="panel" aria-label="Le projet">
       <h1>Le projet</h1>
@@ -466,22 +459,29 @@
         </div>
       </div>
     </section>
+
     <!-- Étapes du projet -->
     <section id="etapes" class="panel">
       <h1>Étapes du projet</h1>
       <h3><strong>PRÉ-PROJET</strong></h3>
       <p>Cartographie et plan de gestion initial.</p>
+
       <h3><strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
       <p>Repérage des zones d'intérêt écologique. Interventions scientifiques et inventaire initial des espèces.</p>
+
       <h3><strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
       <p>Aménagements légers et balisage du site. Installation de l'élevage (race patrimoniale, menacée et endémique).</p>
+
       <h3><strong>ACTIONS ARTISTIQUES</strong></h3>
       <p>Conception du projet artistique. Installation des œuvres artistiques.</p>
+
       <h3><strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
       <p>Suivi de la faune et de la flore. Coordination scientifique interdisciplinaire.</p>
+
       <h3><strong>COMMUNICATION</strong></h3>
       <p>Documentation photographique et vidéo. Valorisation patrimoniale.</p>
     </section>
+
     <!-- Contact -->
     <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
       <div>
@@ -495,6 +495,7 @@
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
+
     <!-- Carte -->
     <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
@@ -503,10 +504,12 @@
       </div>
     </section>
   </main>
+
   <!-- Footer -->
   <footer>
     © 2025 Printemps des Marais
   </footer>
+
   <script>
     // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
