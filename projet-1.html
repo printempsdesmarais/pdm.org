@@ -4,26 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projet — Narration visuelle — PRINTEMPS DES MARAIS</title>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Italic.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: 'GC Volkgen';
       src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+           url('chemin/vers/GCVolkgen-Regular.woff') format('woff');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2');
+      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Italic.woff') format('woff');
       font-style: italic;
       font-weight: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Bold.woff') format('woff');
       font-weight: bold;
       font-style: normal;
+      font-display: swap;
     }
     :root {
       --title-font: 'GC Volkgen', sans-serif;
@@ -50,6 +57,7 @@
       background: url("images/fondterrain.jpg") center/cover no-repeat fixed;
       transition: filter 0.4s ease;
       will-change: filter;
+      filter: blur(4px);
     }
     .bg-overlay {
       position: fixed;
@@ -85,6 +93,13 @@
       height: 80px;
       display: flex;
       align-items: center;
+      -webkit-transform: translateZ(0);
+    }
+    @supports (-webkit-touch-callout: none) {
+      header {
+        backdrop-filter: none;
+        background: rgba(46, 51, 46, 0.95);
+      }
     }
     .nav {
       max-width: 1100px;
@@ -113,6 +128,7 @@
       font-size: 0;
       margin-left: 1rem;
     }
+    /* Menu classique (desktop) */
     .nav-links {
       display: flex;
       gap: 1rem;
@@ -126,9 +142,63 @@
       letter-spacing: 1px;
       font-size: 1rem;
       transition: color 0.2s ease;
+      padding: 0.5rem 1rem;
     }
     .nav a:hover {
       color: #fff;
+    }
+    /* Menu hamburger (mobile) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-right: 1rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      margin: 3px 0;
+      transition: all 0.3s ease;
+    }
+    /* Menu déroulant (mobile) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: rgba(46, 51, 46, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 9;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: var(--title-font);
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .mobile-menu a:hover {
+      color: #fff;
+    }
+    /* Affichage du menu mobile sur iOS/tactile */
+    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .mobile-menu.active {
+        display: block;
+      }
     }
     /* Main content */
     .wrap {
@@ -326,6 +396,7 @@
       }
       .nav a {
         font-size: 0.85rem;
+        padding: 0.5rem;
       }
     }
     /* Fallback si pas de backdrop-filter */
@@ -353,8 +424,7 @@
     <div class="bg-image" id="bgImage"></div>
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
-
-  <!-- Header - Identique à index.html -->
+  <!-- Header -->
   <header>
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="index.html">
@@ -366,9 +436,20 @@
         <a href="projet-1.html">Projet</a>
         <a href="index.html#contact">Contact</a>
       </div>
+      <!-- Bouton hamburger (mobile) -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- Menu déroulant (mobile) -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about">À propos</a>
+        <a href="projet-1.html">Projet</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
     </nav>
   </header>
-
   <!-- Main Content -->
   <main class="wrap">
     <!-- Contexte -->
@@ -376,7 +457,6 @@
       <h1>Projet — Narration visuelle</h1>
       <p>Le site du projet est idéalement situé entre des prairies d'élevage bovin, l'ancien estran de l'estuaire, les routes migratoires, un chemin touristique communal. L'eau de la mare incluse a un taux de salinité inférieur à 1g/l. Plus d'un kilomètre de haies de tamaris clôture la parcelle. L'altitude est comprise entre 2,5m-3m.</p>
     </section>
-
     <!-- Grille d'images -->
     <section aria-label="Narration visuelle">
       <div class="storyboard" id="storyboard">
@@ -437,7 +517,6 @@
       </div>
     </section>
   </main>
-
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lb-inner" role="dialog" aria-label="Image du storyboard (clic pour image suivante)">
@@ -460,18 +539,19 @@
       <span class="sr-only" id="lb-instructions">Clic dans l'image = suivante. Clic en dehors = fermer. Échap = fermer. Flèches ←/→ pour naviguer.</span>
     </div>
   </div>
-
   <!-- Footer -->
   <footer>
     © 2025 Printemps des Marais — Narration visuelle
   </footer>
-
   <!-- Scripts -->
   <script>
     // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+
       window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         const blurIntensity = Math.min(scrollPosition / 150, 10);
@@ -480,9 +560,14 @@
           bgImage.style.filter = `blur(${blurIntensity}px)`;
           bgOverlay.style.opacity = overlayOpacity;
         } else {
-          bgImage.style.filter = 'none';
+          bgImage.style.filter = 'blur(4px)';
           bgOverlay.style.opacity = '0';
         }
+      });
+
+      // Gestion du menu hamburger
+      hamburger.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
       });
     });
 
@@ -500,7 +585,6 @@
       let index = 0;
       let timer = null;
       let interval = parseInt(speedSel.value, 10);
-
       function openAt(i){
         index = ((i % items.length) + items.length) % items.length;
         const f = items[index];
@@ -515,7 +599,6 @@
         lbImg.setAttribute('tabindex','0');
         lbImg.focus({preventScroll:true});
       }
-
       function closeLB(){
         pause();
         lb.classList.remove('open');
@@ -523,10 +606,8 @@
         document.body.style.overflow = '';
         lbImg.removeAttribute('tabindex');
       }
-
       function next(){ openAt(index + 1); }
       function prev(){ openAt(index - 1); }
-
       // Auto-play
       function play(){
         if(timer) return;
@@ -534,28 +615,22 @@
         toggleBtn.textContent = '⏸︎ Pause';
         stateEl.textContent = 'Lecture';
       }
-
       function pause(){
         if(timer){ clearInterval(timer); timer = null; }
         toggleBtn.textContent = '▶︎ Play';
         stateEl.textContent = 'Pause';
       }
-
       toggleBtn.addEventListener('click', ()=> timer ? pause() : play());
       speedSel.addEventListener('change', ()=>{
         interval = parseInt(speedSel.value, 10);
         if(timer){ pause(); play(); }
       });
-
       // Ouvrir depuis les vignettes
       items.forEach((fig, i)=> fig.addEventListener('click', ()=> openAt(i)));
-
       // Fermer en cliquant l'overlay
       lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
-
       // Clic sur l'image -> suivante
       lbImg.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
-
       // Clavier
       document.addEventListener('keydown', (e)=>{
         if(!lb.classList.contains('open')) return;
@@ -563,7 +638,6 @@
         else if(e.key === 'ArrowRight'){ next(); }
         else if(e.key === 'ArrowLeft'){ prev(); }
       });
-
       // Préchargement léger de l'image suivante
       lbImg.addEventListener('load', ()=>{
         const nextIndex = (index + 1) % items.length;
@@ -571,7 +645,6 @@
         const src = f.dataset.src || f.querySelector('img').src;
         new Image().src = src;
       });
-
       // Ouvrir sur une image précise via #index (ex: #12)
       function syncFromHash(){
         const n = parseInt(location.hash.replace('#',''), 10);
