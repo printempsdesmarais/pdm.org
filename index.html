@@ -136,6 +136,7 @@
       display: block;
       margin-left: 1rem;
     }
+    /* Menu classique (desktop) */
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -153,6 +154,59 @@
     .nav a:hover {
       color: #fff;
       font-style: italic;
+    }
+    /* Menu hamburger (mobile) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-right: 1rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      margin: 3px 0;
+      transition: all 0.3s ease;
+    }
+    /* Menu déroulant (mobile) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: rgba(46, 51, 46, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 9;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: var(--title-font);
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .mobile-menu a:hover {
+      color: #fff;
+    }
+    /* Affichage du menu mobile sur iOS/tactile */
+    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .mobile-menu.active {
+        display: block;
+      }
     }
     /* Hero section */
     .hero {
@@ -330,9 +384,6 @@
       .about, .project-card, .grid2 {
         grid-template-columns: 1fr;
       }
-      .nav-links {
-        gap: 1rem;
-      }
       .nav a {
         font-size: 1rem;
         padding: 0.5rem;
@@ -360,6 +411,18 @@
         <span>ASSOCIATION LOI 1901</span>
       </a>
       <div class="nav-links">
+        <a href="index.html#about">À propos</a>
+        <a href="projet-1.html">Projet</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <!-- Bouton hamburger (mobile) -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- Menu déroulant (mobile) -->
+      <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#about">À propos</a>
         <a href="projet-1.html">Projet</a>
         <a href="index.html#contact">Contact</a>
@@ -449,6 +512,9 @@
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+
       window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         const blurIntensity = Math.min(scrollPosition / 150, 10);
@@ -460,6 +526,11 @@
           bgImage.style.filter = 'blur(4px)';
           bgOverlay.style.opacity = '0';
         }
+      });
+
+      // Gestion du menu hamburger
+      hamburger.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
       });
     });
   </script>
