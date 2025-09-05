@@ -198,15 +198,9 @@
     }
     /* Affichage du menu mobile sur iOS/tactile */
     @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .mobile-menu.active {
-        display: block;
-      }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu.active { display: block; }
     }
     /* Hero section */
     .hero {
@@ -218,10 +212,7 @@
       z-index: 1;
       padding: 2rem 1rem;
     }
-    .hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .hero-inner { max-width: 900px; margin: 0 auto; }
     .hero-logo {
       max-width: 500px;
       width: 100%;
@@ -253,10 +244,8 @@
       transition: background 0.3s ease;
       border: none;
     }
-    .cta:hover {
-      background: rgba(46, 51, 46, 0.95);
-      color: #fff;
-    }
+    .cta:hover { background: rgba(46, 51, 46, 0.95); color: #fff; }
+
     /* Main content */
     main {
       max-width: 1100px;
@@ -275,6 +264,7 @@
       -webkit-backdrop-filter: blur(10px);
       margin-bottom: 3rem;
     }
+
     h1, h2 {
       font-family: var(--title-font);
       font-weight: bold;
@@ -289,7 +279,7 @@
     /* >>> Couleurs demandées <<< */
     /* Étapes du projet (titre principal en vert) */
     #etapes h1 { color: #97bb2b; }
-    /* Sous-titres des étapes en orange */
+    /* Sous-titres numérotés en orange */
     #etapes h3 { color: #ff942a; }
 
     /* Titres "À propos" "En bref" "Le projet" "Contact" "Adresse" "Nous trouver" en vert */
@@ -304,7 +294,6 @@
       font-size: 1.4rem;
       font-weight: bold;
       margin: 1.5rem 0 0.75rem;
-      /* pas de couleur ici pour laisser #etapes h3 gérer l'orange */
     }
     p {
       font-family: var(--title-font);
@@ -350,8 +339,9 @@
       border: none;
     }
 
-    /* Steps section */
-    #etapes p { margin: 0.5rem 0 1rem; }
+    /* Étapes - listes */
+    #etapes ul { margin: 0.25rem 0 1rem 1.2rem; padding-left: 1rem; }
+    #etapes li { color: var(--muted); margin: 0.25rem 0; }
 
     /* Contact and map */
     .grid2 {
@@ -463,23 +453,72 @@
     <!-- Étapes du projet -->
     <section id="etapes" class="panel">
       <h1>Étapes du projet</h1>
-      <h3><strong>PRÉ-PROJET</strong></h3>
-      <p>Cartographie et plan de gestion initial.</p>
 
-      <h3><strong>ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
-      <p>Repérage des zones d'intérêt écologique. Interventions scientifiques et inventaire initial des espèces.</p>
+      <h3><strong>1 — PRÉ-PROJET</strong></h3>
+      <ul>
+        <li>Cartographie</li>
+        <li>Plan de gestion initial</li>
+      </ul>
 
-      <h3><strong>PRÉPARATIFS ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
-      <p>Aménagements légers et balisage du site. Installation de l'élevage (race patrimoniale, menacée et endémique).</p>
+      <h3><strong>2 — ÉTAT DES LIEUX ÉCOLOGIQUE</strong></h3>
+      <ul>
+        <li>Repérage des zones d’intérêt écologique</li>
+        <li>Interventions scientifiques et inventaire initial des espèces</li>
+        <li>Résultats préliminaires : biodiversité observée</li>
+      </ul>
 
-      <h3><strong>ACTIONS ARTISTIQUES</strong></h3>
-      <p>Conception du projet artistique. Installation des œuvres artistiques.</p>
+      <h3><strong>3 — PRÉPARATIFS – ÉLEVAGE DE PONEYS LANDAIS</strong></h3>
+      <ul>
+        <li>Aménagements légers et balisage du site</li>
+        <li>Aménagements pour l’accueil des chevaux</li>
+        <li>Introduction des premiers poneys</li>
+      </ul>
 
-      <h3><strong>SUIVIS DE LA BIODIVERSITÉ</strong></h3>
-      <p>Suivi de la faune et de la flore. Coordination scientifique interdisciplinaire.</p>
+      <h3><strong>4 — ACTIONS ARTISTIQUES</strong></h3>
+      <ul>
+        <li>Élaboration et concept du projet artistique</li>
+        <li>Recherche de financements, partenariats et prestataires</li>
+        <li>Réalisation et installation des œuvres</li>
+        <li>Médiatisation des installations</li>
+      </ul>
 
-      <h3><strong>COMMUNICATION</strong></h3>
-      <p>Documentation photographique et vidéo. Valorisation patrimoniale.</p>
+      <h3><strong>5 — SUIVIS DE LA BIODIVERSITÉ</strong></h3>
+      <ul>
+        <li>Suivi de la faune et de la flore : premières tendances</li>
+        <li>Coordination scientifique interdisciplinaire</li>
+        <li>Travaux légers d’aménagement écologique</li>
+        <li>Mise en place de panneaux d’information</li>
+      </ul>
+
+      <h3><strong>6 — COMMUNICATION</strong></h3>
+      <ul>
+        <li>Documentation photographique et vidéo</li>
+        <li>Valorisation patrimoniale : archives et récits</li>
+        <li>Communiqués de presse</li>
+      </ul>
+
+      <h3><strong>7 — ÉTAPES</strong></h3>
+      <ul>
+        <li>Relevés saisonniers : suivi des variations de biodiversité</li>
+        <li>Introduction de nouveaux poneys</li>
+        <li>Suivi des naissances et des poulains</li>
+        <li>Synthèse d’étape et ajustements du plan</li>
+        <li>Installation éventuelle d’équipements complémentaires</li>
+      </ul>
+
+      <h3><strong>8 — BILAN SCIENTIFIQUE</strong></h3>
+      <ul>
+        <li>Rapport et inventaire définitif faune/flore</li>
+        <li>Comparatifs avec les zones humides voisines</li>
+      </ul>
+
+      <h3><strong>9 — MÉDIATION</strong></h3>
+      <ul>
+        <li>Organisation d’expositions / rencontres</li>
+        <li>Mise en réseau avec des structures culturelles régionales</li>
+        <li>Restitution au public en milieu naturel</li>
+        <li>Restitution et projection du film documentaire</li>
+      </ul>
     </section>
 
     <!-- Contact -->
