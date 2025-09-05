@@ -4,26 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ASSOCIATION LOI 1901</title>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="chemin/vers/GCVolkgen-Italic.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: 'GC Volkgen';
       src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+           url('chemin/vers/GCVolkgen-Regular.woff') format('woff');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2');
+      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Italic.woff') format('woff');
       font-style: italic;
       font-weight: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2');
+      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2'),
+           url('chemin/vers/GCVolkgen-Bold.woff') format('woff');
       font-weight: bold;
       font-style: normal;
+      font-display: swap;
     }
     :root {
       --title-font: 'GC Volkgen', sans-serif;
@@ -61,6 +68,7 @@
       background: url("images/fondterrain.jpg") center/cover no-repeat fixed;
       transition: filter 0.4s ease;
       will-change: filter;
+      filter: blur(4px);
     }
     /* Correction pour mobile */
     @media (max-width: 768px) {
@@ -92,6 +100,13 @@
       height: 80px;
       display: flex;
       align-items: center;
+      -webkit-transform: translateZ(0);
+    }
+    @supports (-webkit-touch-callout: none) {
+      header {
+        backdrop-filter: none;
+        background: rgba(46, 51, 46, 0.95);
+      }
     }
     .nav {
       max-width: 1100px;
@@ -112,6 +127,7 @@
       font-family: var(--title-font);
       font-size: 1.2rem;
       font-weight: bold;
+      flex-wrap: nowrap;
     }
     .brand-logo {
       height: 70px;
@@ -122,16 +138,17 @@
     }
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       margin-right: 1rem;
     }
     .nav a {
       color: var(--muted);
       text-decoration: none;
       font-family: var(--title-font);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 500;
       transition: color 0.2s ease;
+      padding: 0.5rem 1rem;
     }
     .nav a:hover {
       color: #fff;
@@ -317,7 +334,8 @@
         gap: 1rem;
       }
       .nav a {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        padding: 0.5rem;
       }
       h1 {
         font-size: 1.8rem;
@@ -334,7 +352,6 @@
     <div class="bg-image" id="bgImage"></div>
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
-
   <!-- Header -->
   <header>
     <nav class="nav" aria-label="Navigation principale">
@@ -349,7 +366,6 @@
       </div>
     </nav>
   </header>
-
   <!-- Hero Section -->
   <section class="hero" id="top" aria-label="Introduction">
     <div class="hero-inner">
@@ -358,7 +374,6 @@
       <a class="cta" href="projet-1.html">Voir le storyboard</a>
     </div>
   </section>
-
   <!-- Main Content -->
   <main>
     <!-- À propos -->
@@ -377,7 +392,6 @@
         <div class="badge">• Interventions artistiques</div>
       </aside>
     </section>
-
     <!-- Le projet -->
     <section id="projects" class="panel" aria-label="Le projet">
       <h1>Le projet</h1>
@@ -389,7 +403,6 @@
         </div>
       </div>
     </section>
-
     <!-- Étapes du projet -->
     <section id="etapes" class="panel">
       <h1>Étapes du projet</h1>
@@ -406,7 +419,6 @@
       <h3><strong>COMMUNICATION</strong></h3>
       <p>Documentation photographique et vidéo. Valorisation patrimoniale.</p>
     </section>
-
     <!-- Contact -->
     <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
       <div>
@@ -420,7 +432,6 @@
         <p class="muted">Estuaire de la Gironde, nord Médoc</p>
       </div>
     </section>
-
     <!-- Carte -->
     <section id="map" class="map-wrap panel">
       <h2>Nous trouver</h2>
@@ -429,12 +440,10 @@
       </div>
     </section>
   </main>
-
   <!-- Footer -->
   <footer>
     © 2025 Printemps des Marais
   </footer>
-
   <script>
     // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
@@ -448,7 +457,7 @@
           bgImage.style.filter = `blur(${blurIntensity}px)`;
           bgOverlay.style.opacity = overlayOpacity;
         } else {
-          bgImage.style.filter = 'none';
+          bgImage.style.filter = 'blur(4px)';
           bgOverlay.style.opacity = '0';
         }
       });
