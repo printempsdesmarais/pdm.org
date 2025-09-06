@@ -1,12 +1,81 @@
 <header>
+  <style>
+    /* --- Styles header (autonomes, utilisent les variables de projet.css si présentes) --- */
+    header{--bar-h:80px}
+    .nav{
+      max-width:1100px;margin:0 auto;padding:0 1rem;
+      min-height:var(--bar-h);display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+    .brand-logo,.logo{height:calc(var(--bar-h) - 20px);width:auto;object-fit:contain;display:block}
+
+    .nav-links{display:flex;gap:.5rem;align-items:center}
+    .nav-button{
+      padding:.5rem 1rem;border-radius:.55rem;text-decoration:none;
+      background:var(--orange, #ff942a);color:#1a1a1a;font-weight:600;
+      transition:background .2s ease, filter .2s ease;
+      font-family:var(--title-font, system-ui, sans-serif);
+    }
+    .nav-button:hover{ background:#e67e22; } /* orange foncé au survol */
+
+    /* Burger (CSS-only) */
+    .nav-toggle{ position:absolute; left:-9999px; }
+    .hamburger{
+      display:none; flex-direction:column; justify-content:center;
+      gap:5px; width:44px; height:44px; cursor:pointer; padding:6px;
+    }
+    .hamburger span{
+      display:block; width:28px; height:3px; background:var(--text, #f0f0f0);
+    }
+
+    .mobile-menu{
+      display:none; position:absolute; top:var(--bar-h); left:0; right:0;
+      background:rgba(46,51,46,.95); backdrop-filter:blur(10px);
+      border-top:1px solid rgba(255,255,255,.12); padding:.75rem;
+    }
+    .mobile-menu a{
+      display:block; padding:.65rem .85rem; text-decoration:none; color:var(--text, #f0f0f0);
+      border-bottom:1px solid rgba(255,255,255,.08); font-family:var(--title-font, system-ui, sans-serif);
+      margin:.1rem 0;
+    }
+    .mobile-menu a.nav-button{
+      background:var(--orange, #ff942a); color:#1a1a1a; border-radius:.55rem; border:none; margin-top:.4rem;
+      text-align:center; font-weight:700;
+    }
+    .mobile-menu a.nav-button:hover{ background:#e67e22; }
+
+    /* Affichage burger en viewport réduit ET sur terminaux tactiles (dont iOS) */
+    @media (max-width: 900px), (hover:none) and (pointer:coarse){
+      .nav-links{ display:none; }
+      .hamburger{ display:flex; }
+      .mobile-menu{ top:var(--bar-h); }
+      .nav{ position:relative; }
+      .nav-toggle:checked ~ .mobile-menu{ display:block; }
+    }
+  </style>
+
   <nav class="nav" aria-label="Navigation">
     <a class="brand" href="index.html">
-      <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="logo">
+      <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="brand-logo">
     </a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-button">À Propos</a>
-      <a href="projet-1.html" class="nav-button">La Mission</a>
-      <a href="agir.html" class="nav-button">Agir Ensemble</a>
+
+    <div class="nav-links" role="menubar">
+      <a href="index.html" class="nav-button" role="menuitem">À Propos</a>
+      <a href="projet-1.html" class="nav-button" role="menuitem">La Mission</a>
+      <a href="agir.html" class="nav-button" role="menuitem">Agir Ensemble</a>
+      <a href="index.html#contact" class="nav-button" role="menuitem">Contact</a>
+    </div>
+
+    <!-- Burger (checkbox hack) -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu">
+    <label for="nav-toggle" class="hamburger" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">À Propos</a>
+      <a href="projet-1.html">La Mission</a>
+      <a href="agir.html">Agir Ensemble</a>
       <a href="index.html#contact" class="nav-button">Contact</a>
     </div>
   </nav>
