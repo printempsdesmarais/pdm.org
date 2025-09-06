@@ -38,15 +38,12 @@
       --text: #f0f0f0;
       --muted: #dcdcdc;
       --radius: 14px;
-
-      /* Ajout */
       --orange: #ff942a;
       --vert: #97bb2b;
     }
     /* Couleurs utilitaires */
     .orange { color: var(--orange); }
     .vert   { color: var(--vert); }
-
     html {
       scroll-behavior: smooth;
       height: 100%;
@@ -97,18 +94,17 @@
       transition: opacity 0.5s ease;
       pointer-events: none;
     }
-    /* Header */
+    /* Header commun */
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
       backdrop-filter: blur(10px);
-      background: rgba(46, 51, 46, 0.85);
-      border-bottom: none;
+      background: rgba(46, 51, 46, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
       height: 80px;
       display: flex;
       align-items: center;
-      -webkit-transform: translateZ(0);
     }
     @supports (-webkit-touch-callout: none) {
       header {
@@ -130,52 +126,34 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--text);
       text-decoration: none;
-      font-family: var(--title-font);
-      font-size: 1.2rem;
-      font-weight: bold;
-      flex-wrap: nowrap;
     }
     .brand-logo {
-      height: 70px;
+      height: 60px; /* Ajusté pour la hauteur du header */
       width: auto;
       object-fit: contain;
       display: block;
-      margin-left: 1rem;
     }
-    /* Menu classique (desktop) */
+    /* Boutons oranges du header */
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 0.5rem;
       margin-right: 1rem;
     }
-    .nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-family: var(--title-font);
-      font-size: 1.2rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
+    .nav-button {
       padding: 0.5rem 1rem;
-    }
-    .nav a:hover {
-      color: #fff;
-      font-style: italic;
-    }
-    /* Bouton "Agir" dans le header */
-    .cta-nav {
       background: var(--orange);
       color: #1a1a1a;
+      text-decoration: none;
       border-radius: 0.55rem;
-      padding: 0.5rem 1rem;
-      font-weight: 700;
+      font-family: var(--title-font);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.3s;
     }
-    .cta-nav:hover {
+    .nav-button:hover {
       background: #ff9f40;
-      color: #1a1a1a;
     }
-
     /* Menu hamburger (mobile) */
     .hamburger {
       display: none;
@@ -214,19 +192,14 @@
       font-size: 1.1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .mobile-menu a:hover { color: #fff; }
-    /* Style bouton in-menu */
-    .mobile-menu .cta-nav {
+    .mobile-menu .nav-button {
       background: var(--orange);
       color: #1a1a1a;
       border-radius: 0.55rem;
       margin-top: 0.5rem;
       border-bottom: none;
       text-align: center;
-      font-weight: 700;
     }
-
-    /* Affichage du menu mobile sur iOS/tactile */
     @media (hover: none) and (pointer: coarse), (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -275,7 +248,6 @@
       border: none;
     }
     .cta:hover { background: rgba(46, 51, 46, 0.95); color: #fff; }
-
     /* Main content */
     main {
       max-width: 1100px;
@@ -294,7 +266,6 @@
       -webkit-backdrop-filter: blur(10px);
       margin-bottom: 3rem;
     }
-
     h1, h2 {
       font-family: var(--title-font);
       font-weight: bold;
@@ -305,20 +276,6 @@
     }
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
-
-    /* >>> Couleurs demandées <<< */
-    /* Étapes du projet (titre principal en vert) */
-    #etapes h1 { color: #97bb2b; }
-    /* Sous-titres numérotés en orange */
-    #etapes h3 { color: #ff942a; }
-
-    /* Titres "À propos" "En bref" "Le projet" "Contact" "Adresse" "Nous trouver" en vert */
-    #about h1,
-    #about h2,
-    #projects h1,
-    #contact h2,
-    #map h2 { color: #97bb2b; }
-
     h3 {
       font-family: var(--title-font);
       font-size: 1.4rem;
@@ -334,7 +291,6 @@
     }
     em { font-style: italic; font-weight: normal; }
     strong { font-weight: bold; color: var(--text); }
-
     /* About section */
     .about {
       display: grid;
@@ -352,7 +308,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .badge strong { color: var(--text); font-weight: bold; }
-
     /* Project card */
     .project-card {
       display: grid;
@@ -368,11 +323,9 @@
       border-radius: var(--radius);
       border: none;
     }
-
     /* Étapes - listes */
     #etapes ul { margin: 0.25rem 0 1rem 1.2rem; padding-left: 1rem; }
     #etapes li { color: var(--muted); margin: 0.25rem 0; }
-
     /* Contact and map */
     .grid2 {
       display: grid;
@@ -386,7 +339,6 @@
       border: none;
       border-radius: var(--radius);
     }
-
     /* Footer */
     footer {
       margin: 2rem 0 0;
@@ -398,7 +350,6 @@
       font-family: var(--title-font);
       font-size: 0.9rem;
     }
-
     /* Responsive */
     @media (max-width: 900px) {
       .about, .project-card, .grid2 { grid-template-columns: 1fr; }
@@ -406,13 +357,17 @@
       h1 { font-size: 1.8rem; }
       h2 { font-size: 1.5rem; }
     }
-
     /* Étapes du projet : tous les titres en orange */
     #etapes h1,
     #etapes h3 {
-      color: #97bb2b !important; /* (ta règle existante : laisse tel quel si souhaité) */
+      color: #97bb2b !important;
     }
-
+    /* Titres en vert */
+    #about h1,
+    #about h2,
+    #projects h1,
+    #contact h2,
+    #map h2 { color: #97bb2b; }
   </style>
 </head>
 <body>
@@ -422,25 +377,31 @@
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
- <!-- Inclusion du header (si tu utilises PHP) -->
-<?php include 'header.html'; ?>
-
-<!-- Ou copie-colle directement le contenu de header.html -->
-<header>
-  <nav class="nav" aria-label="Navigation">
-    <a class="brand" href="index.html">
-      <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="logo">
-      <span class="site-title">Printemps des Marais</span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-button">Accueil</a>
-      <a href="projet.html" class="nav-button">Projet</a>
-      <a href="actions.html" class="nav-button">Actions</a>
-      <a href="contact.html" class="nav-button">Agir</a>
-    </div>
-  </nav>
-</header>
-
+  <!-- Header commun -->
+  <header>
+    <nav class="nav" aria-label="Navigation">
+      <a class="brand" href="index.html">
+        <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="brand-logo">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-button">À propos</a>
+        <a href="projet.html" class="nav-button">Le projet</a>
+        <a href="contact.html" class="nav-button">Agir</a>
+        <a href="contact.html" class="nav-button">Contact</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="nav-button">À propos</a>
+        <a href="projet.html" class="nav-button">Le projet</a>
+        <a href="contact.html" class="nav-button">Agir</a>
+        <a href="contact.html" class="nav-button">Contact</a>
+      </div>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section class="hero" id="top" aria-label="Introduction">
@@ -485,27 +446,23 @@
     <!-- Étapes du projet -->
     <section id="etapes" class="panel">
       <h1>Étapes du projet</h1>
-
       <h3><strong><span class="orange">1 — PRÉ-PROJET</span></strong></h3>
       <ul>
         <li>Cartographie</li>
         <li>Plan de gestion initial</li>
       </ul>
-
       <h3><strong><span class="orange">2 — ÉTAT DES LIEUX ÉCOLOGIQUE</span></strong></h3>
       <ul>
         <li>Repérage des zones d’intérêt écologique</li>
         <li>Interventions scientifiques et inventaire initial des espèces</li>
         <li>Résultats préliminaires : biodiversité observée</li>
       </ul>
-
       <h3><strong><span class="orange">3 — PRÉPARATIFS – ÉLEVAGE DE PONEYS LANDAIS</span></strong></h3>
       <ul>
         <li>Aménagements légers et balisage du site</li>
         <li>Aménagements pour l’accueil des chevaux</li>
         <li>Introduction des premiers poneys</li>
       </ul>
-
       <h3><strong><span class="orange">4 — ACTIONS ARTISTIQUES</span></strong></h3>
       <ul>
         <li>Élaboration et concept du projet artistique</li>
@@ -513,7 +470,6 @@
         <li>Réalisation et installation des œuvres</li>
         <li>Médiatisation des installations</li>
       </ul>
-
       <h3><strong><span class="orange">5 — SUIVIS DE LA BIODIVERSITÉ</span></strong></h3>
       <ul>
         <li>Suivi de la faune et de la flore : premières tendances</li>
@@ -521,14 +477,12 @@
         <li>Travaux légers d’aménagement écologique</li>
         <li>Mise en place de panneaux d’information</li>
       </ul>
-
       <h3><strong><span class="orange">6 — COMMUNICATION</span></strong></h3>
       <ul>
         <li>Documentation photographique et vidéo</li>
         <li>Valorisation patrimoniale : archives et récits</li>
         <li>Communiqués de presse</li>
       </ul>
-
       <h3><strong><span class="orange">7 — ÉTAPES</span></strong></h3>
       <ul>
         <li>Relevés saisonniers : suivi des variations de biodiversité</li>
@@ -537,13 +491,11 @@
         <li>Synthèse d’étape et ajustements du plan</li>
         <li>Installation éventuelle d’équipements complémentaires</li>
       </ul>
-
       <h3><strong><span class="orange">8 — BILAN SCIENTIFIQUE</span></strong></h3>
       <ul>
         <li>Rapport et inventaire définitif faune/flore</li>
         <li>Comparatifs avec les zones humides voisines</li>
       </ul>
-
       <h3><strong><span class="orange">9 — MÉDIATION</span></strong></h3>
       <ul>
         <li>Organisation d’expositions / rencontres</li>
@@ -588,7 +540,6 @@
       const bgOverlay = document.getElementById('bgOverlay');
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobileMenu');
-
       window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         const blurIntensity = Math.min(scrollPosition / 150, 10);
@@ -601,7 +552,6 @@
           bgOverlay.style.opacity = '0';
         }
       });
-
       // Gestion du menu hamburger
       hamburger.addEventListener('click', function() {
         mobileMenu.classList.toggle('active');
