@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Le projet — PRINTEMPS DES MARAIS</title>
 
-  <!-- Polices & styles globaux -->
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="projet.css">
 
-  <!-- Styles spécifiques non couverts par projet.css (lightbox uniquement) -->
+  <!-- Styles spécifiques à la lightbox (tout le reste est dans projet.css) -->
   <style>
     .lightbox{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px) brightness(.9)}
     .lightbox.open{display:flex}
@@ -21,7 +20,6 @@
     .lb-controls .ui{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:rgba(46,51,46,.75);border:1px solid rgba(255,255,255,.18);border-radius:.6rem;padding:.35rem .55rem;box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:'GC Volkgen',sans-serif;font-size:.85rem;color:#f0f0f0}
     .lb-controls button,.lb-controls select{appearance:none;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#f0f0f0;border-radius:.45rem;padding:.3rem .55rem;font-family:'GC Volkgen',sans-serif;font-size:.85rem;cursor:pointer}
     .lb-controls .state{opacity:.8;font-size:.8rem}
-    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
@@ -29,12 +27,10 @@
   <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header (chargé depuis header.html) -->
+  <!-- Header injecté depuis header.html -->
   <header id="site-header" aria-label="En-tête du site"></header>
 
-  <!-- Contenu principal -->
   <main class="wrap">
-    <!-- Intro éditoriale -->
     <section class="intro" id="renaissance">
       <h1 style="color: var(--vert);">Le projet</h1>
 
@@ -46,11 +42,8 @@
         <li>Une mare d’eau douce issue d’une nappe phréatique (salinité &lt; 1 g/l)</li>
         <li>Plus d’1 km de haies de tamaris en brise-vent naturel</li>
       </ul>
-      <p>
-        Depuis 2014, le terrain est en friche. Notre objectif&nbsp;: <strong>lui redonner vie</strong> en conciliant écologie, patrimoine et innovation.
-      </p>
+      <p>Depuis 2014, le terrain est en friche. Notre objectif&nbsp;: <strong>lui redonner vie</strong> en conciliant écologie, patrimoine et innovation.</p>
 
-      <!-- Image intégrée : parcelle37.jpg -->
       <figure class="media">
         <img src="images/parcelle37.jpg" alt="Vue générale du site — Découpage cadastral : parcelle n°37" width="1800" height="1200" loading="lazy">
         <figcaption>Vue générale du site — Découpage cadastral&nbsp;: parcelle n°37.</figcaption>
@@ -60,15 +53,9 @@
     <section id="vocation">
       <h2>Une vocation singulière</h2>
       <h3>Héritage des digues et des marais</h3>
-      <p>
-        La digue de Talais (1763–1764) protège encore aujourd’hui ces terres basses appelées <em>les mattes</em>. Autrefois zone d’absorption des grandes marées, elles ont été converties en terres agricoles très fertiles.
-      </p>
-      <p>
-        Mais ces sols, privés de leur fonction de <strong>zone tampon</strong>, augmentent désormais les risques d’inondation pour les riverains et pour la métropole bordelaise.
-      </p>
-      <p>
-        <a href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus sur les digues de Gironde</a>
-      </p>
+      <p>La digue de Talais (1763–1764) protège encore aujourd’hui ces terres basses appelées <em>les mattes</em>. Autrefois zone d’absorption des grandes marées, elles ont été converties en terres agricoles très fertiles.</p>
+      <p>Mais ces sols, privés de leur fonction de <strong>zone tampon</strong>, augmentent désormais les risques d’inondation pour les riverains et pour la métropole bordelaise.</p>
+      <p><a href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus sur les digues de Gironde</a></p>
 
       <h3>Un terrain laboratoire</h3>
       <ul>
@@ -88,42 +75,28 @@
         <li>Stud-book créé, croisements limités (Welsh, arabe)</li>
         <li>Aujourd’hui : quelques centaines d’individus, surtout dans les Landes</li>
       </ul>
-      <p>
-        Rustique, docile et endurant, le poney landais est polyvalent (attelage, dressage, endurance, saut). Mais sa petite taille (cat. B et C) limite son attractivité dans les clubs.
-      </p>
-      <p>
-        Source&nbsp;: <em>Plan de sauvegarde du poney landais</em> (thèse vétérinaire, 2006).
-      </p>
+      <p>Rustique, docile et endurant, le poney landais est polyvalent (attelage, dressage, endurance, saut). Mais sa petite taille (cat. B et C) limite son attractivité dans les clubs.</p>
+      <p>Source&nbsp;: <em>Plan de sauvegarde du poney landais</em> (thèse vétérinaire, 2006).</p>
     </section>
 
     <section id="biodiversite">
       <h2>Un allié pour la biodiversité</h2>
-      <p>
-        Le poney landais, façonné par les zones humides, possède des qualités uniques. Dans une logique de <strong>gestion écologique</strong>, il peut&nbsp;:
-      </p>
+      <p>Le poney landais, façonné par les zones humides, possède des qualités uniques. Dans une logique de <strong>gestion écologique</strong>, il peut&nbsp;:</p>
       <ul>
         <li><strong>Entretenir la végétation</strong> : broutage des herbes hautes, joncs, arbustes</li>
         <li><strong>Préserver la biodiversité</strong> : création d’habitats variés pour oiseaux, amphibiens, insectes</li>
         <li><strong>Remplacer les machines</strong> : limiter tassement des sols et émissions de CO₂</li>
         <li><strong>Valoriser le territoire</strong> : associer sauvegarde d’une race régionale et entretien naturel des marais</li>
       </ul>
-      <p>
-        Objectif : faire du poney landais un <strong>symbole vivant de la transition écologique dans les marais du Médoc</strong>.
-      </p>
+      <p>Objectif : faire du poney landais un <strong>symbole vivant de la transition écologique dans les marais du Médoc</strong>.</p>
     </section>
 
     <section id="appel">
       <h2>Appel à participation</h2>
-      <p>
-        Nous croyons en la <strong>renaissance de ce terrain</strong> comme exemple d’équilibre entre <strong>homme et nature</strong>.<br>
-        Chercheurs, agriculteurs, institutions, habitants… chacun a un rôle à jouer.
-      </p>
-      <p>
-        Rejoignez-nous dans cette aventure pour faire du <strong>poney landais</strong> un acteur clé de la biodiversité médocaine.
-      </p>
-      <p>
-        <a href="contact.html">Nous soutenir</a> | <a href="index.html">En savoir plus</a>
-      </p>
+      <p>Nous croyons en la <strong>renaissance de ce terrain</strong> comme exemple d’équilibre entre <strong>homme et nature</strong>.<br>
+      Chercheurs, agriculteurs, institutions, habitants… chacun a un rôle à jouer.</p>
+      <p>Rejoignez-nous dans cette aventure pour faire du <strong>poney landais</strong> un acteur clé de la biodiversité médocaine.</p>
+      <p><a href="contact.html">Nous soutenir</a> | <a href="index.html">En savoir plus</a></p>
     </section>
 
     <!-- Storyboard complet -->
@@ -187,7 +160,6 @@
     </section>
   </main>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lb-inner" role="dialog" aria-label="Image du storyboard (clic pour image suivante)">
       <img class="lb-img" id="lb-img" src="" alt="">
@@ -209,24 +181,21 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>© 2025 Printemps des Marais — Narration visuelle</footer>
 
-  <!-- Scripts -->
   <script>
-    // Charger le header externe (header.html)
-    (function loadHeader(){
+    // Header depuis header.html
+    (function(){
       const slot = document.getElementById('site-header');
       fetch('header.html')
         .then(r => r.text())
         .then(html => { slot.innerHTML = html; })
         .catch(() => {
-          // Fallback minimal
           slot.innerHTML = '<div class="wrap"><a href="index.html" style="color:#fff;text-decoration:none;font-weight:bold">Printemps des Marais</a></div>';
         });
     })();
 
-    // Effet de flou progressif sur le fond (styles dans projet.css)
+    // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
