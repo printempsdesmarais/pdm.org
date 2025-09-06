@@ -3,140 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projet — Narration visuelle — PRINTEMPS DES MARAIS</title>
+  <title>Le projet — PRINTEMPS DES MARAIS</title>
+
+  <!-- Fonts (préchargement + déclarations locales si besoin) -->
   <link rel="preload" href="chemin/vers/GCVolkgen-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="chemin/vers/GCVolkgen-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="chemin/vers/GCVolkgen-Italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Feuille de style externe (contient les styles globaux, layout, storyboard, fond, header, footer, responsive) -->
+  <link rel="stylesheet" href="projet.css">
+
+  <!-- Styles spécifiques non couverts par projet.css (lightbox uniquement) -->
   <style>
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Italic.woff') format('woff');
-      font-style: italic;
-      font-weight: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Bold.woff') format('woff');
-      font-weight: bold;
-      font-style: normal;
-      font-display: swap;
-    }
-    :root {
-      --title-font: 'GC Volkgen', sans-serif;
-      --line: rgba(255, 255, 255, 0.18);
-      --panel: rgba(46, 51, 46, 0.75);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      --text: #f0f0f0;
-      --muted: #dcdcdc;
-      --radius: 14px;
-      --orange: #ff942a;
-      --vert: #97bb2b;
-    }
-    .bg-container {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2; pointer-events: none;
-    }
-    .bg-image {
-      width: 100%; height: 100%;
-      background: url("images/fondterrain.jpg") center/cover no-repeat fixed;
-      transition: filter 0.4s ease; will-change: filter; filter: blur(4px);
-    }
-    .bg-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.3); z-index: -1; opacity: 0;
-      transition: opacity 0.5s ease; pointer-events: none;
-    }
-    body {
-      margin: 0; background: #3A403A; color: var(--text);
-      font-family: var(--title-font); position: relative; min-height: 100vh;
-      overflow-x: hidden; line-height: 1.6;
-    }
-    header {
-      position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
-      background: rgba(46, 51, 46, 0.9); border-bottom: 1px solid var(--line);
-      min-height: 80px; display: flex; align-items: center;
-    }
-    @supports (-webkit-touch-callout: none) {
-      header { backdrop-filter: none; background: rgba(46, 51, 46, 0.95); }
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; position: relative; z-index: 1; }
-    h1, h2 { font-family: var(--title-font); color: var(--text); margin: 0 0 1rem; font-weight: bold; }
-    h1 { font-size: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 0.5rem; }
-    h2 { font-size: 1.6rem; margin-bottom: 1rem; }
-    p { font-family: var(--title-font); line-height: 1.6; color: var(--muted); margin: 0 0 1rem; }
-    ul { color: var(--muted); }
-    .intro { background: transparent; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; border: none; box-shadow: none; }
-    .storyboard {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem; position: relative; z-index: 1;
-    }
-    figure { margin: 0; background: transparent; border-radius: var(--radius); overflow: hidden; transition: transform 0.25s ease; cursor: zoom-in; position: relative; z-index: 1; border: none; }
-    figure:hover { transform: translateY(-3px); }
-    .shot { display: block; width: 100%; height: 220px; object-fit: cover; object-position: center; border-radius: var(--radius); }
-    figcaption { padding: 0.6rem 0.8rem; font-family: var(--title-font); font-size: 0.9rem; color: var(--muted); background: transparent; }
-    .storyboard .wide { grid-column: 1/-1; }
-    .wide .shot { height: 360px; }
-    .media {
-      margin: 1rem 0 2rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem;
-    }
-    .media img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
-    .media figcaption { font-size: 0.9rem; text-align: center; color: var(--muted); }
-    .lightbox {
-      position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center;
-      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(6px) brightness(0.9);
-    }
-    .lightbox.open { display: flex; }
-    .lb-inner { position: relative; max-width: min(92vw, 1200px); max-height: 88vh; display: flex; flex-direction: column; gap: 0.6rem; padding: 0 1rem; z-index: 1000; }
-    .lb-img { display: block; max-width: 100%; max-height: 80vh; border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); user-select: none; cursor: zoom-in; }
-    .lb-img:focus { outline: 3px solid rgba(255, 255, 255, 0.6); outline-offset: 4px; }
-    .lb-caption { text-align: center; font-family: var(--title-font); font-size: 1rem; color: #eee; text-wrap: balance; }
-    .lb-controls { position: absolute; inset: auto 0 -52px 0; display: flex; justify-content: center; gap: 0.5rem; pointer-events: none; }
-    .lb-controls .ui {
-      pointer-events: auto; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--panel);
-      border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.35rem 0.55rem; box-shadow: var(--shadow);
-      font-family: var(--title-font); font-size: 0.85rem; color: var(--text);
-    }
-    .lb-controls button,
-    .lb-controls select {
-      appearance: none; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.06); color: var(--text);
-      border-radius: 0.45rem; padding: 0.3rem 0.55rem; font-family: var(--title-font); font-size: 0.85rem; cursor: pointer;
-    }
-    .lb-controls .state { opacity: 0.8; font-size: 0.8rem; }
-    footer { margin-top: 2rem; padding: 1.25rem; text-align: center; color: var(--muted); border-top: 1px solid rgba(255, 255, 255, 0.1); position: relative; z-index: 1; font-family: var(--title-font); }
-    @media (max-width: 600px) {
-      .wrap { padding: 1rem; }
-      .shot { height: 200px; }
-      .wide .shot { height: 260px; }
-    }
-    @supports not ((backdrop-filter: blur(4px))) { .lightbox { background: rgba(0, 0, 0, 0.8); } }
-    .sr-only { position: absolute!important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .lightbox{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px) brightness(.9)}
+    .lightbox.open{display:flex}
+    .lb-inner{position:relative;max-width:min(92vw,1200px);max-height:88vh;display:flex;flex-direction:column;gap:.6rem;padding:0 1rem;z-index:1000}
+    .lb-img{display:block;max-width:100%;max-height:80vh;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.5);user-select:none;cursor:zoom-in}
+    .lb-img:focus{outline:3px solid rgba(255,255,255,.6);outline-offset:4px}
+    .lb-caption{text-align:center;font-family:'GC Volkgen',sans-serif;font-size:1rem;color:#eee;text-wrap:balance}
+    .lb-controls{position:absolute;inset:auto 0 -52px 0;display:flex;justify-content:center;gap:.5rem;pointer-events:none}
+    .lb-controls .ui{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:rgba(46,51,46,.75);border:1px solid rgba(255,255,255,.18);border-radius:.6rem;padding:.35rem .55rem;box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:'GC Volkgen',sans-serif;font-size:.85rem;color:#f0f0f0}
+    .lb-controls button,.lb-controls select{appearance:none;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#f0f0f0;border-radius:.45rem;padding:.3rem .55rem;font-family:'GC Volkgen',sans-serif;font-size:.85rem;cursor:pointer}
+    .lb-controls .state{opacity:.8;font-size:.8rem}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <!-- Fond -->
+  <!-- Fond décoratif -->
   <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header (chargé depuis header.html) -->
+  <!-- Header chargé dynamiquement depuis header.html -->
   <header id="site-header" aria-label="En-tête du site"></header>
 
-  <!-- Main Content -->
+  <!-- Contenu principal -->
   <main class="wrap">
-    <!-- Édito fusionné -->
+    <!-- Intro éditoriale -->
     <section class="intro" id="renaissance">
-      <h1>Renaissance d’un terrain</h1>
-      <h2>Un projet pilote au cœur du Médoc</h2>
+      <h1 style="color: var(--vert);">Le projet</h1>
+
+      <h2>Renaissance d’un terrain</h2>
+      <h3>Un projet pilote au cœur du Médoc</h3>
       <ul>
         <li>8 hectares de prairies (parcelles n°0037 et n°0039)</li>
         <li>Ancien élevage d’ânes (2010–2014)</li>
@@ -147,16 +54,16 @@
         Depuis 2014, le terrain est en friche. Notre objectif&nbsp;: <strong>lui redonner vie</strong> en conciliant écologie, patrimoine et innovation.
       </p>
 
-      <!-- Image insérée ici : parcelle37.jpg -->
+      <!-- Image intégrée : parcelle37.jpg -->
       <figure class="media">
-        <img src="images/parcelle37.jpg" alt="Vue générale du site — Découpage cadastral de la parcelle n°37">
-        <figcaption>Vue générale du site — Découpage cadastral : parcelle n°37.</figcaption>
+        <img src="images/parcelle37.jpg" alt="Vue générale du site — Découpage cadastral : parcelle n°37" width="1800" height="1200" loading="lazy">
+        <figcaption>Vue générale du site — Découpage cadastral&nbsp;: parcelle n°37.</figcaption>
       </figure>
     </section>
 
     <section id="vocation">
-      <h1>Une vocation singulière</h1>
-      <h2>Héritage des digues et des marais</h2>
+      <h2>Une vocation singulière</h2>
+      <h3>Héritage des digues et des marais</h3>
       <p>
         La digue de Talais (1763–1764) protège encore aujourd’hui ces terres basses appelées <em>les mattes</em>. Autrefois zone d’absorption des grandes marées, elles ont été converties en terres agricoles très fertiles.
       </p>
@@ -167,7 +74,7 @@
         <a href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus sur les digues de Gironde</a>
       </p>
 
-      <h2>Un terrain laboratoire</h2>
+      <h3>Un terrain laboratoire</h3>
       <ul>
         <li>Une <strong>vitrine expérimentale</strong> à échelle humaine</li>
         <li>Un lieu de <strong>pédagogie et de rencontre</strong> (scientifiques, éleveurs, collectivités, État)</li>
@@ -176,8 +83,8 @@
     </section>
 
     <section id="poney-landais">
-      <h1>Le poney landais</h1>
-      <h2>Un patrimoine menacé, sauvé de l’oubli</h2>
+      <h2>Le poney landais</h2>
+      <h3>Un patrimoine menacé, sauvé de l’oubli</h3>
       <ul>
         <li>Originaire des landes et marais aquitains</li>
         <li>Réduit à une centaine d’individus en 1970</li>
@@ -194,7 +101,7 @@
     </section>
 
     <section id="biodiversite">
-      <h1>Un allié pour la biodiversité</h1>
+      <h2>Un allié pour la biodiversité</h2>
       <p>
         Le poney landais, façonné par les zones humides, possède des qualités uniques. Dans une logique de <strong>gestion écologique</strong>, il peut&nbsp;:
       </p>
@@ -210,7 +117,7 @@
     </section>
 
     <section id="appel">
-      <h1>Appel à participation</h1>
+      <h2>Appel à participation</h2>
       <p>
         Nous croyons en la <strong>renaissance de ce terrain</strong> comme exemple d’équilibre entre <strong>homme et nature</strong>.<br>
         Chercheurs, agriculteurs, institutions, habitants… chacun a un rôle à jouer.
@@ -223,60 +130,38 @@
       </p>
     </section>
 
-    <!-- Grille d'images (narration visuelle) -->
+    <!-- Storyboard léger -->
     <section aria-label="Narration visuelle">
       <div class="storyboard" id="storyboard">
-        <!-- La vignette parcelle37.jpg a été déplacée dans le texte ci-dessus -->
-        <figure data-src="images/storyboard/story1.jpg" data-caption="Il fût un temps...">
-          <img class="shot" src="images/storyboard/story1.jpg" alt="Il fût un temps..." loading="lazy">
-          <figcaption><strong>Il fût un temps...</strong></figcaption>
-        </figure>
-        <figure data-src="images/storyboard/story2.jpg" data-caption="où des poneys sauvages">
-          <img class="shot" src="images/storyboard/story2.jpg" alt="où des poneys sauvages" loading="lazy">
-          <figcaption>où des poneys sauvages</figcaption>
-        </figure>
-        <figure data-src="images/storyboard/story3.jpg" data-caption="peuplaient les plages">
-          <img class="shot" src="images/storyboard/story3.jpg" alt="peuplaient les plages" loading="lazy">
-          <figcaption>peuplaient les plages</figcaption>
-        </figure>
-        <figure data-src="images/storyboard/story4.jpg" data-caption="les forêts et les marais d'Aquitaine.">
-          <img class="shot" src="images/storyboard/story4.jpg" alt="les forêts et les marais d'Aquitaine." loading="lazy">
-          <figcaption>les forêts et les marais d'Aquitaine.</figcaption>
-        </figure>
-        <figure data-src="images/storyboard/story5.jpg" data-caption="Ils étaient...">
-          <img class="shot" src="images/storyboard/story5.jpg" alt="Ils étaient..." loading="lazy">
-          <figcaption>Ils étaient...</figcaption>
-        </figure>
-        <figure data-src="images/storyboard/story6.jpg" data-caption="Les Seigneurs des Marais">
-          <img class="shot" src="images/storyboard/story6.jpg" alt="Les Seigneurs des Marais" loading="lazy">
+        <figure class="wide" data-src="images/storyboard/story6.jpg" data-caption="Les Seigneurs des Marais">
+          <img class="shot" src="images/storyboard/story6.jpg" alt="Poneys landais dans un marais" loading="lazy" width="1600" height="900">
           <figcaption><strong>Les Seigneurs des Marais</strong></figcaption>
         </figure>
-        <!-- ... autres figures inchangées ... -->
-        <figure data-src="images/storyboard/story7.jpg" data-caption="Les poneys landais favorisent-ils la biodiversité?"><img class="shot" src="images/storyboard/story7.jpg" alt="Storyboard 7" loading="lazy"><figcaption>Les poneys landais favorisent-ils la biodiversité?</figcaption></figure>
-        <figure data-src="images/storyboard/story8.jpg" data-caption="Ils peuvent façonner les marécages"><img class="shot" src="images/storyboard/story8.jpg" alt="Storyboard 8" loading="lazy"><figcaption>Ils peuvent façonner les marécages</figcaption></figure>
-        <figure data-src="images/storyboard/story9.jpg" data-caption="ouvrir les paysages"><img class="shot" src="images/storyboard/story9.jpg" alt="Storyboard 9" loading="lazy"><figcaption>ouvrir les paysages</figcaption></figure>
-        <figure data-src="images/storyboard/story10.jpg" data-caption="disperser des graines,"><img class="shot" src="images/storyboard/story10.jpg" alt="Storyboard 10" loading="lazy"><figcaption>disperser des graines,</figcaption></figure>
-        <figure data-src="images/storyboard/story11.jpg" data-caption="à l'origine d'une chaîne"><img class="shot" src="images/storyboard/story11.jpg" alt="Storyboard 11" loading="lazy"><figcaption>à l'origine d'une chaîne</figcaption></figure>
-        <figure data-src="images/storyboard/story12.jpg" data-caption="extraordinaire de vie."><img class="shot" src="images/storyboard/story12.jpg" alt="Storyboard 12" loading="lazy"><figcaption>extraordinaire de vie.</figcaption></figure>
-        <figure data-src="images/storyboard/story13.jpg" data-caption="Mais en deux siècles, les poneys landais frôlent l'extinction:"><img class="shot" src="images/storyboard/story13.jpg" alt="Storyboard 13" loading="lazy"><figcaption>Mais en deux siècles, les poneys landais frôlent l'extinction:</figcaption></figure>
-        <figure data-src="images/storyboard/story14.jpg" data-caption="Domestication..."><img class="shot" src="images/storyboard/story14.jpg" alt="Storyboard 14" loading="lazy"><figcaption>Domestication...</figcaption></figure>
-        <figure data-src="images/storyboard/story15.jpg" data-caption="Appauvrissement du milieu..."><img class="shot" src="images/storyboard/story15.jpg" alt="Storyboard 15" loading="lazy"><figcaption>Appauvrissement du milieu...</figcaption></figure>
-        <figure data-src="images/storyboard/story16.jpg" data-caption="Réduction des surfaces naturelles."><img class="shot" src="images/storyboard/story16.jpg" alt="Storyboard 16" loading="lazy"><figcaption>Réduction des surfaces naturelles.</figcaption></figure>
-        <figure data-src="images/storyboard/story17.jpg" data-caption="Dans le même temps, la biodiversité décline."><img class="shot" src="images/storyboard/story17.jpg" alt="Storyboard 17" loading="lazy"><figcaption>Dans le même temps, la biodiversité décline.</figcaption></figure>
-        <figure data-src="images/storyboard/story18.jpg" data-caption="Mais il reste un espoir"><img class="shot" src="images/storyboard/story18.jpg" alt="Storyboard 18" loading="lazy"><figcaption>Mais il reste un espoir</figcaption></figure>
-        <figure data-src="images/storyboard/story19.jpg" data-caption="À l'extrême nord du Médoc,"><img class="shot" src="images/storyboard/story19.jpg" alt="Storyboard 19" loading="lazy"><figcaption>À l'extrême nord du Médoc,</figcaption></figure>
-        <figure data-src="images/storyboard/story20.jpg" data-caption="sur les rives du plus grand estuaire d'Europe,"><img class="shot" src="images/storyboard/story20.jpg" alt="Storyboard 20" loading="lazy"><figcaption>sur les rives du plus grand estuaire d'Europe,</figcaption></figure>
-        <figure data-src="images/storyboard/story21.jpg" data-caption="un élevage prometteur va démarrer."><img class="shot" src="images/storyboard/story21.jpg" alt="Storyboard 21" loading="lazy"><figcaption>un élevage prometteur va démarrer.</figcaption></figure>
-        <figure data-src="images/storyboard/story22.jpg" data-caption="Sur ce terrain de 8 hectares,"><img class="shot" src="images/storyboard/story22.jpg" alt="Storyboard 22" loading="lazy"><figcaption>Sur ce terrain de 8 hectares,</figcaption></figure>
-        <figure data-src="images/storyboard/story23.jpg" data-caption="nous suivrons la vie des poneys,"><img class="shot" src="images/storyboard/story23.jpg" alt="Storyboard 23" loading="lazy"><figcaption>nous suivrons la vie des poneys,</figcaption></figure>
-        <figure data-src="images/storyboard/story24.jpg" data-caption="les transformations du terrain,"><img class="shot" src="images/storyboard/story24.jpg" alt="Storyboard 24" loading="lazy"><figcaption>les transformations du terrain,</figcaption></figure>
-        <figure data-src="images/storyboard/story25.jpg" data-caption="les trajectoires évolutives de la faune et de la flore."><img class="shot" src="images/storyboard/story25.jpg" alt="Storyboard 25" loading="lazy"><figcaption>les trajectoires évolutives de la faune et de la flore.</figcaption></figure>
-        <figure data-src="images/storyboard/story26.jpg" data-caption="Et peut-être serons-nous les témoins du grand retour"><img class="shot" src="images/storyboard/story26.jpg" alt="Storyboard 26" loading="lazy"><figcaption>Et peut-être serons-nous les témoins du grand retour</figcaption></figure>
-        <figure data-src="images/storyboard/story27.jpg" data-caption="des poneys landais sur le littoral de leurs ancêtres?"><img class="shot" src="images/storyboard/story27.jpg" alt="Storyboard 27" loading="lazy"><figcaption>des poneys landais sur le littoral de leurs ancêtres?</figcaption></figure>
-        <figure data-src="images/storyboard/story28.jpg" data-caption="Cette aventure est celle de la naissance d'une réserve..."><img class="shot" src="images/storyboard/story28.jpg" alt="Storyboard 28" loading="lazy"><figcaption>Cette aventure est celle de la naissance d'une réserve...</figcaption></figure>
-        <figure data-src="images/storyboard/story29.jpg" data-caption="de la re-découverte d'un équilibre écologique..."><img class="shot" src="images/storyboard/story29.jpg" alt="Storyboard 29" loading="lazy"><figcaption>de la re-découverte d'un équilibre écologique...</figcaption></figure>
-        <figure data-src="images/storyboard/story30.jpg" data-caption="Un nouveau souffle pour les marais et la vie sauvage du Médoc"><img class="shot" src="images/storyboard/story30.jpg" alt="Storyboard 30" loading="lazy"><figcaption>Un nouveau souffle pour les marais et la vie sauvage du Médoc</figcaption></figure>
-        <figure data-src="images/storyboard/story31.jpg" data-caption="Rejoignez notre projet en souscrivant à l'association"><img class="shot" src="images/storyboard/story31.jpg" alt="Storyboard 31" loading="lazy"><figcaption>Rejoignez notre projet en souscrivant à l'association</figcaption></figure>
+
+        <figure data-src="images/storyboard/story9.jpg" data-caption="Ouvrir les paysages">
+          <img class="shot" src="images/storyboard/story9.jpg" alt="Prairie humide ouverte par pâturage" loading="lazy" width="1200" height="800">
+          <figcaption>Ouvrir les paysages</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story12.jpg" data-caption="Une chaîne de vie">
+          <img class="shot" src="images/storyboard/story12.jpg" alt="Faune et flore des zones humides" loading="lazy" width="1200" height="800">
+          <figcaption>Une chaîne de vie</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story20.jpg" data-caption="L’estuaire de la Gironde">
+          <img class="shot" src="images/storyboard/story20.jpg" alt="Rives de l’estuaire de la Gironde" loading="lazy" width="1200" height="800">
+          <figcaption>L’estuaire de la Gironde</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story22.jpg" data-caption="Terrain de 8 hectares">
+          <img class="shot" src="images/storyboard/story22.jpg" alt="Vue du terrain de 8 hectares" loading="lazy" width="1200" height="800">
+          <figcaption>Terrain de 8 hectares</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story30.jpg" data-caption="Un nouveau souffle">
+          <img class="shot" src="images/storyboard/story30.jpg" alt="Vie sauvage du Médoc" loading="lazy" width="1200" height="800">
+          <figcaption>Un nouveau souffle</figcaption>
+        </figure>
       </div>
     </section>
   </main>
@@ -315,12 +200,11 @@
         .then(r => r.text())
         .then(html => { slot.innerHTML = html; })
         .catch(() => {
-          // fallback minimal si header.html indisponible
           slot.innerHTML = '<div class="wrap"><a href="index.html" style="color:#fff;text-decoration:none;font-weight:bold">Printemps des Marais</a></div>';
         });
     })();
 
-    // Effet de flou progressif sur le fond
+    // Effet de flou progressif sur le fond (couvert par projet.css côté styles)
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
@@ -338,7 +222,7 @@
       });
     });
 
-    // Script Lightbox
+    // Lightbox
     (function(){
       const grid = document.getElementById('storyboard');
       const items = Array.from(grid.querySelectorAll('figure'));
