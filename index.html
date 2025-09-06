@@ -33,19 +33,19 @@
       font-display: swap;
     }
     :root {
-  --title-font: 'GC Volkgen', sans-serif;
-  --line: rgba(255, 255, 255, 0.18);
-  --text: #f0f0f0;
-  --muted: #dcdcdc;
-  --radius: 14px;
+      --title-font: 'GC Volkgen', sans-serif;
+      --line: rgba(255, 255, 255, 0.18);
+      --text: #f0f0f0;
+      --muted: #dcdcdc;
+      --radius: 14px;
 
-  /* Ajout */
-  --orange: #ff942a;
-  --vert: #97bb2b;
-}
-/* Couleurs utilitaires */
-.orange { color: var(--orange); }
-.vert   { color: var(--vert); }
+      /* Ajout */
+      --orange: #ff942a;
+      --vert: #97bb2b;
+    }
+    /* Couleurs utilitaires */
+    .orange { color: var(--orange); }
+    .vert   { color: var(--vert); }
 
     html {
       scroll-behavior: smooth;
@@ -163,6 +163,19 @@
       color: #fff;
       font-style: italic;
     }
+    /* Bouton "Agir" dans le header */
+    .cta-nav {
+      background: var(--orange);
+      color: #1a1a1a;
+      border-radius: 0.55rem;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+    }
+    .cta-nav:hover {
+      background: #ff9f40;
+      color: #1a1a1a;
+    }
+
     /* Menu hamburger (mobile) */
     .hamburger {
       display: none;
@@ -201,9 +214,18 @@
       font-size: 1.1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .mobile-menu a:hover {
-      color: #fff;
+    .mobile-menu a:hover { color: #fff; }
+    /* Style bouton in-menu */
+    .mobile-menu .cta-nav {
+      background: var(--orange);
+      color: #1a1a1a;
+      border-radius: 0.55rem;
+      margin-top: 0.5rem;
+      border-bottom: none;
+      text-align: center;
+      font-weight: 700;
     }
+
     /* Affichage du menu mobile sur iOS/tactile */
     @media (hover: none) and (pointer: coarse), (max-width: 768px) {
       .nav-links { display: none; }
@@ -384,11 +406,12 @@
       h1 { font-size: 1.8rem; }
       h2 { font-size: 1.5rem; }
     }
+
     /* Étapes du projet : tous les titres en orange */
-#etapes h1,
-#etapes h3 {
-  color: #97bb2b !important;
-}
+    #etapes h1,
+    #etapes h3 {
+      color: #97bb2b !important; /* (ta règle existante : laisse tel quel si souhaité) */
+    }
 
   </style>
 </head>
@@ -409,6 +432,7 @@
       <div class="nav-links">
         <a href="index.html#about">À propos</a>
         <a href="projet-1.html">Projet</a>
+        <a href="agir.html" class="cta-nav">Agir</a>
         <a href="index.html#contact">Contact</a>
       </div>
       <!-- Bouton hamburger (mobile) -->
@@ -419,6 +443,7 @@
       <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#about">À propos</a>
         <a href="projet-1.html">Projet</a>
+        <a href="agir.html" class="cta-nav">Agir</a>
         <a href="index.html#contact">Contact</a>
       </div>
     </nav>
