@@ -422,32 +422,25 @@
   </div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header -->
-  <header>
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Logo Printemps des Marais">
-        <span>ASSOCIATION LOI 1901</span>
-      </a>
-      <div class="nav-links">
-        <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
-        <a href="agir.html" class="cta-nav">Agir</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-      <!-- Bouton hamburger (mobile) -->
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
-      <!-- Menu déroulant (mobile) -->
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
-        <a href="agir.html" class="cta-nav">Agir</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
+ <!-- Inclusion du header (si tu utilises PHP) -->
+<?php include 'header.html'; ?>
+
+<!-- Ou copie-colle directement le contenu de header.html -->
+<header>
+  <nav class="nav" aria-label="Navigation">
+    <a class="brand" href="index.html">
+      <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="logo">
+      <span class="site-title">Printemps des Marais</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-button">Accueil</a>
+      <a href="projet.html" class="nav-button">Projet</a>
+      <a href="actions.html" class="nav-button">Actions</a>
+      <a href="contact.html" class="nav-button">Agir</a>
+    </div>
+  </nav>
+</header>
+
 
   <!-- Hero Section -->
   <section class="hero" id="top" aria-label="Introduction">
