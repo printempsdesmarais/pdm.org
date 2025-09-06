@@ -40,6 +40,10 @@
       --text: #f0f0f0;
       --muted: #dcdcdc;
       --radius: 14px;
+
+      /* Palette commune */
+      --orange: #ff942a;
+      --vert: #97bb2b;
     }
     /* Fond avec effet de flou dynamique */
     .bg-container {
@@ -144,9 +148,21 @@
       transition: color 0.2s ease;
       padding: 0.5rem 1rem;
     }
-    .nav a:hover {
-      color: #fff;
+    .nav a:hover { color: #fff; }
+
+    /* Bouton "Agir" dans le header */
+    .cta-nav {
+      background: var(--orange);
+      color: #1a1a1a;
+      border-radius: 0.55rem;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
     }
+    .cta-nav:hover {
+      background: #ff9f40;
+      color: #1a1a1a;
+    }
+
     /* Menu hamburger (mobile) */
     .hamburger {
       display: none;
@@ -185,20 +201,23 @@
       font-size: 1.1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .mobile-menu a:hover {
-      color: #fff;
+    .mobile-menu a:hover { color: #fff; }
+    /* Style bouton dans le menu mobile */
+    .mobile-menu .cta-nav {
+      background: var(--orange);
+      color: #1a1a1a;
+      border-radius: 0.55rem;
+      margin-top: 0.5rem;
+      border-bottom: none;
+      text-align: center;
+      font-weight: 700;
     }
+
     /* Affichage du menu mobile sur iOS/tactile */
     @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .mobile-menu.active {
-        display: block;
-      }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu.active { display: block; }
     }
     /* Main content */
     .wrap {
@@ -228,10 +247,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       padding-bottom: 0.5rem;
     }
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
+    h2 { font-size: 1.6rem; margin-bottom: 1rem; }
     p {
       font-family: var(--title-font);
       line-height: 1.6;
@@ -258,9 +274,7 @@
       z-index: 1;
       border: none;
     }
-    figure:hover {
-      transform: translateY(-3px);
-    }
+    figure:hover { transform: translateY(-3px); }
     .shot {
       display: block;
       width: 100%;
@@ -277,12 +291,8 @@
       border-top: none;
       background: transparent;
     }
-    .storyboard .wide {
-      grid-column: 1/-1;
-    }
-    .wide .shot {
-      height: 360px;
-    }
+    .storyboard .wide { grid-column: 1/-1; }
+    .wide .shot { height: 360px; }
     /* Lightbox */
     .lightbox {
       position: fixed;
@@ -294,9 +304,7 @@
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(6px) brightness(0.9);
     }
-    .lightbox.open {
-      display: flex;
-    }
+    .lightbox.open { display: flex; }
     .lb-inner {
       position: relative;
       max-width: min(92vw, 1200px);
@@ -362,13 +370,8 @@
       font-size: 0.85rem;
       cursor: pointer;
     }
-    .lb-controls button:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .lb-controls .state {
-      opacity: 0.8;
-      font-size: 0.8rem;
-    }
+    .lb-controls button:hover { background: rgba(255, 255, 255, 0.1); }
+    .lb-controls .state { opacity: 0.8; font-size: 0.8rem; }
     /* Footer */
     footer {
       margin-top: 2rem;
@@ -382,28 +385,15 @@
     }
     /* Responsive */
     @media (max-width: 600px) {
-      .wrap {
-        padding: 1rem;
-      }
-      .shot {
-        height: 200px;
-      }
-      .wide .shot {
-        height: 260px;
-      }
-      .nav-links {
-        gap: 0.5rem;
-      }
-      .nav a {
-        font-size: 0.85rem;
-        padding: 0.5rem;
-      }
+      .wrap { padding: 1rem; }
+      .shot { height: 200px; }
+      .wide .shot { height: 260px; }
+      .nav-links { gap: 0.5rem; }
+      .nav a { font-size: 0.85rem; padding: 0.5rem; }
     }
     /* Fallback si pas de backdrop-filter */
     @supports not ((backdrop-filter: blur(4px))) {
-      .lightbox {
-        background: rgba(0, 0, 0, 0.8);
-      }
+      .lightbox { background: rgba(0, 0, 0, 0.8); }
     }
     .sr-only {
       position: absolute!important;
@@ -433,7 +423,8 @@
       </a>
       <div class="nav-links">
         <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
+        <a href="projet-1.html" aria-current="page">Projet</a>
+        <a href="agir.html" class="cta-nav">Agir</a>
         <a href="index.html#contact">Contact</a>
       </div>
       <!-- Bouton hamburger (mobile) -->
@@ -445,7 +436,8 @@
       <!-- Menu déroulant (mobile) -->
       <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
+        <a href="projet-1.html" aria-current="page">Projet</a>
+        <a href="agir.html" class="cta-nav">Agir</a>
         <a href="index.html#contact">Contact</a>
       </div>
     </nav>
