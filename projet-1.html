@@ -40,402 +40,193 @@
       --text: #f0f0f0;
       --muted: #dcdcdc;
       --radius: 14px;
-      /* Palette commune */
       --orange: #ff942a;
       --vert: #97bb2b;
     }
-    /* Fond avec effet de flou dynamique */
     .bg-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2; pointer-events: none;
     }
     .bg-image {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: url("images/fondterrain.jpg") center/cover no-repeat fixed;
-      transition: filter 0.4s ease;
-      will-change: filter;
-      filter: blur(4px);
+      transition: filter 0.4s ease; will-change: filter; filter: blur(4px);
     }
     .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.3); z-index: -1; opacity: 0;
+      transition: opacity 0.5s ease; pointer-events: none;
     }
-    /* Thème */
     body {
-      margin: 0;
-      background: #3A403A;
-      color: var(--text);
-      font-family: var(--title-font);
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.6;
+      margin: 0; background: #3A403A; color: var(--text);
+      font-family: var(--title-font); position: relative; min-height: 100vh;
+      overflow-x: hidden; line-height: 1.6;
     }
-    /* Header commun */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      background: rgba(46, 51, 46, 0.9);
-      border-bottom: 1px solid var(--line);
-      height: 80px;
-      display: flex;
-      align-items: center;
+      position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
+      background: rgba(46, 51, 46, 0.9); border-bottom: 1px solid var(--line);
+      min-height: 80px; display: flex; align-items: center;
     }
     @supports (-webkit-touch-callout: none) {
-      header {
-        backdrop-filter: none;
-        background: rgba(46, 51, 46, 0.95);
-      }
+      header { backdrop-filter: none; background: rgba(46, 51, 46, 0.95); }
     }
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      min-height: 80px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
-    .brand-logo {
-      height: 60px;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-    /* Boutons oranges du header */
-    .nav-links {
-      display: flex;
-      gap: 0.5rem;
-      margin-right: 1rem;
-    }
-    .nav-button {
-      padding: 0.5rem 1rem;
-      background: var(--orange);
-      color: #1a1a1a;
-      text-decoration: none;
-      border-radius: 0.55rem;
-      font-family: var(--title-font);
-      font-size: 1rem;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-    .nav-button:hover {
-      background: #ff9f40;
-    }
-    /* Menu hamburger (mobile) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 0.5rem;
-      margin-right: 1rem;
-    }
-    .hamburger span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background: var(--text);
-      margin: 3px 0;
-      transition: all 0.3s ease;
-    }
-    /* Menu déroulant (mobile) */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 80px;
-      left: 0;
-      width: 100%;
-      background: rgba(46, 51, 46, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      z-index: 9;
-    }
-    .mobile-menu a {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-family: var(--title-font);
-      font-size: 1.1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .mobile-menu .nav-button {
-      background: var(--orange);
-      color: #1a1a1a;
-      border-radius: 0.55rem;
-      margin-top: 0.5rem;
-      border-bottom: none;
-      text-align: center;
-      font-weight: 700;
-    }
-    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .mobile-menu.active { display: block; }
-    }
-    /* Main content */
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    /* Section intro */
-    .intro {
-      background: transparent;
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border: none;
-      box-shadow: none;
-    }
-    h1, h2 {
-      font-family: var(--title-font);
-      color: var(--text);
-      margin: 0 0 1rem;
-      font-weight: bold;
-    }
-    h1 {
-      font-size: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 0.5rem;
-    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; position: relative; z-index: 1; }
+    h1, h2 { font-family: var(--title-font); color: var(--text); margin: 0 0 1rem; font-weight: bold; }
+    h1 { font-size: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 0.5rem; }
     h2 { font-size: 1.6rem; margin-bottom: 1rem; }
-    p {
-      font-family: var(--title-font);
-      line-height: 1.6;
-      color: var(--muted);
-      margin: 0 0 1rem;
-    }
-    /* Grille storyboard */
+    p { font-family: var(--title-font); line-height: 1.6; color: var(--muted); margin: 0 0 1rem; }
+    ul { color: var(--muted); }
+    .intro { background: transparent; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; border: none; box-shadow: none; }
     .storyboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      position: relative;
-      z-index: 1;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; position: relative; z-index: 1;
     }
-    figure {
-      margin: 0;
-      background: transparent;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: none;
-      transition: transform 0.25s ease;
-      cursor: zoom-in;
-      position: relative;
-      z-index: 1;
-      border: none;
-    }
+    figure { margin: 0; background: transparent; border-radius: var(--radius); overflow: hidden; transition: transform 0.25s ease; cursor: zoom-in; position: relative; z-index: 1; border: none; }
     figure:hover { transform: translateY(-3px); }
-    .shot {
-      display: block;
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: var(--radius);
-    }
-    figcaption {
-      padding: 0.6rem 0.8rem;
-      font-family: var(--title-font);
-      font-size: 0.9rem;
-      color: var(--muted);
-      border-top: none;
-      background: transparent;
-    }
+    .shot { display: block; width: 100%; height: 220px; object-fit: cover; object-position: center; border-radius: var(--radius); }
+    figcaption { padding: 0.6rem 0.8rem; font-family: var(--title-font); font-size: 0.9rem; color: var(--muted); background: transparent; }
     .storyboard .wide { grid-column: 1/-1; }
     .wide .shot { height: 360px; }
-    /* Lightbox */
+    .media {
+      margin: 1rem 0 2rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem;
+    }
+    .media img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+    .media figcaption { font-size: 0.9rem; text-align: center; color: var(--muted); }
     .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(6px) brightness(0.9);
+      position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center;
+      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(6px) brightness(0.9);
     }
     .lightbox.open { display: flex; }
-    .lb-inner {
-      position: relative;
-      max-width: min(92vw, 1200px);
-      max-height: 88vh;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      padding: 0 1rem;
-      z-index: 1000;
-    }
-    .lb-img {
-      display: block;
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      user-select: none;
-      cursor: zoom-in;
-    }
-    .lb-img:focus {
-      outline: 3px solid rgba(255, 255, 255, 0.6);
-      outline-offset: 4px;
-    }
-    .lb-caption {
-      text-align: center;
-      font-family: var(--title-font);
-      font-size: 1rem;
-      color: #eee;
-      text-wrap: balance;
-    }
-    /* Commandes lightbox */
-    .lb-controls {
-      position: absolute;
-      inset: auto 0 -52px 0;
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      pointer-events: none;
-    }
+    .lb-inner { position: relative; max-width: min(92vw, 1200px); max-height: 88vh; display: flex; flex-direction: column; gap: 0.6rem; padding: 0 1rem; z-index: 1000; }
+    .lb-img { display: block; max-width: 100%; max-height: 80vh; border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); user-select: none; cursor: zoom-in; }
+    .lb-img:focus { outline: 3px solid rgba(255, 255, 255, 0.6); outline-offset: 4px; }
+    .lb-caption { text-align: center; font-family: var(--title-font); font-size: 1rem; color: #eee; text-wrap: balance; }
+    .lb-controls { position: absolute; inset: auto 0 -52px 0; display: flex; justify-content: center; gap: 0.5rem; pointer-events: none; }
     .lb-controls .ui {
-      pointer-events: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 0.6rem;
-      padding: 0.35rem 0.55rem;
-      box-shadow: var(--shadow);
-      font-family: var(--title-font);
-      font-size: 0.85rem;
-      color: var(--text);
+      pointer-events: auto; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--panel);
+      border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.35rem 0.55rem; box-shadow: var(--shadow);
+      font-family: var(--title-font); font-size: 0.85rem; color: var(--text);
     }
     .lb-controls button,
     .lb-controls select {
-      appearance: none;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      border-radius: 0.45rem;
-      padding: 0.3rem 0.55rem;
-      font-family: var(--title-font);
-      font-size: 0.85rem;
-      cursor: pointer;
+      appearance: none; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.06); color: var(--text);
+      border-radius: 0.45rem; padding: 0.3rem 0.55rem; font-family: var(--title-font); font-size: 0.85rem; cursor: pointer;
     }
-    .lb-controls button:hover { background: rgba(255, 255, 255, 0.1); }
     .lb-controls .state { opacity: 0.8; font-size: 0.8rem; }
-    /* Footer */
-    footer {
-      margin-top: 2rem;
-      padding: 1.25rem;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      z-index: 1;
-      font-family: var(--title-font);
-    }
-    /* Responsive */
+    footer { margin-top: 2rem; padding: 1.25rem; text-align: center; color: var(--muted); border-top: 1px solid rgba(255, 255, 255, 0.1); position: relative; z-index: 1; font-family: var(--title-font); }
     @media (max-width: 600px) {
       .wrap { padding: 1rem; }
       .shot { height: 200px; }
       .wide .shot { height: 260px; }
-      .nav-links { gap: 0.5rem; }
-      .nav a { font-size: 0.85rem; padding: 0.5rem; }
     }
-    /* Fallback si pas de backdrop-filter */
-    @supports not ((backdrop-filter: blur(4px))) {
-      .lightbox { background: rgba(0, 0, 0, 0.8); }
-    }
-    .sr-only {
-      position: absolute!important;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
+    @supports not ((backdrop-filter: blur(4px))) { .lightbox { background: rgba(0, 0, 0, 0.8); } }
+    .sr-only { position: absolute!important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   </style>
 </head>
 <body>
-  <!-- Fond avec effet de flou -->
-  <div class="bg-container">
-    <div class="bg-image" id="bgImage"></div>
-  </div>
+  <!-- Fond -->
+  <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header commun -->
-  <header>
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img class="brand-logo" src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais">
-      </a>
-      <div class="nav-links">
-        <a href="index.html" class="nav-button">À propos</a>
-        <a href="projet-1.html" class="nav-button" aria-current="page">Le projet</a>
-        <a href="contact.html" class="nav-button">Agir</a>
-        <a href="contact.html" class="nav-button">Contact</a>
-      </div>
-      <!-- Bouton hamburger (mobile) -->
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <!-- Menu déroulant (mobile) -->
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html" class="nav-button">À propos</a>
-        <a href="projet-1.html" class="nav-button" aria-current="page">Le projet</a>
-        <a href="contact.html" class="nav-button">Agir</a>
-        <a href="contact.html" class="nav-button">Contact</a>
-      </div>
-    </nav>
-  </header>
+  <!-- Header (chargé depuis header.html) -->
+  <header id="site-header" aria-label="En-tête du site"></header>
 
   <!-- Main Content -->
   <main class="wrap">
-    <!-- Contexte -->
-    <section class="intro">
-      <h1>Projet — Narration visuelle</h1>
-      <p>Le site du projet est idéalement situé entre des prairies d'élevage bovin, l'ancien estran de l'estuaire, les routes migratoires, un chemin touristique communal. L'eau de la mare incluse a un taux de salinité inférieur à 1g/l. Plus d'un kilomètre de haies de tamaris clôture la parcelle. L'altitude est comprise entre 2,5m-3m.</p>
+    <!-- Édito fusionné -->
+    <section class="intro" id="renaissance">
+      <h1>Renaissance d’un terrain</h1>
+      <h2>Un projet pilote au cœur du Médoc</h2>
+      <ul>
+        <li>8 hectares de prairies (parcelles n°0037 et n°0039)</li>
+        <li>Ancien élevage d’ânes (2010–2014)</li>
+        <li>Une mare d’eau douce issue d’une nappe phréatique (salinité &lt; 1 g/l)</li>
+        <li>Plus d’1 km de haies de tamaris en brise-vent naturel</li>
+      </ul>
+      <p>
+        Depuis 2014, le terrain est en friche. Notre objectif&nbsp;: <strong>lui redonner vie</strong> en conciliant écologie, patrimoine et innovation.
+      </p>
+
+      <!-- Image insérée ici : parcelle37.jpg -->
+      <figure class="media">
+        <img src="images/parcelle37.jpg" alt="Vue générale du site — Découpage cadastral de la parcelle n°37">
+        <figcaption>Vue générale du site — Découpage cadastral : parcelle n°37.</figcaption>
+      </figure>
     </section>
 
-    <!-- Grille d'images -->
+    <section id="vocation">
+      <h1>Une vocation singulière</h1>
+      <h2>Héritage des digues et des marais</h2>
+      <p>
+        La digue de Talais (1763–1764) protège encore aujourd’hui ces terres basses appelées <em>les mattes</em>. Autrefois zone d’absorption des grandes marées, elles ont été converties en terres agricoles très fertiles.
+      </p>
+      <p>
+        Mais ces sols, privés de leur fonction de <strong>zone tampon</strong>, augmentent désormais les risques d’inondation pour les riverains et pour la métropole bordelaise.
+      </p>
+      <p>
+        <a href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus sur les digues de Gironde</a>
+      </p>
+
+      <h2>Un terrain laboratoire</h2>
+      <ul>
+        <li>Une <strong>vitrine expérimentale</strong> à échelle humaine</li>
+        <li>Un lieu de <strong>pédagogie et de rencontre</strong> (scientifiques, éleveurs, collectivités, État)</li>
+        <li>Un espace visant l’<strong>autonomie biologique</strong>, avec le minimum d’intervention humaine</li>
+      </ul>
+    </section>
+
+    <section id="poney-landais">
+      <h1>Le poney landais</h1>
+      <h2>Un patrimoine menacé, sauvé de l’oubli</h2>
+      <ul>
+        <li>Originaire des landes et marais aquitains</li>
+        <li>Réduit à une centaine d’individus en 1970</li>
+        <li>Sauvegardé par le Dr Henri Soulé et des éleveurs passionnés</li>
+        <li>Stud-book créé, croisements limités (Welsh, arabe)</li>
+        <li>Aujourd’hui : quelques centaines d’individus, surtout dans les Landes</li>
+      </ul>
+      <p>
+        Rustique, docile et endurant, le poney landais est polyvalent (attelage, dressage, endurance, saut). Mais sa petite taille (cat. B et C) limite son attractivité dans les clubs.
+      </p>
+      <p>
+        Source&nbsp;: <em>Plan de sauvegarde du poney landais</em> (thèse vétérinaire, 2006).
+      </p>
+    </section>
+
+    <section id="biodiversite">
+      <h1>Un allié pour la biodiversité</h1>
+      <p>
+        Le poney landais, façonné par les zones humides, possède des qualités uniques. Dans une logique de <strong>gestion écologique</strong>, il peut&nbsp;:
+      </p>
+      <ul>
+        <li><strong>Entretenir la végétation</strong> : broutage des herbes hautes, joncs, arbustes</li>
+        <li><strong>Préserver la biodiversité</strong> : création d’habitats variés pour oiseaux, amphibiens, insectes</li>
+        <li><strong>Remplacer les machines</strong> : limiter tassement des sols et émissions de CO₂</li>
+        <li><strong>Valoriser le territoire</strong> : associer sauvegarde d’une race régionale et entretien naturel des marais</li>
+      </ul>
+      <p>
+        Objectif : faire du poney landais un <strong>symbole vivant de la transition écologique dans les marais du Médoc</strong>.
+      </p>
+    </section>
+
+    <section id="appel">
+      <h1>Appel à participation</h1>
+      <p>
+        Nous croyons en la <strong>renaissance de ce terrain</strong> comme exemple d’équilibre entre <strong>homme et nature</strong>.<br>
+        Chercheurs, agriculteurs, institutions, habitants… chacun a un rôle à jouer.
+      </p>
+      <p>
+        Rejoignez-nous dans cette aventure pour faire du <strong>poney landais</strong> un acteur clé de la biodiversité médocaine.
+      </p>
+      <p>
+        <a href="contact.html">Nous soutenir</a> | <a href="index.html">En savoir plus</a>
+      </p>
+    </section>
+
+    <!-- Grille d'images (narration visuelle) -->
     <section aria-label="Narration visuelle">
       <div class="storyboard" id="storyboard">
-        <figure class="wide" data-src="images/parcelle37.jpg" data-caption="Vue générale du site — Découpage cadastral - parcelle N°37.">
-          <img class="shot" src="images/parcelle37.jpg" alt="Vue générale du site — Estuaire / zone humide" loading="lazy">
-          <figcaption>Vue générale du site — Découpage cadastral - parcelle N°37</figcaption>
-        </figure>
+        <!-- La vignette parcelle37.jpg a été déplacée dans le texte ci-dessus -->
         <figure data-src="images/storyboard/story1.jpg" data-caption="Il fût un temps...">
           <img class="shot" src="images/storyboard/story1.jpg" alt="Il fût un temps..." loading="lazy">
           <figcaption><strong>Il fût un temps...</strong></figcaption>
@@ -460,7 +251,7 @@
           <img class="shot" src="images/storyboard/story6.jpg" alt="Les Seigneurs des Marais" loading="lazy">
           <figcaption><strong>Les Seigneurs des Marais</strong></figcaption>
         </figure>
-        <!-- story7 → story34 -->
+        <!-- ... autres figures inchangées ... -->
         <figure data-src="images/storyboard/story7.jpg" data-caption="Les poneys landais favorisent-ils la biodiversité?"><img class="shot" src="images/storyboard/story7.jpg" alt="Storyboard 7" loading="lazy"><figcaption>Les poneys landais favorisent-ils la biodiversité?</figcaption></figure>
         <figure data-src="images/storyboard/story8.jpg" data-caption="Ils peuvent façonner les marécages"><img class="shot" src="images/storyboard/story8.jpg" alt="Storyboard 8" loading="lazy"><figcaption>Ils peuvent façonner les marécages</figcaption></figure>
         <figure data-src="images/storyboard/story9.jpg" data-caption="ouvrir les paysages"><img class="shot" src="images/storyboard/story9.jpg" alt="Storyboard 9" loading="lazy"><figcaption>ouvrir les paysages</figcaption></figure>
@@ -495,7 +286,6 @@
     <div class="lb-inner" role="dialog" aria-label="Image du storyboard (clic pour image suivante)">
       <img class="lb-img" id="lb-img" src="" alt="">
       <div class="lb-caption" id="lb-caption"></div>
-      <!-- Commandes : Play/Pause + vitesse -->
       <div class="lb-controls">
         <div class="ui" role="group" aria-label="Contrôles de lecture">
           <button id="lb-toggle">▶︎ Play</button>
@@ -514,49 +304,52 @@
   </div>
 
   <!-- Footer -->
-  <footer>
-    © 2025 Printemps des Marais — Narration visuelle
-  </footer>
+  <footer>© 2025 Printemps des Marais — Narration visuelle</footer>
 
   <!-- Scripts -->
   <script>
+    // Charger le header externe
+    (function loadHeader(){
+      const slot = document.getElementById('site-header');
+      fetch('header.html')
+        .then(r => r.text())
+        .then(html => { slot.innerHTML = html; })
+        .catch(() => {
+          // fallback minimal si header.html indisponible
+          slot.innerHTML = '<div class="wrap"><a href="index.html" style="color:#fff;text-decoration:none;font-weight:bold">Printemps des Marais</a></div>';
+        });
+    })();
+
     // Effet de flou progressif sur le fond
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
       window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const blurIntensity = Math.min(scrollPosition / 150, 10);
-        const overlayOpacity = Math.min(scrollPosition / 300, 0.7);
-        if (scrollPosition > 5) {
-          bgImage.style.filter = `blur(${blurIntensity}px)`;
-          bgOverlay.style.opacity = overlayOpacity;
+        const y = window.scrollY;
+        const blur = Math.min(y / 150, 10);
+        const alpha = Math.min(y / 300, 0.7);
+        if (y > 5) {
+          bgImage.style.filter = `blur(${blur}px)`;
+          bgOverlay.style.opacity = alpha;
         } else {
           bgImage.style.filter = 'blur(4px)';
           bgOverlay.style.opacity = '0';
         }
       });
-      // Gestion du menu hamburger
-      hamburger.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-      });
     });
-    // Script pour la lightbox
+
+    // Script Lightbox
     (function(){
       const grid = document.getElementById('storyboard');
       const items = Array.from(grid.querySelectorAll('figure'));
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
       const lbCaption = document.getElementById('lb-caption');
-      // Contrôles
       const toggleBtn = document.getElementById('lb-toggle');
       const speedSel  = document.getElementById('lb-speed');
       const stateEl   = document.getElementById('lb-state');
-      let index = 0;
-      let timer = null;
-      let interval = parseInt(speedSel.value, 10);
+      let index = 0, timer = null, interval = parseInt(speedSel.value, 10);
+
       function openAt(i){
         index = ((i % items.length) + items.length) % items.length;
         const f = items[index];
@@ -571,53 +364,29 @@
         lbImg.setAttribute('tabindex','0');
         lbImg.focus({preventScroll:true});
       }
-      function closeLB(){
-        pause();
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        lbImg.removeAttribute('tabindex');
-      }
+      function closeLB(){ pause(); lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; lbImg.removeAttribute('tabindex'); }
       function next(){ openAt(index + 1); }
       function prev(){ openAt(index - 1); }
-      // Auto-play
-      function play(){
-        if(timer) return;
-        timer = setInterval(next, interval);
-        toggleBtn.textContent = '⏸︎ Pause';
-        stateEl.textContent = 'Lecture';
-      }
-      function pause(){
-        if(timer){ clearInterval(timer); timer = null; }
-        toggleBtn.textContent = '▶︎ Play';
-        stateEl.textContent = 'Pause';
-      }
+      function play(){ if(timer) return; timer = setInterval(next, interval); toggleBtn.textContent = '⏸︎ Pause'; stateEl.textContent = 'Lecture'; }
+      function pause(){ if(timer){ clearInterval(timer); timer = null; } toggleBtn.textContent = '▶︎ Play'; stateEl.textContent = 'Pause'; }
+
       toggleBtn.addEventListener('click', ()=> timer ? pause() : play());
-      speedSel.addEventListener('change', ()=>{
-        interval = parseInt(speedSel.value, 10);
-        if(timer){ pause(); play(); }
-      });
-      // Ouvrir depuis les vignettes
+      speedSel.addEventListener('change', ()=> { interval = parseInt(speedSel.value, 10); if(timer){ pause(); play(); }});
       items.forEach((fig, i)=> fig.addEventListener('click', ()=> openAt(i)));
-      // Fermer en cliquant l'overlay
       lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
-      // Clic sur l'image -> suivante
       lbImg.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
-      // Clavier
       document.addEventListener('keydown', (e)=>{
         if(!lb.classList.contains('open')) return;
         if(e.key === 'Escape'){ closeLB(); }
         else if(e.key === 'ArrowRight'){ next(); }
         else if(e.key === 'ArrowLeft'){ prev(); }
       });
-      // Préchargement léger de l'image suivante
       lbImg.addEventListener('load', ()=>{
         const nextIndex = (index + 1) % items.length;
         const f = items[nextIndex];
         const src = f.dataset.src || f.querySelector('img').src;
         new Image().src = src;
       });
-      // Ouvrir sur une image précise via #index (ex: #12)
       function syncFromHash(){
         const n = parseInt(location.hash.replace('#',''), 10);
         if(!isNaN(n) && n >= 0 && n < items.length){ openAt(n); }
