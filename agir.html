@@ -42,14 +42,17 @@
       --text:#f0f0f0;
       --muted:#dcdcdc;
       --radius:14px;
+
       /* utilitaires couleurs */
       --orange:#ff942a;
       --vert:#97bb2b;
     }
+
     html{scroll-behavior:smooth;height:100%;}
     body{
       margin:0;font-family:"GC Volkgen",sans-serif;color:var(--text);
       position:relative;min-height:100vh;overflow-x:hidden;line-height:1.5;
+      background:#3A403A;
     }
 
     /* Fond */
@@ -58,21 +61,36 @@
     @media (max-width:768px){.bg-image{background-attachment:scroll!important;background-size:auto 100%!important;}}
     .bg-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:-1;opacity:0;transition:opacity .5s ease;pointer-events:none;}
 
-    /* Header */
-    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:rgba(46,51,46,.85);height:80px;display:flex;align-items:center;-webkit-transform:translateZ(0);}
+    /* ====== Header (styles partagés, le HTML vient de header.html) ====== */
+    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:rgba(46,51,46,.85);height:80px;display:flex;align-items:center;-webkit-transform:translateZ(0);border-bottom:1px solid var(--line);}
     @supports (-webkit-touch-callout:none){header{backdrop-filter:none;background:rgba(46,51,46,.95);}}
     .nav{max-width:1100px;margin:0 auto;padding:0 1rem;display:flex;justify-content:space-between;align-items:center;width:100%;min-height:80px;}
-    .brand{display:flex;align-items:center;gap:.5rem;color:var(--text);text-decoration:none;font-family:var(--title-font);font-size:1.2rem;font-weight:bold;flex-wrap:nowrap;}
+    .brand{display:flex;align-items:center;gap:.5rem;color:var(--text);text-decoration:none;font-family:var(--title-font);font-size:1.05rem;font-weight:bold;flex-wrap:nowrap;}
     .brand-logo{height:70px;width:auto;object-fit:contain;display:block;margin-left:1rem;}
-    .nav-links{display:flex;gap:2rem;margin-right:1rem;}
-    .nav a{color:var(--muted);text-decoration:none;font-family:var(--title-font);font-size:1.2rem;font-weight:500;transition:color .2s ease;padding:.5rem 1rem;}
-    .nav a:hover{color:#fff;font-style:italic;}
+    .nav-links{display:flex;gap:1rem;margin-right:1rem;}
+    .nav a{color:var(--muted);text-decoration:none;font-family:var(--title-font);text-transform:uppercase;letter-spacing:1px;font-size:1rem;font-weight:600;transition:color .2s ease;padding:.5rem 1rem;}
+    .nav a:hover{color:#fff;}
+    /* Boutons (même habillage que "Agir") */
+    .btn, .cta-nav{
+      background:var(--orange); color:#1a1a1a; border-radius:.55rem; padding:.5rem 1rem;
+      font-weight:700; text-decoration:none; display:inline-block; border:none; cursor:pointer;
+      transition:background .2s ease, transform .06s ease;
+    }
+    .btn:hover, .cta-nav:hover{background:#ff9f40;color:#1a1a1a;}
+    .btn:active{transform:translateY(1px);}
+    .btn:focus-visible, .cta-nav:focus-visible{outline:2px solid rgba(255,255,255,.6); outline-offset:2px;}
+
+    /* Menu hamburger (header.html doit fournir #hamburger & #mobileMenu) */
     .hamburger{display:none;flex-direction:column;cursor:pointer;padding:.5rem;margin-right:1rem;}
     .hamburger span{display:block;width:25px;height:3px;background:var(--text);margin:3px 0;transition:all .3s ease;}
     .mobile-menu{display:none;position:absolute;top:80px;left:0;width:100%;background:rgba(46,51,46,.95);backdrop-filter:blur(10px);padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9;}
     .mobile-menu a{display:block;padding:.75rem 1rem;color:var(--muted);text-decoration:none;font-family:var(--title-font);font-size:1.1rem;border-bottom:1px solid rgba(255,255,255,.1);}
     .mobile-menu a:hover{color:#fff;}
-    @media (hover:none) and (pointer:coarse), (max-width:768px){.nav-links{display:none}.hamburger{display:flex}.mobile-menu.active{display:block}}
+    .mobile-menu.active{display:block;}
+    @media (hover:none) and (pointer:coarse), (max-width:768px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+    }
 
     /* Hero */
     .hero{min-height:55svh;display:grid;place-items:center;text-align:center;position:relative;z-index:1;padding:2rem 1rem;}
@@ -85,7 +103,6 @@
     /* Main */
     main{max-width:1100px;margin:0 auto;padding:2rem 1rem;position:relative;z-index:1;}
     .panel{background:rgba(255,255,255,.03);border:none;border-radius:var(--radius);padding:2rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin-bottom:3rem;}
-
     h1,h2{font-family:var(--title-font);font-weight:bold;margin:0 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.2);color:var(--text);}
     h1{font-size:2.2rem}
     h2{font-size:1.6rem}
@@ -102,7 +119,13 @@
     .card{background:rgba(255,255,255,.04);border-radius:var(--radius);padding:1.25rem;border:1px solid rgba(255,255,255,.08);}
     .card h3{margin-top:0}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
-    @media (max-width:900px){.grid3{grid-template-columns:1fr}.row{grid-template-columns:1fr;} h1{font-size:1.8rem} h2{font-size:1.4rem}}
+
+    @media (max-width:900px){
+      .grid3{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr;}
+      h1{font-size:1.8rem}
+      h2{font-size:1.4rem}
+    }
 
     /* Titres verts de sections principales */
     #why h1, #don h1, #ways h1, #tax h1, #contact h1 { color: var(--vert); }
@@ -116,30 +139,15 @@
   <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <!-- Header -->
-  <header>
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Logo Printemps des Marais">
-        <span>ASSOCIATION LOI 1901</span>
-      </a>
-      <div class="nav-links">
-        <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
-        <a href="agir.html" aria-current="page" class="vert">Agir</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-
-      <!-- Burger -->
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#about">À propos</a>
-        <a href="projet-1.html">Projet</a>
-        <a href="agir.html" class="vert">Agir</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
+  <!-- ====== HEADER COMMUN INSÉRÉ DEPUIS header.html ====== -->
+  <div id="site-header" data-active="agir">
+    <noscript>
+      <!-- Fallback simple si JS désactivé : lien direct vers header.html -->
+      <header style="background:rgba(46,51,46,.9);padding:.75rem 1rem;text-align:center;">
+        <a href="header.html" style="color:#fff;text-decoration:underline;">Voir le menu</a>
+      </header>
+    </noscript>
+  </div>
 
   <!-- Hero -->
   <section class="hero" aria-label="Agir">
@@ -235,7 +243,7 @@
       <p>En France, les dons aux organismes éligibles peuvent ouvrir droit à une réduction d’impôt
         (individus : jusqu’à <span class="orange">66&nbsp;%</span> dans la limite de <span class="orange">20&nbsp;%</span> du revenu imposable ; entreprises : jusqu’à <span class="orange">60&nbsp;%</span> dans la limite de 0,5&nbsp;% du chiffre d’affaires).<br>
         Ces dispositions s’appliquent si l’association est <em>éligible au mécénat</em> (intérêt général, etc.). Merci de vérifier votre cas et celui de l’association.</p>
-      <p class="muted">Sources&nbsp;: pages d’information des Conservatoires d’espaces naturels sur le don et la fiscalité (ex. CEN Franche-Comté, CEN Hauts-de-France). Un reçu fiscal peut être délivré si éligible.</p>
+      <p class="muted">Un reçu fiscal peut être délivré si l’association est éligible.</p>
     </section>
 
     <!-- Contact -->
@@ -261,13 +269,10 @@
   </footer>
 
   <script>
-    // Effet de fond + menu mobile (identique à l’index)
+    // Effet de fond (blur + overlay)
     document.addEventListener('DOMContentLoaded', function() {
       const bgImage = document.getElementById('bgImage');
       const bgOverlay = document.getElementById('bgOverlay');
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
-
       window.addEventListener('scroll', function() {
         const y = window.scrollY;
         const blur = Math.min(y / 150, 10);
@@ -275,9 +280,57 @@
         if (y > 5) { bgImage.style.filter = `blur(${blur}px)`; bgOverlay.style.opacity = op; }
         else { bgImage.style.filter = 'blur(4px)'; bgOverlay.style.opacity = '0'; }
       });
-
-      hamburger.addEventListener('click', function(){ mobileMenu.classList.toggle('active'); });
     });
+
+    // ====== Injecte le header commun depuis header.html ======
+    (async function mountSharedHeader(){
+      const container = document.getElementById('site-header');
+      try {
+        const res = await fetch('header.html', { cache: 'no-cache' });
+        const html = await res.text();
+        container.innerHTML = html;
+
+        // Active l'onglet courant "Agir" + style bouton
+        const agirLinks = container.querySelectorAll('a[href$="agir.html"]');
+        agirLinks.forEach(a => {
+          a.setAttribute('aria-current','page');
+          a.classList.add('btn','cta-nav');
+        });
+
+        // (Optionnel) harmonise les autres boutons du header si présents
+        const nav = container.querySelector('.nav');
+        if (nav) {
+          const projectLink = nav.querySelector('a[href$="projet-1.html"]');
+          if (projectLink) projectLink.classList.remove('btn','cta-nav'); // seuls "Agir" en bouton
+        }
+
+        // Menu mobile (les éléments viennent du header inclus)
+        const hamburger = container.querySelector('#hamburger');
+        const mobileMenu = container.querySelector('#mobileMenu');
+        if (hamburger && mobileMenu) {
+          hamburger.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+        }
+      } catch (e) {
+        console.error('Impossible de charger header.html', e);
+        // Fallback minimal si le header ne se charge pas
+        container.innerHTML = `
+          <header>
+            <nav class="nav" aria-label="Navigation principale">
+              <a class="brand" href="index.html">
+                <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Logo Printemps des Marais">
+                <span>ASSOCIATION LOI 1901</span>
+              </a>
+              <div class="nav-links">
+                <a href="index.html#about">À propos</a>
+                <a href="projet-1.html">Projet</a>
+                <a href="agir.html" class="btn cta-nav" aria-current="page">Agir</a>
+                <a href="index.html#contact">Contact</a>
+              </div>
+            </nav>
+          </header>
+        `;
+      }
+    })();
   </script>
 </body>
 </html>
