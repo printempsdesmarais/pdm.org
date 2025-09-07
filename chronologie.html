@@ -1,13 +1,18 @@
 <!doctype html>
-<html lang="fr" class="page10">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Chronologie — Printemps des Marais</title>
+
+  <!-- Styles globaux -->
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
+
+  <!-- Fond dédié (fondterrain4.jpg) — si tu préfères, mets cette règle dans css/content.css -->
   <style>
+    body.page10 .bg-image{ background-image: url("images/fondterrain4.jpg"); }
     /* Timeline verticale */
     .timeline {
       position: relative;
@@ -58,8 +63,10 @@
   </style>
 </head>
 <body class="page10">
+  <!-- Fond décoratif -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
   <main class="wrap-narrow">
@@ -116,8 +123,11 @@
     </div>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Scripts globaux -->
+  <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
 </body>
 </html>
