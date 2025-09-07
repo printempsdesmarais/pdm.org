@@ -4,34 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Notre mission — Printemps des Marais</title>
-  <meta name="description" content="Notre mission : restaurer un terrain en friche du Médoc pour en faire un laboratoire vivant conciliant écologie, patrimoine et innovation.">
-  
+  <meta name="description" content="Découvrez la mission du Printemps des Marais : réhabiliter un terrain de 8 hectares, préserver la biodiversité et valoriser le poney landais.">
+
   <!-- Styles globaux -->
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
-  <!-- Styles locaux -->
   <style>
+    /* Styles locaux */
     #mission-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
-    #mission-hero .brand-hero img{ width:100%; max-width:480px; height:auto; display:block; margin:0 auto; }
-    #mission-hero .intro{ color:#fff; font-size: clamp(1.15rem, 2.4vw, 1.6rem); line-height:1.5; max-width: 72ch; margin: .5rem auto 1rem auto; text-wrap: balance; }
-    #mission-hero h1.section-title{ margin-top:.5rem; }
-    .cols-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+    #mission-hero .brand-hero img{
+      width:100%; max-width:480px; height:auto; display:block; margin:0 auto;
+    }
+    #mission-hero .intro{
+      color:#fff;
+      font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+      line-height:1.5;
+      max-width: 72ch;
+      margin: .5rem auto 1rem auto;
+      text-wrap: balance;
+    }
 
-    .thumb{ display:block; width:min(260px, 46%); height:auto; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); cursor:zoom-in; }
-    .fig{ display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; }
-    .fig figcaption{ font-size:.95rem; opacity:.95; }
+    figure.media{
+      margin:1rem 0; text-align:center;
+    }
+    figure.media img{
+      max-width:100%; height:auto; border-radius:8px; cursor:zoom-in;
+    }
+    figure.media figcaption{
+      font-size:.85rem; color:#eee; margin-top:.3rem;
+    }
 
-    .lightbox{ position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,.86); display:none; align-items:center; justify-content:center; padding:1rem; }
+    /* Lightbox simple */
+    .lightbox{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.85); z-index:2000;
+    }
     .lightbox.open{ display:flex; }
-    .lightbox img{ max-width:min(92vw,1200px); max-height:88vh; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.5); user-select:none; }
-    .lightbox .close-hint{ position:absolute; bottom:14px; left:50%; transform:translateX(-50%); color:#eee; font-size:.85rem; opacity:.85; background:rgba(0,0,0,.35); padding:.25rem .5rem; border-radius:.4rem; }
+    .lightbox img{
+      max-width:92vw; max-height:88vh; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+    }
   </style>
 </head>
-<body class="page2">
+<body class="page4">
+  <!-- Fond décoratif -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
   <main class="wrap" id="main">
@@ -42,127 +62,131 @@
       </div>
       <h1 class="section-title">Notre mission</h1>
       <p class="intro">
-        Restaurer un terrain en friche du Médoc pour en faire un <strong>laboratoire vivant</strong> conciliant
-        <strong>écologie</strong>, <strong>patrimoine</strong> et <strong>innovation</strong>.<br>
-        Sur 8 hectares, nous testons des pratiques sobres, favorisons la <strong>biodiversité</strong> et créons un lieu de
-        rencontre entre citoyens, éleveurs et chercheurs.
+        Redonner vie à un terrain en friche, préserver la biodiversité et faire du poney landais un symbole vivant de la transition écologique dans les marais du Médoc.
       </p>
-      <div style="display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;">
-        <a href="agir.html" class="nav-button">Agir avec nous</a>
-        <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
-      </div>
     </section>
 
-    <!-- 1) Renaissance -->
-    <section aria-label="Renaissance d’un terrain" style="padding:1rem 0 2rem 0;">
+    <!-- RENAISSANCE D’UN TERRAIN -->
+    <section id="renaissance" aria-label="Renaissance d’un terrain">
       <h2 class="section-title">Renaissance d’un terrain</h2>
-      <div class="panel" style="padding:1rem;">
-        <div class="cols-2">
-          <div>
-            <p>Notre mission consiste dans un premier temps en l’acquisition d’un terrain de 8 hectares correspondant à la parcelle repérée n°0037 et n°0039 sur le plan cadastral ci-dessous. La dernière exploitation agricole du terrain remonte aux années 2010–2014, pendant lesquelles un élevage d’ânes a existé...</p>
-            <p>Au cœur du terrain existe une mare... plus d’un kilomètre de haies de tamaris constituent une clôture et un drain naturels, soit ~75% du périmètre.</p>
-          </div>
-          <figure class="fig">
-            <a href="images/parcelle37.jpg" class="js-lb" data-full="images/parcelle37.jpg">
-              <img src="images/parcelle37.jpg" alt="Vue générale — parcelle n°37" class="thumb" loading="lazy">
-            </a>
-            <figcaption>Vue générale — découpage cadastral, parcelle n°37.</figcaption>
-          </figure>
+      <p>
+        Notre mission consiste dans un premier temps en l’acquisition d’un terrain de 8 hectares correspondant aux parcelles cadastrales n°0037 et 0039. La dernière exploitation agricole remonte aux années 2010 à 2014, avec un élevage d’ânes. Depuis le décès du propriétaire, la terre est inexploitée, entretenue seulement par un broyage sommaire.
+      </p>
+      <p>
+        Le terrain est bordé par un chemin touristique communal, et au centre se trouve une mare d’eau douce (salinité < 1 g/l), issue d’une nappe phréatique affleurante. Plus d’un kilomètre de haies de tamaris assurent un rôle de brise-vent naturel et de drainage.
+      </p>
+
+      <figure class="media">
+        <img src="images/parcelle37.jpg" alt="Vue générale — parcelle n°37" data-full="images/parcelle37.jpg">
+        <figcaption>Vue générale — Parcelle n°37</figcaption>
+      </figure>
+    </section>
+
+    <!-- VOCATION SINGULIÈRE -->
+    <section id="vocation" aria-label="Des terres à vocation singulière">
+      <h2 class="section-title">Des terres à vocation singulière</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:start; flex-wrap:wrap;">
+        <div>
+          <p>
+            La digue de Talais, entre Talais et Saint-Vivien-de-Médoc, fut construite vers 1763–1764 lors des travaux d’assèchement des marais, puis renforcée après sa rupture en 1885. Sans elle, les grandes marées atteignaient la parcelle, située alors sur l’estran (*les mattes*).
+          </p>
+          <p>
+            Aujourd’hui, les grandes cultures céréalières y produisent des semences sur des terres fertiles, mais privées de leur fonction tampon, ces sols accroissent les risques d’inondation pour la Gironde et Bordeaux.
+          </p>
+          <p>
+            L’État, via le Conservatoire du littoral, agit pour restaurer ces zones, en partenariat avec les éleveurs dont le bétail joue un rôle essentiel. Notre mission, modeste face à l’étendue des mattes, est de devenir une vitrine exemplaire à échelle humaine, tendant vers une autonomie biologique avec un minimum d’intervention.
+          </p>
         </div>
+        <figure class="media">
+          <img src="images/digue1.jpg" alt="Digue de Talais" data-full="images/digue1.jpg">
+          <figcaption>Digue de Talais, construite au XVIIIᵉ siècle</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- 2) Vocation -->
-    <section aria-label="Une vocation singulière" style="padding:1rem 0 2rem 0;">
-      <h2 class="section-title">Une vocation singulière</h2>
-      <div class="panel" style="padding:1rem;">
-        <p>La digue de Talais, située entre Talais et Saint-Vivien-de-Médoc... À terme, la parcelle doit tendre vers une <strong>autonomie biologique</strong> avec un minimum d’intervention humaine.</p>
-      </div>
+    <!-- PONEY LANDAIS -->
+    <section id="poney" aria-label="Chevaux sauvages du sud-ouest">
+      <h2 class="section-title">Chevaux « sauvages » du sud-ouest</h2>
+      <p>
+        Intimement lié aux paysages aquitains, le <strong>poney landais</strong> pourrait devenir un allié précieux pour la gestion écologique des marais du Médoc, conciliant patrimoine, biodiversité et développement durable.
+      </p>
+      <p>
+        Issu des chevaux des landes et marais, le landais a frôlé l’extinction dans les années 1970 (à peine une centaine d’individus). Grâce au Dr Henri Soulé et à des éleveurs passionnés, un plan de sauvegarde et un stud-book ont permis sa survie, avec quelques croisements ponctuels.
+      </p>
+      <p>
+        Aujourd’hui, il reste quelques centaines de poneys, surtout dans les Landes. Rustique, docile et endurant, il excelle dans l’attelage, le dressage et l’endurance, mais sa petite taille limite sa compétitivité dans les clubs. Deux voies existent : sélectionner des modèles plus grands ou préserver le type originel.
+      </p>
+      <p>
+        Au-delà du sport, sa rusticité et son adaptation aux zones humides le rendent particulièrement utile pour entretenir prairies et marais de manière douce et écologique.
+      </p>
     </section>
 
-    <!-- 3) Poney landais -->
-    <section aria-label="Le poney landais, un animal façonné par le milieu" style="padding:1rem 0 2rem 0;">
-      <h2 class="section-title">Un animal façonné par le milieu</h2>
-      <div class="panel" style="padding:1rem;">
-        <p>C’est là qu’intervient le <strong>poney landais</strong>... Au-delà du sport, le landais commence à trouver une place comme <strong>outil écologique</strong> pour entretenir prairies humides et marais.</p>
-      </div>
-    </section>
-
-    <!-- 4) Un allié -->
-    <section aria-label="Un allié pour la biodiversité" style="padding:1rem 0 2rem 0;">
+    <!-- ALLIÉ POUR LA BIODIVERSITÉ -->
+    <section id="biodiversite" aria-label="Un allié pour la biodiversité">
       <h2 class="section-title">Un allié pour la biodiversité</h2>
-      <div class="panel" style="padding:1rem;">
-        <div class="cols-2">
-          <div>
-            <p>Dans une logique de <strong>gestion écologique</strong>, le poney landais peut jouer plusieurs rôles :</p>
-            <ul>
-              <li><strong>Entretien naturel de la végétation</strong>...</li>
-              <li><strong>Préservation de la biodiversité</strong>...</li>
-              <li><strong>Gestion douce des zones humides</strong>...</li>
-              <li><strong>Valorisation locale</strong>...</li>
-            </ul>
-          </div>
-          <figure class="fig">
-            <a href="images/poney1.jpg" class="js-lb" data-full="images/poney1.jpg">
-              <img src="images/poney1.jpg" alt="Jalle, ponette landaise de 5 ans, pionnière du projet" class="thumb" loading="lazy">
-            </a>
-            <figcaption>Jalle, ponette landaise de 5 ans, pionnière du projet.</figcaption>
-          </figure>
-        </div>
-      </div>
+      <p>Le poney landais joue un rôle concret dans la préservation des marais :</p>
+      <ul>
+        <li><strong>Entretien naturel</strong> : broutage des herbes hautes, joncs et arbustes.</li>
+        <li><strong>Préservation de la biodiversité</strong> : habitats variés pour oiseaux, amphibiens et insectes.</li>
+        <li><strong>Gestion douce</strong> : remplace les engins mécaniques, limite tassement des sols et émissions de CO₂.</li>
+        <li><strong>Valorisation locale</strong> : associer sauvegarde d’une race régionale et entretien écologique.</li>
+      </ul>
+
+      <figure class="media">
+        <img src="images/poney1.jpg" alt="Jalle, ponette landaise de 5 ans" data-full="images/poney1.jpg">
+        <figcaption>Jalle, ponette landaise de 5 ans, pionnière du projet.</figcaption>
+      </figure>
     </section>
 
-    <!-- 5) Vidéo -->
-    <section aria-label="Vidéo de présentation" style="padding:1rem 0 2rem 0;">
+    <!-- VIDÉO -->
+    <section id="video" aria-label="Vidéo de présentation">
       <h2 class="section-title">Vidéo de présentation du projet</h2>
-      <div class="panel" style="padding:0; overflow:hidden;">
-        <div style="position:relative; width:100%; aspect-ratio:16/9; background:rgba(0,0,0,.3);">
-          <iframe 
-            src="https://player.vimeo.com/video/1050588243?fl=pl&fe=sh"
-            title="Présentation — Printemps des Marais"
-            style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-            allowfullscreen></iframe>
-        </div>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;border-radius:12px;">
+        <iframe src="https://player.vimeo.com/video/1050588243?h=0a0c0f0f" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
       </div>
     </section>
 
-    <!-- 6) Appel -->
-    <section aria-label="Appel à participation" style="padding:1rem 0 3rem 0;">
-      <div class="panel" style="padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
+    <!-- APPEL -->
+    <section id="appel" aria-label="Appel à participation">
+      <div class="panel" style="text-align:center; padding:2rem 1rem;">
         <h2 class="section-title">Rejoignez l’expérience</h2>
-        <p>Nous voulons faire de ce site un <strong>symbole vivant</strong>... Votre soutien est décisif pour documenter et amplifier l’impact.</p>
-        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-          <a href="agir.html" class="nav-button">Voir comment participer</a>
-          <a href="index.html#contact" class="nav-button">Prendre contact</a>
+        <p>
+          Bénévoles, chercheurs, habitants et institutions : chacun peut contribuer à faire renaître ces terres. Ensemble, faisons du
+          poney landais le symbole vivant de la transition écologique dans les marais du Médoc.
+        </p>
+        <div style="display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+          <a href="agir.html" class="nav-button">Agir ensemble</a>
+          <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+          <a href="index.html#contact" class="nav-button">Nous contacter</a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lb" aria-hidden="true">
-    <img id="lb-img" src="" alt="">
-    <div class="close-hint">Clic en dehors ou Échap pour fermer</div>
-  </div>
-
+  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
+  <script src="js/short-text.js"></script>
+
   <script>
-    (function(){
-      const lb=document.getElementById('lb'),img=document.getElementById('lb-img');
-      document.querySelectorAll('.js-lb').forEach(a=>{
-        a.addEventListener('click',e=>{
-          e.preventDefault();
-          img.src=a.dataset.full; img.alt=a.querySelector('img')?.alt||'';
-          lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-        });
+    // Lightbox pour agrandir les images
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    const img = document.createElement('img');
+    lightbox.appendChild(img);
+    document.body.appendChild(lightbox);
+
+    document.querySelectorAll('figure.media img').forEach(thumbnail => {
+      thumbnail.addEventListener('click', () => {
+        img.src = thumbnail.dataset.full || thumbnail.src;
+        lightbox.classList.add('open');
       });
-      lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';img.src='';}});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';img.src='';}});
-    })();
+    });
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
   </script>
 </body>
 </html>
