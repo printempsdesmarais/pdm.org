@@ -3,23 +3,269 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Galerie — Printemps des Marais</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Galerie / Storyboard — Printemps des Marais</title>
+  <meta name="description" content="Galerie photo et storyboard visuel du projet Printemps des Marais.">
+
+  <!-- Styles globaux -->
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Styles locaux de la galerie -->
+  <style>
+    /* Grille de vignettes */
+    .gallery-intro{
+      text-align:center;
+      padding: clamp(1.5rem, 5vw, 2.5rem) 0 0 0;
+    }
+    .gallery-intro .brand-hero img{
+      width:100%; max-width:420px; height:auto; display:block; margin:0 auto;
+    }
+    .gallery-intro .lead{
+      color:#fff; max-width:72ch; margin:.5rem auto 0; text-wrap:balance;
+      font-size:clamp(1rem,2vw,1.25rem); line-height:1.55;
+    }
+
+    .gallery-grid{
+      display:grid; gap:10px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      margin: 1rem 0 2rem 0;
+    }
+    .gallery-grid figure{
+      margin:0; padding:0; border-radius:12px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(15,15,15,.45);
+      display:flex; flex-direction:column;
+      cursor: zoom-in;
+    }
+    .gallery-grid img.shot{
+      display:block; width:100%; height:180px; object-fit:cover;
+      transition: transform .25s ease;
+    }
+    .gallery-grid figure:hover img.shot{ transform: scale(1.02); }
+    .gallery-grid figcaption{
+      color:#fff; font-size:.9rem; padding:.55rem .65rem;
+      border-top:1px solid rgba(255,255,255,.12);
+      min-height: 2.6em; display:flex; align-items:center;
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Lightbox */
+    .lightbox{ position:fixed; inset:0; z-index:2000; display:none;
+      align-items:center; justify-content:center;
+      background:rgba(0,0,0,.85); backdrop-filter: blur(6px);
+      padding:1rem;
+    }
+    .lightbox.open{ display:flex; }
+    .lb-inner{ position:relative; max-width:min(92vw,1200px); max-height:88vh;
+      display:flex; flex-direction:column; gap:.5rem; width:100%;
+    }
+    .lb-img{ display:block; width:auto; max-width:100%; max-height:80vh; margin:0 auto;
+      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5); user-select:none; cursor:zoom-in;
+    }
+    .lb-caption{ text-align:center; color:#eee; font-size:1rem; text-wrap:balance; }
+    .lb-controls{
+      position:absolute; inset:auto 0 -48px 0;
+      display:flex; justify-content:center; pointer-events:none;
+    }
+    .lb-controls .ui{
+      pointer-events:auto; display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(46,51,46,.8);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:.6rem; padding:.35rem .55rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      color:#f0f0f0; font-size:.85rem; font-weight:700;
+    }
+    .lb-controls button, .lb-controls select{
+      appearance:none; border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06); color:#f0f0f0;
+      border-radius:.45rem; padding:.3rem .55rem; cursor:pointer;
+      font-weight:700;
+    }
+    .lb-state{ opacity:.9; font-size:.8rem; }
+  </style>
 </head>
 <body class="page5">
+  <!-- Fond décoratif (définir body.page5 → fondterrain5.jpg dans css/content.css) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap">
-    <h1>Galerie / Storyboard visuel</h1>
-    <p>Photos, vidéos et chronologie du projet.</p>
+  <main class="wrap" id="main">
+    <section class="gallery-intro" aria-label="Introduction — Galerie">
+      <div class="brand-hero">
+        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
+      </div>
+      <h1 class="section-title">Galerie / Storyboard</h1>
+      <p class="lead">
+        Une narration visuelle du projet : paysages, traces d’anciens usages, mare d’eau douce, haies de tamaris, et le
+        <strong>poney landais</strong> comme allié des marais. Cliquez sur une vignette pour l’agrandir et naviguer.
+      </p>
+    </section>
+
+    <!-- STORYBOARD (reprend tes figures) -->
+    <section aria-label="Storyboard visuel">
+      <div class="gallery-grid" id="storyboard">
+        <figure class="wide" data-src="images/parcelle37.jpg" data-caption="Vue générale du site — Parcelle n°37.">
+          <img class="shot" src="images/parcelle37.jpg" alt="Vue générale du site — Estuaire / zone humide" loading="lazy">
+          <figcaption>Vue générale du site — Parcelle n°37</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story1.jpg" data-caption="Il fût un temps...">
+          <img class="shot" src="images/storyboard/story1.jpg" alt="Il fût un temps..." loading="lazy">
+          <figcaption><strong>Il fût un temps...</strong></figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story2.jpg" data-caption="où des poneys sauvages">
+          <img class="shot" src="images/storyboard/story2.jpg" alt="où des poneys sauvages" loading="lazy">
+          <figcaption>où des poneys sauvages</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story3.jpg" data-caption="peuplaient les plages">
+          <img class="shot" src="images/storyboard/story3.jpg" alt="peuplaient les plages" loading="lazy">
+          <figcaption>peuplaient les plages</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story4.jpg" data-caption="les forêts et les marais d'Aquitaine.">
+          <img class="shot" src="images/storyboard/story4.jpg" alt="les forêts et les marais d'Aquitaine." loading="lazy">
+          <figcaption>les forêts et les marais d'Aquitaine.</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story5.jpg" data-caption="Ils étaient...">
+          <img class="shot" src="images/storyboard/story5.jpg" alt="Ils étaient..." loading="lazy">
+          <figcaption>Ils étaient...</figcaption>
+        </figure>
+
+        <figure data-src="images/storyboard/story6.jpg" data-caption="Les Seigneurs des Marais">
+          <img class="shot" src="images/storyboard/story6.jpg" alt="Les Seigneurs des Marais" loading="lazy">
+          <figcaption><strong>Les Seigneurs des Marais</strong></figcaption>
+        </figure>
+
+        <!-- Suite du storyboard story7 → story31 -->
+        <figure data-src="images/storyboard/story7.jpg" data-caption="Les poneys landais favorisent-ils la biodiversité?"><img class="shot" src="images/storyboard/story7.jpg" alt="Storyboard 7" loading="lazy"><figcaption>Les poneys landais favorisent-ils la biodiversité?</figcaption></figure>
+        <figure data-src="images/storyboard/story8.jpg" data-caption="Ils peuvent façonner les marécages"><img class="shot" src="images/storyboard/story8.jpg" alt="Storyboard 8" loading="lazy"><figcaption>Ils peuvent façonner les marécages</figcaption></figure>
+        <figure data-src="images/storyboard/story9.jpg" data-caption="ouvrir les paysages"><img class="shot" src="images/storyboard/story9.jpg" alt="Storyboard 9" loading="lazy"><figcaption>ouvrir les paysages</figcaption></figure>
+        <figure data-src="images/storyboard/story10.jpg" data-caption="disperser des graines,"><img class="shot" src="images/storyboard/story10.jpg" alt="Storyboard 10" loading="lazy"><figcaption>disperser des graines,</figcaption></figure>
+        <figure data-src="images/storyboard/story11.jpg" data-caption="à l'origine d'une chaîne"><img class="shot" src="images/storyboard/story11.jpg" alt="Storyboard 11" loading="lazy"><figcaption>à l'origine d'une chaîne</figcaption></figure>
+        <figure data-src="images/storyboard/story12.jpg" data-caption="extraordinaire de vie."><img class="shot" src="images/storyboard/story12.jpg" alt="Storyboard 12" loading="lazy"><figcaption>extraordinaire de vie.</figcaption></figure>
+        <figure data-src="images/storyboard/story13.jpg" data-caption="Mais en deux siècles, les poneys landais frôlent l'extinction:"><img class="shot" src="images/storyboard/story13.jpg" alt="Storyboard 13" loading="lazy"><figcaption>Mais en deux siècles, les poneys landais frôlent l'extinction:</figcaption></figure>
+        <figure data-src="images/storyboard/story14.jpg" data-caption="Domestication..."><img class="shot" src="images/storyboard/story14.jpg" alt="Storyboard 14" loading="lazy"><figcaption>Domestication...</figcaption></figure>
+        <figure data-src="images/storyboard/story15.jpg" data-caption="Appauvrissement du milieu..."><img class="shot" src="images/storyboard/story15.jpg" alt="Storyboard 15" loading="lazy"><figcaption>Appauvrissement du milieu...</figcaption></figure>
+        <figure data-src="images/storyboard/story16.jpg" data-caption="Réduction des surfaces naturelles."><img class="shot" src="images/storyboard/story16.jpg" alt="Storyboard 16" loading="lazy"><figcaption>Réduction des surfaces naturelles.</figcaption></figure>
+        <figure data-src="images/storyboard/story17.jpg" data-caption="Dans le même temps, la biodiversité décline."><img class="shot" src="images/storyboard/story17.jpg" alt="Storyboard 17" loading="lazy"><figcaption>Dans le même temps, la biodiversité décline.</figcaption></figure>
+        <figure data-src="images/storyboard/story18.jpg" data-caption="Mais il reste un espoir"><img class="shot" src="images/storyboard/story18.jpg" alt="Storyboard 18" loading="lazy"><figcaption>Mais il reste un espoir</figcaption></figure>
+        <figure data-src="images/storyboard/story19.jpg" data-caption="À l'extrême nord du Médoc,"><img class="shot" src="images/storyboard/story19.jpg" alt="Storyboard 19" loading="lazy"><figcaption>À l'extrême nord du Médoc,</figcaption></figure>
+        <figure data-src="images/storyboard/story20.jpg" data-caption="sur les rives du plus grand estuaire d'Europe,"><img class="shot" src="images/storyboard/story20.jpg" alt="Storyboard 20" loading="lazy"><figcaption>sur les rives du plus grand estuaire d'Europe,</figcaption></figure>
+        <figure data-src="images/storyboard/story21.jpg" data-caption="un élevage prometteur va démarrer."><img class="shot" src="images/storyboard/story21.jpg" alt="Storyboard 21" loading="lazy"><figcaption>un élevage prometteur va démarrer.</figcaption></figure>
+        <figure data-src="images/storyboard/story22.jpg" data-caption="Sur ce terrain de 8 hectares,"><img class="shot" src="images/storyboard/story22.jpg" alt="Storyboard 22" loading="lazy"><figcaption>Sur ce terrain de 8 hectares,</figcaption></figure>
+        <figure data-src="images/storyboard/story23.jpg" data-caption="nous suivrons la vie des poneys,"><img class="shot" src="images/storyboard/story23.jpg" alt="Storyboard 23" loading="lazy"><figcaption>nous suivrons la vie des poneys,</figcaption></figure>
+        <figure data-src="images/storyboard/story24.jpg" data-caption="les transformations du terrain,"><img class="shot" src="images/storyboard/story24.jpg" alt="Storyboard 24" loading="lazy"><figcaption>les transformations du terrain,</figcaption></figure>
+        <figure data-src="images/storyboard/story25.jpg" data-caption="les trajectoires évolutives de la faune et de la flore."><img class="shot" src="images/storyboard/story25.jpg" alt="Storyboard 25" loading="lazy"><figcaption>les trajectoires évolutives de la faune et de la flore.</figcaption></figure>
+        <figure data-src="images/storyboard/story26.jpg" data-caption="Et peut-être serons-nous les témoins du grand retour"><img class="shot" src="images/storyboard/story26.jpg" alt="Storyboard 26" loading="lazy"><figcaption>Et peut-être serons-nous les témoins du grand retour</figcaption></figure>
+        <figure data-src="images/storyboard/story27.jpg" data-caption="des poneys landais sur le littoral de leurs ancêtres?"><img class="shot" src="images/storyboard/story27.jpg" alt="Storyboard 27" loading="lazy"><figcaption>des poneys landais sur le littoral de leurs ancêtres?</figcaption></figure>
+        <figure data-src="images/storyboard/story28.jpg" data-caption="Cette aventure est celle de la naissance d'une réserve..."><img class="shot" src="images/storyboard/story28.jpg" alt="Storyboard 28" loading="lazy"><figcaption>Cette aventure est celle de la naissance d'une réserve...</figcaption></figure>
+        <figure data-src="images/storyboard/story29.jpg" data-caption="de la re-découverte d'un équilibre écologique..."><img class="shot" src="images/storyboard/story29.jpg" alt="Storyboard 29" loading="lazy"><figcaption>de la re-découverte d'un équilibre écologique...</figcaption></figure>
+        <figure data-src="images/storyboard/story30.jpg" data-caption="Un nouveau souffle pour les marais et la vie sauvage du Médoc"><img class="shot" src="images/storyboard/story30.jpg" alt="Storyboard 30" loading="lazy"><figcaption>Un nouveau souffle pour les marais et la vie sauvage du Médoc</figcaption></figure>
+        <figure data-src="images/storyboard/story31.jpg" data-caption="Rejoignez notre projet en souscrivant à l'association"><img class="shot" src="images/storyboard/story31.jpg" alt="Storyboard 31" loading="lazy"><figcaption>Rejoignez notre projet en souscrivant à l'association</figcaption></figure>
+      </div>
+    </section>
   </main>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-inner" role="dialog" aria-label="Image du storyboard (clic pour image suivante)">
+      <img class="lb-img" id="lb-img" src="" alt="">
+      <div class="lb-caption" id="lb-caption"></div>
+      <div class="lb-controls">
+        <div class="ui" role="group" aria-label="Contrôles de lecture">
+          <button id="lb-prev" title="Précédent">◀︎</button>
+          <button id="lb-toggle" title="Lecture/Pause">▶︎ Play</button>
+          <button id="lb-next" title="Suivant">▶︎</button>
+          <label for="lb-speed" class="sr-only">Vitesse</label>
+          <select id="lb-speed" title="Vitesse (millisecondes)">
+            <option value="2000">2s</option>
+            <option value="3000" selected>3s</option>
+            <option value="5000">5s</option>
+            <option value="8000">8s</option>
+          </select>
+          <span class="lb-state" id="lb-state">Pause</span>
+        </div>
+      </div>
+      <span class="sr-only" id="lb-instructions">Clic dans l'image = suivante. Clic en dehors = fermer. Échap = fermer. Flèches ←/→ pour naviguer.</span>
+    </div>
+  </div>
+
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
+  <script src="js/short-text.js"></script>
+
+  <!-- Script Lightbox -->
+  <script>
+    (function(){
+      const grid = document.getElementById('storyboard');
+      const items = Array.from(grid.querySelectorAll('figure'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCaption = document.getElementById('lb-caption');
+      const toggleBtn = document.getElementById('lb-toggle');
+      const prevBtn = document.getElementById('lb-prev');
+      const nextBtn = document.getElementById('lb-next');
+      const speedSel  = document.getElementById('lb-speed');
+      const stateEl   = document.getElementById('lb-state');
+      let index = 0, timer = null, interval = parseInt(speedSel.value, 10);
+
+      function openAt(i){
+        index = ((i % items.length) + items.length) % items.length;
+        const f = items[index];
+        const src = f.dataset.src || f.querySelector('img').src;
+        const cap = f.dataset.caption || (f.querySelector('figcaption')?.textContent || '');
+        lbImg.src = src;
+        lbImg.alt = f.querySelector('img')?.alt || 'Image du storyboard';
+        lbCaption.textContent = cap;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        lbImg.setAttribute('tabindex','0');
+        lbImg.focus({preventScroll:true});
+        // précharge suivante
+        const nextIndex = (index + 1) % items.length;
+        const nf = items[nextIndex];
+        const nsrc = nf.dataset.src || nf.querySelector('img').src;
+        new Image().src = nsrc;
+      }
+      function closeLB(){ pause(); lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; lbImg.removeAttribute('tabindex'); }
+      function next(){ openAt(index + 1); }
+      function prev(){ openAt(index - 1); }
+      function play(){ if(timer) return; timer = setInterval(next, interval); toggleBtn.textContent = '⏸︎ Pause'; stateEl.textContent = 'Lecture'; }
+      function pause(){ if(timer){ clearInterval(timer); timer = null; } toggleBtn.textContent = '▶︎ Play'; stateEl.textContent = 'Pause'; }
+
+      toggleBtn.addEventListener('click', ()=> timer ? pause() : play());
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+      speedSel.addEventListener('change', ()=> { interval = parseInt(speedSel.value, 10); if(timer){ pause(); play(); }});
+      items.forEach((fig, i)=> fig.addEventListener('click', ()=> openAt(i)));
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+      lbImg.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+      document.addEventListener('keydown', (e)=>{
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape'){ closeLB(); }
+        else if(e.key === 'ArrowRight'){ next(); }
+        else if(e.key === 'ArrowLeft'){ prev(); }
+      });
+
+      // Ouverture via #hash (ex: galerie.html#12)
+      function syncFromHash(){
+        const n = parseInt(location.hash.replace('#',''), 10);
+        if(!isNaN(n) && n >= 0 && n < items.length){ openAt(n); }
+      }
+      window.addEventListener('hashchange', syncFromHash);
+      syncFromHash();
+    })();
+  </script>
 </body>
 </html>
