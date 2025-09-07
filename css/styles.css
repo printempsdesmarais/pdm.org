@@ -1,20 +1,17 @@
 /* ===========================
    Styles globaux
    =========================== */
-
-/* Couleurs de référence */
 :root{
   --vert: #97bb2b;
   --orange: #ff942a;
   --marron: #7f6115;
 
-  --bar-h: 70px;     /* hauteur du bandeau */
+  --bar-h: 70px;
   --text: #ffffff;
   --orange-dark: #e67e22;
   --panel-bg: rgba(15,15,15,.96);
 }
 
-/* Base typographique */
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
 
@@ -22,7 +19,7 @@ body{
   margin:0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
   color:#111;
-  padding-top: var(--bar-h); /* espace sous header fixe */
+  padding-top: var(--bar-h);
 }
 
 /* ===========================
@@ -32,8 +29,8 @@ body{
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 1000;
-  background: transparent;                      /* 100% transparent */
-  backdrop-filter: blur(18px) saturate(120%);   /* flou fort */
+  background: transparent;
+  backdrop-filter: blur(18px) saturate(120%);
   -webkit-backdrop-filter: blur(18px) saturate(120%);
   border-bottom: 1px solid rgba(255,255,255,.18);
 }
@@ -60,7 +57,7 @@ body{
 }
 .tagline{
   font-size: .72rem; line-height: 1; letter-spacing: .02em;
-  text-transform: none; /* minuscule */
+  text-transform: none;
   color: rgba(255,255,255,.9);
   white-space: nowrap;
   align-self: center;
@@ -75,7 +72,7 @@ body{
   background: var(--orange);
   color: #fff;
   text-decoration: none;
-  font-weight: 700;            /* Inter 700 */
+  font-weight: 700;
   text-transform: uppercase;
   padding: .45rem .9rem;
   border-radius: .45rem;
@@ -92,7 +89,7 @@ body{
 
 /* Élément avec sous-menu */
 .nav-group{ position: relative; }
-.has-sub{ /* le trigger "Découvrir" stylé comme un bouton */
+.has-sub{
   border: none;
   background: var(--orange);
   color: #fff;
@@ -118,7 +115,7 @@ body{
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 12px;
   padding: .4rem;
-  display: none; /* visible au hover/focus-within */
+  display: none;
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 .nav-group:hover .submenu,
@@ -131,7 +128,70 @@ body{
   font-weight:700; text-transform: uppercase; font-size:.85rem;
   border-radius: .5rem;
 }
-.submenu-link:hover{ background: rgba(255,255
+.submenu-link:hover{ background: rgba(255,255,255,.08); }
+
+/* ===== Burger & mobile ===== */
+.nav-toggle{ position:absolute; left:-9999px; }
+.hamburger{
+  display:none;
+  width:44px; height:44px; padding:10px;
+  cursor:pointer;
+  align-items:center; justify-content:center; flex-direction:column; gap:5px;
+}
+.hamburger span{
+  display:block; width:24px; height:3px; background:#fff; border-radius:2px;
+}
+
+.mobile-menu{
+  display:none; position:absolute; top: var(--bar-h); left:0; right:0; z-index: 1001;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: .5rem;
+}
+.mobile-link{
+  display:block;
+  padding: .85rem 1rem;
+  text-decoration:none;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: .35rem;
+}
+.mobile-link:hover{ background: rgba(255,255,255,.1); }
+.mobile-link.nav-button{
+  background: var(--orange); color:#fff; text-align:center; border:1px solid rgba(255,255,255,.18);
+}
+.mobile-link.nav-button:hover{ background: var(--orange-dark); }
+
+/* Sous-menu mobile (accordion) */
+.sub-toggle{ position:absolute; left:-9999px; }
+.sub-trigger{
+  display:block; position:relative; cursor:pointer;
+}
+.sub-trigger::after{
+  content:"▾"; position:absolute; right:1rem; top:50%; transform: translateY(-50%);
+}
+.mobile-submenu{
+  display:none; padding: .25rem 0 .5rem 0; background: rgba(255,255,255,.03);
+}
+.sub-toggle:checked ~ .mobile-submenu{ display:block; }
+.mobile-link.sub{ padding-left: 1.5rem; }
+
+/* Responsive */
+@media (max-width: 900px), (hover:none) and (pointer:coarse){
+  .nav-links{ display:none; }
+  .hamburger{ display:flex; }
+  .nav{ position:relative; }
+  .nav-toggle:checked ~ .mobile-menu{ display:block; }
+}
+
+/* Focus visible (accessibilité) */
+a:focus-visible, button:focus-visible, .hamburger:focus-visible, .submenu-link:focus-visible{
+  outline: 2px solid #fff; outline-offset: 3px;
+}
 
 /* ===========================
    FOOTER
@@ -145,7 +205,6 @@ body{
   border-top:1px solid rgba(255,255,255,.15);
   font-family: "Inter", system-ui, sans-serif;
 }
-
 .footer-inner{
   max-width:1100px;
   margin:0 auto;
@@ -155,19 +214,16 @@ body{
   gap:.8rem;
   text-align:center;
 }
-
 .footer-brand{
   font-size:1.2rem;
   font-weight:800;
   margin:0;
 }
-
 .footer-legal{
   font-size:.85rem;
   opacity:.8;
   margin:0;
 }
-
 .footer-nav{
   display:flex;
   gap:1rem;
