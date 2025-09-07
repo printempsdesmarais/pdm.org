@@ -3,370 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ASSOCIATION LOI 1901</title>
+  <title>Accueil — Printemps des Marais</title>
+  <meta name="description" content="Accueil du projet Printemps des Marais : mission, actualités et appels à participation.">
 
-  <!-- Fonts -->
-  <link rel="preload" href="chemin/vers/GCVolkgen-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="chemin/vers/GCVolkgen-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="chemin/vers/GCVolkgen-Italic.woff2" as="font" type="font/woff2" crossorigin>
-
-  <style>
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Italic.woff') format('woff');
-      font-style: italic;
-      font-weight: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'GC Volkgen';
-      src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2'),
-           url('chemin/vers/GCVolkgen-Bold.woff') format('woff');
-      font-weight: bold;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      --title-font: 'GC Volkgen', sans-serif;
-      --line: rgba(255, 255, 255, 0.18);
-      --text: #f0f0f0;
-      --muted: #dcdcdc;
-      --radius: 14px;
-      --orange: #ff942a;
-      --vert: #97bb2b;
-    }
-
-    /* Couleurs utilitaires */
-    .orange { color: var(--orange); }
-    .vert   { color: var(--vert); }
-
-    html { scroll-behavior: smooth; height: 100%; }
-    body {
-      margin: 0;
-      font-family: "GC Volkgen", sans-serif;
-      color: var(--text);
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.5;
-      background: #3A403A;
-    }
-
-    /* Fond avec effet de flou dynamique */
-    .bg-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
-    .bg-image { width: 100%; height: 100%; background: url("images/fondterrain.jpg") center/cover no-repeat fixed; transition: filter 0.4s ease; will-change: filter; filter: blur(4px); }
-    @media (max-width: 768px) { .bg-image { background-attachment: scroll !important; background-size: auto 100% !important; } }
-    .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: -1; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
-
-    /* ====== Styles du header commun (le HTML vient de header.html) ====== */
-    header { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); background: rgba(46, 51, 46, 0.9); border-bottom: 1px solid var(--line); height: 80px; display: flex; align-items: center; -webkit-transform: translateZ(0); }
-    @supports (-webkit-touch-callout: none) { header { backdrop-filter: none; background: rgba(46, 51, 46, 0.95); } }
-    .nav { max-width: 1100px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 80px; }
-    .brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-family: var(--title-font); font-weight: bold; }
-    .brand-logo { height: 60px; width: auto; object-fit: contain; display: block; }
-    .nav-links { display: flex; gap: 0.5rem; margin-right: 1rem; }
-    .nav a { color: var(--muted); text-decoration: none; font-family: var(--title-font); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 0.5rem 1rem; transition: color .2s ease; }
-    .nav a:hover { color: #fff; }
-
-    /* Bouton type "Agir" si présent dans header.html */
-    .btn, .cta-nav {
-      background: var(--orange); color: #1a1a1a; border-radius: .55rem; padding: .5rem 1rem;
-      font-weight: 700; text-decoration: none; display: inline-block; border: none; cursor: pointer;
-      transition: background .2s ease, transform .06s ease;
-    }
-    .btn:hover, .cta-nav:hover { background: #ff9f40; color: #1a1a1a; }
-    .btn:active { transform: translateY(1px); }
-
-    /* Menu hamburger (doit exister dans header.html : #hamburger, #mobileMenu) */
-    .hamburger { display: none; flex-direction: column; cursor: pointer; padding: .5rem; margin-right: 1rem; }
-    .hamburger span { display: block; width: 25px; height: 3px; background: var(--text); margin: 3px 0; transition: all .3s ease; }
-    .mobile-menu { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(46, 51, 46, 0.95); backdrop-filter: blur(10px); padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,.15); z-index: 9; }
-    .mobile-menu a { display: block; padding: .75rem 1rem; color: var(--muted); text-decoration: none; font-family: var(--title-font); font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-    .mobile-menu a:hover { color: #fff; }
-    .mobile-menu.active { display: block; }
-    @media (hover: none) and (pointer: coarse), (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
-
-    /* Hero section */
-    .hero { min-height: 70svh; display: grid; place-items: center; text-align: center; position: relative; z-index: 1; padding: 2rem 1rem; }
-    .hero-inner { max-width: 900px; margin: 0 auto; }
-    .hero-logo { max-width: 500px; width: 100%; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45)); }
-    .hero h3 { font-family: var(--title-font); font-size: 1.8rem; font-weight: bold; line-height: 1.3; margin: 0; color: var(--muted); }
-    .cta { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; border-radius: 0.55rem; background: rgba(46, 51, 46, 0.85); color: var(--text); text-decoration: none; font-family: var(--title-font); font-size: 1.1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: background 0.3s ease; border: none; }
-    .cta:hover { background: rgba(46, 51, 46, 0.95); color: #fff; }
-
-    /* Main content */
-    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; position: relative; z-index: 1; }
-
-    /* Panels sans bordure */
-    .panel { background: rgba(255, 255, 255, 0.03); border: none; border-radius: var(--radius); padding: 2rem; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); margin-bottom: 3rem; }
-    h1, h2 { font-family: var(--title-font); font-weight: bold; margin: 0 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: var(--text); }
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.8rem; }
-    h3 { font-family: var(--title-font); font-size: 1.4rem; font-weight: bold; margin: 1.5rem 0 0.75rem; }
-    p { font-family: var(--title-font); font-size: 1rem; line-height: 1.6; margin: 0 0 1rem; color: var(--muted); }
-    em { font-style: italic; font-weight: normal; }
-    strong { font-weight: bold; color: var(--text); }
-
-    /* About section */
-    .about { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; }
-    .quick { display: grid; gap: 1rem; }
-    .badge { background: transparent; border: none; padding: 0.75rem 0; font-family: var(--title-font); font-size: 1rem; color: var(--muted); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    .badge strong { color: var(--text); font-weight: bold; }
-
-    /* Project card */
-    .project-card { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0; }
-    .thumb { aspect-ratio: 16/10; width: 100%; object-fit: cover; border-radius: var(--radius); border: none; }
-
-    /* Étapes - listes */
-    #etapes ul { margin: 0.25rem 0 1rem 1.2rem; padding-left: 1rem; }
-    #etapes li { color: var(--muted); margin: 0.25rem 0; }
-
-    /* Contact and map */
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .map-wrap { margin: 2rem 0; }
-    .map iframe { width: 100%; height: 360px; border: none; border-radius: var(--radius); }
-
-    /* Footer */
-    footer { margin: 2rem 0 0; padding: 1.5rem 1rem; text-align: center; background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--muted); font-family: var(--title-font); font-size: 0.9rem; }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .about, .project-card, .grid2 { grid-template-columns: 1fr; }
-      .nav a { font-size: 1rem; padding: 0.5rem; }
-      h1 { font-size: 1.8rem; }
-      h2 { font-size: 1.5rem; }
-    }
-
-    /* Étapes du projet : titres en vert (selon vos règles précédentes) */
-    #etapes h1, #etapes h3 { color: #97bb2b !important; }
-
-    /* Titres en vert pour sections principales */
-    #about h1, #about h2, #projects h1, #contact h2, #map h2 { color: #97bb2b; }
-  </style>
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Background elements -->
-  <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
-  <div class="bg-overlay" id="bgOverlay"></div>
+  <a href="#main" class="sr-only">Aller au contenu</a>
 
-  <!-- ===== Header commun chargé depuis header.html ===== -->
-  <div id="site-header" data-active="home">
-    <noscript>
-      <header style="background:rgba(46,51,46,.9);padding:.75rem 1rem;text-align:center;">
-        <a href="header.html" style="color:#fff;text-decoration:underline;">Menu (JavaScript requis pour l’inclure automatiquement)</a>
-      </header>
-    </noscript>
-  </div>
+  <!-- Header injecté -->
+  <header id="site-header" aria-label="En-tête du site"></header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="top" aria-label="Introduction">
-    <div class="hero-inner">
-      <img class="hero-logo" src="images/logo_pdm.png?v=2" alt="Association loi 1901">
-      <h3>Au cœur des marais du Médoc, vivez la création d'une réserve de vie sauvage, la réintroduction du poney landais sur ses terres ancestrales. Une expérience scientifique, artistique et humaine racontée par un film documentaire.</h3>
-      <a class="cta" href="projet-1.html">Voir le storyboard</a>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <main>
-    <!-- À propos -->
-    <section id="about" class="about panel" aria-label="À propos">
-      <article>
-        <h1>À propos</h1>
-        <p>Et si chaque citoyen pouvait devenir <strong>acteur de la biodiversité</strong> ? C'est le pari de l'association <em>Printemps des Marais</em>, née de la rencontre entre une agricultrice, une artiste et un réalisateur engagé.</p>
-        <p>Ensemble, ils unissent leurs forces pour mener une expérience inédite : <strong>sanctuariser 8 hectares de zones humides inondables</strong>, y recréer un écosystème sauvage et en raconter la métamorphose au fil des saisons.</p>
-        <p>Face à l'effondrement du vivant, nous testons une intuition : et si le <strong>poney landais</strong> — ce petit cheval rustique, adapté aux marées et aux plantes des marais — était la clé pour restaurer l'équilibre de ces milieux fragiles ? <em>Une espèce patrimoniale, une hypothèse audacieuse, une aventure écologique à taille humaine.</em></p>
-      </article>
-      <aside class="quick">
-        <h2>En bref</h2>
-        <div class="badge">• <strong>8 ha</strong> en zone humide (Natura 2000)</div>
-        <div class="badge">• Réintroduction du <strong>poney landais</strong></div>
-        <div class="badge">• Suivi naturaliste & inventaires</div>
-        <div class="badge">• Interventions artistiques</div>
-      </aside>
-    </section>
-
-    <!-- Le projet -->
-    <section id="projects" class="panel" aria-label="Le projet">
-      <h1>Le projet</h1>
-      <div class="project-card">
-        <img class="thumb" src="images/vuegenerale.jpg" alt="Aperçu du storyboard – Printemps des marais">
-        <div>
-          <p>Découvrez notre <strong>storyboard visuel</strong> et plongez dans l'univers du projet.</p>
-          <a class="cta" href="projet-1.html">PRÉSENTATION VISUELLE</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Étapes du projet -->
-    <section id="etapes" class="panel">
-      <h1>Étapes du projet</h1>
-
-      <h3><strong><span class="orange">1 — PRÉ-PROJET</span></strong></h3>
-      <ul>
-        <li>Cartographie</li>
-        <li>Plan de gestion initial</li>
-      </ul>
-
-      <h3><strong><span class="orange">2 — ÉTAT DES LIEUX ÉCOLOGIQUE</span></strong></h3>
-      <ul>
-        <li>Repérage des zones d’intérêt écologique</li>
-        <li>Interventions scientifiques et inventaire initial des espèces</li>
-        <li>Résultats préliminaires : biodiversité observée</li>
-      </ul>
-
-      <h3><strong><span class="orange">3 — PRÉPARATIFS – ÉLEVAGE DE PONEYS LANDAIS</span></strong></h3>
-      <ul>
-        <li>Aménagements légers et balisage du site</li>
-        <li>Aménagements pour l’accueil des chevaux</li>
-        <li>Introduction des premiers poneys</li>
-      </ul>
-
-      <h3><strong><span class="orange">4 — ACTIONS ARTISTIQUES</span></strong></h3>
-      <ul>
-        <li>Élaboration et concept du projet artistique</li>
-        <li>Recherche de financements, partenariats et prestataires</li>
-        <li>Réalisation et installation des œuvres</li>
-        <li>Médiatisation des installations</li>
-      </ul>
-
-      <h3><strong><span class="orange">5 — SUIVIS DE LA BIODIVERSITÉ</span></strong></h3>
-      <ul>
-        <li>Suivi de la faune et de la flore : premières tendances</li>
-        <li>Coordination scientifique interdisciplinaire</li>
-        <li>Travaux légers d’aménagement écologique</li>
-        <li>Mise en place de panneaux d’information</li>
-      </ul>
-
-      <h3><strong><span class="orange">6 — COMMUNICATION</span></strong></h3>
-      <ul>
-        <li>Documentation photographique et vidéo</li>
-        <li>Valorisation patrimoniale : archives et récits</li>
-        <li>Communiqués de presse</li>
-      </ul>
-
-      <h3><strong><span class="orange">7 — ÉTAPES</span></strong></h3>
-      <ul>
-        <li>Relevés saisonniers : suivi des variations de biodiversité</li>
-        <li>Introduction de nouveaux poneys</li>
-        <li>Suivi des naissances et des poulains</li>
-        <li>Synthèse d’étape et ajustements du plan</li>
-        <li>Installation éventuelle d’équipements complémentaires</li>
-      </ul>
-
-      <h3><strong><span class="orange">8 — BILAN SCIENTIFIQUE</span></strong></h3>
-      <ul>
-        <li>Rapport et inventaire définitif faune/flore</li>
-        <li>Comparatifs avec les zones humides voisines</li>
-      </ul>
-
-      <h3><strong><span class="orange">9 — MÉDIATION</span></strong></h3>
-      <ul>
-        <li>Organisation d’expositions / rencontres</li>
-        <li>Mise en réseau avec des structures culturelles régionales</li>
-        <li>Restitution au public en milieu naturel</li>
-        <li>Restitution et projection du film documentaire</li>
-      </ul>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="grid2 panel" aria-label="Contact & adresse">
-      <div>
-        <h2>Contact</h2>
-        <p>📧 <a href="mailto:printempsdesmarais@gmail.com" style="color: var(--muted); text-decoration: none;">printempsdesmarais@gmail.com</a></p>
-        <p>💼 <a href="https://linkedin.com" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none;">LinkedIn</a></p>
-      </div>
-      <div>
-        <h2>Adresse</h2>
-        <p>308 G Passe Castillonnaise<br>33590 Talais — <em>France</em></p>
-        <p class="muted">Estuaire de la Gironde, nord Médoc</p>
-      </div>
-    </section>
-
-    <!-- Carte -->
-    <section id="map" class="map-wrap panel">
-      <h2>Nous trouver</h2>
-      <div class="map">
-        <iframe src="https://www.google.com/maps?q=308+G+Passe+Castillonnaise+33590+Talais+France&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Google Maps"></iframe>
-      </div>
-    </section>
+  <main id="main" class="wrap" style="min-height:60vh;padding:2rem 1rem;">
+    <h1>Accueil</h1>
+    <p>(Contenu à venir)</p>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 Printemps des Marais
+  <footer style="padding:2rem 1rem;opacity:.8;">
+    © <span id="y"></span> Printemps des Marais
   </footer>
 
   <script>
-    // Effet de flou progressif sur le fond
-    document.addEventListener('DOMContentLoaded', function() {
-      const bgImage = document.getElementById('bgImage');
-      const bgOverlay = document.getElementById('bgOverlay');
-
-      window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const blurIntensity = Math.min(scrollPosition / 150, 10);
-        const overlayOpacity = Math.min(scrollPosition / 300, 0.7);
-        if (scrollPosition > 5) {
-          bgImage.style.filter = `blur(${blurIntensity}px)`;
-          bgOverlay.style.opacity = overlayOpacity;
-        } else {
-          bgImage.style.filter = 'blur(4px)';
-          bgOverlay.style.opacity = '0';
-        }
-      });
-    });
-
-    // ====== Injecte le header commun depuis header.html ======
-    (async function mountSharedHeader(){
-      const container = document.getElementById('site-header');
-      try {
-        const res = await fetch('header.html', { cache: 'no-cache' });
-        const html = await res.text();
-        container.innerHTML = html;
-
-        // Active l'entrée de menu correspondant à la page d’accueil (optionnel)
-        // Exemple: met en surbrillance le lien "À propos" qui pointe vers l'ancre d'accueil.
-        const aboutLinks = container.querySelectorAll('a[href$="index.html#about"], a[href="#about"]');
-        aboutLinks.forEach(a => a.setAttribute('aria-current','page'));
-
-        // Menu mobile (les éléments viennent du header inclus)
-        const hamburger = container.querySelector('#hamburger');
-        const mobileMenu = container.querySelector('#mobileMenu');
-        if (hamburger && mobileMenu) {
-          hamburger.addEventListener('click', () => mobileMenu.classList.toggle('active'));
-        }
-      } catch (e) {
-        console.error('Impossible de charger header.html', e);
-        // Fallback minimal si le header ne se charge pas
-        container.innerHTML = `
-          <header>
-            <nav class="nav" aria-label="Navigation principale">
-              <a class="brand" href="index.html">
-                <img class="brand-logo" src="images/logo_pdm.png?v=2" alt="Logo Printemps des Marais">
-                <span>ASSOCIATION LOI 1901</span>
-              </a>
-              <div class="nav-links">
-                <a href="index.html#about">À propos</a>
-                <a href="projet-1.html">Projet</a>
-                <a href="agir.html" class="btn cta-nav">Agir</a>
-                <a href="index.html#contact">Contact</a>
-              </div>
-            </nav>
-          </header>
-        `;
-      }
+    // Injection du header partagé (rappel d'intégration)
+    (function(){
+      const slot = document.getElementById('site-header');
+      fetch('header.html', {credentials:'same-origin'})
+        .then(r => r.text())
+        .then(html => {
+          slot.innerHTML = html;
+          // Ré-exécute les <script> du fragment inséré (pour le sous-menu, etc.)
+          const scripts = slot.querySelectorAll('script');
+          scripts.forEach(old => {
+            const s = document.createElement('script');
+            for (const {name, value} of old.attributes) s.setAttribute(name, value);
+            s.text = old.textContent;
+            old.replaceWith(s);
+          });
+        })
+        .catch(()=>{ slot.innerHTML = '<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; });
     })();
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
