@@ -10,55 +10,82 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
 
-  <!-- Fond dédié (fondterrain4.jpg) — si tu préfères, mets cette règle dans css/content.css -->
+  <!-- Fond dédié + styles timeline -->
   <style>
+    /* Fond spécifique à la page chronologie */
     body.page10 .bg-image{ background-image: url("images/fondterrain4.jpg"); }
+
     /* Timeline verticale */
     .timeline {
       position: relative;
       margin: 2rem auto;
-      padding-left: 2rem;
-      max-width: 800px;
+      padding-left: 3.5rem; /* laisse la place aux badges numérotés */
+      max-width: 900px;
     }
     .timeline::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 15px;
+      left: 28px;          /* axe vertical */
       width: 4px;
       height: 100%;
       background: var(--orange);
       border-radius: 2px;
     }
+
     .timeline-item {
       position: relative;
-      margin-bottom: 2rem;
-      padding-left: 2rem;
+      margin-bottom: 1.2rem;
     }
-    .timeline-item::before {
-      content: "";
+
+    /* Badge numéroté (remplace l'ancien point) */
+    .timeline-badge{
       position: absolute;
-      top: .4rem;
-      left: -2px;
-      width: 14px;
-      height: 14px;
-      background: var(--vert);
-      border: 3px solid #fff;
+      left: 0;
+      top: .1rem;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      box-shadow: 0 0 0 2px rgba(0,0,0,.25);
+      background: var(--vert);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      border: 3px solid #fff;
     }
-    .timeline-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 .4rem 0;
+
+    .timeline-panel{
+      margin-left: .5rem;
+      background: rgba(15,15,15,.65);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: clamp(.85rem, 2.2vw, 1.15rem);
+      color:#fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
     }
-    .timeline-text {
-      margin: 0;
-      color: #fff;
-      opacity: .95;
+
+    .timeline-title{
+      margin: 0 0 .35rem 0;
+      color:#fff;
+      font-weight: 800;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      letter-spacing: .01em;
+      text-transform: none;
+    }
+
+    .timeline-text{ margin: 0; }
+    .timeline-text ul{
+      margin: .2rem 0 0 1.1rem;
+      padding: 0;
+    }
+    .timeline-text li{
+      margin: .28rem 0;
       line-height: 1.6;
       font-size: 1rem;
+      opacity: .98;
     }
   </style>
 </head>
@@ -72,54 +99,145 @@
   <main class="wrap-narrow">
     <h1 class="section-title center">Étapes clés 2025</h1>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <h2 class="timeline-title">Renaissance d’un terrain</h2>
-        <p class="timeline-text">
-          Acquisition de la parcelle (8 hectares). Remise en état minimale, préservation de la mare d’eau douce
-          et des haies de tamaris pour redonner vie au site.
-        </p>
-      </div>
+    <div class="timeline" aria-label="Chronologie du projet">
+      <!-- 1 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">1</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">1 - FONCIER</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Cartographie</li>
+              <li>Acquisition du terrain</li>
+              <li>Plan de gestion initial</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="timeline-item">
-        <h2 class="timeline-title">Une vocation singulière</h2>
-        <p class="timeline-text">
-          Compréhension de l’histoire des digues et des marais du Médoc.
-          Mise en valeur du rôle de zone tampon face aux risques d’inondation.
-        </p>
-      </div>
+      <!-- 2 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">2</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">2 - ÉTAT DES LIEUX ÉCOLOGIQUE</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Repérage des zones d’intérêt écologique</li>
+              <li>Interventions scientifiques et inventaire des espèces initiales</li>
+              <li>Résultats préliminaires : biodiversité observée</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="timeline-item">
-        <h2 class="timeline-title">Un patrimoine vivant</h2>
-        <p class="timeline-text">
-          Réintroduction du poney landais, race patrimoniale menacée,
-          et expérimentation d’un élevage extensif respectueux de la biodiversité.
-        </p>
-      </div>
+      <!-- 3 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">3</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">3 - PRÉPARATIFS ÉLEVAGE PONEYS LANDAIS</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Aménagements légers et balisage du site</li>
+              <li>Aménagements pour accueil des chevaux</li>
+              <li>Introduction des premiers poneys</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="timeline-item">
-        <h2 class="timeline-title">Un allié pour la biodiversité</h2>
-        <p class="timeline-text">
-          Pâturage écologique, maintien des habitats ouverts, réduction du CO₂ et valorisation
-          de la biodiversité locale grâce aux poneys landais.
-        </p>
-      </div>
+      <!-- 4 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">4</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">4 - ACTIONS ARTISTIQUES</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Élaboration et concept du projet artistique</li>
+              <li>Recherche financements, partenariats et prestataires</li>
+              <li>Réalisation et installation des oeuvres</li>
+              <li>Médiatisation des installations</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="timeline-item">
-        <h2 class="timeline-title">Un terrain laboratoire</h2>
-        <p class="timeline-text">
-          Suivi scientifique, partage avec habitants, institutions et chercheurs,
-          et mise en place d’une vitrine expérimentale à échelle humaine.
-        </p>
-      </div>
+      <!-- 5 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">5</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">5 - SUIVIS BIODIVERSITÉ</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Suivi faune/flore : premières tendances</li>
+              <li>Coordination scientifique interdisciplinaire</li>
+              <li>Travaux légers d’aménagement écologique</li>
+              <li>Mise en place de panneaux d’information</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="timeline-item">
-        <h2 class="timeline-title">Appel à participation</h2>
-        <p class="timeline-text">
-          Invitation aux habitants, associations et institutions à rejoindre le projet
-          et à contribuer collectivement à la renaissance des marais.
-        </p>
-      </div>
+      <!-- 6 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">6</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">6 - COMMUNICATION</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Documentation photographique et vidéo</li>
+              <li>Valorisation patrimoniale : archives et récits</li>
+              <li>Communiqués de presse</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">7</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">7 - ÉTAPES</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Relevés saisonniers : suivi des variations de biodiversité</li>
+              <li>Introduction de nouveaux poneys</li>
+              <li>Suivi des naissances et des poulains</li>
+              <li>Synthèse d’étape et ajustements du plan</li>
+              <li>Installation éventuelle d’équipements complémentaires</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">8</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">8 - BILAN SCIENTIFIQUE</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Rapport et Inventaire définitif faune/flore</li>
+              <li>Comparatifs avec les zones humides voisines</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="timeline-item">
+        <div class="timeline-badge">9</div>
+        <div class="timeline-panel">
+          <h2 class="timeline-title">9 - MÉDIATION</h2>
+          <div class="timeline-text">
+            <ul>
+              <li>Organisation expositions / rencontre</li>
+              <li>Mise en réseau avec structures culturelles régionales</li>
+              <li>Restitution au public en milieu naturel</li>
+              <li>Restitution et projection du film documentaire</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
