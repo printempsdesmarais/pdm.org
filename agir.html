@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Agir Ensemble — Printemps des Marais</title>
   <meta name="description" content="Participer, adhérer, soutenir : découvrez comment contribuer au projet Printemps des Marais.">
-
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a href="#main" class="sr-only">Aller au contenu</a>
+
   <header id="site-header" aria-label="En-tête du site"></header>
 
   <main id="main" class="wrap" style="min-height:60vh;padding:2rem 1rem;">
@@ -18,18 +18,25 @@
     <p>(Contenu à venir)</p>
   </main>
 
-  <footer style="padding:2rem 1rem;opacity:.8;">© <span id="y"></span> Printemps des Marais</footer>
+  <footer id="site-footer" aria-label="Pied de page"></footer>
 
   <script>
     (function(){
-      const slot = document.getElementById('site-header');
-      fetch('header.html',{credentials:'same-origin'}).then(r=>r.text()).then(html=>{
-        slot.innerHTML = html;
-        const scripts = slot.querySelectorAll('script');
-        scripts.forEach(old=>{ const s=document.createElement('script'); for(const {name,value} of old.attributes) s.setAttribute(name,value); s.text=old.textContent; old.replaceWith(s); });
-      }).catch(()=>{ slot.innerHTML='<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; });
+      function injectFragment(targetId, url){
+        const slot = document.getElementById(targetId);
+        if(!slot) return;
+        fetch(url,{credentials:'same-origin'}).then(r=>r.text()).then(html=>{
+          slot.innerHTML = html;
+          const scripts = slot.querySelectorAll('script');
+          scripts.forEach(old=>{ const s=document.createElement('script'); for(const {name,value} of old.attributes) s.setAttribute(name,value); s.text=old.textContent; old.replaceWith(s); });
+        }).catch(()=>{
+          if(targetId==='site-header'){ slot.innerHTML='<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; }
+          else { slot.innerHTML='<div style="padding:1rem;text-align:center;color:#fff;background:#222">© '+new Date().getFullYear()+' Printemps des Marais — Association loi 1901</div>'; }
+        });
+      }
+      injectFragment('site-header','header.html');
+      injectFragment('site-footer','footer.html');
     })();
-    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
