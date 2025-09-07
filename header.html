@@ -24,7 +24,7 @@
             <path d="M5 7l5 6 5-6" fill="currentColor"/>
           </svg>
         </button>
-        <div class="submenu" id="submenu-decouvrir" role="menu" aria-label="Découvrir">
+        <div class="submenu" id="submenu-decouvrir" role="menu" aria-label="Découvrir" tabindex="-1">
           <a href="actus.html" class="submenu-link" role="menuitem">Actualités / Blog</a>
           <a href="galerie.html" class="submenu-link" role="menuitem">Galerie / Storyboard visuel</a>
           <a href="a-propos.html" class="submenu-link" role="menuitem">À propos</a>
@@ -44,7 +44,6 @@
 
     <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
-      <!-- Boutons orange demandés -->
       <a href="index.html" class="mobile-link nav-button">Accueil</a>
       <a href="projet-1.html" class="mobile-link nav-button">Notre Mission</a>
 
@@ -65,7 +64,7 @@
 </header>
 
 <script>
-  // Toggle accessible du sous-menu (ajoute/retire .open au groupe)
+  // Sous-menu desktop : ajoute/retire .open au groupe et synchronise aria-expanded
   (function(){
     const group = document.querySelector('.nav-group');
     if (!group) return;
@@ -79,19 +78,27 @@
       group.classList.toggle('open', open);
     }
 
-    // Ouvre au survol et focus, ferme en sortie
+    // Ouvre au survol/focus, ferme en sortie
     group.addEventListener('mouseenter', () => setState(true));
     group.addEventListener('mouseleave', () => setState(false));
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       setState(!open);
-      // optionnel: focus sur le panel quand on ouvre au clic
-      if (open && panel) panel.focus?.();
+      if (open && panel && panel.focus) panel.focus();
     });
 
-    // Ferme avec Échap si ouvert
+    // Ferme avec Échap
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') setState(false);
     });
+
+    // Burger: synchronise aria-expanded sur le label (utile pour accessibilité)
+    const toggle = document.getElementById('nav-toggle');
+    const label  = document.querySelector('label[for="nav-toggle"]');
+    if (toggle && label){
+      const sync = () => label.setAttribute('aria-expanded', String(!!toggle.checked));
+      toggle.addEventListener('change', sync);
+      sync();
+    }
   })();
 </script>
