@@ -7,15 +7,25 @@
       <a href="index.html">Accueil</a>
       <a href="a-propos.html">À propos</a>
       <a href="ressources.html">Ressources</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html#contact" id="footer-contact-link">Contact</a>
     </nav>
   </div>
 </footer>
 
 <script>
-  // Année dynamique (ré-exécuté après injection)
+  // Année dynamique
   (function(){
     var el = document.getElementById('footer-year');
     if (el) el.textContent = new Date().getFullYear();
+  })();
+
+  // Si on est déjà sur la home, évite le reload : href -> "#contact"
+  (function(){
+    var link = document.getElementById('footer-contact-link');
+    if (!link) return;
+    var p = location.pathname.replace(/\/+$/, '');
+    if (p === '' || p === '/' || /\/index\.html$/.test(p)) {
+      link.setAttribute('href', '#contact');
+    }
   })();
 </script>
