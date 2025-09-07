@@ -27,54 +27,6 @@
   <div class="bg-container"><div class="bg-image" id="bgImage"></div></div>
   <div class="bg-overlay" id="bgOverlay"></div>
 
-  <script>
-  // Header depuis header.html (HTTP/S) + fallback <iframe> (file://)
-  document.addEventListener('DOMContentLoaded', async () => {
-    const slot = document.getElementById('site-header');
-
-    async function injectHeaderWithFetch() {
-      const url = new URL('./header.html', location.href);
-      const res = await fetch(url.toString(), { credentials: 'same-origin' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const html = await res.text();
-
-      // Injecte le HTML
-      slot.innerHTML = html;
-
-      // Ré-exécute les <script> du fragment inséré
-      const scripts = slot.querySelectorAll('script');
-      scripts.forEach(old => {
-        const s = document.createElement('script');
-        // Copie les attributs (src, type, etc.)
-        for (const { name, value } of old.attributes) s.setAttribute(name, value);
-        // Copie le contenu inline si présent
-        s.text = old.textContent;
-        old.replaceWith(s);
-      });
-    }
-
-    function injectHeaderWithIframe() {
-      const iframe = document.createElement('iframe');
-      iframe.src = 'header.html';
-      iframe.title = 'En-tête du site';
-      iframe.loading = 'lazy';
-      iframe.style.border = '0';
-      iframe.style.width = '100%';
-      iframe.style.display = 'block';
-      iframe.style.minHeight = '64px'; // ajuste si besoin
-      // On remplace complètement le slot pour éviter de doubler les rôles ARIA
-      slot.replaceWith(iframe);
-    }
-
-    try {
-      if (location.protocol === 'file:') throw new Error('file-protocol');
-      await injectHeaderWithFetch();
-    } catch (e) {
-      // Fallback pratique pour l’ouverture locale
-      injectHeaderWithIframe();
-    }
-  });
-</script>
 
 
   <main class="wrap">
