@@ -11,13 +11,14 @@
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
+  <!-- Styles locaux (légers) pour harmoniser avec l'accueil -->
   <style>
-    /* Styles locaux */
+    /* Hero cohérent avec index */
     #mission-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
     #mission-hero .brand-hero img{
       width:100%; max-width:480px; height:auto; display:block; margin:0 auto;
     }
-    #mission-hero .intro{
+    #mission-hero .hero-lead{
       color:#fff;
       font-size: clamp(1.15rem, 2.4vw, 1.6rem);
       line-height:1.5;
@@ -26,29 +27,32 @@
       text-wrap: balance;
     }
 
-    figure.media{
-      margin:1rem 0; text-align:center;
-    }
+    /* Figures média + lightbox (local à la page) */
+    figure.media{ margin:1rem 0; text-align:center; }
     figure.media img{
-      max-width:100%; height:auto; border-radius:8px; cursor:zoom-in;
+      max-width:100%; height:auto; border-radius:10px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      cursor:zoom-in;
     }
-    figure.media figcaption{
-      font-size:.85rem; color:#eee; margin-top:.3rem;
-    }
+    figure.media figcaption{ font-size:.9rem; color:#eee; margin-top:.35rem; }
 
-    /* Lightbox simple */
     .lightbox{
       position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-      background:rgba(0,0,0,.85); z-index:2000;
+      background:rgba(0,0,0,.86); z-index:2000; padding:1rem;
     }
     .lightbox.open{ display:flex; }
     .lightbox img{
-      max-width:92vw; max-height:88vh; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+      max-width:min(92vw,1200px); max-height:88vh;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.5);
     }
+
+    /* Grilles utilitaires locales */
+    .cols-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
   </style>
 </head>
-<body class="page4">
-  <!-- Fond décoratif -->
+<body class="page2">
+  <!-- Fond décoratif (défini via body.page2 dans content.css → fondterrain4.jpg) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
   <!-- Header injecté -->
@@ -61,96 +65,145 @@
         <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
       </div>
       <h1 class="section-title">Notre mission</h1>
-      <p class="intro">
-        Redonner vie à un terrain en friche, préserver la biodiversité et faire du poney landais un symbole vivant de la transition écologique dans les marais du Médoc.
+      <p class="hero-lead">
+        Redonner vie à un terrain en friche, préserver la biodiversité et faire du poney landais un symbole vivant
+        de la transition écologique dans les marais du Médoc.
       </p>
+      <div style="display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;">
+        <a href="agir.html" class="nav-button">Agir avec nous</a>
+        <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+      </div>
     </section>
 
-    <!-- RENAISSANCE D’UN TERRAIN -->
-    <section id="renaissance" aria-label="Renaissance d’un terrain">
+    <!-- 1) RENAISSANCE D’UN TERRAIN -->
+    <section id="renaissance" aria-label="Renaissance d’un terrain" style="padding:1rem 0 2rem 0;">
       <h2 class="section-title">Renaissance d’un terrain</h2>
-      <p>
-        Notre mission consiste dans un premier temps en l’acquisition d’un terrain de 8 hectares correspondant aux parcelles cadastrales n°0037 et 0039. La dernière exploitation agricole remonte aux années 2010 à 2014, avec un élevage d’ânes. Depuis le décès du propriétaire, la terre est inexploitée, entretenue seulement par un broyage sommaire.
-      </p>
-      <p>
-        Le terrain est bordé par un chemin touristique communal, et au centre se trouve une mare d’eau douce (salinité < 1 g/l), issue d’une nappe phréatique affleurante. Plus d’un kilomètre de haies de tamaris assurent un rôle de brise-vent naturel et de drainage.
-      </p>
-
-      <figure class="media">
-        <img src="images/parcelle37.jpg" alt="Vue générale — parcelle n°37" data-full="images/parcelle37.jpg">
-        <figcaption>Vue générale — Parcelle n°37</figcaption>
-      </figure>
-    </section>
-
-    <!-- VOCATION SINGULIÈRE -->
-    <section id="vocation" aria-label="Des terres à vocation singulière">
-      <h2 class="section-title">Des terres à vocation singulière</h2>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:start; flex-wrap:wrap;">
-        <div>
-          <p>
-            La digue de Talais, entre Talais et Saint-Vivien-de-Médoc, fut construite vers 1763–1764 lors des travaux d’assèchement des marais, puis renforcée après sa rupture en 1885. Sans elle, les grandes marées atteignaient la parcelle, située alors sur l’estran (*les mattes*).
-          </p>
-          <p>
-            Aujourd’hui, les grandes cultures céréalières y produisent des semences sur des terres fertiles, mais privées de leur fonction tampon, ces sols accroissent les risques d’inondation pour la Gironde et Bordeaux.
-          </p>
-          <p>
-            L’État, via le Conservatoire du littoral, agit pour restaurer ces zones, en partenariat avec les éleveurs dont le bétail joue un rôle essentiel. Notre mission, modeste face à l’étendue des mattes, est de devenir une vitrine exemplaire à échelle humaine, tendant vers une autonomie biologique avec un minimum d’intervention.
-          </p>
+      <div class="panel" style="padding:1rem;">
+        <div class="cols-2">
+          <div>
+            <p>
+              Notre mission consiste dans un premier temps en l’acquisition d’un terrain de 8 hectares correspondant aux parcelles
+              cadastrales n°0037 et 0039. La dernière exploitation agricole remonte aux années 2010–2014, avec un élevage d’ânes.
+              Depuis le décès du propriétaire, la terre est inexploitée ; un entretien sommaire par broyage limite a minima la
+              fermeture totale de la prairie. Un chemin touristique communal longe également la parcelle.
+            </p>
+            <p>
+              Au cœur du terrain, une mare a été analysée en juillet 2025 : salinité inférieure à 1 g/l — une eau douce issue d’une
+              résurgence de nappe phréatique affleurante. En bordure, plus d’un kilomètre de haies de tamaris jouent le rôle de
+              brise-vent et de drain naturels (≈ 75 % du périmètre).
+            </p>
+          </div>
+          <figure class="media">
+            <img src="images/parcelle37.jpg" alt="Vue générale — parcelle n°37" data-full="images/parcelle37.jpg" loading="lazy">
+            <figcaption>Vue générale — Parcelle n°37.</figcaption>
+          </figure>
         </div>
-        <figure class="media">
-          <img src="images/digue1.jpg" alt="Digue de Talais" data-full="images/digue1.jpg">
-          <figcaption>Digue de Talais, construite au XVIIIᵉ siècle</figcaption>
-        </figure>
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem;">
+          <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+          <a href="ressources.html" class="nav-button">Voir les ressources</a>
+        </div>
       </div>
     </section>
 
-    <!-- PONEY LANDAIS -->
-    <section id="poney" aria-label="Chevaux sauvages du sud-ouest">
+    <!-- 2) DES TERRES À VOCATION SINGULIÈRE -->
+    <section id="vocation" aria-label="Des terres à vocation singulière" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Des terres à vocation singulière</h2>
+      <div class="panel" style="padding:1rem;">
+        <div class="cols-2">
+          <div>
+            <p>
+              La digue de Talais, entre Talais et Saint-Vivien-de-Médoc, a été construite vers <strong>1763–1764</strong> avec les travaux
+              d’assèchement des marais, puis <strong>renforcée après 1885</strong> à la suite d’une rupture. Sans elle, les grandes marées
+              atteignaient la parcelle, alors située sur l’estran (*les mattes*). L’altitude du site varie entre <strong>2 m et 3 m</strong>
+              au-dessus du niveau moyen de la mer.
+              <a class="text-link" href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus</a>.
+            </p>
+            <p>
+              Si les cultures céréalières bénéficient ici de terres <strong>très fertiles et bien irriguées</strong>, la perte de la fonction
+              <strong>zone tampon</strong> des marais accroît les risques d’<strong>inondation</strong> pour les riverains de la Gironde et la métropole
+              bordelaise.
+            </p>
+            <p>
+              L’État, via le <strong>Conservatoire du littoral</strong>, agit pour restaurer ces fonctions écologiques en s’appuyant notamment
+              sur le <strong>pâturage</strong> : le bétail demeure la <strong>clé de voûte</strong> de ces milieux inondables. Notre mission, modeste face
+              aux centaines d’hectares voisins, vise l’<strong>exemplarité</strong> : une vitrine à <strong>échelle humaine</strong> tendant vers une
+              <strong>autonomie biologique</strong> avec un minimum d’intervention.
+            </p>
+          </div>
+          <figure class="media">
+            <img src="images/digue1.jpg" alt="Digue de Talais" data-full="images/digue1.jpg" loading="lazy">
+            <figcaption>Digue de Talais (XVIIIᵉ siècle), élément structurant du paysage.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) CHEVAUX « SAUVAGES » DU SUD-OUEST -->
+    <section id="poney" aria-label="Chevaux « sauvages » du sud-ouest" style="padding:1rem 0 2rem 0;">
       <h2 class="section-title">Chevaux « sauvages » du sud-ouest</h2>
-      <p>
-        Intimement lié aux paysages aquitains, le <strong>poney landais</strong> pourrait devenir un allié précieux pour la gestion écologique des marais du Médoc, conciliant patrimoine, biodiversité et développement durable.
-      </p>
-      <p>
-        Issu des chevaux des landes et marais, le landais a frôlé l’extinction dans les années 1970 (à peine une centaine d’individus). Grâce au Dr Henri Soulé et à des éleveurs passionnés, un plan de sauvegarde et un stud-book ont permis sa survie, avec quelques croisements ponctuels.
-      </p>
-      <p>
-        Aujourd’hui, il reste quelques centaines de poneys, surtout dans les Landes. Rustique, docile et endurant, il excelle dans l’attelage, le dressage et l’endurance, mais sa petite taille limite sa compétitivité dans les clubs. Deux voies existent : sélectionner des modèles plus grands ou préserver le type originel.
-      </p>
-      <p>
-        Au-delà du sport, sa rusticité et son adaptation aux zones humides le rendent particulièrement utile pour entretenir prairies et marais de manière douce et écologique.
-      </p>
-    </section>
-
-    <!-- ALLIÉ POUR LA BIODIVERSITÉ -->
-    <section id="biodiversite" aria-label="Un allié pour la biodiversité">
-      <h2 class="section-title">Un allié pour la biodiversité</h2>
-      <p>Le poney landais joue un rôle concret dans la préservation des marais :</p>
-      <ul>
-        <li><strong>Entretien naturel</strong> : broutage des herbes hautes, joncs et arbustes.</li>
-        <li><strong>Préservation de la biodiversité</strong> : habitats variés pour oiseaux, amphibiens et insectes.</li>
-        <li><strong>Gestion douce</strong> : remplace les engins mécaniques, limite tassement des sols et émissions de CO₂.</li>
-        <li><strong>Valorisation locale</strong> : associer sauvegarde d’une race régionale et entretien écologique.</li>
-      </ul>
-
-      <figure class="media">
-        <img src="images/poney1.jpg" alt="Jalle, ponette landaise de 5 ans" data-full="images/poney1.jpg">
-        <figcaption>Jalle, ponette landaise de 5 ans, pionnière du projet.</figcaption>
-      </figure>
-    </section>
-
-    <!-- VIDÉO -->
-    <section id="video" aria-label="Vidéo de présentation">
-      <h2 class="section-title">Vidéo de présentation du projet</h2>
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;border-radius:12px;">
-        <iframe src="https://player.vimeo.com/video/1050588243?h=0a0c0f0f" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+      <div class="panel" style="padding:1rem;">
+        <p>
+          Intimement lié aux paysages aquitains, le <strong>poney landais</strong> peut devenir un <strong>allié précieux</strong> pour la gestion
+          écologique des marais du Médoc, conciliant patrimoine, biodiversité et développement durable.
+        </p>
+        <p>
+          Issu des chevaux des landes et marais, le landais a frôlé l’extinction dans les années 1970 (environ <strong>100 individus</strong>).
+          Grâce au <strong>Dr Henri Soulé</strong> et à des éleveurs passionnés, un plan de sauvegarde et un <strong>stud-book</strong> ont permis sa
+          survie, avec des apports ponctuels (Welsh, arabe) pour limiter la consanguinité. Aujourd’hui, on compte <strong>quelques
+          centaines</strong> de poneys, surtout dans les Landes.
+        </p>
+        <p>
+          Rustique, docile, endurant et polyvalent (attelage, dressage, endurance, saut), il souffre toutefois d’une <strong>petite taille</strong>
+          (cat. B et C) qui limite sa compétitivité en club. La race manque de <strong>visibilité</strong>, de <strong>débouchés</strong> et d’<strong>éleveurs</strong>.
+          Deux voies existent : sélectionner des modèles plus grands, ou préserver le type originel.
+        </p>
+        <p class="hint" style="opacity:.9;">
+          Source : « Plan de sauvegarde du poney landais », thèse Josette / Yannick Leblond — École vétérinaire d’Alfort (2006).
+        </p>
       </div>
     </section>
 
-    <!-- APPEL -->
-    <section id="appel" aria-label="Appel à participation">
-      <div class="panel" style="text-align:center; padding:2rem 1rem;">
-        <h2 class="section-title">Rejoignez l’expérience</h2>
+    <!-- 4) UN ALLIÉ POUR LA BIODIVERSITÉ -->
+    <section id="biodiversite" aria-label="Un allié pour la biodiversité" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Un allié pour la biodiversité</h2>
+      <div class="panel" style="padding:1rem;">
+        <div class="cols-2">
+          <div>
+            <p>Dans une logique de <strong>gestion écologique</strong>, le poney landais peut jouer plusieurs rôles :</p>
+            <ul style="margin:0; padding-left:1.2rem; line-height:1.7;">
+              <li><strong>Entretien naturel</strong> : broutage des herbes hautes, joncs et arbustes pour maintenir les milieux ouverts.</li>
+              <li><strong>Préservation de la biodiversité</strong> : création d’une mosaïque d’habitats pour oiseaux d’eau, amphibiens et insectes.</li>
+              <li><strong>Gestion douce</strong> : remplacement d’engins mécaniques, réduction du tassement des sols et des émissions de CO₂.</li>
+              <li><strong>Valorisation locale</strong> : patrimoine naturel + sauvegarde d’une race régionale.</li>
+            </ul>
+          </div>
+          <figure class="media">
+            <img src="images/poney1.jpg" alt="Jalle, ponette landaise de 5 ans, pionnière du projet" data-full="images/poney1.jpg" loading="lazy">
+            <figcaption>Jalle, ponette landaise de 5 ans, pionnière du projet.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) VIDÉO (avant l'appel) -->
+    <section id="video" aria-label="Vidéo de présentation" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Vidéo de présentation du projet</h2>
+      <div class="panel" style="padding:0; overflow:hidden;">
+        <div style="position:relative; width:100%; aspect-ratio:16/9; background:rgba(0,0,0,.3);">
+          <iframe 
+            src="https://player.vimeo.com/video/1050588243?fl=pl&fe=sh"
+            title="Présentation — Printemps des Marais"
+            style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) APPEL -->
+    <section id="appel" aria-label="Appel à participation" style="padding:1rem 0 3rem 0;">
+      <div class="panel" style="text-align:center; padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
+        <h2 class="section-title" style="margin:0;">Rejoignez l’expérience</h2>
         <p>
           Bénévoles, chercheurs, habitants et institutions : chacun peut contribuer à faire renaître ces terres. Ensemble, faisons du
           poney landais le symbole vivant de la transition écologique dans les marais du Médoc.
@@ -172,21 +225,24 @@
   <script src="js/injector.js"></script>
   <script src="js/short-text.js"></script>
 
+  <!-- Lightbox simple -->
   <script>
-    // Lightbox pour agrandir les images
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    const img = document.createElement('img');
-    lightbox.appendChild(img);
-    document.body.appendChild(lightbox);
+    (function(){
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      const img = document.createElement('img');
+      lb.appendChild(img);
+      document.body.appendChild(lb);
 
-    document.querySelectorAll('figure.media img').forEach(thumbnail => {
-      thumbnail.addEventListener('click', () => {
-        img.src = thumbnail.dataset.full || thumbnail.src;
-        lightbox.classList.add('open');
+      function open(src){ img.src = src; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); img.src=''; document.body.style.overflow=''; }
+
+      document.querySelectorAll('figure.media img').forEach(th=>{
+        th.addEventListener('click', ()=> open(th.dataset.full || th.src));
       });
-    });
-    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+    })();
   </script>
 </body>
 </html>
