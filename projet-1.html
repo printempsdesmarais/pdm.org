@@ -3,22 +3,143 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Notre Mission — Printemps des Marais</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Notre mission — Printemps des Marais</title>
+  <meta name="description" content="Notre mission : restaurer un terrain en friche du Médoc pour en faire un laboratoire vivant conciliant écologie, patrimoine et innovation.">
+  
+  <!-- Styles globaux -->
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
+
+  <style>
+    /* Ajustements très locaux pour la lisibilité du héros */
+    #mission-hero { text-align: center; padding: clamp(2rem,6vw,4rem) 0; }
+    #mission-hero .brand-hero img{
+      width:100%; max-width:480px; height:auto; display:block; margin:0 auto;
+    }
+    #mission-hero .intro{
+      color:#fff; 
+      font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+      line-height:1.5;
+      max-width: 72ch;
+      margin: .5rem auto 1rem auto;
+      text-wrap: balance;
+    }
+    #mission-hero h1.section-title{ margin-top:.5rem; }
+    /* Grille utilitaire locale si besoin de colonnes */
+    .cols-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  </style>
 </head>
 <body class="page2">
+  <!-- Fond décoratif (défini via body.page2 dans content.css) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap">
-    <h1>Notre Mission</h1>
-    <p>Présentation détaillée du projet et de ses objectifs.</p>
+  <main class="wrap" id="main">
+    <!-- HÉRO / INTRO -->
+    <section id="mission-hero" aria-label="Introduction — Notre mission">
+      <div class="brand-hero">
+        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
+      </div>
+      <h1 class="section-title">Notre mission</h1>
+      <p class="intro">
+        Restaurer un terrain en friche du Médoc pour en faire un <strong>laboratoire vivant</strong> conciliant
+        <strong>écologie</strong>, <strong>patrimoine</strong> et <strong>innovation</strong>.
+      </p>
+      <div style="display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;">
+        <a href="agir.html" class="nav-button">Agir avec nous</a>
+        <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+      </div>
+    </section>
+
+    <!-- SECTION : Le terrain -->
+    <section aria-label="Le terrain" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Un terrain de 8 hectares</h2>
+      <div class="panel" style="padding:1rem;">
+        <div class="cols-2">
+          <div>
+            <p>
+              Anciennes prairies agricoles, aujourd’hui laissées à l’abandon. Présence d’une mare d’eau douce et de
+              haies naturelles de tamaris.
+            </p>
+            <p>
+              Ce terrain devient notre <strong>espace pilote</strong> pour tester une gestion écologique et autonome.
+            </p>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:.5rem; flex-wrap:wrap;">
+            <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+            <a href="ressources.html" class="nav-button">Voir les ressources</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION VIDÉO -->
+    <section aria-label="Vidéo de présentation" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Vidéo de présentation du projet</h2>
+      <div class="panel" style="padding:0; overflow:hidden;">
+        <!-- Wrapper 16:9 responsive -->
+        <div style="position:relative; width:100%; aspect-ratio:16/9; background:rgba(0,0,0,.3);">
+          <iframe 
+            src="https://player.vimeo.com/video/1050588243?fl=pl&fe=sh"
+            title="Présentation — Printemps des Marais"
+            style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION : Pourquoi cette mission ? -->
+    <section aria-label="Pourquoi cette mission ?" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Répondre aux défis actuels</h2>
+      <div class="panel" style="padding:1rem;">
+        <ul style="margin:0; padding-left:1.2rem; line-height:1.7;">
+          <li>Préserver les zones humides et <strong>réduire les risques d’inondations</strong>.</li>
+          <li>Offrir un espace refuge à la <strong>biodiversité</strong>.</li>
+          <li>Revaloriser le <strong>patrimoine agricole et naturel</strong>.</li>
+          <li>Créer un <strong>lieu de pédagogie</strong> et de rencontre.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION : Vitrine expérimentale -->
+    <section aria-label="Une vitrine expérimentale" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Un projet à échelle humaine</h2>
+      <div class="panel" style="padding:1rem;">
+        <p>
+          Chercheurs, éleveurs, collectivités et habitants participent à cette aventure.
+          L’objectif : un terrain <strong>autonome</strong>, peu d’intervention humaine, mais une <strong>biodiversité riche</strong> et durable.
+        </p>
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+          <a href="agir.html" class="nav-button">Agir avec nous</a>
+          <a href="index.html#contact" class="nav-button">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPEL FINAL -->
+    <section aria-label="Appel à rejoindre le projet" style="padding:1rem 0 3rem 0;">
+      <div class="panel" style="padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
+        <h2 class="section-title" style="margin:0;">Rejoignez-nous</h2>
+        <p>
+          Ensemble, faisons de ce terrain un <strong>symbole vivant</strong> de la transition écologique dans les marais du Médoc.
+        </p>
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+          <a href="agir.html" class="nav-button">Voir comment participer</a>
+          <a href="index.html#contact" class="nav-button">Prendre contact</a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
 </body>
