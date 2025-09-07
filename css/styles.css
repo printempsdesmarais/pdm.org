@@ -289,9 +289,10 @@ a:focus-visible, button:focus-visible, .hamburger:focus-visible, .submenu-link:f
 
 /* Images spécifiques par page */
 body.page1 .bg-image{ background-image: url("../images/fondterrain1.jpg"); }
-body.page2 .bg-image{ background-image: url("../images/fondterrain2.jpg"); }
+body.page2 .bg-image{ background-image: url("../images/fondterrain4.jpg"); } /* Mission -> ancien fond actu */
 body.page3 .bg-image{ background-image: url("../images/fondterrain3.jpg"); }
-body.page4 .bg-image{ background-image: url("../images/fondterrain4.jpg"); }
+body.page4 .bg-image{ background-image: url("../images/fondterrain2.jpg"); } /* Actus -> ancien fond mission */
 body.page5 .bg-image{ background-image: url("../images/fondterrain5.jpg"); }
 body.page6 .bg-image{ background-image: url("../images/fondterrain6.jpg"); }
 body.page7 .bg-image{ background-image: url("../images/fondterrain7.jpg"); }
+
