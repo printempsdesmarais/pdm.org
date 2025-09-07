@@ -2,7 +2,6 @@
   const mount = document.getElementById('home-news-list');
   if (!mount) return;
 
-  // Utilitaire : crée un élément
   const el = (tag, cls, html) => {
     const n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -10,8 +9,11 @@
     return n;
   };
 
-  // Normalise les URL relatives -> absolues
-  const abs = (url) => new URL(url, location.origin + '/').toString();
+  // Résout une URL relative en absolue par rapport à la page actus.html PARSÉE
+  const absolutize = (maybeUrl, base) => {
+    try { return new URL(maybeUrl, base).toString(); }
+    catch { return maybeUrl; }
+  };
 
   try {
     const res = await fetch('actus.html', { credentials: 'same-origin' });
@@ -20,8 +22,9 @@
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
+    const base = doc.baseURI || document.baseURI;
 
-    // Récupère les cartes .post dans actus.html
+    // Prend les 3 premières cartes
     const posts = Array.from(doc.querySelectorAll('.post')).slice(0, 3);
     if (!posts.length) {
       mount.appendChild(el('p', null, `Aucune actualité n'est disponible pour le moment.`));
@@ -29,14 +32,17 @@
     }
 
     posts.forEach(post => {
-      // Title + URL
+      // Titre + URL
       const aTitle = post.querySelector('.post-title a');
       const title = aTitle ? aTitle.textContent.trim() : 'Article';
-      const url = aTitle ? abs(aTitle.getAttribute('href')) : abs('actus.html');
+      const href  = aTitle ? aTitle.getAttribute('href') : 'actus.html';
+      const url   = absolutize(href, base);
 
-      // Image
-      const imgEl = post.querySelector('.post-thumb');
-      const imgSrc = imgEl ? abs(imgEl.getAttribute('src')) : '';
+      // Image (stratégie robuste)
+      let imgEl = post.querySelector('.post-thumb');
+      if (!imgEl) imgEl = post.querySelector('.post-cover img');
+      if (!imgEl) imgEl = post.querySelector('img');
+      const imgSrc = imgEl ? absolutize(imgEl.getAttribute('src'), base) : '';
       const imgAlt = imgEl ? (imgEl.getAttribute('alt') || title) : title;
 
       // Date
@@ -44,15 +50,13 @@
       const dateText = time ? time.textContent.trim() : '';
       const dateISO  = time ? (time.getAttribute('datetime') || '') : '';
 
-      // Extrait (priorité à .post-excerpt)
+      // Extrait : priorité à .post-excerpt, sinon 1er paragraphe du body
       let excerpt = '';
-      const exEl = post.querySelector('.post-excerpt') || post.querySelector('.post-body');
+      const exEl = post.querySelector('.post-excerpt') || post.querySelector('.post-body p');
       if (exEl) excerpt = exEl.textContent.trim();
+      if (excerpt.length > 240) excerpt = excerpt.slice(0, 237).trim() + '…';
 
-      // Optionnel : tronque “un peu” pour éviter les pavés
-      if (excerpt.length > 220) excerpt = excerpt.slice(0, 217).trim() + '…';
-
-      // Build card
+      // Construction de la carte
       const card = el('article', 'news-card');
 
       if (imgSrc) {
@@ -92,7 +96,6 @@
     });
   } catch (err) {
     console.error(err);
-    // Fallback très simple
     const fallback = document.createElement('p');
     fallback.innerHTML = `Impossible de charger les actualités. Consultez la page <a class="text-link" href="actus.html">Toutes les actus</a>.`;
     mount.appendChild(fallback);
