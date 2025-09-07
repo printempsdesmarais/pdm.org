@@ -199,3 +199,45 @@ body.page1 main .nav-link:hover{
 .story-feature .actions{
   display:flex; gap:.5rem; flex-wrap:wrap;
 }
+/* ===== Mini-listing des actus sur la home ===== */
+.news-list{
+  display:grid; gap:12px;
+}
+@media (min-width: 860px){
+  .news-list{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.news-card{
+  background: rgba(15,15,15,.65);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;
+  color:#fff;
+  overflow:hidden;
+  display:grid; grid-template-rows: auto 1fr auto;
+}
+.news-card__thumb{
+  width:100%; height:170px; object-fit:cover; display:block;
+}
+.news-card__body{
+  padding:.85rem; display:grid; gap:.35rem;
+}
+.news-card__title{
+  margin:0; font-size:1rem; line-height:1.25;
+}
+.news-card__title a{
+  color:#fff; text-decoration:none;
+}
+.news-card__meta{
+  font-size:.82rem; opacity:.85;
+}
+.news-card__excerpt{
+  margin:.15rem 0 0 0; opacity:.95;
+  display:-webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow:hidden;
+}
+.news-card__actions{
+  display:flex; gap:.5rem; padding:.75rem .85rem; border-top:1px solid rgba(255,255,255,.12);
+}
+.news-card__actions .nav-button{
+  padding:.4rem .7rem; font-size:.85rem;
+}
