@@ -1,0 +1,309 @@
+/* ===========================
+   VARIABLES & BASE GLOBALE
+   =========================== */
+:root{
+  --vert: #97bb2b;
+  --orange: #ff942a;
+  --marron: #7f6115;
+
+  --bar-h: 70px;
+  --text: #ffffff;
+
+  --orange-dark: #e67e22;
+  --panel-bg: rgba(15,15,15,.96);
+}
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+html, body {
+  margin:0;
+  padding:0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:#111;
+}
+
+/* ===========================
+   HEADER (fixe, transparent, blur fort)
+   =========================== */
+.site-header{
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  background: transparent;
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+
+/* Conteneur nav */
+.nav{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Marque */
+.brand{
+  display:flex; align-items:center; gap:.5rem;
+  text-decoration:none; min-height: var(--bar-h);
+}
+.brand-logo{
+  height: var(--bar-h); width:auto; object-fit: contain; display:block;
+}
+.tagline{
+  font-size: .72rem; line-height: 1; letter-spacing: .02em;
+  text-transform: none;
+  color: rgba(255,255,255,.9);
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* Liens desktop (boutons oranges Inter 700 caps) */
+.nav-links{ 
+  display:flex; 
+  gap:2px; /* espace entre boutons */
+  align-items:center; 
+}
+
+.nav-link,
+.nav-button{
+  display:inline-block;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: .45rem .9rem;
+  border-radius: .45rem;
+  border: 1px solid rgba(255,255,255,.18);
+  font-size: .9rem;
+  line-height: 1;
+  transition: background .2s ease, opacity .2s ease, transform .05s ease;
+  cursor: pointer;
+  margin-right:2px; /* espace léger entre boutons */
+}
+.nav-link:hover,
+.nav-button:hover{ background: var(--orange-dark); }
+.nav-button:active,
+.nav-link:active{ transform: translateY(1px); }
+
+/* Élément avec sous-menu */
+.nav-group{ position: relative; }
+
+/* Bouton "Découvrir" */
+.has-sub{
+  border: none;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: .45rem .9rem;
+  border-radius: .45rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  cursor: pointer;
+}
+.has-sub:hover{ background: var(--orange-dark); }
+
+/* Caret + pivot */
+.caret{
+  width:14px; height:14px; opacity:.9;
+  transition: transform .18s ease;
+  transform-origin: 50% 45%;
+}
+.nav-group:hover .caret,
+.nav-group:focus-within .caret,
+.nav-group.open .caret{
+  transform: rotate(180deg);
+}
+
+/* Sous-menu (desktop) — ORANGE + fade/slide + anti-flicker */
+.submenu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 260px;
+  background: var(--orange);
+  color: #fff;
+  z-index: 1002;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 12px;
+  padding: .35rem;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+
+  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  will-change: opacity, transform;
+}
+.submenu::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:-8px; height:8px;
+}
+.nav-group:hover .submenu,
+.nav-group:focus-within .submenu,
+.nav-group.open .submenu{
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+/* Liens du sous-menu (plus petits) + espace 2px entre items */
+.submenu-link{
+  display:block;
+  padding: .45rem .6rem;
+  color:#fff; text-decoration:none;
+  font-weight:700;
+  text-transform: uppercase;
+  font-size:.8rem;
+  border-radius: .4rem;
+  margin-bottom:2px;      /* espace entre items */
+}
+.submenu-link:last-child{ margin-bottom:0; }
+.submenu-link:hover{ background: rgba(255,255,255,.12); }
+
+/* ===== Burger & mobile ===== */
+.nav-toggle{ position:absolute; left:-9999px; }
+.hamburger{
+  display:none;
+  width:44px; height:44px; padding:10px;
+  cursor:pointer;
+  align-items:center; justify-content:center; flex-direction:column; gap:5px;
+}
+.hamburger span{
+  display:block; width:24px; height:3px; background:#fff; border-radius:2px;
+}
+
+.mobile-menu{
+  display:none; position:absolute; top: var(--bar-h); left:0; right:0; z-index: 1001;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: .5rem;
+}
+
+.mobile-link{
+  display:block;
+  padding: .85rem 1rem;
+  text-decoration:none;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: .35rem;
+  margin-bottom:2px; /* espace entre boutons */
+}
+.mobile-link:hover{ background: rgba(255,255,255,.1); }
+
+/* Boutons orange spécifiques dans le menu mobile (iOS/burger) */
+.mobile-link.nav-button,
+.sub-trigger.nav-button{
+  background: var(--orange);
+  border:1px solid rgba(255,255,255,.18);
+}
+.mobile-link.nav-button:hover,
+.sub-trigger.nav-button:hover{
+  background: var(--orange-dark);
+}
+
+/* Sous-menu mobile (accordion) */
+.sub-toggle{ position:absolute; left:-9999px; }
+.sub-trigger{
+  display:block; position:relative; cursor:pointer;
+  margin-top:0;           /* évite un surplus d'espace au-dessus */
+  line-height:1.2;        /* harmonise la hauteur du bouton label */
+  margin-bottom:2px;      /* espace uniforme entre Notre Mission et Découvrir */
+}
+.sub-trigger::after{
+  content:"▾"; position:absolute; right:1rem; top:50%; transform: translateY(-50%);
+}
+.mobile-submenu{
+  display:none; padding: .25rem 0 .5rem 0; background: rgba(255,255,255,.03);
+}
+.sub-toggle:checked ~ .mobile-submenu{ display:block; }
+.mobile-link.sub{ padding-left: 1.5rem; }
+
+/* Responsive (iOS/burger) */
+@media (max-width: 900px), (hover:none) and (pointer:coarse){
+  .nav-links{ display:none; }
+  .hamburger{ display:flex; }
+  .nav{ position:relative; }
+  .nav-toggle:checked ~ .mobile-menu{ display:block; }
+
+  /* Grands titres (boutons principaux) plus gros */
+  .mobile-link.nav-button,
+  .sub-trigger.nav-button{
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  /* Sous-menu mobile plus petit et plus fin */
+  .mobile-link.sub{
+    font-size: .85rem;
+    font-weight: 600;
+  }
+}
+
+/* Focus visible (accessibilité) */
+a:focus-visible, button:focus-visible, .hamburger:focus-visible, .submenu-link:focus-visible{
+  outline: 2px solid #fff; outline-offset: 3px;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.site-footer{
+  background: rgba(15,15,15,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color:#fff;
+  padding:2rem 1rem;
+  border-top:1px solid rgba(255,255,255,.15);
+  font-family: "Inter", system-ui, sans-serif;
+}
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.8rem;
+  text-align:center;
+}
+.footer-brand{
+  font-size:1.2rem;
+  font-weight:800;
+  margin:0;
+}
+.footer-legal{
+  font-size:.85rem;
+  opacity:.8;
+  margin:0;
+}
+.footer-nav{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.footer-nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:.8rem;
+}
+.footer-nav a:hover{ opacity:.7; }
