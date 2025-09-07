@@ -9,11 +9,11 @@
     <!-- Liens principaux -->
     <div class="nav-links" role="menubar">
       <a href="index.html" class="nav-link" role="menuitem">Accueil</a>
-      <a href="projet-1.html" class="nav-link" role="menuitem">La Mission</a>
+      <a href="projet-1.html" class="nav-link" role="menuitem">Notre Mission</a>
 
       <!-- Élément avec sous-menu -->
       <div class="nav-group" role="none">
-        <button class="nav-link has-sub" aria-haspopup="true" aria-expanded="false">
+        <button class="has-sub nav-link" aria-haspopup="true" aria-expanded="false">
           Découvrir
           <svg class="caret" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7l5 6 5-6" fill="currentColor"/></svg>
         </button>
@@ -25,8 +25,8 @@
         </div>
       </div>
 
-      <a href="agir.html" class="nav-button" role="menuitem">Agir Ensemble</a>
-      <a href="index.html#contact" class="nav-button" role="menuitem">Contact</a>
+      <a href="agir.html" class="nav-link" role="menuitem">Agir Ensemble</a>
+      <a href="index.html#contact" class="nav-link" role="menuitem">Contact</a>
     </div>
 
     <!-- Burger -->
@@ -38,9 +38,9 @@
     <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html" class="mobile-link">Accueil</a>
-      <a href="projet-1.html" class="mobile-link">La Mission</a>
+      <a href="projet-1.html" class="mobile-link">Notre Mission</a>
 
-      <!-- Sous-menu mobile (accordion) -->
+      <!-- Sous-menu mobile -->
       <input type="checkbox" id="sub-toggle" class="sub-toggle" aria-label="Ouvrir le sous-menu Découvrir">
       <label for="sub-toggle" class="mobile-link sub-trigger">Découvrir</label>
       <div class="mobile-submenu">
@@ -57,28 +57,23 @@
 </header>
 
 <script>
-  // Accessibilité minimale: synchronise aria-expanded du bouton "Découvrir"
   (function(){
     const group = document.querySelector('.nav-group');
     if (!group) return;
     const trigger = group.querySelector('.has-sub');
     const panel = group.querySelector('.submenu');
     let open = false;
-
     function setState(state){
       open = state;
       trigger.setAttribute('aria-expanded', String(open));
-      panel.style.pointerEvents = open ? 'auto' : '';
+      panel.style.display = open ? 'flex' : 'none';
     }
-
-    // Ouvre au focus/hover clavier/souris
     group.addEventListener('mouseenter', () => setState(true));
     group.addEventListener('mouseleave', () => setState(false));
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       setState(!open);
     });
-    // Ferme avec Échap
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') setState(false);
     });
