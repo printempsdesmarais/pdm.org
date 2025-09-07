@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Galerie — Printemps des Marais</title>
   <meta name="description" content="Galerie et storyboard visuel : photos, vidéos et chronologie du projet.">
-  <link rel="stylesheet" href="font.css">
-  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preload" href="fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Inter-Variable-Italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <a href="#main" class="sr-only">Aller au contenu</a>
@@ -30,8 +34,9 @@
           const scripts = slot.querySelectorAll('script');
           scripts.forEach(old=>{ const s=document.createElement('script'); for(const {name,value} of old.attributes) s.setAttribute(name,value); s.text=old.textContent; old.replaceWith(s); });
         }).catch(()=>{
-          if(targetId==='site-header'){ slot.innerHTML='<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; }
-          else { slot.innerHTML='<div style="padding:1rem;text-align:center;color:#fff;background:#222">© '+new Date().getFullYear()+' Printemps des Marais — Association loi 1901</div>'; }
+          slot.innerHTML = (targetId==='site-header')
+            ? '<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'
+            : '<div style="padding:1rem;text-align:center;color:#fff;background:#222">© '+new Date().getFullYear()+' Printemps des Marais — Association loi 1901</div>';
         });
       }
       injectFragment('site-header','header.html');
@@ -40,4 +45,3 @@
   </script>
 </body>
 </html>
-
