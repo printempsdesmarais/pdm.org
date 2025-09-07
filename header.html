@@ -40,7 +40,7 @@
       <a href="index.html" class="mobile-link">Accueil</a>
       <a href="projet-1.html" class="mobile-link">Notre Mission</a>
 
-      <!-- Sous-menu mobile -->
+      <!-- Sous-menu mobile (accordion) -->
       <input type="checkbox" id="sub-toggle" class="sub-toggle" aria-label="Ouvrir le sous-menu Découvrir">
       <label for="sub-toggle" class="mobile-link sub-trigger">Découvrir</label>
       <div class="mobile-submenu">
@@ -57,6 +57,7 @@
 </header>
 
 <script>
+  // Conserve le toggle au clic + compatibilité clavier
   (function(){
     const group = document.querySelector('.nav-group');
     if (!group) return;
