@@ -89,6 +89,8 @@ body{
 
 /* Élément avec sous-menu */
 .nav-group{ position: relative; }
+
+/* Bouton "Découvrir" */
 .has-sub{
   border: none;
   background: var(--orange);
@@ -107,9 +109,13 @@ body{
 
 /* Sous-menu (desktop) */
 .submenu{
-  position: absolute; top: calc(100% + 8px); left: 0;
+  position: absolute;
+  top: 100%; /* collé au bouton */
+  left: 0;
   min-width: 260px;
-  background: var(--panel-bg);
+  background: var(--marron); /* couleur marron */
+  color: #fff;
+  z-index: 1002;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,.12);
@@ -117,6 +123,13 @@ body{
   padding: .4rem;
   display: none;
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+/* Pont invisible pour éviter le flicker */
+.submenu::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:-8px; height:8px;
 }
 .nav-group:hover .submenu,
 .nav-group:focus-within .submenu{ display: block; }
@@ -128,7 +141,7 @@ body{
   font-weight:700; text-transform: uppercase; font-size:.85rem;
   border-radius: .5rem;
 }
-.submenu-link:hover{ background: rgba(255,255,255,.08); }
+.submenu-link:hover{ background: rgba(255,255,255,.12); }
 
 /* ===== Burger & mobile ===== */
 .nav-toggle{ position:absolute; left:-9999px; }
