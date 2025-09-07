@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr" class="page10">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chronologie — Printemps des Marais</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
+  <style>
+    /* Timeline verticale */
+    .timeline {
+      position: relative;
+      margin: 2rem auto;
+      padding-left: 2rem;
+      max-width: 800px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15px;
+      width: 4px;
+      height: 100%;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: .4rem;
+      left: -2px;
+      width: 14px;
+      height: 14px;
+      background: var(--vert);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(0,0,0,.25);
+    }
+    .timeline-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 .4rem 0;
+    }
+    .timeline-text {
+      margin: 0;
+      color: #fff;
+      opacity: .95;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body class="page10">
+  <div class="bg-container"><div class="bg-image"></div></div>
+
+  <header id="site-header"></header>
+
+  <main class="wrap-narrow">
+    <h1 class="section-title center">Étapes clés 2025</h1>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h2 class="timeline-title">Renaissance d’un terrain</h2>
+        <p class="timeline-text">
+          Acquisition de la parcelle (8 hectares). Remise en état minimale, préservation de la mare d’eau douce
+          et des haies de tamaris pour redonner vie au site.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h2 class="timeline-title">Une vocation singulière</h2>
+        <p class="timeline-text">
+          Compréhension de l’histoire des digues et des marais du Médoc.
+          Mise en valeur du rôle de zone tampon face aux risques d’inondation.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h2 class="timeline-title">Un patrimoine vivant</h2>
+        <p class="timeline-text">
+          Réintroduction du poney landais, race patrimoniale menacée,
+          et expérimentation d’un élevage extensif respectueux de la biodiversité.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h2 class="timeline-title">Un allié pour la biodiversité</h2>
+        <p class="timeline-text">
+          Pâturage écologique, maintien des habitats ouverts, réduction du CO₂ et valorisation
+          de la biodiversité locale grâce aux poneys landais.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h2 class="timeline-title">Un terrain laboratoire</h2>
+        <p class="timeline-text">
+          Suivi scientifique, partage avec habitants, institutions et chercheurs,
+          et mise en place d’une vitrine expérimentale à échelle humaine.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h2 class="timeline-title">Appel à participation</h2>
+        <p class="timeline-text">
+          Invitation aux habitants, associations et institutions à rejoindre le projet
+          et à contribuer collectivement à la renaissance des marais.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/injector.js"></script>
+</body>
+</html>
