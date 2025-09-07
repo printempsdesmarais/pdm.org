@@ -37,12 +37,13 @@
 
     <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" class="mobile-link">Accueil</a>
-      <a href="projet-1.html" class="mobile-link">Notre Mission</a>
+      <!-- Boutons orange demandés -->
+      <a href="index.html" class="mobile-link nav-button">Accueil</a>
+      <a href="projet-1.html" class="mobile-link nav-button">Notre Mission</a>
 
-      <!-- Sous-menu mobile (accordion) -->
+      <!-- Sous-menu mobile (accordion) — Découvrir en orange -->
       <input type="checkbox" id="sub-toggle" class="sub-toggle" aria-label="Ouvrir le sous-menu Découvrir">
-      <label for="sub-toggle" class="mobile-link sub-trigger">Découvrir</label>
+      <label for="sub-toggle" class="mobile-link sub-trigger nav-button">Découvrir</label>
       <div class="mobile-submenu">
         <a href="actus.html" class="mobile-link sub">Actualités / Blog</a>
         <a href="galerie.html" class="mobile-link sub">Galerie / Storyboard visuel</a>
@@ -62,7 +63,6 @@
     const group = document.querySelector('.nav-group');
     if (!group) return;
     const trigger = group.querySelector('.has-sub');
-    const panel = group.querySelector('.submenu');
     let open = false;
 
     function setState(state){
@@ -83,8 +83,5 @@
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') setState(false);
     });
-
-    // Assure que le panneau ne vole pas le focus au chargement
-    if (panel) panel.setAttribute('tabindex', '-1');
   })();
 </script>
