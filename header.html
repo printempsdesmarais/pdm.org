@@ -1,107 +1,33 @@
-<header role="banner">
-  <style>
-    /* --- Bandeau fixe, semi-transparent vert --- */
-    :root{ --bar-h: 50px; } /* hauteur du bandeau */
-    body{ padding-top: var(--bar-h); }
-
-    header{
-      position: fixed; inset: 0 0 auto 0; z-index: 1000;
-      background: rgba(0,128,0,.5); /* vert transparent */
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,.15);
-    }
-
-    /* --- Layout --- */
-    .nav{
-      max-width:1100px;margin:0 auto;padding:0 1rem;
-      min-height:var(--bar-h);display:flex;align-items:center;justify-content:space-between;
-    }
-
-    /* --- Brand --- */
-    .brand{display:flex;align-items:center;gap:.5rem;text-decoration:none; min-height: var(--bar-h); }
-    .brand-logo,.logo{
-      height: var(--bar-h); /* occupe toute la hauteur du bandeau */
-      width: auto; object-fit: contain; display:block;
-    }
-
-    /* --- Liens / Boutons --- */
-    .nav-links{display:flex;gap:.5rem;align-items:center}
-    .nav-button{
-      padding:.4rem .9rem;border-radius:.55rem;text-decoration:none;
-      background: var(--orange, #ff942a);
-      color: #fff;               
-      font-weight: 700;          
-      text-transform: uppercase; /* MAJUSCULES */
-      transition: background .2s ease, filter .2s ease;
-      font-family: var(--title-font, system-ui, sans-serif);
-      border: 1px solid rgba(255,255,255,.18);
-      font-size:.85rem;
-    }
-    .nav-button:hover{ background:#e67e22; }
-
-    /* --- Burger --- */
-    .nav-toggle{ position:absolute; left:-9999px; }
-    .hamburger{
-      display:none; flex-direction:column; justify-content:center;
-      gap:5px; width:44px; height:44px; cursor:pointer; padding:6px;
-    }
-    .hamburger span{
-      display:block; width:28px; height:3px; background:#fff;
-    }
-
-    /* --- Menu mobile --- */
-    .mobile-menu{
-      display:none; position:absolute; top:var(--bar-h); left:0; right:0; z-index: 1001;
-      background: rgba(20,20,20,.95); backdrop-filter: blur(10px);
-      border-top:1px solid rgba(255,255,255,.12); padding:.75rem;
-    }
-    .mobile-menu a{
-      display:block; padding:.65rem .85rem; text-decoration:none; color:#f0f0f0;
-      border-bottom:1px solid rgba(255,255,255,.08); font-family:var(--title-font, system-ui, sans-serif);
-      margin:.1rem 0;
-      text-transform: uppercase; /* MAJUSCULES aussi sur mobile */
-    }
-    .mobile-menu a.nav-button{
-      background: var(--orange, #ff942a); color:#fff;
-      border-radius:.55rem; border:1px solid rgba(255,255,255,.18); margin-top:.4rem;
-      text-align:center; font-weight:700;
-    }
-    .mobile-menu a.nav-button:hover{ background:#e67e22; }
-
-    /* --- Responsive --- */
-    @media (max-width: 900px), (hover:none) and (pointer:coarse){
-      .nav-links{ display:none; }
-      .hamburger{ display:flex; }
-      .mobile-menu{ top:var(--bar-h); }
-      .nav{ position:relative; }
-      .nav-toggle:checked ~ .mobile-menu{ display:block; }
-    }
-  </style>
-
-  <nav class="nav" aria-label="Navigation">
-    <a class="brand" href="index.html">
-      <img src="images/TitreWebsite3couleurs.png" alt="Logo Printemps des Marais" class="brand-logo">
+<header role="banner" class="site-header" aria-label="En-tête du site">
+  <nav class="nav" aria-label="Navigation principale">
+    <!-- Logo + tagline -->
+    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
+      <img src="images/TitreWebsite3couleurs.png" alt="Printemps des Marais" class="brand-logo" />
+      <span class="tagline" aria-hidden="true">association loi 1901</span>
     </a>
 
+    <!-- Liens principaux -->
     <div class="nav-links" role="menubar">
-      <a href="index.html" class="nav-button" role="menuitem">À Propos</a>
-      <a href="projet-1.html" class="nav-button" role="menuitem">La Mission</a>
+      <a href="index.html" class="nav-link" role="menuitem">Accueil</a>
+      <a href="projet-1.html" class="nav-link" role="menuitem">La Mission</a>
       <a href="agir.html" class="nav-button" role="menuitem">Agir Ensemble</a>
+      <a href="actus.html" class="nav-link" role="menuitem">Actualités</a>
       <a href="index.html#contact" class="nav-button" role="menuitem">Contact</a>
     </div>
 
     <!-- Burger -->
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu" />
     <label for="nav-toggle" class="hamburger" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span><span></span>
     </label>
 
+    <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">À Propos</a>
-      <a href="projet-1.html">La Mission</a>
-      <a href="agir.html">Agir Ensemble</a>
-      <a href="index.html#contact" class="nav-button">Contact</a>
+      <a href="index.html" class="mobile-link">Accueil</a>
+      <a href="projet-1.html" class="mobile-link">La Mission</a>
+      <a href="agir.html" class="mobile-link nav-button">Agir Ensemble</a>
+      <a href="actus.html" class="mobile-link">Actualités</a>
+      <a href="index.html#contact" class="mobile-link nav-button">Contact</a>
     </div>
   </nav>
 </header>
