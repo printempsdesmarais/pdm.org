@@ -57,26 +57,34 @@
 </header>
 
 <script>
-  // Conserve le toggle au clic + compatibilité clavier
+  // Toggle accessible du sous-menu (ajoute/retire .open au groupe)
   (function(){
     const group = document.querySelector('.nav-group');
     if (!group) return;
     const trigger = group.querySelector('.has-sub');
     const panel = group.querySelector('.submenu');
     let open = false;
+
     function setState(state){
       open = state;
       trigger.setAttribute('aria-expanded', String(open));
-      panel.style.display = open ? 'flex' : 'none';
+      group.classList.toggle('open', open);
     }
+
+    // Ouvre au survol et focus, ferme en sortie
     group.addEventListener('mouseenter', () => setState(true));
     group.addEventListener('mouseleave', () => setState(false));
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       setState(!open);
     });
+
+    // Ferme avec Échap si ouvert
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') setState(false);
     });
+
+    // Assure que le panneau ne vole pas le focus au chargement
+    if (panel) panel.setAttribute('tabindex', '-1');
   })();
 </script>
