@@ -4,19 +4,140 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Accueil — Printemps des Marais</title>
+  <meta name="description" content="Association loi 1901 dédiée à la renaissance écologique des marais du Médoc : projet pilote, poney landais, biodiversité, actions citoyennes.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body class="page1">
+  <!-- Fond décoratif (géré par CSS + background.js) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap">
-    <h1>Accueil</h1>
-    <p>Bienvenue sur le site de l’association Printemps des Marais.</p>
+  <main class="wrap" id="main">
+    <!-- HÉRO / PROMESSE -->
+    <section id="hero" aria-label="Introduction" style="padding:clamp(2rem,6vw,4rem) 0;">
+      <h1 style="color:var(--vert); margin:.2rem 0 1rem 0;">
+        Printemps des Marais
+      </h1>
+      <p style="max-width:62ch; font-size:1.2rem; line-height:1.5; margin:0 0 1.2rem 0;">
+        Un <strong>projet pilote</strong> au cœur du Médoc pour <strong>réconcilier écologie, patrimoine et innovation</strong>.  
+        Suivez la renaissance d’un terrain, la sauvegarde du <em>poney landais</em> et l’essor de la <strong>biodiversité</strong>.
+      </p>
+      <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+        <a href="projet-1.html" class="nav-button">Découvrir le projet</a>
+        <a href="agir.html" class="nav-button">Agir ensemble</a>
+      </div>
+    </section>
+
+    <!-- 3 POINTS FORTS -->
+    <section id="points-forts" aria-label="Points forts" style="padding:1rem 0 2rem 0;">
+      <h2 style="margin:0 0 .8rem 0;">Ce que vous allez découvrir</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px;">
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.1rem;">Renaissance d’un terrain</h3>
+          <p style="margin:0 0 .8rem 0;">8 hectares de prairies et une mare d’eau douce : un terrain laboratoire pour tester une gestion écologique.</p>
+          <a href="projet-1.html" class="nav-button">Voir la mission</a>
+        </article>
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.1rem;">Le poney landais</h3>
+          <p style="margin:0 0 .8rem 0;">Une race façonnée par les zones humides, rustique et précieuse pour l’entretien des marais.</p>
+          <a href="galerie.html" class="nav-button">Voir en images</a>
+        </article>
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.1rem;">Biodiversité & pédagogie</h3>
+          <p style="margin:0 0 .8rem 0;">Un lieu d’observation et de rencontre : scientifiques, éleveurs, collectivités, habitants.</p>
+          <a href="ressources.html" class="nav-button">Ressources</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- APERÇU ACTUS -->
+    <section id="actus" aria-label="Actualités" style="padding:1rem 0 2rem 0;">
+      <div style="display:flex; align-items:baseline; gap:.8rem; justify-content:space-between;">
+        <h2 style="margin:0;">Actualités / Blog</h2>
+        <a href="actus.html" class="nav-button" style="white-space:nowrap;">Toutes les actus</a>
+      </div>
+
+      <!-- Placeholder de 3 actus (remplace les <article> au fur et à mesure) -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin-top:.8rem;">
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.05rem;">[Titre d’actualité #1]</h3>
+          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <a href="actus.html" class="nav-button">Lire</a>
+        </article>
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.05rem;">[Titre d’actualité #2]</h3>
+          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <a href="actus.html" class="nav-button">Lire</a>
+        </article>
+        <article style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .4rem 0; font-size:1.05rem;">[Titre d’actualité #3]</h3>
+          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <a href="actus.html" class="nav-button">Lire</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- TEASER GALERIE -->
+    <section id="galerie-teaser" aria-label="Galerie / Storyboard" style="padding:1rem 0 2rem 0;">
+      <div style="display:flex; align-items:baseline; gap:.8rem; justify-content:space-between;">
+        <h2 style="margin:0;">Galerie / Storyboard visuel</h2>
+        <a href="galerie.html" class="nav-button" style="white-space:nowrap;">Ouvrir la galerie</a>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; margin-top:.8rem;">
+        <!-- Placeholders d’images (remplacer par vos images) -->
+        <a href="galerie.html" style="display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);"></a>
+        <a href="galerie.html" style="display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);"></a>
+        <a href="galerie.html" style="display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);"></a>
+        <a href="galerie.html" style="display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);"></a>
+      </div>
+    </section>
+
+    <!-- BLOC APPEL À AGIR -->
+    <section id="agir-cta" aria-label="Participer" style="padding:1.2rem 0 2rem 0;">
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
+        <h2 style="margin:0;">Agir ensemble</h2>
+        <p style="margin:0;">Bénévolat, soutien financier, partenariats, recherche : chacun peut contribuer à la vitalité des marais du Médoc.</p>
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+          <a href="agir.html" class="nav-button">Voir comment</a>
+          <a href="index.html#contact" class="nav-button">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (ancre) -->
+    <section id="contact" aria-label="Contact" style="padding:1.2rem 0 3rem 0;">
+      <h2 style="margin:0 0 .6rem 0;">Contact</h2>
+      <p style="margin:0 0 1rem 0;">Écrivez-nous pour rejoindre l’association, proposer une collaboration ou poser vos questions.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px;">
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .6rem 0; font-size:1.05rem;">Coordonnées</h3>
+          <ul style="margin:0; padding-left:1rem; line-height:1.6;">
+            <li>Email : <a href="mailto:contact@printemps-des-marais.fr">contact@printemps-des-marais.fr</a></li>
+            <li>Association loi 1901 — Médoc</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:1rem;">
+          <h3 style="margin:.2rem 0 .6rem 0; font-size:1.05rem;">Formulaire rapide</h3>
+          <!-- Placeholder (tu pourras brancher à un service plus tard) -->
+          <form action="#" method="post" onsubmit="alert('Merci ! Nous vous répondons très vite.'); return false;">
+            <label for="f-nom" style="display:block; margin-bottom:.25rem;">Nom</label>
+            <input id="f-nom" name="nom" type="text" required style="width:100%; padding:.6rem .7rem; border-radius:.45rem; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; margin-bottom:.6rem;">
+            <label for="f-email" style="display:block; margin-bottom:.25rem;">Email</label>
+            <input id="f-email" name="email" type="email" required style="width:100%; padding:.6rem .7rem; border-radius:.45rem; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; margin-bottom:.6rem;">
+            <label for="f-msg" style="display:block; margin-bottom:.25rem;">Message</label>
+            <textarea id="f-msg" name="message" rows="4" required style="width:100%; padding:.6rem .7rem; border-radius:.45rem; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; margin-bottom:.8rem;"></textarea>
+            <button type="submit" class="nav-button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
   <script src="js/background.js"></script>
