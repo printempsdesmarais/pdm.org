@@ -13,11 +13,18 @@
 
       <!-- Élément avec sous-menu -->
       <div class="nav-group" role="none">
-        <button class="has-sub nav-link" aria-haspopup="true" aria-expanded="false">
+        <button
+          class="has-sub nav-link"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="submenu-decouvrir">
           Découvrir
-          <svg class="caret" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7l5 6 5-6" fill="currentColor"/></svg>
+          <svg class="caret" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M5 7l5 6 5-6" fill="currentColor"/>
+          </svg>
         </button>
-        <div class="submenu" role="menu" aria-label="Découvrir">
+        <div class="submenu" id="submenu-decouvrir" role="menu" aria-label="Découvrir">
           <a href="actus.html" class="submenu-link" role="menuitem">Actualités / Blog</a>
           <a href="galerie.html" class="submenu-link" role="menuitem">Galerie / Storyboard visuel</a>
           <a href="a-propos.html" class="submenu-link" role="menuitem">À propos</a>
@@ -63,6 +70,7 @@
     const group = document.querySelector('.nav-group');
     if (!group) return;
     const trigger = group.querySelector('.has-sub');
+    const panel   = document.getElementById('submenu-decouvrir');
     let open = false;
 
     function setState(state){
@@ -77,6 +85,8 @@
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       setState(!open);
+      // optionnel: focus sur le panel quand on ouvre au clic
+      if (open && panel) panel.focus?.();
     });
 
     // Ferme avec Échap si ouvert
