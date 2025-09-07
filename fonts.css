@@ -1,29 +1,26 @@
-/* fonts.css — Déclarations des polices GC Volkgen */
+/* Chargement de la police GC Volkgen
+   Remplacez les URLs par vos fichiers réels (formats woff2/woff) */
 
-@font-face {
-  font-family: 'GC Volkgen';
-  src: url('chemin/vers/GCVolkgen-Regular.woff2') format('woff2'),
-       url('chemin/vers/GCVolkgen-Regular.woff') format('woff');
-  font-weight: normal;
+@font-face{
+  font-family: "GC Volkgen";
+  src:
+    url("fonts/GCVolkgen-Variable.woff2") format("woff2"),
+    url("fonts/GCVolkgen-Variable.woff") format("woff");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'GC Volkgen';
-  src: url('chemin/vers/GCVolkgen-Italic.woff2') format('woff2'),
-       url('chemin/vers/GCVolkgen-Italic.woff') format('woff');
-  font-weight: normal;
+/* Variante italique si disponible (sinon supprimez ce bloc) */
+@font-face{
+  font-family: "GC Volkgen";
+  src:
+    url("fonts/GCVolkgen-VariableItalic.woff2") format("woff2"),
+    url("fonts/GCVolkgen-VariableItalic.woff") format("woff");
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'GC Volkgen';
-  src: url('chemin/vers/GCVolkgen-Bold.woff2') format('woff2'),
-       url('chemin/vers/GCVolkgen-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* Police par défaut du site (si besoin d’override global) */
+/* body{ font-family: "GC Volkgen", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; } */
