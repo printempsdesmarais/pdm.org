@@ -38,6 +38,57 @@ body{
 
 /* Conteneur */
 .nav{
+
+   /* ===========================
+   FOOTER
+   =========================== */
+.site-footer{
+  background: rgba(15,15,15,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color:#fff;
+  padding:2rem 1rem;
+  border-top:1px solid rgba(255,255,255,.15);
+  font-family: "GC Volkgen", sans-serif;
+}
+
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.8rem;
+  text-align:center;
+}
+
+.footer-brand{
+  font-size:1.2rem;
+  font-weight:800;
+  margin:0;
+}
+
+.footer-legal{
+  font-size:.85rem;
+  opacity:.8;
+  margin:0;
+}
+
+.footer-nav{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.footer-nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:.8rem;
+}
+.footer-nav a:hover{ opacity:.7; }
+
   max-width: 1100px; margin: 0 auto; padding: 0 1rem;
   min-height: var(--bar-h);
   display: flex; align-items: center; justify-content: space-between;
