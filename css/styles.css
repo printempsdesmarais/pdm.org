@@ -271,12 +271,12 @@ a:focus-visible, button:focus-visible, .hamburger:focus-visible, .submenu-link:f
 }
 .footer-nav a:hover{ opacity:.7; }
 /* ===========================
-   Fond décoratif (images par page)
+   Fond décoratif (images par page en .jpg)
    =========================== */
 .bg-container{
   position: fixed;
   inset: 0;
-  z-index: -1;            /* derrière tout */
+  z-index: -1;
   overflow: hidden;
 }
 .bg-image{
@@ -287,10 +287,10 @@ a:focus-visible, button:focus-visible, .hamburger:focus-visible, .submenu-link:f
   transition: filter .3s ease;
 }
 
-/* Choix d'image par page (version .jpg) */
+/* Images spécifiques par page */
 body.page1 .bg-image{ background-image: url("../images/fondterrain1.jpg"); }
 body.page2 .bg-image{ background-image: url("../images/fondterrain2.jpg"); }
-body.page3 .bg-image{ background-image: url("../images/fondterrain3.jpg"); }  /* agir.html */
+body.page3 .bg-image{ background-image: url("../images/fondterrain3.jpg"); }
 body.page4 .bg-image{ background-image: url("../images/fondterrain4.jpg"); }
 body.page5 .bg-image{ background-image: url("../images/fondterrain5.jpg"); }
 body.page6 .bg-image{ background-image: url("../images/fondterrain6.jpg"); }
