@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
-  <!-- Ajustements locaux -->
+  <!-- Ajustements locaux courts (cartes articles, filtres) -->
   <style>
     #news-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
     #news-hero .brand-hero img{ width:100%; max-width:480px; height:auto; display:block; margin:0 auto; }
@@ -23,7 +23,6 @@
     .post-title{ margin:0; font-size:1.1rem; }
     .post-meta{ font-size:.85rem; opacity:.85; }
     .post-excerpt{ margin:.2rem 0 .4rem 0; opacity:.95; }
-    .post-actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.2rem; }
     .posts{ display:grid; gap:12px; }
     @media(min-width:820px){ .posts{ grid-template-columns:repeat(2,1fr); } .post{ grid-template-columns:220px 1fr; } }
 
@@ -32,18 +31,10 @@
     .filter.is-active{ background:var(--orange); }
 
     .pager{ display:flex; gap:.5rem; justify-content:center; margin:1rem 0 2rem; }
-
-    /* Section spéciale vidéo */
-    #video-actu{ padding:2rem 0; }
-    .cols-2{ display:grid; grid-template-columns:1fr; gap:1rem; }
-    @media(min-width:820px){ .cols-2{ grid-template-columns:1fr 1fr; } }
-    .video-wrapper{ position:relative; width:100%; padding-top:56.25%; background:#000; border-radius:12px; overflow:hidden; }
-    .video-wrapper iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
-    .video-text{ color:#fff; display:grid; gap:.6rem; align-content:center; }
-    .video-text h2{ margin:0; font-size:1.4rem; }
   </style>
 </head>
 <body class="page4">
+  <!-- Fond décoratif (défini via body.page4 dans content.css → fondterrain2.jpg) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
   <!-- Header injecté -->
@@ -70,10 +61,9 @@
       <a href="#vie-asso" class="filter">Vie de l’asso</a>
     </nav>
 
-    <!-- ARTICLES -->
+    <!-- ARTICLES (exemples) -->
     <section aria-label="Liste des articles">
       <div class="posts">
-        <!-- Exemple d’article (à dupliquer) -->
         <article class="post">
           <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/storyboard/story19.jpg" alt="Première visite technique"></a>
           <div class="post-body">
@@ -86,22 +76,68 @@
             </div>
           </div>
         </article>
-        <!-- ... autres articles ... -->
+
+        <article class="post">
+          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/poney1.jpg" alt="Ponette landaise dans un marais"></a>
+          <div class="post-body">
+            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Pourquoi le poney landais&nbsp;?</a></h2>
+            <div class="post-meta">Publié le <time datetime="2025-07-05">5 juillet 2025</time> — Catégorie : Poney landais</div>
+            <p class="post-excerpt">Rustique, docile et adapté aux zones humides, il peut entretenir la végétation tout en favorisant la biodiversité.</p>
+            <div class="post-actions">
+              <a class="nav-button" href="article-exemple.html">Lire</a>
+              <a class="nav-button" href="ressources.html">Sources &amp; docs</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="post">
+          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/storyboard/story24.jpg" alt="Chronologie visuelle : transformations d’un terrain"></a>
+          <div class="post-body">
+            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Chronologie : étapes clés 2025</a></h2>
+            <div class="post-meta">Publié le <time datetime="2025-07-01">1ᵉʳ juillet 2025</time> — Catégorie : Vie de l’asso</div>
+            <p class="post-excerpt">De la reprise des contacts institutionnels à la mise en place des premiers suivis, voici les jalons de notre année.</p>
+            <div class="post-actions">
+              <a class="nav-button" href="article-exemple.html">Lire</a>
+              <a class="nav-button" href="index.html#contact">Proposer un article</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="post">
+          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/storyboard/story9.jpg" alt="Haies de tamaris en bordure de prairie"></a>
+          <div class="post-body">
+            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Les haies de tamaris : brise-vent naturels</a></h2>
+            <div class="post-meta">Publié le <time datetime="2025-06-20">20 juin 2025</time> — Catégorie : Biodiversité</div>
+            <p class="post-excerpt">Plus d’1 km de haies structurent le site. Pourquoi elles comptent pour la faune, l’eau et la résilience du terrain.</p>
+            <div class="post-actions">
+              <a class="nav-button" href="article-exemple.html">Lire</a>
+              <a class="nav-button" href="galerie.html">Galerie</a>
+            </div>
+          </div>
+        </article>
       </div>
-      <nav class="pager"><a class="nav-button" href="#prev">← Précédent</a><a class="nav-button" href="#next">Suivant →</a></nav>
+
+      <nav class="pager" aria-label="Pagination">
+        <a class="nav-button" href="#prev" aria-disabled="true">← Précédent</a>
+        <a class="nav-button" href="#next">Suivant →</a>
+      </nav>
     </section>
 
-    <!-- SECTION VIDÉO -->
-    <section id="video-actu" aria-label="Vidéo spéciale — Transfert de Jalle">
-      <div class="cols-2">
-        <div class="video-wrapper">
-          <iframe src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+    <!-- ARTICLE SPÉCIAL (VIDÉO + TEXTE) -->
+    <section id="video-actu" aria-label="Vidéo — Transfer de Jalle" style="padding:2rem 0;">
+      <div class="story-feature --video">
+        <div class="story-feature__media">
+          <!-- Bloc vidéo responsive (16:9) -->
+          <iframe
+            src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
-            title="Transfer"></iframe>
+            title="Transfer">
+          </iframe>
         </div>
-        <div class="video-text">
-          <h2>TRANSFER DE JALLE</h2>
+        <div class="story-feature__content">
+          <p class="story-feature__eyebrow">Terrain • Vidéo</p>
+          <h2 class="story-feature__title">TRANSFER DE JALLE</h2>
           <p>
             Le 21 mai 2025, <strong>Jalle</strong>, une ponette landaise de 5 ans, première étape du projet d’élevage de Laurie Jayet, a été transférée.
           </p>
@@ -111,6 +147,10 @@
           <p>
             Jalle y vivra en attendant que le projet <em>Printemps des Marais</em> à Talais puisse lui offrir un espace dédié et adapté à ses besoins.
           </p>
+          <div class="actions">
+            <a href="galerie.html" class="nav-button">Voir la galerie</a>
+            <a href="index.html#contact" class="nav-button">Nous écrire</a>
+          </div>
         </div>
       </div>
     </section>
@@ -123,5 +163,7 @@
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
   <script src="js/short-text.js"></script>
+  <!-- Vimeo API (fourni dans ton code) -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
