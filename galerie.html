@@ -1,1 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galerie — Printemps des Marais</title>
+  <meta name="description" content="Galerie et storyboard visuel : photos, vidéos et chronologie du projet.">
+
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="sr-only">Aller au contenu</a>
+  <header id="site-header" aria-label="En-tête du site"></header>
+
+  <main id="main" class="wrap" style="min-height:60vh;padding:2rem 1rem;">
+    <h1>Galerie / Storyboard visuel</h1>
+    <p>(Contenu à venir)</p>
+  </main>
+
+  <footer style="padding:2rem 1rem;opacity:.8;">© <span id="y"></span> Printemps des Marais</footer>
+
+  <script>
+    (function(){
+      const slot = document.getElementById('site-header');
+      fetch('header.html',{credentials:'same-origin'}).then(r=>r.text()).then(html=>{
+        slot.innerHTML = html;
+        const scripts = slot.querySelectorAll('script');
+        scripts.forEach(old=>{ const s=document.createElement('script'); for(const {name,value} of old.attributes) s.setAttribute(name,value); s.text=old.textContent; old.replaceWith(s); });
+      }).catch(()=>{ slot.innerHTML='<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; });
+    })();
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
