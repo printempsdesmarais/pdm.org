@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
+  <!-- Styles locaux (mini) : hero + lightbox + vignette -->
   <style>
-    /* Ajustements très locaux pour la lisibilité du héros */
-    #mission-hero { text-align: center; padding: clamp(2rem,6vw,4rem) 0; }
+    /* Hero */
+    #mission-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
     #mission-hero .brand-hero img{
       width:100%; max-width:480px; height:auto; display:block; margin:0 auto;
     }
@@ -26,8 +27,47 @@
       text-wrap: balance;
     }
     #mission-hero h1.section-title{ margin-top:.5rem; }
-    /* Grille utilitaire locale si besoin de colonnes */
+
+    /* Layout utilitaire local */
     .cols-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+
+    /* Vignette cliquable (petite) */
+    .thumb{
+      display:block;
+      width:min(260px, 46%);
+      height:auto;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      cursor:zoom-in;
+    }
+    .fig{
+      display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;
+    }
+    .fig figcaption{
+      font-size:.95rem; opacity:.95;
+    }
+
+    /* Lightbox simple */
+    .lightbox{
+      position:fixed; inset:0; z-index:10000;
+      background:rgba(0,0,0,.86);
+      display:none; align-items:center; justify-content:center;
+      padding:1rem;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width:min(92vw,1200px);
+      max-height:88vh;
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,.5);
+      user-select:none;
+    }
+    .lightbox .close-hint{
+      position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+      color:#eee; font-size:.85rem; opacity:.85;
+      background:rgba(0,0,0,.35); padding:.25rem .5rem; border-radius:.4rem;
+    }
   </style>
 </head>
 <body class="page2">
@@ -46,7 +86,9 @@
       <h1 class="section-title">Notre mission</h1>
       <p class="intro">
         Restaurer un terrain en friche du Médoc pour en faire un <strong>laboratoire vivant</strong> conciliant
-        <strong>écologie</strong>, <strong>patrimoine</strong> et <strong>innovation</strong>.
+        <strong>écologie</strong>, <strong>patrimoine</strong> et <strong>innovation</strong>.<br>
+        Sur 8 hectares, nous testons des pratiques sobres, favorisons la <strong>biodiversité</strong> et créons un lieu de
+        rencontre entre citoyens, éleveurs et chercheurs.
       </p>
       <div style="display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;">
         <a href="agir.html" class="nav-button">Agir avec nous</a>
@@ -54,33 +96,132 @@
       </div>
     </section>
 
-    <!-- SECTION : Le terrain -->
-    <section aria-label="Le terrain" style="padding:1rem 0 2rem 0;">
-      <h2 class="section-title">Un terrain de 8 hectares</h2>
+    <!-- 1) RENAISSANCE D’UN TERRAIN -->
+    <section aria-label="Renaissance d’un terrain" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Renaissance d’un terrain</h2>
       <div class="panel" style="padding:1rem;">
         <div class="cols-2">
           <div>
             <p>
-              Anciennes prairies agricoles, aujourd’hui laissées à l’abandon. Présence d’une mare d’eau douce et de
-              haies naturelles de tamaris.
+              Notre mission consiste dans un premier temps en l’acquisition d’un terrain de 8 hectares correspondant à la parcelle
+              repérée n°0037 et n°0039 sur le plan cadastral ci-dessous. La dernière exploitation agricole du terrain remonte aux
+              années 2010–2014, pendant lesquelles un élevage d’ânes a existé. Depuis le décès du propriétaire, en 2014, la terre est
+              inexploitéé. Un entretien sommaire à l’aide d’un broyeur retient a minima une fermeture totale de la prairie. De plus,
+              un chemin touristique communal longe un côté de la parcelle.
             </p>
             <p>
-              Ce terrain devient notre <strong>espace pilote</strong> pour tester une gestion écologique et autonome.
+              Au cœur du terrain existe une mare, analysée en juillet 2025. Le taux de salinité est inférieur à 1 g/l, soit une eau
+              douce issue d’une résurgence de nappe phréatique affleurante. En bordure du terrain, jouant un rôle de brise-vent,
+              plus d’un kilomètre de haies de tamaris constituent une clôture et un drain naturels, soit ~75% du périmètre.
             </p>
           </div>
-          <div style="display:flex; align-items:flex-start; gap:.5rem; flex-wrap:wrap;">
-            <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
-            <a href="ressources.html" class="nav-button">Voir les ressources</a>
-          </div>
+          <figure class="fig">
+            <a href="images/parcelle37.jpg" class="js-lb" data-full="images/parcelle37.jpg" aria-label="Agrandir la vue générale — Parcelle n°37">
+              <img src="images/parcelle37.jpg" alt="Vue générale — parcelle n°37" class="thumb" loading="lazy" width="260" height="170">
+            </a>
+            <figcaption>Vue générale — découpage cadastral, parcelle n°37.</figcaption>
+          </figure>
+        </div>
+
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem;">
+          <a href="galerie.html" class="nav-button">Découvrir la biodiversité</a>
+          <a href="ressources.html" class="nav-button">Voir les ressources</a>
         </div>
       </div>
     </section>
 
-    <!-- SECTION VIDÉO -->
-    <section aria-label="Vidéo de présentation" style="padding:1rem 0 2rem 0;">
+    <!-- 2) UNE VOCATION SINGULIÈRE -->
+    <section aria-label="Une vocation singulière" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Une vocation singulière</h2>
+      <div class="panel" style="padding:1rem;">
+        <p>
+          La digue de Talais, située entre Talais et Saint-Vivien-de-Médoc, a été construite vers 1763–1764, en même temps que les
+          travaux d’assèchement des marais, puis renforcée après avoir cédé en 1885. Sans cette digue, les grandes eaux des grandes
+          marées pénétraient jusqu’à la parcelle, alors située sur l’estran (appelée localement « <em>les mattes</em> »). L’altitude est
+          comprise entre 2 et 3 mètres au-dessus du niveau moyen de la mer.
+          <a class="text-link" href="https://www.patrimoine-nouvelle-aquitaine.fr/Default/doc/Dossier/24d3f250-e0d0-40bd-b75c-5af5d72f12b7/digues?_lg=fr-FR&utm_source=chatgpt.com" target="_blank" rel="noopener">En savoir plus</a>.
+        </p>
+        <p>
+          Alors que les grandes cultures céréalières bénéficient de terres exceptionnellement fertiles et bien irriguées (notamment
+          pour la production de grain de semence), les pouvoirs publics soulignent que ces sols, autrefois destinés à absorber les
+          excédents d’eau, ne le peuvent plus aujourd’hui. Cela augmente le risque d’inondation pour les riverains de la Gironde et
+          la métropole bordelaise.
+        </p>
+        <p>
+          Ainsi, l’État — via le Conservatoire du littoral — cherche à reprendre possession de certaines parcelles pour leur rendre
+          une fonction de <strong>zone tampon</strong>. Pour tendre vers cette fonction, il s’agit d’amorcer un retour vers des formes de milieux
+          plus proches de l’état initial (avant l’assèchement), tout en acceptant que l’objectif ne soit pas une restitution parfaite.
+        </p>
+        <p>
+          Minuscule au regard des centaines d’hectares de mattes voisines, notre mission vise l’<strong>exemplarité</strong> : une vitrine à
+          <strong>échelle humaine</strong>, où scientifiques, agriculteurs, communes et services de l’État partagent démarches et enjeux. À terme,
+          la parcelle doit tendre vers une <strong>autonomie biologique</strong> avec un minimum d’intervention humaine.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3) UN ANIMAL FAÇONNÉ PAR LE MILIEU -->
+    <section aria-label="Le poney landais, un animal façonné par le milieu" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Un animal façonné par le milieu</h2>
+      <div class="panel" style="padding:1rem;">
+        <p>
+          C’est là qu’intervient le <strong>poney landais</strong>. Intimement lié aux paysages aquitains, il peut devenir un <strong>allié précieux</strong>
+          pour la gestion écologique des marais du Médoc, en conciliant patrimoine, biodiversité et développement durable.
+        </p>
+        <p>
+          Issu des chevaux des landes et marais aquitains, le landais a frôlé l’extinction au XXᵉ siècle : en 1970, il ne restait
+          qu’une centaine d’individus. La population des poneys barthais a survécu grâce au plan de sauvegarde lancé par le Dr Henri
+          Soulé et quelques éleveurs passionnés. Un stud-book a été créé, avec recours ponctuel à des croisements (Welsh, arabe) pour
+          limiter la consanguinité. Aujourd’hui, les effectifs tournent autour de quelques centaines de têtes, surtout dans les Landes.
+        </p>
+        <p>
+          Le landais est un poney <strong>rustique</strong>, <strong>docile</strong>, <strong>endurant</strong> et <strong>polyvalent</strong> (attelage, dressage, endurance, saut d’obstacles).
+          Mais sa petite taille (catégories B et C) le rend moins compétitif face à des races plus grandes recherchées par les clubs.
+          La race souffre aussi d’un manque de <strong>visibilité</strong>, de <strong>débouchés</strong> et d’<strong>éleveurs</strong> en activité. Deux orientations se dessinent :
+          sélectionner des modèles plus grands, ou préserver le type originel. Au-delà du sport, le landais commence à trouver une
+          place comme <strong>outil écologique</strong> pour entretenir prairies humides et marais.
+        </p>
+        <p style="opacity:.9; font-size:.95rem;">
+          Source : « Plan de sauvegarde du poney landais », thèse de Josette / Yannick Leblond — École vétérinaire d’Alfort — 2006.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4) UN ALLIÉ POUR LA BIODIVERSITÉ -->
+    <section aria-label="Un allié pour la biodiversité" style="padding:1rem 0 2rem 0;">
+      <h2 class="section-title">Un allié pour la biodiversité</h2>
+      <div class="panel" style="padding:1rem;">
+        <p>
+          Dans une logique de <strong>gestion écologique</strong> des espaces naturels, le poney landais peut jouer plusieurs rôles :
+        </p>
+        <ul style="margin:0; padding-left:1.2rem; line-height:1.7;">
+          <li><strong>Entretien naturel de la végétation</strong> : broutage des herbes hautes, des joncs et de certains arbustes pour maintenir les milieux ouverts.</li>
+          <li><strong>Préservation de la biodiversité</strong> : son pâturage crée une mosaïque d’habitats favorables aux oiseaux d’eau, amphibiens et insectes.</li>
+          <li><strong>Gestion douce des zones humides</strong> : il remplace avantageusement des engins mécaniques, limitant le tassement des sols et les émissions de CO₂.</li>
+          <li><strong>Valorisation locale</strong> : associer sauvegarde d’une race régionale et entretien naturel des marais.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5) APPEL À PARTICIPATION -->
+    <section aria-label="Appel à participation" style="padding:1rem 0 2rem 0;">
+      <div class="panel" style="padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
+        <h2 class="section-title" style="margin:0;">Rejoignez l’expérience</h2>
+        <p>
+          Nous voulons faire de ce site un <strong>symbole vivant</strong> de la transition écologique dans les marais du Médoc.
+          Votre soutien — <strong>bénévolat</strong>, <strong>don</strong>, <strong>partenariat</strong>, <strong>partage de données</strong> — est décisif pour documenter et amplifier l’impact.
+        </p>
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+          <a href="agir.html" class="nav-button">Voir comment participer</a>
+          <a href="index.html#contact" class="nav-button">Prendre contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) VIDÉO (dernière section) -->
+    <section aria-label="Vidéo de présentation" style="padding:1rem 0 3rem 0;">
       <h2 class="section-title">Vidéo de présentation du projet</h2>
       <div class="panel" style="padding:0; overflow:hidden;">
-        <!-- Wrapper 16:9 responsive -->
         <div style="position:relative; width:100%; aspect-ratio:16/9; background:rgba(0,0,0,.3);">
           <iframe 
             src="https://player.vimeo.com/video/1050588243?fl=pl&fe=sh"
@@ -92,55 +233,54 @@
         </div>
       </div>
     </section>
-
-    <!-- SECTION : Pourquoi cette mission ? -->
-    <section aria-label="Pourquoi cette mission ?" style="padding:1rem 0 2rem 0;">
-      <h2 class="section-title">Répondre aux défis actuels</h2>
-      <div class="panel" style="padding:1rem;">
-        <ul style="margin:0; padding-left:1.2rem; line-height:1.7;">
-          <li>Préserver les zones humides et <strong>réduire les risques d’inondations</strong>.</li>
-          <li>Offrir un espace refuge à la <strong>biodiversité</strong>.</li>
-          <li>Revaloriser le <strong>patrimoine agricole et naturel</strong>.</li>
-          <li>Créer un <strong>lieu de pédagogie</strong> et de rencontre.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION : Vitrine expérimentale -->
-    <section aria-label="Une vitrine expérimentale" style="padding:1rem 0 2rem 0;">
-      <h2 class="section-title">Un projet à échelle humaine</h2>
-      <div class="panel" style="padding:1rem;">
-        <p>
-          Chercheurs, éleveurs, collectivités et habitants participent à cette aventure.
-          L’objectif : un terrain <strong>autonome</strong>, peu d’intervention humaine, mais une <strong>biodiversité riche</strong> et durable.
-        </p>
-        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-          <a href="agir.html" class="nav-button">Agir avec nous</a>
-          <a href="index.html#contact" class="nav-button">Nous contacter</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- APPEL FINAL -->
-    <section aria-label="Appel à rejoindre le projet" style="padding:1rem 0 3rem 0;">
-      <div class="panel" style="padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
-        <h2 class="section-title" style="margin:0;">Rejoignez-nous</h2>
-        <p>
-          Ensemble, faisons de ce terrain un <strong>symbole vivant</strong> de la transition écologique dans les marais du Médoc.
-        </p>
-        <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-          <a href="agir.html" class="nav-button">Voir comment participer</a>
-          <a href="index.html#contact" class="nav-button">Prendre contact</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Lightbox (markup + script local) -->
+  <div class="lightbox" id="lb" aria-hidden="true" role="dialog" aria-label="Agrandissement de l’image">
+    <img id="lb-img" src="" alt="">
+    <div class="close-hint">Clic en dehors ou Échap pour fermer</div>
+  </div>
+
   <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
+
+  <!-- Script lightbox local -->
+  <script>
+    (function(){
+      const lb   = document.getElementById('lb');
+      const img  = document.getElementById('lb-img');
+      const openers = document.querySelectorAll('.js-lb');
+
+      function open(src, alt){
+        img.src = src;
+        img.alt = alt || '';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        img.src = '';
+      }
+
+      openers.forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const src = a.getAttribute('data-full') || a.getAttribute('href');
+          const alt = a.querySelector('img')?.getAttribute('alt') || 'Image';
+          open(src, alt);
+        });
+      });
+
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>
