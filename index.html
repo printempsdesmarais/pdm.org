@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Accueil — Printemps des Marais</title>
   <meta name="description" content="Accueil du projet Printemps des Marais : mission, actualités et appels à participation.">
-
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -20,30 +19,38 @@
     <p>(Contenu à venir)</p>
   </main>
 
-  <footer style="padding:2rem 1rem;opacity:.8;">
-    © <span id="y"></span> Printemps des Marais
-  </footer>
+  <!-- Footer injecté -->
+  <footer id="site-footer" aria-label="Pied de page"></footer>
 
   <script>
-    // Injection du header partagé (rappel d'intégration)
     (function(){
-      const slot = document.getElementById('site-header');
-      fetch('header.html', {credentials:'same-origin'})
-        .then(r => r.text())
-        .then(html => {
-          slot.innerHTML = html;
-          // Ré-exécute les <script> du fragment inséré (pour le sous-menu, etc.)
-          const scripts = slot.querySelectorAll('script');
-          scripts.forEach(old => {
-            const s = document.createElement('script');
-            for (const {name, value} of old.attributes) s.setAttribute(name, value);
-            s.text = old.textContent;
-            old.replaceWith(s);
+      function injectFragment(targetId, url){
+        const slot = document.getElementById(targetId);
+        if(!slot) return;
+        fetch(url, {credentials:'same-origin'})
+          .then(r => r.text())
+          .then(html => {
+            slot.innerHTML = html;
+            // Ré-exécute les <script> du fragment inséré
+            const scripts = slot.querySelectorAll('script');
+            scripts.forEach(old => {
+              const s = document.createElement('script');
+              for (const {name, value} of old.attributes) s.setAttribute(name, value);
+              s.text = old.textContent;
+              old.replaceWith(s);
+            });
+          })
+          .catch(() => {
+            if(targetId==='site-header'){
+              slot.innerHTML = '<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>';
+            } else if(targetId==='site-footer'){
+              slot.innerHTML = '<div style="padding:1rem;text-align:center;color:#fff;background:#222">© '+new Date().getFullYear()+' Printemps des Marais — Association loi 1901</div>';
+            }
           });
-        })
-        .catch(()=>{ slot.innerHTML = '<div class="nav"><a class="brand" href="index.html" style="color:#fff;text-decoration:none;font-weight:800">Printemps des Marais</a></div>'; });
+      }
+      injectFragment('site-header','header.html');
+      injectFragment('site-footer','footer.html');
     })();
-    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
