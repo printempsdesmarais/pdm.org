@@ -5,96 +5,35 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Accueil — Printemps des Marais</title>
   <meta name="description" content="Association loi 1901 dédiée à la renaissance écologique des marais du Médoc : projet pilote, poney landais, biodiversité, actions citoyennes.">
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
-  <!-- Overrides spécifiques à l'accueil -->
   <style>
-    /* Boutons verts uniquement sur cette page (sans toucher au header) */
-    body.page1 main .nav-button,
-    body.page1 main .nav-link {
-      background: var(--vert) !important;
-      border-color: rgba(255,255,255,.18);
-    }
-    body.page1 main .nav-button:hover,
-    body.page1 main .nav-link:hover {
-      filter: brightness(.9);
-    }
-
-    /* Héros : logo + grande accroche blanche */
-    #hero .brand-hero {
-      display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
-    }
+    /* Spécifiques à la page accueil */
     #hero .brand-hero img {
-      height: clamp(52px, 10vw, 82px);
-      width:auto; object-fit:contain; display:block;
+      width: 100%;         /* Logo pleine largeur */
+      height: auto;
+      max-width: 420px;    /* limite raisonnable */
+      margin: 0 auto;
+      display: block;
     }
     #hero .hero-lead {
-      color:#fff;
-      font-size: clamp(1.3rem, 3.2vw, 2rem); /* beaucoup plus gros */
-      line-height: 1.45;
-      max-width: 70ch;
-      margin: .25rem 0 1rem 0;
-      text-wrap: balance;
+      text-align: center;  /* centrer le texte sous le logo */
     }
-
-    /* Panneaux lisibles : fond sombre translucide + textes en blanc */
-    .panel {
-      background: rgba(15,15,15,.65);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 14px;
-      color: #fff;
+    /* Plus petite font en italique dans les sections */
+    section p, 
+    section ul, 
+    section li {
+      font-style: italic;
+      font-size: .95rem;
     }
-
-    /* Grands titres de sections : blancs et plus gros */
-    .section-title {
-      color:#fff;
-      font-size: clamp(1.4rem, 2.6vw, 2rem);
-      margin: 0 0 .8rem 0;
-      line-height:1.2;
-      text-wrap: balance;
-    }
-
-    /* Titres cartes/encarts */
-    .card-title {
-      color:#fff;
-      margin:.2rem 0 .4rem 0;
-      font-size: 1.12rem;
-    }
-
-    /* Grille utilitaire */
-    .grid {
-      display:grid; gap:12px;
-    }
-    .grid.auto-3 { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
-    .grid.auto-4 { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); }
-    .grid.auto-3w { grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
-
-    /* Inputs formulaire lisibles */
-    .input {
-      width:100%; padding:.6rem .7rem;
-      border-radius:.45rem;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-    }
-    .label { display:block; margin-bottom:.25rem; color:#fff; }
-
-    /* Liens texte */
-    a.text-link { color:#fff; text-decoration:underline; text-underline-offset:2px; }
-
-    /* Petites cartes teaser galerie */
-    .tile {
-      display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);
-    }
-
-    /* Wrap (optionnel : léger max-width si tu veux) */
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
   </style>
 </head>
 <body class="page1">
-  <!-- Fond décoratif (géré par CSS + background.js) -->
+  <!-- Fond décoratif -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
   <!-- Header injecté -->
@@ -104,14 +43,14 @@
     <!-- HÉRO / INTRO -->
     <section id="hero" aria-label="Introduction" style="padding:clamp(2rem,6vw,4rem) 0;">
       <div class="brand-hero">
-        <!-- Remplacement du titre par le logo -->
-        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo" height="80">
+        <!-- Logo pleine largeur -->
+        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
       </div>
       <p class="hero-lead">
         Un <strong>projet pilote</strong> au cœur du Médoc pour <strong>réconcilier écologie, patrimoine et innovation</strong>.<br>
         Suivez la renaissance d’un terrain, la sauvegarde du <em>poney landais</em> et l’essor de la <strong>biodiversité</strong>.
       </p>
-      <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+      <div style="display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;">
         <a href="projet-1.html" class="nav-button">Découvrir le projet</a>
         <a href="agir.html" class="nav-button">Agir ensemble</a>
       </div>
@@ -123,17 +62,17 @@
       <div class="grid auto-3">
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">Renaissance d’un terrain</h3>
-          <p style="margin:0 0 .8rem 0;">8 hectares de prairies et une mare d’eau douce : un terrain laboratoire pour tester une gestion écologique.</p>
+          <p>8 hectares de prairies et une mare d’eau douce : un terrain laboratoire pour tester une gestion écologique.</p>
           <a href="projet-1.html" class="nav-button">Voir la mission</a>
         </article>
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">Le poney landais</h3>
-          <p style="margin:0 0 .8rem 0;">Une race façonnée par les zones humides, rustique et précieuse pour l’entretien des marais.</p>
+          <p>Une race façonnée par les zones humides, rustique et précieuse pour l’entretien des marais.</p>
           <a href="galerie.html" class="nav-button">Voir en images</a>
         </article>
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">Biodiversité & pédagogie</h3>
-          <p style="margin:0 0 .8rem 0;">Un lieu d’observation et de rencontre : scientifiques, éleveurs, collectivités, habitants.</p>
+          <p>Un lieu d’observation et de rencontre : scientifiques, éleveurs, collectivités, habitants.</p>
           <a href="ressources.html" class="nav-button">Ressources</a>
         </article>
       </div>
@@ -149,17 +88,17 @@
       <div class="grid auto-3w" style="margin-top:.8rem;">
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">[Titre d’actualité #1]</h3>
-          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <p>Résumé court (2–3 lignes). Une photo viendra ici.</p>
           <a href="actus.html" class="nav-button">Lire</a>
         </article>
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">[Titre d’actualité #2]</h3>
-          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <p>Résumé court (2–3 lignes). Une photo viendra ici.</p>
           <a href="actus.html" class="nav-button">Lire</a>
         </article>
         <article class="panel" style="padding:1rem;">
           <h3 class="card-title">[Titre d’actualité #3]</h3>
-          <p style="margin:0 0 .8rem 0;">Résumé court (2–3 lignes). Une photo viendra ici.</p>
+          <p>Résumé court (2–3 lignes). Une photo viendra ici.</p>
           <a href="actus.html" class="nav-button">Lire</a>
         </article>
       </div>
@@ -173,7 +112,6 @@
       </div>
 
       <div class="grid auto-4" style="margin-top:.8rem;">
-        <!-- Placeholders d’images -->
         <a href="galerie.html" class="tile" aria-label="Ouvrir la galerie"></a>
         <a href="galerie.html" class="tile" aria-label="Ouvrir la galerie"></a>
         <a href="galerie.html" class="tile" aria-label="Ouvrir la galerie"></a>
@@ -185,7 +123,7 @@
     <section id="agir-cta" aria-label="Participer" style="padding:1.2rem 0 2rem 0;">
       <div class="panel" style="padding:clamp(1rem,4vw,1.5rem); display:grid; gap:.8rem;">
         <h2 class="section-title" style="margin:0;">Agir ensemble</h2>
-        <p style="margin:0;">Bénévolat, soutien financier, partenariats, recherche : chacun peut contribuer à la vitalité des marais du Médoc.</p>
+        <p>Bénévolat, soutien financier, partenariats, recherche : chacun peut contribuer à la vitalité des marais du Médoc.</p>
         <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
           <a href="agir.html" class="nav-button">Voir comment</a>
           <a href="#contact" class="nav-button">Nous contacter</a>
@@ -193,10 +131,10 @@
       </div>
     </section>
 
-    <!-- CONTACT (ancre) -->
+    <!-- CONTACT -->
     <section id="contact" aria-label="Contact" style="padding:1.2rem 0 3rem 0;">
       <h2 class="section-title" style="margin:0 0 .6rem 0;">Contact</h2>
-      <p style="margin:0 0 1rem 0; color:#fff;">Écrivez-nous pour rejoindre l’association, proposer une collaboration ou poser vos questions.</p>
+      <p>Écrivez-nous pour rejoindre l’association, proposer une collaboration ou poser vos questions.</p>
       <div class="grid auto-3w">
         <div class="panel" style="padding:1rem;">
           <h3 class="card-title">Coordonnées</h3>
@@ -208,7 +146,6 @@
         </div>
         <div class="panel" style="padding:1rem;">
           <h3 class="card-title">Formulaire rapide</h3>
-          <!-- Placeholder (non branché) -->
           <form action="#" method="post" onsubmit="alert('Merci ! Nous vous répondons très vite.'); return false;">
             <label for="f-nom" class="label">Nom</label>
             <input id="f-nom" name="nom" type="text" required class="input">
