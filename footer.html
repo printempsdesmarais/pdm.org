@@ -2,6 +2,7 @@
   <div class="footer-inner">
     <p class="footer-brand">Printemps des Marais</p>
     <p class="footer-legal">© <span id="footer-year"></span> — Association loi 1901</p>
+
     <nav class="footer-nav" aria-label="Liens secondaires">
       <a href="index.html">Accueil</a>
       <a href="a-propos.html">À propos</a>
@@ -12,6 +13,9 @@
 </footer>
 
 <script>
-  // Mise à jour de l'année dans le footer
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  // Année dynamique (ré-exécuté après injection)
+  (function(){
+    var el = document.getElementById('footer-year');
+    if (el) el.textContent = new Date().getFullYear();
+  })();
 </script>
