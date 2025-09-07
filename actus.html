@@ -3,23 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Actualités — Printemps des Marais</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Actualités / Blog — Printemps des Marais</title>
+  <meta name="description" content="Nouvelles du terrain, étapes du projet, photos, rencontres — suivez le Printemps des Marais.">
+
+  <!-- Styles globaux -->
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Ajustements locaux -->
+  <style>
+    #news-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
+    #news-hero .brand-hero img{ width:100%; max-width:480px; height:auto; display:block; margin:0 auto; }
+    #news-hero .hero-lead{ color:#fff; font-size:clamp(1.05rem,2.2vw,1.4rem); line-height:1.5; max-width:74ch; margin:.5rem auto 0; text-wrap:balance; }
+
+    .post{ display:grid; grid-template-columns:160px 1fr; gap:12px; background:rgba(15,15,15,.65); border:1px solid rgba(255,255,255,.18); border-radius:14px; color:#fff; overflow:hidden; }
+    .post-thumb{ width:100%; height:100%; min-height:120px; object-fit:cover; display:block; }
+    .post-body{ padding:.9rem; display:grid; gap:.4rem; align-content:start; }
+    .post-title{ margin:0; font-size:1.1rem; }
+    .post-meta{ font-size:.85rem; opacity:.85; }
+    .post-excerpt{ margin:.2rem 0 .4rem 0; opacity:.95; }
+    .post-actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.2rem; }
+    .posts{ display:grid; gap:12px; }
+    @media(min-width:820px){ .posts{ grid-template-columns:repeat(2,1fr); } .post{ grid-template-columns:220px 1fr; } }
+
+    .filters{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.2rem 0 1rem 0; }
+    .filter{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#fff; text-decoration:none; padding:.4rem .7rem; border-radius:.5rem; font-weight:700; text-transform:uppercase; font-size:.8rem; }
+    .filter.is-active{ background:var(--orange); }
+
+    .pager{ display:flex; gap:.5rem; justify-content:center; margin:1rem 0 2rem; }
+
+    /* Section spéciale vidéo */
+    #video-actu{ padding:2rem 0; }
+    .cols-2{ display:grid; grid-template-columns:1fr; gap:1rem; }
+    @media(min-width:820px){ .cols-2{ grid-template-columns:1fr 1fr; } }
+    .video-wrapper{ position:relative; width:100%; padding-top:56.25%; background:#000; border-radius:12px; overflow:hidden; }
+    .video-wrapper iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .video-text{ color:#fff; display:grid; gap:.6rem; align-content:center; }
+    .video-text h2{ margin:0; font-size:1.4rem; }
+  </style>
 </head>
 <body class="page4">
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap">
-    <h1>Actualités / Blog</h1>
-    <p>Les dernières nouvelles et avancées du projet.</p>
+  <main class="wrap" id="main">
+    <!-- HERO -->
+    <section id="news-hero">
+      <div class="brand-hero">
+        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
+      </div>
+      <h1 class="section-title">Actualités / Blog</h1>
+      <p class="hero-lead">
+        Nouvelles du terrain, étapes du projet, photos et rencontres. Pour rester informé·e et suivre la progression de la renaissance des marais du Médoc.
+      </p>
+    </section>
+
+    <!-- Filtres -->
+    <nav class="filters" aria-label="Filtres d’articles">
+      <a href="#toutes" class="filter is-active">Toutes</a>
+      <a href="#terrain" class="filter">Terrain</a>
+      <a href="#biodiversite" class="filter">Biodiversité</a>
+      <a href="#poney-landais" class="filter">Poney landais</a>
+      <a href="#vie-asso" class="filter">Vie de l’asso</a>
+    </nav>
+
+    <!-- ARTICLES -->
+    <section aria-label="Liste des articles">
+      <div class="posts">
+        <!-- Exemple d’article (à dupliquer) -->
+        <article class="post">
+          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/storyboard/story19.jpg" alt="Première visite technique"></a>
+          <div class="post-body">
+            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Première visite technique : état des lieux</a></h2>
+            <div class="post-meta">Publié le <time datetime="2025-07-12">12 juillet 2025</time> — Catégorie : Terrain</div>
+            <p class="post-excerpt">Mare, haies de tamaris, accès : nos premiers relevés confirment le potentiel du site pour une gestion écologique à échelle humaine.</p>
+            <div class="post-actions">
+              <a class="nav-button" href="article-exemple.html">Lire</a>
+              <a class="nav-button" href="galerie.html">Voir les photos</a>
+            </div>
+          </div>
+        </article>
+        <!-- ... autres articles ... -->
+      </div>
+      <nav class="pager"><a class="nav-button" href="#prev">← Précédent</a><a class="nav-button" href="#next">Suivant →</a></nav>
+    </section>
+
+    <!-- SECTION VIDÉO -->
+    <section id="video-actu" aria-label="Vidéo spéciale — Transfert de Jalle">
+      <div class="cols-2">
+        <div class="video-wrapper">
+          <iframe src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Transfer"></iframe>
+        </div>
+        <div class="video-text">
+          <h2>TRANSFER DE JALLE</h2>
+          <p>
+            Le 21 mai 2025, <strong>Jalle</strong>, une ponette landaise de 5 ans, première étape du projet d’élevage de Laurie Jayet, a été transférée.
+          </p>
+          <p>
+            Elle a quitté les marais de Bruges pour rejoindre la ferme équestre de Naujac où Laurie s’occupe déjà de 8 chevaux.
+          </p>
+          <p>
+            Jalle y vivra en attendant que le projet <em>Printemps des Marais</em> à Talais puisse lui offrir un espace dédié et adapté à ses besoins.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Scripts -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
+  <script src="js/short-text.js"></script>
 </body>
 </html>
