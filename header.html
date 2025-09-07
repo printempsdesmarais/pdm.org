@@ -1,15 +1,14 @@
 <header role="banner">
   <style>
-    /* --- Bandeau fixe, semi-transparent --- */
-    :root{ --bar-h: 88px; } /* ajuste la hauteur si besoin */
-    body{ padding-top: var(--bar-h); } /* évite que le contenu passe sous le header fixe */
+    /* --- Bandeau fixe, semi-transparent vert --- */
+    :root{ --bar-h: 50px; } /* hauteur du bandeau */
+    body{ padding-top: var(--bar-h); }
 
     header{
       position: fixed; inset: 0 0 auto 0; z-index: 1000;
-      background: rgba(0,0,0,.5); /* 50% de transparence */
+      background: rgba(0,128,0,.5); /* vert transparent */
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      --bar-h: var(--bar-h); /* compat projet.css */
       border-bottom: 1px solid rgba(255,255,255,.15);
     }
 
@@ -29,24 +28,26 @@
     /* --- Liens / Boutons --- */
     .nav-links{display:flex;gap:.5rem;align-items:center}
     .nav-button{
-      padding:.5rem 1rem;border-radius:.55rem;text-decoration:none;
+      padding:.4rem .9rem;border-radius:.55rem;text-decoration:none;
       background: var(--orange, #ff942a);
-      color: #fff;               /* texte blanc */
-      font-weight: 700;          /* gras */
+      color: #fff;               
+      font-weight: 700;          
+      text-transform: uppercase; /* MAJUSCULES */
       transition: background .2s ease, filter .2s ease;
       font-family: var(--title-font, system-ui, sans-serif);
       border: 1px solid rgba(255,255,255,.18);
+      font-size:.85rem;
     }
     .nav-button:hover{ background:#e67e22; }
 
-    /* --- Burger (CSS-only) --- */
+    /* --- Burger --- */
     .nav-toggle{ position:absolute; left:-9999px; }
     .hamburger{
       display:none; flex-direction:column; justify-content:center;
       gap:5px; width:44px; height:44px; cursor:pointer; padding:6px;
     }
     .hamburger span{
-      display:block; width:28px; height:3px; background:#fff; /* barres blanches */
+      display:block; width:28px; height:3px; background:#fff;
     }
 
     /* --- Menu mobile --- */
@@ -59,9 +60,10 @@
       display:block; padding:.65rem .85rem; text-decoration:none; color:#f0f0f0;
       border-bottom:1px solid rgba(255,255,255,.08); font-family:var(--title-font, system-ui, sans-serif);
       margin:.1rem 0;
+      text-transform: uppercase; /* MAJUSCULES aussi sur mobile */
     }
     .mobile-menu a.nav-button{
-      background: var(--orange, #ff942a); color:#fff; /* blanc aussi sur mobile */
+      background: var(--orange, #ff942a); color:#fff;
       border-radius:.55rem; border:1px solid rgba(255,255,255,.18); margin-top:.4rem;
       text-align:center; font-weight:700;
     }
@@ -89,7 +91,7 @@
       <a href="index.html#contact" class="nav-button" role="menuitem">Contact</a>
     </div>
 
-    <!-- Burger (checkbox hack) -->
+    <!-- Burger -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu">
     <label for="nav-toggle" class="hamburger" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span><span></span>
