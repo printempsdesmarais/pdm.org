@@ -107,7 +107,7 @@ body{
 .has-sub:hover{ background: var(--orange-dark); }
 .caret{ width:14px; height:14px; opacity:.9; }
 
-/* Sous-menu (desktop) */
+/* Sous-menu (desktop) — avec fade/slide + anti-flicker */
 .submenu{
   position: absolute;
   top: 100%; /* collé au bouton */
@@ -116,30 +116,49 @@ body{
   background: var(--marron); /* couleur marron */
   color: #fff;
   z-index: 1002;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 12px;
   padding: .4rem;
-  display: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+
+  /* État caché (transitionnable) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+
+  /* Animation */
+  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  will-change: opacity, transform;
 }
-/* Pont invisible pour éviter le flicker */
+
+/* Pont invisible pour éviter le trou de hover */
 .submenu::before{
   content:"";
   position:absolute;
   left:0; right:0;
   top:-8px; height:8px;
 }
-.nav-group:hover .submenu,
-.nav-group:focus-within .submenu{ display: block; }
 
+/* État visible (hover/focus/JS .open) */
+.nav-group:hover .submenu,
+.nav-group:focus-within .submenu,
+.nav-group.open .submenu{
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s; /* rendre visible immédiatement */
+}
+
+/* Liens du sous-menu (police plus petite) */
 .submenu-link{
   display:block;
-  padding: .65rem .75rem;
+  padding: .5rem .65rem;            /* plus compact */
   color:#fff; text-decoration:none;
-  font-weight:700; text-transform: uppercase; font-size:.85rem;
-  border-radius: .5rem;
+  font-weight:700;
+  text-transform: uppercase;
+  font-size:.8rem;                  /* plus petit */
+  border-radius: .4rem;
 }
 .submenu-link:hover{ background: rgba(255,255,255,.12); }
 
