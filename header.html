@@ -10,8 +10,22 @@
     <div class="nav-links" role="menubar">
       <a href="index.html" class="nav-link" role="menuitem">Accueil</a>
       <a href="projet-1.html" class="nav-link" role="menuitem">La Mission</a>
+
+      <!-- Élément avec sous-menu -->
+      <div class="nav-group" role="none">
+        <button class="nav-link has-sub" aria-haspopup="true" aria-expanded="false">
+          Découvrir
+          <svg class="caret" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7l5 6 5-6" fill="currentColor"/></svg>
+        </button>
+        <div class="submenu" role="menu" aria-label="Découvrir">
+          <a href="actus.html" class="submenu-link" role="menuitem">Actualités / Blog</a>
+          <a href="galerie.html" class="submenu-link" role="menuitem">Galerie / Storyboard visuel</a>
+          <a href="a-propos.html" class="submenu-link" role="menuitem">À propos</a>
+          <a href="ressources.html" class="submenu-link" role="menuitem">Ressources</a>
+        </div>
+      </div>
+
       <a href="agir.html" class="nav-button" role="menuitem">Agir Ensemble</a>
-      <a href="actus.html" class="nav-link" role="menuitem">Actualités</a>
       <a href="index.html#contact" class="nav-button" role="menuitem">Contact</a>
     </div>
 
@@ -25,9 +39,48 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html" class="mobile-link">Accueil</a>
       <a href="projet-1.html" class="mobile-link">La Mission</a>
+
+      <!-- Sous-menu mobile (accordion) -->
+      <input type="checkbox" id="sub-toggle" class="sub-toggle" aria-label="Ouvrir le sous-menu Découvrir">
+      <label for="sub-toggle" class="mobile-link sub-trigger">Découvrir</label>
+      <div class="mobile-submenu">
+        <a href="actus.html" class="mobile-link sub">Actualités / Blog</a>
+        <a href="galerie.html" class="mobile-link sub">Galerie / Storyboard visuel</a>
+        <a href="a-propos.html" class="mobile-link sub">À propos</a>
+        <a href="ressources.html" class="mobile-link sub">Ressources</a>
+      </div>
+
       <a href="agir.html" class="mobile-link nav-button">Agir Ensemble</a>
-      <a href="actus.html" class="mobile-link">Actualités</a>
       <a href="index.html#contact" class="mobile-link nav-button">Contact</a>
     </div>
   </nav>
 </header>
+
+<script>
+  // Accessibilité minimale: synchronise aria-expanded du bouton "Découvrir"
+  (function(){
+    const group = document.querySelector('.nav-group');
+    if (!group) return;
+    const trigger = group.querySelector('.has-sub');
+    const panel = group.querySelector('.submenu');
+    let open = false;
+
+    function setState(state){
+      open = state;
+      trigger.setAttribute('aria-expanded', String(open));
+      panel.style.pointerEvents = open ? 'auto' : '';
+    }
+
+    // Ouvre au focus/hover clavier/souris
+    group.addEventListener('mouseenter', () => setState(true));
+    group.addEventListener('mouseleave', () => setState(false));
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      setState(!open);
+    });
+    // Ferme avec Échap
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') setState(false);
+    });
+  })();
+</script>
