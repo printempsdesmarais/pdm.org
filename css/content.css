@@ -1,0 +1,120 @@
+/* ===========================
+   CONTENU DES PAGES
+   =========================== */
+
+/* Décalage sous header fixe */
+body { padding-top: var(--bar-h); }
+
+/* Contrainte de largeur des contenus */
+.wrap { max-width:1100px; margin:0 auto; padding:0 1rem; }
+
+/* Panneaux lisibles sur fond flou */
+.panel {
+  background: rgba(15,15,15,.65);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  color: #fff;
+}
+
+/* Titres de section (grands, blancs) */
+.section-title {
+  color:#fff;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  margin: 0 0 .8rem 0;
+  line-height:1.2;
+  text-wrap: balance;
+}
+
+/* Titres de carte/encart */
+.card-title {
+  color:#fff;
+  margin:.2rem 0 .4rem 0;
+  font-size: 1.12rem;
+}
+
+/* Grilles utilitaires pour les sections */
+.grid { display:grid; gap:12px; }
+.grid.auto-3  { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+.grid.auto-4  { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); }
+.grid.auto-3w { grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+
+/* Boutons (contenu) — par défaut, reprennent le style global de layout.css.
+   Tu peux surcharger par page si nécessaire. */
+
+/* Inputs & labels (formulaires) */
+.input {
+  width:100%; padding:.6rem .7rem;
+  border-radius:.45rem;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+}
+.label { display:block; margin-bottom:.25rem; color:#fff; }
+
+/* Liens de texte sur fond sombre */
+a.text-link { color:#fff; text-decoration:underline; text-underline-offset:2px; }
+
+/* Vignettes teaser */
+.tile {
+  display:block; aspect-ratio:16/9; border-radius:12px; overflow:hidden;
+  border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);
+}
+
+/* ===========================
+   FOND DÉCORATIF PAR PAGE (.jpg)
+   =========================== */
+.bg-container{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.bg-image{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: filter .3s ease;
+}
+
+/* Mapping des images par page
+   (Mission/Actus échangées + page6/page7 inversées) */
+body.page1 .bg-image{ background-image: url("../images/fondterrain1.jpg"); }
+body.page2 .bg-image{ background-image: url("../images/fondterrain4.jpg"); } /* Mission */
+body.page3 .bg-image{ background-image: url("../images/fondterrain3.jpg"); }
+body.page4 .bg-image{ background-image: url("../images/fondterrain2.jpg"); } /* Actus */
+body.page5 .bg-image{ background-image: url("../images/fondterrain5.jpg"); }
+body.page6 .bg-image{ background-image: url("../images/fondterrain7.jpg"); }
+body.page7 .bg-image{ background-image: url("../images/fondterrain6.jpg"); }
+
+/* ===========================
+   OVERRIDES PAR PAGE (exemples)
+   =========================== */
+
+/* Accueil : boutons verts dans le contenu uniquement */
+body.page1 main .nav-button,
+body.page1 main .nav-link{
+  background: var(--vert) !important;
+  border-color: rgba(255,255,255,.18);
+}
+body.page1 main .nav-button:hover,
+body.page1 main .nav-link:hover{
+  filter: brightness(.9);
+}
+
+/* Accueil : texte d’accroche très lisible */
+#hero .hero-lead{
+  color:#fff;
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  line-height: 1.45;
+  max-width: 70ch;
+  margin: .25rem 0 1rem 0;
+  text-wrap: balance;
+}
+#hero .brand-hero{
+  display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+}
+#hero .brand-hero img{
+  height: clamp(52px, 10vw, 82px);
+  width:auto; object-fit:contain; display:block;
+}
