@@ -1,73 +1,140 @@
-/* Header uniforme */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(46, 51, 46, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 0.5rem 0;
+/* ===========================
+   Styles globaux & Header
+   =========================== */
+
+/* Couleurs de référence */
+:root{
+  --vert: #97bb2b;   /* demandé : 97bb2b */
+  --orange: #ff942a; /* demandé : ff942a */
+  --marron: #7f6115; /* demandé : 7f6115 */
+
+  --bar-h: 70px;     /* hauteur du bandeau */
+  --text: #ffffff;
+  --orange-dark: #e67e22; /* orange foncé au survol */
 }
 
-.nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
+/* Base typographique */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body{
+  margin:0;
+  font-family: "GC Volkgen", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:#111;
+  /* Espace pour le header fixe (évite que le contenu passe dessous) */
+  padding-top: var(--bar-h);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+/* ===========================
+   HEADER (fixe, transparent, blur fort)
+   =========================== */
+.site-header{
+  position: fixed; inset: 0 0 auto 0; z-index: 1000;
+  /* 100% transparent, mais on applique un blur très fort sur l'arrière-plan */
+  background: transparent;
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border-bottom: 1px solid rgba(255,255,255,.18);
 }
 
-.logo {
-  height: 100%; /* Ajuste la hauteur du logo à celle du header */
-  max-height: 50px; /* Taille maximale pour éviter qu'il ne dépasse */
-  padding: 0.25rem 0; /* Ajustement vertical */
+/* Conteneur */
+.nav{
+  max-width: 1100px; margin: 0 auto; padding: 0 1rem;
+  min-height: var(--bar-h);
+  display: flex; align-items: center; justify-content: space-between;
 }
 
-/* Boutons oranges uniformes */
-.nav-links {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+/* Marque */
+.brand{
+  display:flex; align-items:center; gap:.5rem;
+  text-decoration:none; min-height: var(--bar-h);
+}
+.brand-logo{
+  height: var(--bar-h); width:auto; object-fit: contain; display:block;
 }
 
-.nav-button {
-  padding: 0.5rem 1rem;
-  background: #FF8C00; /* Orange */
-  color: white;
-  text-decoration: none;
-  border-radius: 0.5rem;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  transition: background 0.3s;
+/* Tagline à droite du logo : minuscule & petite taille */
+.tagline{
+  font-size: .72rem; line-height: 1; letter-spacing: .02em;
+  text-transform: none; /* minuscule */
+  color: rgba(255,255,255,.9);
+  white-space: nowrap;
+  align-self: center;
 }
 
-.nav-button:hover {
-  background: #e67a00; /* Orange plus foncé au survol */
+/* Liens desktop */
+.nav-links{ display:flex; gap:.5rem; align-items:center; }
+
+.nav-link{
+  text-decoration:none;
+  color: var(--text);
+  font-weight: 700;
+  text-transform: uppercase;  /* MAJUSCULES */
+  padding: .45rem .75rem;
+  border-radius: .5rem;
+  transition: opacity .2s ease;
+  font-size: .9rem;
+}
+.nav-link:hover{ opacity:.85; }
+
+/* Boutons (orange, texte blanc en gras et MAJUSCULES) */
+.nav-button{
+  text-decoration:none;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;  /* MAJUSCULES */
+  padding: .5rem 1rem;
+  border-radius: .6rem;
+  border: 1px solid rgba(255,255,255,.18);
+  font-size: .9rem;
+  transition: background .2s ease, transform .05s ease;
+}
+.nav-button:hover{ background: var(--orange-dark); }
+.nav-button:active{ transform: translateY(1px); }
+
+/* Burger */
+.nav-toggle{ position:absolute; left:-9999px; }
+.hamburger{
+  display:none;
+  width:44px; height:44px; padding:10px;
+  cursor:pointer;
+  align-items:center; justify-content:center; flex-direction:column; gap:5px;
+}
+.hamburger span{
+  display:block; width:24px; height:3px; background:#fff; border-radius:2px;
 }
 
-/* Boutons génériques (pour les autres boutons du site) */
-.button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: #FF8C00;
-  color: white;
-  text-decoration: none;
-  border-radius: 0.5rem;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
+/* Menu mobile */
+.mobile-menu{
+  display:none; position:absolute; top: var(--bar-h); left:0; right:0;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: .5rem;
+}
+.mobile-link{
+  display:block;
+  padding: .85rem 1rem;
+  text-decoration:none;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.button:hover {
-  background: #e67a00;
+/* Responsive */
+@media (max-width: 900px), (hover:none) and (pointer:coarse){
+  .nav-links{ display:none; }
+  .hamburger{ display:flex; }
+  .nav{ position:relative; }
+  .nav-toggle:checked ~ .mobile-menu{ display:block; }
 }
 
+/* Optionnel: focus visible pour accessibilité */
+a:focus-visible, .hamburger:focus-visible{
+  outline: 2px solid #fff; outline-offset: 3px;
+}
+
+/* Vous pouvez ajouter d'autres styles globaux du site ici */
