@@ -17,10 +17,7 @@
     #agir-hero .brand-hero img{ width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
     #agir-hero .lead{ color:#fff; opacity:.95; max-width:72ch; margin:.5rem auto 0; text-wrap:balance; }
 
-    .agir-panel{
-      max-width: 900px; margin: 0 auto 2rem;
-    }
-    /* Optionnel : cadre sobre autour du widget */
+    .agir-panel{ max-width: 900px; margin: 0 auto 2rem; }
     .agir-widget{
       background: rgba(15,15,15,.65);
       border: 1px solid rgba(255,255,255,.18);
@@ -30,11 +27,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.18);
     }
   </style>
-
-  <!--
-    Si ta plateforme fournit un script d'initialisation pour .iframe-asc-container,
-    tu peux l’ajouter ici ou avant </body>. (L’intégration fonctionne avec la div ci-dessous.)
-  -->
 </head>
 <body class="page3">
   <!-- Fond décoratif (défini dans css/content.css pour body.page3) -->
@@ -53,15 +45,14 @@
       <p class="lead">Adhérer, contribuer, soutenir le projet : votre participation rend possible la renaissance des marais.</p>
     </section>
 
-    <!-- WIDGET / COLLECTE -->
-    <section class="agir-panel" aria-label="Participer">
+    <!-- WIDGET / ADHÉSION ASSOCONNECT -->
+    <section class="agir-panel" aria-label="Formulaire d’adhésion">
       <div class="agir-widget">
-        <!-- Code fourni : intégré tel quel -->
-        <div class="iframe-asc-container" data-type="collect" data-collect-id="01K4FMHBVJKAYZAPG0DSX4PQ55"></div>
-
-        <noscript style="display:block; margin-top:.75rem; color:#fff; opacity:.9;">
-          Activez JavaScript pour afficher le module de participation.
-        </noscript>
+        <!-- === CODE FOURNI === -->
+        <div class="iframe-asc-container"
+             data-type="collect"
+             data-collect-id="01K4FMHBVJKAYZAPG0DSX4PQ55"></div>
+        <!-- === FIN CODE === -->
       </div>
     </section>
   </main>
@@ -72,5 +63,8 @@
   <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
+
+  <!-- Script AssoConnect -->
+  <script src="https://printemps-des-marais.assoconnect.com/public/build/js/iframe.js"></script>
 </body>
 </html>
