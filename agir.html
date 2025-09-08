@@ -3,22 +3,73 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Agir Ensemble — Printemps des Marais</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Agir ensemble — Printemps des Marais</title>
+  <meta name="description" content="Participez au projet Printemps des Marais : adhésion, dons, contributions.">
+
+  <!-- Styles globaux -->
   <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/content.css">
+
+  <!-- Styles locaux très légers -->
+  <style>
+    #agir-hero{ text-align:center; padding: clamp(2rem,6vw,3.5rem) 0 1rem 0; }
+    #agir-hero .brand-hero img{ width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
+    #agir-hero .lead{ color:#fff; opacity:.95; max-width:72ch; margin:.5rem auto 0; text-wrap:balance; }
+
+    .agir-panel{
+      max-width: 900px; margin: 0 auto 2rem;
+    }
+    /* Optionnel : cadre sobre autour du widget */
+    .agir-widget{
+      background: rgba(15,15,15,.65);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 1rem;
+      color:#fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+  </style>
+
+  <!--
+    Si ta plateforme fournit un script d'initialisation pour .iframe-asc-container,
+    tu peux l’ajouter ici ou avant </body>. (L’intégration fonctionne avec la div ci-dessous.)
+  -->
 </head>
 <body class="page3">
+  <!-- Fond décoratif (défini dans css/content.css pour body.page3) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
+  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap">
-    <h1>Agir Ensemble</h1>
-    <p>Découvrez comment soutenir et participer au projet.</p>
+  <main class="wrap" id="main">
+    <!-- HERO -->
+    <section id="agir-hero" aria-label="Agir ensemble">
+      <div class="brand-hero">
+        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
+      </div>
+      <h1 class="section-title">Agir ensemble</h1>
+      <p class="lead">Adhérer, contribuer, soutenir le projet : votre participation rend possible la renaissance des marais.</p>
+    </section>
+
+    <!-- WIDGET / COLLECTE -->
+    <section class="agir-panel" aria-label="Participer">
+      <div class="agir-widget">
+        <!-- Code fourni : intégré tel quel -->
+        <div class="iframe-asc-container" data-type="collect" data-collect-id="01K4FMHBVJKAYZAPG0DSX4PQ55"></div>
+
+        <noscript style="display:block; margin-top:.75rem; color:#fff; opacity:.9;">
+          Activez JavaScript pour afficher le module de participation.
+        </noscript>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
+  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
 </body>
