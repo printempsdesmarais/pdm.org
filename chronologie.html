@@ -3,248 +3,79 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chronologie — Printemps des Marais</title>
+  <title>Chronologie 2025 — Printemps des Marais</title>
+  <meta name="description" content="Étapes clés 2025 : foncier, état des lieux, élevage, actions artistiques, suivis, communication, bilans.">
 
-  <!-- Styles globaux -->
-  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
-
-  <!-- Fond dédié + styles timeline -->
+  <link rel="stylesheet" href="css/fonts.css">
   <style>
-    /* Fond spécifique à la page chronologie */
-    body.page10 .bg-image{ background-image: url("images/fondterrain4.jpg"); }
-
-    /* Timeline verticale */
-    .timeline {
-      position: relative;
-      margin: 2rem auto;
-      padding-left: 3.5rem; /* laisse la place aux badges numérotés */
-      max-width: 900px;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 28px;          /* axe vertical */
-      width: 4px;
-      height: 100%;
-      background: var(--orange);
-      border-radius: 2px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 1.2rem;
-    }
-
-    /* Badge numéroté (remplace l'ancien point) */
-    .timeline-badge{
-      position: absolute;
-      left: 0;
-      top: .1rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--vert);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight: 800;
-      font-size: 1.05rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,.25);
-      border: 3px solid #fff;
-    }
-
-    .timeline-panel{
-      margin-left: .5rem;
-      background: rgba(15,15,15,.65);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 14px;
-      padding: clamp(.85rem, 2.2vw, 1.15rem);
-      color:#fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
-    }
-
-    .timeline-title{
-      margin: 0 0 .35rem 0;
-      color:#fff;
-      font-weight: 800;
-      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-      letter-spacing: .01em;
-      text-transform: none;
-    }
-
-    .timeline-text{ margin: 0; }
-    .timeline-text ul{
-      margin: .2rem 0 0 1.1rem;
-      padding: 0;
-    }
-    .timeline-text li{
-      margin: .28rem 0;
-      line-height: 1.6;
-      font-size: 1rem;
-      opacity: .98;
-    }
+    /* Option : légère respiration entre étapes */
+    .timeline .step{ margin-bottom:14px; }
   </style>
 </head>
-<body class="page10">
-  <!-- Fond décoratif -->
+<body class="page7">
+  <!-- Fond spécifique demandé -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
-  <!-- Header injecté -->
   <header id="site-header"></header>
 
-  <main class="wrap-narrow">
-    <h1 class="section-title center">Étapes clés 2025</h1>
+  <main class="wrap-narrow" id="main">
+    <h1 class="section-title center">Chronologie — Étapes clés 2025</h1>
 
-    <div class="timeline" aria-label="Chronologie du projet">
-      <!-- 1 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">1</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">1 - FONCIER</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Cartographie</li>
-              <li>Acquisition du terrain</li>
-              <li>Plan de gestion initial</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+    <section class="panel timeline">
+      <ol class="timeline-list">
+        <li class="step"><h3>1 — FONCIER</h3><ul>
+          <li>Cartographie</li><li>Acquisition du terrain</li><li>Plan de gestion initial</li></ul></li>
 
-      <!-- 2 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">2</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">2 - ÉTAT DES LIEUX ÉCOLOGIQUE</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Repérage des zones d’intérêt écologique</li>
-              <li>Interventions scientifiques et inventaire des espèces initiales</li>
-              <li>Résultats préliminaires : biodiversité observée</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>2 — ÉTAT DES LIEUX ÉCOLOGIQUE</h3><ul>
+          <li>Repérage des zones d’intérêt écologique</li>
+          <li>Interventions scientifiques et inventaire des espèces initiales</li>
+          <li>Résultats préliminaires : biodiversité observée</li></ul></li>
 
-      <!-- 3 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">3</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">3 - PRÉPARATIFS ÉLEVAGE PONEYS LANDAIS</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Aménagements légers et balisage du site</li>
-              <li>Aménagements pour accueil des chevaux</li>
-              <li>Introduction des premiers poneys</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>3 — PRÉPARATIFS ÉLEVAGE PONEYS LANDAIS</h3><ul>
+          <li>Aménagements légers et balisage du site</li>
+          <li>Aménagements pour accueil des chevaux</li>
+          <li>Introduction des premiers poneys</li></ul></li>
 
-      <!-- 4 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">4</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">4 - ACTIONS ARTISTIQUES</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Élaboration et concept du projet artistique</li>
-              <li>Recherche financements, partenariats et prestataires</li>
-              <li>Réalisation et installation des oeuvres</li>
-              <li>Médiatisation des installations</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>4 — ACTIONS ARTISTIQUES</h3><ul>
+          <li>Élaboration et concept du projet artistique</li>
+          <li>Recherche financements, partenariats et prestataires</li>
+          <li>Réalisation et installation des œuvres</li>
+          <li>Médiatisation des installations</li></ul></li>
 
-      <!-- 5 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">5</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">5 - SUIVIS BIODIVERSITÉ</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Suivi faune/flore : premières tendances</li>
-              <li>Coordination scientifique interdisciplinaire</li>
-              <li>Travaux légers d’aménagement écologique</li>
-              <li>Mise en place de panneaux d’information</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>5 — SUIVIS BIODIVERSITÉ</h3><ul>
+          <li>Suivi faune/flore : premières tendances</li>
+          <li>Coordination scientifique interdisciplinaire</li>
+          <li>Travaux légers d’aménagement écologique</li>
+          <li>Mise en place de panneaux d’information</li></ul></li>
 
-      <!-- 6 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">6</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">6 - COMMUNICATION</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Documentation photographique et vidéo</li>
-              <li>Valorisation patrimoniale : archives et récits</li>
-              <li>Communiqués de presse</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>6 — COMMUNICATION</h3><ul>
+          <li>Documentation photographique et vidéo</li>
+          <li>Valorisation patrimoniale : archives et récits</li>
+          <li>Communiqués de presse</li></ul></li>
 
-      <!-- 7 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">7</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">7 - ÉTAPES</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Relevés saisonniers : suivi des variations de biodiversité</li>
-              <li>Introduction de nouveaux poneys</li>
-              <li>Suivi des naissances et des poulains</li>
-              <li>Synthèse d’étape et ajustements du plan</li>
-              <li>Installation éventuelle d’équipements complémentaires</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>7 — ÉTAPES</h3><ul>
+          <li>Relevés saisonniers : suivi des variations de biodiversité</li>
+          <li>Introduction de nouveaux poneys</li>
+          <li>Suivi des naissances et des poulains</li>
+          <li>Synthèse d’étape et ajustements du plan</li>
+          <li>Installation éventuelle d’équipements complémentaires</li></ul></li>
 
-      <!-- 8 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">8</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">8 - BILAN SCIENTIFIQUE</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Rapport et Inventaire définitif faune/flore</li>
-              <li>Comparatifs avec les zones humides voisines</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <li class="step"><h3>8 — BILAN SCIENTIFIQUE</h3><ul>
+          <li>Rapport et inventaire définitif faune/flore</li>
+          <li>Comparatifs avec les zones humides voisines</li></ul></li>
 
-      <!-- 9 -->
-      <section class="timeline-item">
-        <div class="timeline-badge">9</div>
-        <div class="timeline-panel">
-          <h2 class="timeline-title">9 - MÉDIATION</h2>
-          <div class="timeline-text">
-            <ul>
-              <li>Organisation expositions / rencontre</li>
-              <li>Mise en réseau avec structures culturelles régionales</li>
-              <li>Restitution au public en milieu naturel</li>
-              <li>Restitution et projection du film documentaire</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
+        <li class="step"><h3>9 — MÉDIATION</h3><ul>
+          <li>Organisation expositions / rencontre</li>
+          <li>Mise en réseau avec structures culturelles régionales</li>
+          <li>Restitution au public en milieu naturel</li>
+          <li>Restitution et projection du film documentaire</li></ul></li>
+      </ol>
+    </section>
   </main>
 
-  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
-
-  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
 </body>
