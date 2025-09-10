@@ -1,149 +1,143 @@
-(async function(){
-  const mount = document.getElementById('home-news-list');
-  if (!mount) return;
+(function () {
+  const featuredContainer = document.getElementById('home-featured');
+  const newsContainer = document.getElementById('home-news');
 
-  const el = (tag, cls, html) => {
-    const n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (html) n.innerHTML = html;
-    return n;
-  };
+  if (!featuredContainer && !newsContainer) return;
 
-  const absolutize = (maybeUrl, base) => {
-    try { return new URL(maybeUrl, base).toString(); }
-    catch { return maybeUrl; }
-  };
+  const FEATURED_LIMIT = featuredContainer ? parseInt(featuredContainer.getAttribute('data-limit') || '1', 10) : 0;
+  const NEWS_LIMIT = newsContainer ? parseInt(newsContainer.getAttribute('data-limit') || '3', 10) : 0;
 
-  // Helpers extraction
-  const extractPost = (node, base) => {
-    const aTitle = node.querySelector('.post-title a');
-    const title  = aTitle ? aTitle.textContent.trim() : 'Article';
-    const href   = aTitle ? aTitle.getAttribute('href') : 'actus.html';
-    const url    = absolutize(href, base);
+  fetch('actus.html', { credentials: 'same-origin' })
+    .then(r => r.text())
+    .then(html => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    let imgEl = node.querySelector('.post-thumb');
-    if (!imgEl) imgEl = node.querySelector('.post-cover img');
-    if (!imgEl) imgEl = node.querySelector('img');
-    const imgSrc = imgEl ? absolutize(imgEl.getAttribute('src'), base) : '';
-    const imgAlt = imgEl ? (imgEl.getAttribute('alt') || title) : title;
+      // Déduplication par URL
+      const usedKeys = new Set();
+      const keyOf = (el) => el.querySelector('a[href]')?.getAttribute('href') || '';
 
-    const time = node.querySelector('.post-meta time');
-    const dateText = time ? time.textContent.trim() : '';
-    const dateISO  = time ? (time.getAttribute('datetime') || '') : '';
+      /* =========================
+         1) À LA UNE (FEATURED)
+         ========================= */
+      if (featuredContainer) {
+        // IMPORTANT : on respecte l'ORDRE DU DOCUMENT (aucun tri JS)
+        const featured = Array
+          .from(doc.querySelectorAll('.story-feature[data-include="home"]'))
+          .slice(0, FEATURED_LIMIT);
 
-    let excerpt = '';
-    const exEl = node.querySelector('.post-excerpt') || node.querySelector('.post-body p');
-    if (exEl) excerpt = exEl.textContent.trim();
-    if (excerpt.length > 240) excerpt = excerpt.slice(0, 237).trim() + '…';
+        if (featured.length) {
+          const frag = document.createDocumentFragment();
+          featured.forEach(f => {
+            const key = keyOf(f);
+            if (key) usedKeys.add(key);
 
-    return { type:'post', title, url, imgSrc, imgAlt, dateText, dateISO, excerpt, orderIndex: node.__orderIndex ?? 0 };
-  };
-
-  const extractStory = (node, base) => {
-    // Story feature marquée pour la home
-    const include = node.getAttribute('data-include') === 'home';
-    if (!include) return null;
-
-    const titleEl = node.querySelector('.story-feature__title');
-    const title = titleEl ? titleEl.textContent.trim() : 'Article spécial';
-
-    const href   = node.getAttribute('data-url') || 'actus.html#video-actu';
-    const url    = absolutize(href, base);
-
-    const thumb  = node.getAttribute('data-thumb') || '';
-    const imgSrc = thumb ? absolutize(thumb, base) : '';
-    const imgAlt = title;
-
-    // Date : <time> interne prioritaire ; sinon data-published
-    let timeEl = node.querySelector('time');
-    let dateISO = timeEl ? (timeEl.getAttribute('datetime') || '') : (node.getAttribute('data-published') || '');
-    let dateText = timeEl ? timeEl.textContent.trim() : (dateISO || '');
-
-    // Extrait = premier paragraphe de contenu
-    let excerpt = '';
-    const p = node.querySelector('.story-feature__content p');
-    if (p) excerpt = p.textContent.trim();
-    if (excerpt.length > 240) excerpt = excerpt.slice(0, 237).trim() + '…';
-
-    return { type:'story', title, url, imgSrc, imgAlt, dateText, dateISO, excerpt, orderIndex: node.__orderIndex ?? 0 };
-  };
-
-  try {
-    const res = await fetch('actus.html', { credentials: 'same-origin' });
-    if (!res.ok) throw new Error('Fetch actus.html failed: ' + res.status);
-    const html = await res.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const base = doc.baseURI || document.baseURI;
-
-    // Marque l'ordre DOM initial (utile si dates manquantes)
-    let i = 0;
-    doc.querySelectorAll('.post, .story-feature[data-include="home"]').forEach(n => (n.__orderIndex = i++));
-
-    const posts  = Array.from(doc.querySelectorAll('.post')).map(n => extractPost(n, base));
-    const stories = Array.from(doc.querySelectorAll('.story-feature[data-include="home"]'))
-                        .map(n => extractStory(n, base))
-                        .filter(Boolean);
-
-    // Fusion + tri par date desc ; fallback sur l'ordre DOM si pas de date
-    const items = [...posts, ...stories].filter(Boolean).sort((a,b)=>{
-      const da = a.dateISO ? Date.parse(a.dateISO) : NaN;
-      const db = b.dateISO ? Date.parse(b.dateISO) : NaN;
-      if (!isNaN(da) && !isNaN(db)) return db - da;        // tri par dates valides
-      if (!isNaN(da)) return -1;                           // a a une date, b pas
-      if (!isNaN(db)) return 1;                            // b a une date, a pas
-      return a.orderIndex - b.orderIndex;                  // fallback : ordre DOM
-    }).slice(0,3);
-
-    if (!items.length) {
-      mount.appendChild(el('p', null, `Aucune actualité n'est disponible pour le moment.`));
-      return;
-    }
-
-    items.forEach(it => {
-      const card = el('article', 'news-card');
-
-      if (it.imgSrc) {
-        const img = el('img', 'news-card__thumb');
-        img.src = it.imgSrc;
-        img.alt = it.imgAlt || it.title;
-        img.loading = 'lazy';
-        card.appendChild(img);
+            // Clone, puis supprime toute .post-meta interne (ex: dates narratives "mai 2025")
+            const cloned = f.cloneNode(true);
+            cloned.querySelectorAll('.post-meta').forEach(n => n.remove());
+            // Encapsule dans un wrap visuel
+            const wrap = document.createElement('div');
+            wrap.className = 'feature-wrap';
+            wrap.appendChild(cloned);
+            frag.appendChild(wrap);
+          });
+          featuredContainer.innerHTML = '';
+          featuredContainer.appendChild(frag);
+        } else {
+          // Si pas de featured, on masque la section
+          const section = document.getElementById('home-featured-section');
+          if (section) section.style.display = 'none';
+        }
       }
 
-      const body = el('div', 'news-card__body');
-      const h3 = el('h3', 'news-card__title');
-      const link = el('a', null, it.title);
-      link.href = it.url;
-      h3.appendChild(link);
-      body.appendChild(h3);
+      /* =========================
+         2) Dernières actualités
+         ========================= */
+      if (newsContainer) {
+        // IMPORTANT : on respecte l'ORDRE DU DOCUMENT (aucun tri JS)
+        const posts = Array.from(doc.querySelectorAll('.post'));
 
-      if (it.dateText) {
-        const meta = el('div', 'news-card__meta', it.dateISO ? `<time datetime="${it.dateISO}">${it.dateText}</time>` : it.dateText);
-        body.appendChild(meta);
+        const frag = document.createDocumentFragment();
+        let count = 0;
+
+        for (const el of posts) {
+          if (count >= NEWS_LIMIT) break;
+
+          const key = keyOf(el);
+          if (key && usedKeys.has(key)) continue; // évite doublon avec "À la une"
+          if (key) usedKeys.add(key);
+
+          // Construit une news-card compacte
+          const card = document.createElement('article');
+          card.className = 'news-card';
+
+          const link = el.querySelector('.post-title a');
+          const url = link?.getAttribute('href') || '#';
+          const title = link?.textContent?.trim() || 'Actualité';
+          // On consomme la date de publication SI fournie par actus.html dans <time datetime=...>
+          const timeEl = el.querySelector('time[datetime]');
+          const dateText = timeEl ? timeEl.textContent.trim() : '';
+          const thumb = el.querySelector('.post-thumb')?.getAttribute('src') || '';
+
+          if (thumb) {
+            const img = document.createElement('img');
+            img.className = 'news-card__thumb';
+            img.src = thumb;
+            img.alt = title;
+            card.appendChild(img);
+          }
+
+          const body = document.createElement('div');
+          body.className = 'news-card__body';
+
+          const h = document.createElement('h3');
+          h.className = 'news-card__title';
+          const a = document.createElement('a');
+          a.href = url;
+          a.textContent = title;
+          a.className = 'text-link';
+          h.appendChild(a);
+
+          const meta = document.createElement('div');
+          meta.className = 'news-card__meta';
+          // Affiche uniquement la date de publication provenant de <time>, si présente
+          if (dateText) meta.textContent = dateText;
+
+          // Extrait court (2 lignes contrôlées par CSS)
+          const excerptSrc = el.querySelector('.post-excerpt') || el.querySelector('.post-body p');
+          const excerpt = document.createElement('p');
+          excerpt.className = 'news-card__excerpt';
+          excerpt.textContent = excerptSrc ? excerptSrc.textContent.trim() : '';
+
+          body.appendChild(h);
+          if (dateText) body.appendChild(meta);
+          if (excerpt.textContent) body.appendChild(excerpt);
+
+          card.appendChild(body);
+          frag.appendChild(card);
+
+          count++;
+        }
+
+        if (!frag.childNodes.length) {
+          const empty = document.createElement('p');
+          empty.style.opacity = '.9';
+          empty.textContent = 'Aucune actualité pour le moment.';
+          newsContainer.innerHTML = '';
+          newsContainer.appendChild(empty);
+        } else {
+          newsContainer.innerHTML = '';
+          newsContainer.appendChild(frag);
+        }
       }
-
-      if (it.excerpt) {
-        const p = el('p', 'news-card__excerpt', it.excerpt);
-        body.appendChild(p);
+    })
+    .catch(err => {
+      console.error('home-news:', err);
+      if (featuredContainer) {
+        const section = document.getElementById('home-featured-section');
+        if (section) section.style.display = 'none';
       }
-
-      card.appendChild(body);
-
-      const actions = el('div', 'news-card__actions');
-      const readBtn = el('a', 'nav-button', 'Lire');
-      readBtn.href = it.url;
-      actions.appendChild(readBtn);
-      card.appendChild(actions);
-
-      mount.appendChild(card);
+      if (newsContainer) {
+        newsContainer.innerHTML = '<p style="opacity:.9">Impossible de charger les actualités.</p>';
+      }
     });
-
-  } catch (err) {
-    console.error(err);
-    const fallback = document.createElement('p');
-    fallback.innerHTML = `Impossible de charger les actualités. Consultez la page <a class="text-link" href="actus.html">Toutes les actus</a>.`;
-    mount.appendChild(fallback);
-  }
 })();
