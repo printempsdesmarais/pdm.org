@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Printemps des Marais — Accueil</title>
   <meta name="description" content="Projet pilote dans les marais du Médoc : écologie, patrimoine, poney landais.">
+
   <!-- Styles globaux -->
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
+
   <style>
     /* Ajustements légers spécifiques à l’accueil */
     #hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
-    #hero .brand-hero img{ width:100%; max-width:520px; height:auto; display:block; margin:150px auto 0 auto; } /* 150px espace */
+    /* 150px au-dessus du logo */
+    #hero .brand-hero{ margin-top:150px; }
+    #hero .brand-hero img{ width:100%; max-width:520px; height:auto; display:block; margin:0 auto; }
     #hero .hero-lead{
       color:#fff;
       font-size: clamp(1.2rem, 2.8vw, 1.9rem);
@@ -33,18 +37,35 @@
       border-radius:14px;
       color:#fff;
       padding: clamp(.9rem, 2.5vw, 1.2rem);
-      display:grid; gap:.4rem;
+      display:grid; gap:.6rem;
+      overflow:hidden;
     }
     .home-card h3{ margin:.1rem 0 .2rem 0; color:#fff; }
     .home-card p.small{ font-size:.92rem; opacity:.95; font-style: italic; }
+    .card-thumb{
+      width:100%; height:180px; object-fit:cover; display:block;
+      border-radius:10px; border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
 
-    /* Section actualités */
+    /* À la une (wrapper pour les features) */
+    #home-featured-section { margin-top: 0.5rem; }
+    #home-featured .feature-wrap{
+      background: rgba(15,15,15,.65);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: clamp(.6rem, 2vw, 1rem);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      overflow: hidden;
+    }
+    #home-featured > .feature-wrap + .feature-wrap { margin-top: 12px; }
+
+    /* Section actualités (le script injecte .news-card depuis home-news.js) */
     #actualites .section-title{ margin-bottom:.4rem; }
-    .news-card .nav-button { margin-top:.4rem; display:inline-block; }
   </style>
 </head>
 <body class="page1">
-  <!-- Fond décoratif -->
+  <!-- Fond décoratif (défini via body.page1 dans content.css → fondterrain8.jpg) -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
   <!-- Header injecté -->
@@ -69,33 +90,39 @@
     </section>
 
     <!-- 3 boxes de mise en contexte -->
-    <section aria-label="À la une" style="padding: .5rem 0 1rem 0;">
+    <section aria-label="Mise en contexte" style="padding: .5rem 0 1rem 0;">
       <div class="home-grid">
         <article class="home-card">
+          <img src="images/vuegenerale.jpg" alt="Vue générale du terrain" class="card-thumb" loading="lazy">
           <h3 class="section-subtitle">Ce que vous allez découvrir</h3>
-          <img src="images/vuegenerale.jpg" alt="Vue générale du terrain" style="border-radius:10px;">
           <p class="small">Un terrain en transition, une mare d’eau douce, des haies de tamaris, et une approche d’écologie “à échelle humaine”.</p>
           <a href="galerie.html" class="nav-button">Voir la galerie</a>
         </article>
         <article class="home-card">
+          <img src="images/poney1.jpg" alt="Poney landais dans les marais" class="card-thumb" loading="lazy">
           <h3 class="section-subtitle">Pourquoi le poney landais ?</h3>
-          <img src="images/poney1.jpg" alt="Poney landais" style="border-radius:10px;">
           <p class="small">Rustique, docile, adapté aux zones humides : il entretient les milieux ouverts et favorise la biodiversité.</p>
           <a href="projet-1.html#biodiversite" class="nav-button">Comprendre son rôle</a>
         </article>
         <article class="home-card">
+          <img src="images/miniatures/etude1.jpg" alt="Études et participation au projet" class="card-thumb" loading="lazy">
           <h3 class="section-subtitle">Participer au projet</h3>
-          <img src="images/miniatures/etude1.jpg" alt="Étude de terrain" style="border-radius:10px;">
           <p class="small">Bénévolat, don, partenariat, suivis naturels : chaque contribution aide à documenter et amplifier l’impact.</p>
           <a href="agir.html" class="nav-button">Comment aider</a>
         </article>
       </div>
     </section>
 
-    <!-- ACTUALITÉS -->
+    <!-- À LA UNE (FEATURED) -->
+    <section id="home-featured-section" aria-label="À la une">
+      <h2 class="section-subtitle">À la une</h2>
+      <div id="home-featured" data-limit="1"></div>
+    </section>
+
+    <!-- ACTUALITÉS (auto : 3 derniers articles de actus.html) -->
     <section id="actualites" aria-label="Dernières actualités" style="padding:1rem 0 2rem 0;">
       <h2 class="section-title">Dernières actualités</h2>
-      <div id="home-news-list" class="news-list"></div>
+      <div id="home-news" class="news-list"></div>
       <div style="margin-top:.6rem;">
         <a class="nav-button" href="actus.html">Toutes les actus</a>
       </div>
@@ -121,7 +148,7 @@
   <script src="js/injector.js"></script>
   <script src="js/short-text.js"></script>
 
-  <!-- Script d’agrégation des actus -->
+  <!-- Script d’agrégation des actus (gère “À la une” + “Dernières actualités”) -->
   <script src="js/home-news.js" defer></script>
 </body>
 </html>
