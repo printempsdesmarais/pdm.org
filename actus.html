@@ -3,160 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Actualités / Blog — Printemps des Marais</title>
-  <meta name="description" content="Nouvelles du terrain, étapes du projet, photos, rencontres — suivez le Printemps des Marais.">
+  <title>Actualités — Printemps des Marais</title>
+  <meta name="description" content="Suivez les actualités du projet Printemps des Marais : vidéos, chronologie, avancées et vie du terrain.">
 
   <!-- Styles globaux -->
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
 
-  <!-- Ajustements locaux courts (cartes articles, filtres) -->
-  <style>
-    #news-hero { text-align:center; padding: clamp(2rem,6vw,4rem) 0; }
-    #news-hero .brand-hero img{ width:100%; max-width:480px; height:auto; display:block; margin:0 auto; }
-    #news-hero .hero-lead{ color:#fff; font-size:clamp(1.05rem,2.2vw,1.4rem); line-height:1.5; max-width:74ch; margin:.5rem auto 0; text-wrap:balance; }
-
-    .post{ display:grid; grid-template-columns:160px 1fr; gap:12px; background:rgba(15,15,15,.65); border:1px solid rgba(255,255,255,.18); border-radius:14px; color:#fff; overflow:hidden; }
-    .post-thumb{ width:100%; height:100%; min-height:120px; object-fit:cover; display:block; }
-    .post-body{ padding:.9rem; display:grid; gap:.4rem; align-content:start; }
-    .post-title{ margin:0; font-size:1.1rem; }
-    .post-meta{ font-size:.85rem; opacity:.85; }
-    .post-excerpt{ margin:.2rem 0 .4rem 0; opacity:.95; }
-    .posts{ display:grid; gap:12px; }
-    @media(min-width:820px){ .posts{ grid-template-columns:repeat(2,1fr); } .post{ grid-template-columns:220px 1fr; } }
-
-    .filters{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.2rem 0 1rem 0; }
-    .filter{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#fff; text-decoration:none; padding:.4rem .7rem; border-radius:.5rem; font-weight:700; text-transform:uppercase; font-size:.8rem; }
-    .filter.is-active{ background:var(--orange); }
-
-    .pager{ display:flex; gap:.5rem; justify-content:center; margin:1rem 0 2rem; }
-  </style>
+  <!-- (Optionnel) fond spécifique si tu veux forcer ici -->
+  <!-- <style> body.page4 .bg-image{ background-image:url("images/fondterrain7.jpg"); } </style> -->
 </head>
 <body class="page4">
-  <!-- Fond décoratif (défini via body.page4 dans content.css → fondterrain2.jpg) -->
+  <!-- Fond décoratif -->
   <div class="bg-container"><div class="bg-image"></div></div>
 
   <!-- Header injecté -->
   <header id="site-header"></header>
 
   <main class="wrap" id="main">
-    <!-- HERO -->
-    <section id="news-hero">
-      <div class="brand-hero">
-        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
-      </div>
-      <h1 class="section-title">Actualités / Blog</h1>
-      <p class="hero-lead">
-        Nouvelles du terrain, étapes du projet, photos et rencontres. Pour rester informé·e et suivre la progression de la renaissance des marais du Médoc.
-      </p>
-    </section>
+    <h1 class="section-title">Actualités</h1>
 
-    <!-- Filtres -->
-    <nav class="filters" aria-label="Filtres d’articles">
-      <a href="#toutes" class="filter is-active">Toutes</a>
-      <a href="#terrain" class="filter">Terrain</a>
-      <a href="#biodiversite" class="filter">Biodiversité</a>
-      <a href="#poney-landais" class="filter">Poney landais</a>
-      <a href="#vie-asso" class="filter">Vie de l’asso</a>
-    </nav>
-
-    <!-- ARTICLES (exemples) -->
-    <section aria-label="Liste des articles">
-      <div class="posts">
-        <article class="post">
-          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/storyboard/story19.jpg" alt="Première visite technique"></a>
-          <div class="post-body">
-            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Première visite technique : état des lieux</a></h2>
-            <div class="post-meta">Publié le <time datetime="2025-07-12">12 juillet 2025</time> — Catégorie : Terrain</div>
-            <p class="post-excerpt">Mare, haies de tamaris, accès : nos premiers relevés confirment le potentiel du site pour une gestion écologique à échelle humaine.</p>
-            <div class="post-actions">
-              <a class="nav-button" href="article-exemple.html">Lire</a>
-              <a class="nav-button" href="galerie.html">Voir les photos</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <a class="post-cover" href="article-exemple.html"><img class="post-thumb" src="images/poney1.jpg" alt="Ponette landaise dans un marais"></a>
-          <div class="post-body">
-            <h2 class="post-title"><a href="article-exemple.html" class="text-link">Pourquoi le poney landais&nbsp;?</a></h2>
-            <div class="post-meta">Publié le <time datetime="2025-07-05">5 juillet 2025</time> — Catégorie : Poney landais</div>
-            <p class="post-excerpt">Rustique, docile et adapté aux zones humides, il peut entretenir la végétation tout en favorisant la biodiversité.</p>
-            <div class="post-actions">
-              <a class="nav-button" href="article-exemple.html">Lire</a>
-              <a class="nav-button" href="ressources.html">Sources &amp; docs</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- ⚠️ LIEN MODIFIÉ → chronologie.html -->
-        <article class="post">
-          <a class="post-cover" href="chronologie.html"><img class="post-thumb" src="images/storyboard/story24.jpg" alt="Chronologie visuelle : transformations d’un terrain"></a>
-          <div class="post-body">
-            <h2 class="post-title"><a href="chronologie.html" class="text-link">Chronologie : étapes clés 2025</a></h2>
-            <div class="post-meta">Publié le <time datetime="2025-07-01">1ᵉʳ juillet 2025</time> — Catégorie : Vie de l’asso</div>
-            <p class="post-excerpt">De la reprise des contacts institutionnels à la mise en place des premiers suivis, voici les jalons de notre année.</p>
-            <div class="post-actions">
-              <a class="nav-button" href="chronologie.html">Lire</a>
-              <a class="nav-button" href="index.html#contact">Proposer un article</a>
-            </div>
-          </div>
-        </article>
+    <!-- =========================
+         1) TRANSFER (en premier)
+         ========================= -->
+    <article class="post">
+      <!-- Vignette vidéo (iframe Vimeo) -->
+      <div class="post-media" style="border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04);">
+        <iframe
+          src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          title="TRANSFER DE JALLE"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          style="width:100%; aspect-ratio:16/9; display:block; border:0;"
+          loading="lazy"></iframe>
       </div>
 
-      <nav class="pager" aria-label="Pagination">
-        <a class="nav-button" href="#prev" aria-disabled="true">← Précédent</a>
-        <a class="nav-button" href="#next">Suivant →</a>
-      </nav>
-    </section>
-
-    <!-- ARTICLE SPÉCIAL (VIDÉO + TEXTE) inclus sur la home via data-include -->
-    <section id="video-actu" aria-label="Vidéo — Transfer de Jalle" style="padding:2rem 0;">
-      <div class="story-feature --video"
-           data-include="home"
-           data-published="2025-05-21"
-           data-thumb="images/miniatures/transfer-jalle.jpg"
-           data-url="article-transfer-jalle.html">
-        <div class="story-feature__media">
-          <iframe
-            src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            title="Transfer">
-          </iframe>
+      <div class="post-body">
+        <h2 class="post-title">
+          <a href="article-exemple.html" class="text-link">TRANSFER DE JALLE</a>
+        </h2>
+        <!-- Date de publication (affichée telle quelle dans la page Actus) -->
+        <div class="post-meta">
+          <time datetime="2025-07-05">Publié le 5 juillet 2025</time>
         </div>
-        <div class="story-feature__content">
-          <p class="story-feature__eyebrow">Terrain • Vidéo</p>
-          <h2 class="story-feature__title">TRANSFER DE JALLE</h2>
-          <div class="post-meta" style="opacity:.85;">
-            Publié le <time datetime="2025-05-21">21 mai 2025</time>
-          </div>
-          <p>
-            Le 21 mai 2025, <strong>Jalle</strong>, une ponette landaise de 5 ans, première étape du projet d’élevage de Laurie Jayet, a été transférée.
-          </p>
-          <p>
-            Elle a quitté les marais de Bruges pour rejoindre la ferme équestre de Naujac où Laurie s’occupe déjà de 8 chevaux.
-          </p>
-          <p>
-            Jalle y vivra en attendant que le projet <em>Printemps des Marais</em> à Talais puisse lui offrir un espace dédié et adapté à ses besoins.
-          </p>
-          <div class="actions">
-            <a href="galerie.html" class="nav-button">Voir la galerie</a>
-            <a href="index.html#contact" class="nav-button">Nous écrire</a>
-          </div>
-        </div>
+
+        <p class="post-excerpt">
+          Le 21 mai 2025, la jument Jalle, une ponette landaise de 5 ans, première étape du projet d’élevage de Laurie Jayet,
+          est transférée. Elle quitte les marais de Bruges pour rejoindre la ferme équestre de Naujac, où Laurie s’occupe
+          déjà de 8 chevaux. Jalle y vivra en attendant que le projet du «&nbsp;Printemps des Marais&nbsp;» à Talais puisse
+          lui offrir un espace dédié et adapté à ses besoins.
+        </p>
       </div>
-    </section>
+    </article>
+
+    <!-- =========================
+         2) Chronologie 2025
+         ========================= -->
+    <article class="post">
+      <img class="post-thumb" src="images/miniatures/chronologie.jpg" alt="Chronologie 2025 — Étapes clés" loading="lazy">
+      <div class="post-body">
+        <h2 class="post-title">
+          <a href="chronologie.html" class="text-link">Chronologie — étapes clés 2025</a>
+        </h2>
+        <div class="post-meta">
+          <time datetime="2025-06-28">Publié le 28 juin 2025</time>
+        </div>
+        <p class="post-excerpt">
+          Du foncier aux suivis de biodiversité, neuf étapes jalonnent l’année&nbsp;2025&nbsp;: cartographie, état des lieux écologique,
+          préparatifs de l’élevage, actions artistiques, coordination scientifique et médiation.
+        </p>
+      </div>
+    </article>
+
+    <!-- =========================
+         3) Galerie / Storyboard
+         ========================= -->
+    <article class="post">
+      <img class="post-thumb" src="images/miniatures/storyboard.jpg" alt="Galerie — Storyboard visuel du projet" loading="lazy">
+      <div class="post-body">
+        <h2 class="post-title">
+          <a href="galerie.html" class="text-link">Galerie — Storyboard visuel</a>
+        </h2>
+        <div class="post-meta">
+          <time datetime="2025-06-15">Publié le 15 juin 2025</time>
+        </div>
+        <p class="post-excerpt">
+          Une narration en images pour suivre l’évolution du terrain, des habitats et des poneys landais. Photos, séquences et légendes
+          au fil des saisons.
+        </p>
+      </div>
+    </article>
+
+    <!-- =========================
+         4) Mission — Renaissance
+         ========================= -->
+    <article class="post">
+      <img class="post-thumb" src="images/miniatures/mission.jpg" alt="Notre mission — Renaissance d’un terrain" loading="lazy">
+      <div class="post-body">
+        <h2 class="post-title">
+          <a href="projet-1.html" class="text-link">Renaissance d’un terrain — Notre mission</a>
+        </h2>
+        <div class="post-meta">
+          <time datetime="2025-06-02">Publié le 2 juin 2025</time>
+        </div>
+        <p class="post-excerpt">
+          Un site de 8&nbsp;hectares, une mare d’eau douce et des haies de tamaris. Objectif&nbsp;: une vitrine expérimentale à échelle humaine,
+          conciliant écologie, patrimoine et innovation.
+        </p>
+      </div>
+    </article>
   </main>
 
   <!-- Footer injecté -->
   <footer id="site-footer"></footer>
 
-  <!-- Scripts -->
+  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
-  <script src="js/short-text.js"></script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
