@@ -1,70 +1,36 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Agir ensemble — Printemps des Marais</title>
-  <meta name="description" content="Participez au projet Printemps des Marais : adhésion, dons, contributions.">
+  <meta name="description" content="Adhérer, soutenir, participer : formulaire Assoconnect intégré.">
 
-  <!-- Styles globaux -->
-  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
-
-  <!-- Styles locaux très légers -->
+  <link rel="stylesheet" href="css/fonts.css">
   <style>
-    #agir-hero{ text-align:center; padding: clamp(2rem,6vw,3.5rem) 0 1rem 0; }
-    #agir-hero .brand-hero img{ width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
-    #agir-hero .lead{ color:#fff; opacity:.95; max-width:72ch; margin:.5rem auto 0; text-wrap:balance; }
-
-    .agir-panel{ max-width: 900px; margin: 0 auto 2rem; }
-    .agir-widget{
-      background: rgba(15,15,15,.65);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 14px;
-      padding: 1rem;
-      color:#fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
-    }
+    .asc-wrap{ background:rgba(15,15,15,.65); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:clamp(.8rem,2vw,1.2rem); }
   </style>
 </head>
 <body class="page3">
-  <!-- Fond décoratif (défini dans css/content.css pour body.page3) -->
   <div class="bg-container"><div class="bg-image"></div></div>
-
-  <!-- Header injecté -->
   <header id="site-header"></header>
 
   <main class="wrap" id="main">
-    <!-- HERO -->
-    <section id="agir-hero" aria-label="Agir ensemble">
-      <div class="brand-hero">
-        <img src="images/logo_pdm.png" alt="Printemps des Marais — Logo">
-      </div>
-      <h1 class="section-title">Agir ensemble</h1>
-      <p class="lead">Adhérer, contribuer, soutenir le projet : votre participation rend possible la renaissance des marais.</p>
-    </section>
+    <h1 class="section-title">Agir ensemble</h1>
+    <p class="lead">Adhérez à l’association, soutenez le projet, participez aux suivis et aux actions de terrain.</p>
 
-    <!-- WIDGET / ADHÉSION ASSOCONNECT -->
-    <section class="agir-panel" aria-label="Formulaire d’adhésion">
-      <div class="agir-widget">
-        <!-- === CODE FOURNI === -->
-        <div class="iframe-asc-container"
-             data-type="collect"
-             data-collect-id="01K4FMHBVJKAYZAPG0DSX4PQ55"></div>
-        <!-- === FIN CODE === -->
-      </div>
+    <section class="panel asc-wrap">
+      <!-- Intégration Assoconnect (container dynamique) -->
+      <div class="iframe-asc-container" data-type="collect" data-collect-id="01K4FMHBVJKAYZAPG0DSX4PQ55"></div>
     </section>
   </main>
 
-  <!-- Footer injecté -->
   <footer id="site-footer"></footer>
-
-  <!-- Scripts globaux -->
   <script src="js/background.js"></script>
   <script src="js/injector.js"></script>
-
-  <!-- Script AssoConnect -->
+  <!-- Script d’intégration Assoconnect -->
   <script src="https://printemps-des-marais.assoconnect.com/public/build/js/iframe.js"></script>
 </body>
 </html>
