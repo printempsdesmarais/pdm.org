@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/content.css">
   <link rel="stylesheet" href="css/fonts.css">
-
-  <!-- (Optionnel) fond spécifique si tu veux forcer ici -->
-  <!-- <style> body.page4 .bg-image{ background-image:url("images/fondterrain7.jpg"); } </style> -->
 </head>
 <body class="page4">
   <!-- Fond décoratif -->
@@ -24,95 +21,86 @@
   <main class="wrap" id="main">
     <h1 class="section-title">Actualités</h1>
 
-    <!-- =========================
-         1) TRANSFER (en premier)
-         ========================= -->
-    <article class="post">
-      <!-- Vignette vidéo (iframe Vimeo) -->
-      <div class="post-media" style="border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04);">
-        <iframe
-          src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          title="TRANSFER DE JALLE"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          style="width:100%; aspect-ratio:16/9; display:block; border:0;"
-          loading="lazy"></iframe>
+    <!-- ARTICLE TRANSFER (mise en avant spéciale) -->
+    <article class="story-feature">
+      <div class="story-media">
+        <div style="border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04);">
+          <iframe
+            src="https://player.vimeo.com/video/1116602483?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            title="TRANSFER DE JALLE"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            style="width:100%; aspect-ratio:16/9; display:block; border:0;"
+            loading="lazy"></iframe>
+        </div>
       </div>
-
-      <div class="post-body">
-        <h2 class="post-title">
-          <a href="article-exemple.html" class="text-link">TRANSFER DE JALLE</a>
-        </h2>
-        <!-- Date de publication (affichée telle quelle dans la page Actus) -->
+      <div class="story-body">
+        <h2 class="post-title">TRANSFER DE JALLE</h2>
         <div class="post-meta">
           <time datetime="2025-07-05">Publié le 5 juillet 2025</time>
         </div>
-
-        <p class="post-excerpt">
+        <p>
           Le 21 mai 2025, la jument Jalle, une ponette landaise de 5 ans, première étape du projet d’élevage de Laurie Jayet,
-          est transférée. Elle quitte les marais de Bruges pour rejoindre la ferme équestre de Naujac, où Laurie s’occupe
-          déjà de 8 chevaux. Jalle y vivra en attendant que le projet du «&nbsp;Printemps des Marais&nbsp;» à Talais puisse
-          lui offrir un espace dédié et adapté à ses besoins.
+          est transférée. Elle quitte les marais de Bruges pour rejoindre la ferme équestre de Naujac où Laurie s’occupe
+          déjà de 8 chevaux. Jalle y vivra en attendant que le projet du Printemps des Marais à Talais puisse lui offrir
+          un espace dédié et adapté à ses besoins.
         </p>
       </div>
     </article>
 
-    <!-- =========================
-         2) Chronologie 2025
-         ========================= -->
-    <article class="post">
-      <img class="post-thumb" src="images/miniatures/chronologie.jpg" alt="Chronologie 2025 — Étapes clés" loading="lazy">
-      <div class="post-body">
-        <h2 class="post-title">
-          <a href="chronologie.html" class="text-link">Chronologie — étapes clés 2025</a>
-        </h2>
-        <div class="post-meta">
-          <time datetime="2025-06-28">Publié le 28 juin 2025</time>
+    <!-- AUTRES ARTICLES -->
+    <section class="news-list">
+      <!-- Chronologie -->
+      <article class="post">
+        <img class="post-thumb" src="images/miniatures/chronologie.jpg" alt="Chronologie 2025 — Étapes clés" loading="lazy">
+        <div class="post-body">
+          <h2 class="post-title">
+            <a href="chronologie.html" class="text-link">Chronologie — étapes clés 2025</a>
+          </h2>
+          <div class="post-meta">
+            <time datetime="2025-06-28">Publié le 28 juin 2025</time>
+          </div>
+          <p class="post-excerpt">
+            Du foncier aux suivis de biodiversité, neuf étapes jalonnent l’année&nbsp;2025&nbsp;: cartographie, état des lieux écologique,
+            préparatifs de l’élevage, actions artistiques, coordination scientifique et médiation.
+          </p>
         </div>
-        <p class="post-excerpt">
-          Du foncier aux suivis de biodiversité, neuf étapes jalonnent l’année&nbsp;2025&nbsp;: cartographie, état des lieux écologique,
-          préparatifs de l’élevage, actions artistiques, coordination scientifique et médiation.
-        </p>
-      </div>
-    </article>
+      </article>
 
-    <!-- =========================
-         3) Galerie / Storyboard
-         ========================= -->
-    <article class="post">
-      <img class="post-thumb" src="images/miniatures/storyboard.jpg" alt="Galerie — Storyboard visuel du projet" loading="lazy">
-      <div class="post-body">
-        <h2 class="post-title">
-          <a href="galerie.html" class="text-link">Galerie — Storyboard visuel</a>
-        </h2>
-        <div class="post-meta">
-          <time datetime="2025-06-15">Publié le 15 juin 2025</time>
+      <!-- Galerie -->
+      <article class="post">
+        <img class="post-thumb" src="images/miniatures/storyboard.jpg" alt="Galerie — Storyboard visuel du projet" loading="lazy">
+        <div class="post-body">
+          <h2 class="post-title">
+            <a href="galerie.html" class="text-link">Galerie — Storyboard visuel</a>
+          </h2>
+          <div class="post-meta">
+            <time datetime="2025-06-15">Publié le 15 juin 2025</time>
+          </div>
+          <p class="post-excerpt">
+            Une narration en images pour suivre l’évolution du terrain, des habitats et des poneys landais. Photos, séquences et légendes
+            au fil des saisons.
+          </p>
         </div>
-        <p class="post-excerpt">
-          Une narration en images pour suivre l’évolution du terrain, des habitats et des poneys landais. Photos, séquences et légendes
-          au fil des saisons.
-        </p>
-      </div>
-    </article>
+      </article>
 
-    <!-- =========================
-         4) Mission — Renaissance
-         ========================= -->
-    <article class="post">
-      <img class="post-thumb" src="images/miniatures/mission.jpg" alt="Notre mission — Renaissance d’un terrain" loading="lazy">
-      <div class="post-body">
-        <h2 class="post-title">
-          <a href="projet-1.html" class="text-link">Renaissance d’un terrain — Notre mission</a>
-        </h2>
-        <div class="post-meta">
-          <time datetime="2025-06-02">Publié le 2 juin 2025</time>
+      <!-- Mission -->
+      <article class="post">
+        <img class="post-thumb" src="images/miniatures/mission.jpg" alt="Notre mission — Renaissance d’un terrain" loading="lazy">
+        <div class="post-body">
+          <h2 class="post-title">
+            <a href="projet-1.html" class="text-link">Renaissance d’un terrain — Notre mission</a>
+          </h2>
+          <div class="post-meta">
+            <time datetime="2025-06-02">Publié le 2 juin 2025</time>
+          </div>
+          <p class="post-excerpt">
+            Un site de 8&nbsp;hectares, une mare d’eau douce et des haies de tamaris. Objectif&nbsp;: une vitrine expérimentale à échelle humaine,
+            conciliant écologie, patrimoine et innovation.
+          </p>
         </div>
-        <p class="post-excerpt">
-          Un site de 8&nbsp;hectares, une mare d’eau douce et des haies de tamaris. Objectif&nbsp;: une vitrine expérimentale à échelle humaine,
-          conciliant écologie, patrimoine et innovation.
-        </p>
-      </div>
-    </article>
+      </article>
+    </section>
   </main>
 
   <!-- Footer injecté -->
